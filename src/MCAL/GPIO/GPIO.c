@@ -19,6 +19,7 @@
 #define MASK_READ_GPIO_OTYPE    (0x00000001UL)
 #define MASK_READ_GPIO_PUPD     (0x00000003UL)
 #define MASK_READ_GPIO_OSPEED   (0x00000003UL)
+#define MASK_READ_1BIT          (0x00000001UL)   
 #define MASK_SHIFT_OTYPE_BIT    (0x00000002UL)
 #define MASK_SHIFT_PUPD_BITS    (0x00000003UL)
 #define GPIO_2BITS_CFG          (0x00000002UL)
@@ -85,29 +86,67 @@ ErrorStatus_t GPIO_InitPin(GPIO_CFG_t* GPIO_Config)
          * Modify The Register Value 
          * Write back the new value in the Register
         */
-        uint32_t LocGPIO_ModeRegister=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->MODER;     /*Read the GPIO Mode Register                       */
-        LocGPIO_ModeRegister&=~MASK_READ_GPIO_MODE<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG); /*Clear the Corresponding Bits in the register Value*/ 
-        LocGPIO_ModeRegister|=LocGPIO_Mode<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);         /*Modify the Mode register Value                    */
-        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->MODER=LocGPIO_ModeRegister;              /* Write Back the value in GPIO Mode Register       */
+        uint32_t Loc_RegisterValue=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->MODER;     /*Read the GPIO Mode Register                       */
+        Loc_RegisterValue&=~MASK_READ_GPIO_MODE<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG); /*Clear the Corresponding Bits in the register Value*/ 
+        Loc_RegisterValue|=LocGPIO_Mode<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);         /*Modify the Mode register Value                    */
+        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->MODER=Loc_RegisterValue;              /* Write Back the value in GPIO Mode Register       */
      
-        uint32_t LocGPIO_OTypeRegister=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OTYPER;   /*Read the GPIO OTYPE Register                     */
-        LocGPIO_OTypeRegister&=~MASK_READ_GPIO_OTYPE<<GPIO_Config->GPIO_Pin;                  /*Clear the Corresponding Bit in the register Value*/
-        LocGPIO_OTypeRegister|=LocGPIO_OutType<<GPIO_Config->GPIO_Pin;                        /*Modify the OType register Value                  */
-        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OTYPER=LocGPIO_OTypeRegister;            /*Write Back the value in GPIO OType Register      */
+        Loc_RegisterValue=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OTYPER;           /*Read the GPIO OTYPE Register                     */
+        Loc_RegisterValue&=~MASK_READ_GPIO_OTYPE<<GPIO_Config->GPIO_Pin;                 /*Clear the Corresponding Bit in the register Value*/
+        Loc_RegisterValue|=LocGPIO_OutType<<GPIO_Config->GPIO_Pin;                       /*Modify the OType register Value                  */
+        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OTYPER=Loc_RegisterValue;           /*Write Back the value in GPIO OType Register      */
 
-        uint32_t LocGPIO_PUPD_Register=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->PUPDR;    /*Read the GPIO PUPD Register                      */
-        LocGPIO_PUPD_Register&=~MASK_READ_GPIO_PUPD<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);/*Clear the Corresponding Bit in the register Value*/
-        LocGPIO_PUPD_Register|=LocGPIO_PUPD<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);        /*Modify The PUPD Register Value                   */
-        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->PUPDR=LocGPIO_PUPD_Register;             /*Write Back the value in GPIO PUPD Register       */
+        Loc_RegisterValue=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->PUPDR;             /*Read the GPIO PUPD Register                      */
+        Loc_RegisterValue&=~MASK_READ_GPIO_PUPD<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);/*Clear the Corresponding Bit in the register Value*/
+        Loc_RegisterValue|=LocGPIO_PUPD<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);        /*Modify The PUPD Register Value                   */
+        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->PUPDR=Loc_RegisterValue;             /*Write Back the value in GPIO PUPD Register       */
 
-        uint32_t LocGPIO_OSpeedRegister=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OSPEEDR;        /* Read the GPIO OSpeed Register                     */
-        LocGPIO_OSpeedRegister&=~MASK_READ_GPIO_OSPEED<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);    /* Clear the Corresponding Bit in the register Value */
-        LocGPIO_OSpeedRegister|=(GPIO_Config->GPIO_Speed)<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG); /* Modify The OSpeed Register Value                  */
-        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OSPEEDR=LocGPIO_OSpeedRegister;                 /* Write Back the value in GPIO OSpeed Register      */
+        Loc_RegisterValue=((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OSPEEDR;                 /* Read the GPIO OSpeed Register                     */
+        Loc_RegisterValue&=~MASK_READ_GPIO_OSPEED<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG);    /* Clear the Corresponding Bit in the register Value */
+        Loc_RegisterValue|=(GPIO_Config->GPIO_Speed)<<((GPIO_Config->GPIO_Pin)*GPIO_2BITS_CFG); /* Modify The OSpeed Register Value                  */
+        ((GPIO_Registers_t*)GPIO_Config->GPIO_Port)->OSPEEDR=Loc_RegisterValue;                 /* Write Back the value in GPIO OSpeed Register      */
     }
     return ReturnState;
 }
 
 
-ErrorStatus_t GPIO_SetPinValue(uint8_t GPIO_Port,uint8_t GPIO_Pin,uint32_t GPIO_PinState);
-ErrorStatus_t GPIO_GetPinValue(uint8_t GPIO_Port,uint8_t GPIO_Pin,uint8_t* GPIO_PinState);
+ErrorStatus_t GPIO_SetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t GPIO_PinState)
+{
+    ErrorStatus_t ReturnState;
+    if(GPIO_Port==NULL)
+    {
+        ReturnState=NULL_POINTER;
+    }
+    else if(GPIO_Port !=GPIO_PORTA && GPIO_Port !=GPIO_PORTB && GPIO_Port !=GPIO_PORTC&&
+            GPIO_Port !=GPIO_PORTD && GPIO_Port !=GPIO_PORTE && GPIO_Port !=GPIO_PORTH )
+    {
+        ReturnState=GPIO_WrongPort;
+    } 
+    else if(GPIO_PinState != GPIO_SET_PIN_HIGH && GPIO_PinState != GPIO_SET_PIN_LOW)
+    {
+        ReturnState=GPIO_WrongPinValue;
+    }
+    else
+    {
+        ((volatile GPIO_Registers_t*)GPIO_Port)->BSRR=GPIO_PinState<<GPIO_Pin;
+    }
+    return ReturnState;
+}
+ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint8_t* GPIO_PinState)
+{
+    ErrorStatus_t ReturnState;
+    if((GPIO_Port==NULL)||(GPIO_PinState))
+    {
+        ReturnState=NULL_POINTER;
+    }
+    else if(GPIO_Port !=GPIO_PORTA && GPIO_Port !=GPIO_PORTB && GPIO_Port !=GPIO_PORTC&&
+            GPIO_Port !=GPIO_PORTD && GPIO_Port !=GPIO_PORTE && GPIO_Port !=GPIO_PORTH )
+    {
+        ReturnState=GPIO_WrongPort;
+    } 
+    else
+    {
+        *GPIO_PinState=((((volatile GPIO_Registers_t*)GPIO_Port)->IDR)>>GPIO_Pin) & MASK_READ_1BIT;  
+    }
+    return ReturnState;
+}

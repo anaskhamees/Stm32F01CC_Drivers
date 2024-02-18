@@ -38,8 +38,8 @@ typedef enum{
 	GPIO_WrongModeConfig,
 	GPIO_WrongSpeed,
 	GPIO_WrongPort,
-	GPIO_WrongPin
-
+	GPIO_WrongPin,
+	GPIO_WrongPinValue
 }ErrorStatus_t;
 
 
