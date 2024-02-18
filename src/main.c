@@ -13,6 +13,8 @@ int main(int argc, char* argv[])
 	};
 	
 	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSE_ON_OFF);
+	ReturnError=RCC_CheckReadyCLK(MASK_HSE_READY);
+
     ReturnError=RCC_Select_SYSCLK(MASK_SYSCLK_HSE);
     ReturnError=RCC_DisableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSI_ON_OFF);
     ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_ON);
