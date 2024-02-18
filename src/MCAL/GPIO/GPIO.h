@@ -99,7 +99,7 @@ typedef struct
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
 ErrorStatus_t GPIO_InitPin(GPIO_CFG_t* GPIO_Config);
-ErrorStatus_t GPIO_SetPinValue(uint8_t GPIO_Port,uint8_t GPIO_Pin,uint32_t GPIO_PinState);
-ErrorStatus_t GPIO_GetPinValue(uint8_t GPIO_Port,uint8_t GPIO_Pin,uint8_t* GPIO_PinState);
+ErrorStatus_t GPIO_SetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t GPIO_PinState);
+ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t* GPIO_PinState);
 
 #endif /* GPIO_H_ */
