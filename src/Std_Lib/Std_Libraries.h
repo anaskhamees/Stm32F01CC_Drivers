@@ -35,6 +35,10 @@ typedef enum{
 	WrongPLLP_PARAMETER,
 	WrongPLLQ_PARAMETER,
 	WrongPLLSRC_PARAMETER,
+	GPIO_WrongModeConfig,
+	GPIO_WrongSpeed,
+	GPIO_WrongPort,
+	GPIO_WrongPin
 
 }ErrorStatus_t;
 

@@ -5,18 +5,14 @@ int main(int argc, char* argv[])
   // at high speed.
 	ErrorStatus_t ReturnError;
 	PLLCFG_t PLL_Config={
-			.PLLSRC=RCC_PLLSRC_HSE,
+			.PLLSRC=RCC_PLLSRC_HSI,
 			.PLLM=10,
-			.PLLN=210,
-			.PLLP=RCC_PLLP_DIV4,
+			.PLLN=100,
+			.PLLP=RCC_PLLP_DIV6,
 			.PLLQ=7
 	};
 	
-	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSE_ON_OFF);
-	ReturnError=RCC_CheckReadyCLK(MASK_HSE_READY);
-
-    ReturnError=RCC_Select_SYSCLK(MASK_SYSCLK_HSE);
-    ReturnError=RCC_DisableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSI_ON_OFF);
+//	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSI_ON_OFF);
     ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_ON);
 	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_ON);
 	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOCEN,RCC_PERIPHERAL_ON);
@@ -26,8 +22,12 @@ int main(int argc, char* argv[])
     
     ReturnError=RCC_ConfigurePLL(&PLL_Config);
 	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_PLL_ON_OFF);
+	
 	ReturnError=RCC_CheckReadyCLK(MASK_PLL_READY);
-	ReturnError=RCC_Select_SYSCLK(MASK_SYSCLK_PLL);
+	if(ReturnError==OK)
+	{
+		ReturnError=RCC_Select_SYSCLK(MASK_SYSCLK_PLL);
+	}
     
 	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_OFF);
 	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_OFF);
