@@ -129,11 +129,15 @@ ErrorStatus_t GPIO_SetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t GPIO_P
     }
     else
     {
-        ((volatile GPIO_Registers_t*)GPIO_Port)->BSRR=GPIO_PinState<<GPIO_Pin;
+        /**
+         * @note :We don't need to Read/Modify/Write operation because we use Bit Set/Reset Register.
+         */
+        ((volatile GPIO_Registers_t*)GPIO_Port)->BSRR=GPIO_PinState<<GPIO_Pin; /* Note We don't need to Read/Modify/Write operation*/
          ReturnState=OK;
     }
     return ReturnState;
 }
+
 ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t* GPIO_PinState)
 {
     ErrorStatus_t ReturnState;
@@ -148,6 +152,7 @@ ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t* GPIO_
     } 
     else
     {
+        
         *GPIO_PinState=((((volatile GPIO_Registers_t*)GPIO_Port)->IDR)>>GPIO_Pin) & MASK_READ_1BIT;  
         ReturnState=OK;
     }

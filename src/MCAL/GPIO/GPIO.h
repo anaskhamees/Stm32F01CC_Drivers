@@ -86,20 +86,94 @@
 /******************************************************************************************/
 /*************************************** Data Types ***************************************/
 /******************************************************************************************/
+/**
+  * @brief  Configuration structure for GPIO initialization.
+  */
 typedef struct 
 {
-    void*    GPIO_Port;
-    uint32_t GPIO_Pin ;
-    uint32_t GPIO_Mode;
-    uint32_t GPIO_Speed;    
-}GPIO_CFG_t;
+    void*    GPIO_Port;       /*!< Pointer to the GPIO port (GPIO_PORTA, GPIO_PORTB, GPIO_PORTC, GPIO_PORTD, GPIO_PORTE, GPIO_PORTH) */
+    uint32_t GPIO_Pin;        /*!< GPIO pin number (GPIO_PIN0 to GPIO_PIN15) */
+    uint32_t GPIO_Mode;       /*!< GPIO pin mode:
+                                   - GPIO_OUT_PP_NO_PUPD: Output push-pull without pull-up/pull-down
+                                   - GPIO_OUT_PP_PU: Output push-pull with pull-up
+                                   - GPIO_OUT_PP_PD: Output push-pull with pull-down
+                                   - GPIO_OUT_OD_NO_PUPD: Output open-drain without pull-up/pull-down
+                                   - GPIO_OUT_OD_PU: Output open-drain with pull-up
+                                   - GPIO_OUT_OD_PD: Output open-drain with pull-down
+                                   - GPIO_IN_FLOATING: Input floating
+                                   - GPIO_IN_PU: Input with pull-up
+                                   - GPIO_IN_PD: Input with pull-down
+                                   - GPIO_IN_ANALOG: Analog mode
+                                   - GPIO_AF_PP_NO_PUPD: Alternate function push-pull without pull-up/pull-down
+                                   - GPIO_AF_PP_PU: Alternate function push-pull with pull-up
+                                   - GPIO_AF_PP_PD: Alternate function push-pull with pull-down
+                                   - GPIO_AF_OD_NO_PUPD: Alternate function open-drain without pull-up/pull-down
+                                   - GPIO_AF_OD_PU: Alternate function open-drain with pull-up
+                                   - GPIO_AF_OD_PD: Alternate function open-drain with pull-down */
+    uint32_t GPIO_Speed;      /*!< GPIO pin speed:
+                                   - GPIO_LOW_SPEED
+                                   - GPIO_MEDIUM_SPEED
+                                   - GPIO_HIGH_SPEED
+                                   - GPIO_VERY_HIGH_SPEED */
+} GPIO_CFG_t;
 
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------  API'S -------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
+/**
+  * @brief  Initializes a GPIO pin based on the provided configuration.
+  * @param  GPIO_Config: Pointer to a structure containing GPIO pin configuration parameters.
+  * @warning You Must Enable GPIO Peripheral CLock in RCC Peripheral. 
+  * @retval ErrorStatus_t: Indicates the status of the initialization operation.
+  *         - OK: Operation completed successfully.
+  *         - NULL_POINTER: The pointer to GPIO_Config is NULL.
+  *         - GPIO_WrongModeConfig: Incorrect GPIO mode configuration provided.
+  *         - GPIO_WrongPin: Invalid GPIO pin specified.
+  *         - GPIO_WrongPort: Invalid GPIO port specified.
+  *         - GPIO_WrongSpeed: Invalid GPIO speed specified.
+  */
 ErrorStatus_t GPIO_InitPin(GPIO_CFG_t* GPIO_Config);
+/**
+ * @brief Sets the value of a specific GPIO pin.
+ * @param GPIO_Port Pointer to the GPIO port base address.
+ *        This parameter should be one of the following values:
+ *        - GPIO_PORTA: GPIO Port A base address.
+ *        - GPIO_PORTB: GPIO Port B base address.
+ *        - GPIO_PORTC: GPIO Port C base address.
+ *        - GPIO_PORTD: GPIO Port D base address.
+ *        - GPIO_PORTE: GPIO Port E base address.
+ *        - GPIO_PORTH: GPIO Port H base address.
+ * @param GPIO_Pin Pin number should be a value between GPIO_PIN0 to GPIO_PIN15.
+ * @param GPIO_PinState : This parameter should be one of the following values:
+ *        - GPIO_SET_PIN_HIGH: Set the pin to a HIGH .
+ *        - GPIO_SET_PIN_LOW: Set the pin to a LOW .
+ * @return ErrorStatus_t Error status.
+ *         - OK: Operation successful.
+ *         - NULL_POINTER: GPIO_Port pointer is NULL.
+ *         - GPIO_WrongPort: Invalid GPIO port specified.
+ *         - GPIO_WrongPinValue: Invalid pin state specified.
+ */
 ErrorStatus_t GPIO_SetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t GPIO_PinState);
+/**
+ * @brief Gets the value of a specific GPIO pin.
+ * @param GPIO_Port Pointer to the GPIO port base address.
+ *        This parameter should be one of the following values:
+ *        - GPIO_PORTA: GPIO Port A base address.
+ *        - GPIO_PORTB: GPIO Port B base address.
+ *        - GPIO_PORTC: GPIO Port C base address.
+ *        - GPIO_PORTD: GPIO Port D base address.
+ *        - GPIO_PORTE: GPIO Port E base address.
+ *        - GPIO_PORTH: GPIO Port H base address.
+ * @param GPIO_Pin Pin number to get the value for.
+ *        This parameter should be a value between GPIO_PIN0 to GPIO_PIN15.
+ * @param GPIO_PinState Pointer to store the retrieved pin state.
+ *        This parameter should be a pointer to a uint32_t variable.
+ * @return ErrorStatus_t Error status.
+ *         - OK: Operation successful.
+ *         - NULL_POINTER: GPIO_Port pointer or GPIO_PinState pointer is NULL.
+ *         - GPIO_WrongPort: Invalid GPIO port specified.
+ */
 ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t* GPIO_PinState);
 
 #endif /* GPIO_H_ */
