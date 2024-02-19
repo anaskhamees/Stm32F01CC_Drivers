@@ -1,42 +1,37 @@
 #include "MCAL/RCC/RCC.h"
+#include "MCAL/GPIO/GPIO.h"
 int main(int argc, char* argv[])
 {
-  // At this stage the system clock should have already been configured
-  // at high speed.
-	ErrorStatus_t ReturnError;
-	PLLCFG_t PLL_Config={
-			.PLLSRC=RCC_PLLSRC_HSI,
-			.PLLM=10,
-			.PLLN=100,
-			.PLLP=RCC_PLLP_DIV6,
-			.PLLQ=7
+
+	GPIO_CFG_t pin0 ={
+		.GPIO_Port=GPIO_PORTB,
+		.GPIO_Pin=GPIO_PIN0,
+		.GPIO_Mode=GPIO_OUT_PP_PD,
+		.GPIO_Speed=GPIO_LOW_SPEED
 	};
-	
-//	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_HSI_ON_OFF);
-    ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOCEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIODEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOEEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOHEN,RCC_PERIPHERAL_ON);
-    
-    ReturnError=RCC_ConfigurePLL(&PLL_Config);
-	ReturnError=RCC_EnableClock(RCC_HSI_HSE_PLL_PLLI2S_REGISTER,MASK_PLL_ON_OFF);
-	
-	ReturnError=RCC_CheckReadyCLK(MASK_PLL_READY);
-	if(ReturnError==OK)
-	{
-		ReturnError=RCC_Select_SYSCLK(MASK_SYSCLK_PLL);
-	}
-    
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_OFF);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_OFF);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOCEN,RCC_PERIPHERAL_OFF);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIODEN,RCC_PERIPHERAL_OFF);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOEEN,RCC_PERIPHERAL_OFF);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOHEN,RCC_PERIPHERAL_OFF);
-	// Infinite loop
- /* while (1)
+	GPIO_CFG_t pin1 ={
+		.GPIO_Port=GPIO_PORTB,
+		.GPIO_Pin=GPIO_PIN4,
+		.GPIO_Mode=GPIO_OUT_PP_NO_PUPD,
+		.GPIO_Speed=GPIO_LOW_SPEED
+	};
+	GPIO_CFG_t pin2 ={
+		.GPIO_Port=GPIO_PORTB,
+		.GPIO_Pin=GPIO_PIN2,
+		.GPIO_Mode=GPIO_OUT_PP_NO_PUPD,
+		.GPIO_Speed=GPIO_LOW_SPEED
+	};
+
+	ErrorStatus_t ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_ON);
+	ReturnError=GPIO_InitPin(&pin0);
+	ReturnError=GPIO_InitPin(&pin1);
+	ReturnError=GPIO_InitPin(&pin2);
+	ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN2,GPIO_SET_PIN_HIGH);
+	//ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN1,GPIO_SET_PIN_HIGH);
+	//ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN2,GPIO_SET_PIN_HIGH);
+
+	//ReturnError=
+/*	while (1)
     {
        // Add your code here.
     }*/

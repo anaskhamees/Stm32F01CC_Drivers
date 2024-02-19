@@ -190,7 +190,7 @@ ErrorStatus_t RCC_Select_SYSCLK(uint32_t SYSCLK)
  * @return: ErrorStatus_t Status of the operation (OK if successful, WRONG_PARAMETER if invalid
  *         parameters are provided).
  */
-ErrorStatus_t RCC_ControlPeripheralCLK(uint32_t* BusRegister,uint8_t Peripheral,uint8_t PeripheralCFG)
+ErrorStatus_t RCC_ControlPeripheralCLK(uint32_t* BusRegister,uint32_t Peripheral,uint32_t PeripheralCFG)
 {
 	ErrorStatus_t ReturnState;
 	uint32_t RegisterValue=0;
