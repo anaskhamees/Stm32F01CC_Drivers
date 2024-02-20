@@ -92,9 +92,9 @@
   */
 typedef struct 
 {
-    void*    GPIO_Port;       /*!< Pointer to the GPIO port (GPIO_PORTA, GPIO_PORTB, GPIO_PORTC, GPIO_PORTD, GPIO_PORTE, GPIO_PORTH) */
-    uint32_t GPIO_Pin;        /*!< GPIO pin number (GPIO_PIN0 to GPIO_PIN15) */
-    uint32_t GPIO_Mode;       /*!< GPIO pin mode:
+    void*     GPIO_Port;       /*!< Pointer to the GPIO port (GPIO_PORTA, GPIO_PORTB, GPIO_PORTC, GPIO_PORTD, GPIO_PORTE, GPIO_PORTH) */
+    uint32_t  GPIO_Pin;        /*!< GPIO pin number (GPIO_PIN0 to GPIO_PIN15) */
+    uint32_t  GPIO_Mode;       /*!< GPIO pin mode:
                                    - GPIO_OUT_PP_NO_PUPD: Output push-pull without pull-up/pull-down
                                    - GPIO_OUT_PP_PU: Output push-pull with pull-up
                                    - GPIO_OUT_PP_PD: Output push-pull with pull-down
