@@ -50,12 +50,12 @@ ErrorStatus_t GPIO_InitPin(GPIO_CFG_t* GPIO_Config)
     {
         ReturnState = NULL_POINTER;
     }
-    else if(GPIO_Config->GPIO_Mode != GPIO_OUT_PP_NO_PUPD && GPIO_Config->GPIO_Mode != GPIO_OUT_PP_PU && GPIO_Config->GPIO_Mode != GPIO_OUT_PP_PD&&
-            GPIO_Config->GPIO_Mode != GPIO_OUT_OD_NO_PUPD && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PU && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PD&&
-            GPIO_Config->GPIO_Mode != GPIO_IN_FLOATING    && GPIO_Config->GPIO_Mode != GPIO_IN_PU     && GPIO_Config->GPIO_Mode != GPIO_IN_PD    &&
-            GPIO_Config->GPIO_Mode != GPIO_IN_ANALOG      && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PU && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PD&&
-            GPIO_Config->GPIO_Mode != GPIO_AF_PP_NO_PUPD  && GPIO_Config->GPIO_Mode != GPIO_AF_PP_PU  && GPIO_Config->GPIO_Mode != GPIO_AF_PP_PD &&
-            GPIO_Config->GPIO_Mode != GPIO_AF_OD_NO_PUPD  && GPIO_Config->GPIO_Mode != GPIO_AF_OD_PU  && GPIO_Config->GPIO_Mode != GPIO_AF_OD_PD )
+    else if(GPIO_Config->GPIO_Mode != GPIO_OUT_PP_NO_PUPD && (GPIO_Config->GPIO_Mode != GPIO_OUT_PP_PU) && GPIO_Config->GPIO_Mode != GPIO_OUT_PP_PD&&
+            GPIO_Config->GPIO_Mode != GPIO_OUT_OD_NO_PUPD && (GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PU) && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PD&&
+            GPIO_Config->GPIO_Mode != GPIO_IN_FLOATING    && (GPIO_Config->GPIO_Mode != GPIO_IN_PU    ) && GPIO_Config->GPIO_Mode != GPIO_IN_PD    &&
+            GPIO_Config->GPIO_Mode != GPIO_IN_ANALOG      && (GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PU) && GPIO_Config->GPIO_Mode != GPIO_OUT_OD_PD&&
+            GPIO_Config->GPIO_Mode != GPIO_AF_PP_NO_PUPD  && (GPIO_Config->GPIO_Mode != GPIO_AF_PP_PU ) && GPIO_Config->GPIO_Mode != GPIO_AF_PP_PD &&
+            GPIO_Config->GPIO_Mode != GPIO_AF_OD_NO_PUPD  && (GPIO_Config->GPIO_Mode != GPIO_AF_OD_PU ) && GPIO_Config->GPIO_Mode != GPIO_AF_OD_PD )
     {
        ReturnState=GPIO_WrongModeConfig;
     }
@@ -141,7 +141,7 @@ ErrorStatus_t GPIO_SetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t GPIO_P
 ErrorStatus_t GPIO_GetPinValue(void* GPIO_Port,uint32_t GPIO_Pin,uint32_t* GPIO_PinState)
 {
     ErrorStatus_t ReturnState;
-    if((GPIO_Port==NULL)||(GPIO_PinState))
+    if((GPIO_Port==NULL)||(GPIO_PinState==NULL))
     {
         ReturnState=NULL_POINTER;
     }

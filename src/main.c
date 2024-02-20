@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	ReturnError=GPIO_InitPin(&pin1);
 	ReturnError=GPIO_InitPin(&pin2);
 	ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN2,GPIO_SET_PIN_HIGH);
-	ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN1,GPIO_SET_PIN_HIGH);
+	 ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN1,GPIO_SET_PIN_HIGH);
 	//ReturnError=GPIO_SetPinValue(GPIO_PORTB,GPIO_PIN2,GPIO_SET_PIN_HIGH);
 
 	//ReturnError=
