@@ -24,10 +24,10 @@
             }Leds_Number_t;
             
 */
-typedef enum{
+/*typedef enum{
 
 
 
 
 _Led_Number
-}Leds_Number_t;
+}Leds_Number_t;*/
