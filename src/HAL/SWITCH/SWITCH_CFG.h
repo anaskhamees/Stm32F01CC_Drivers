@@ -1,41 +1,37 @@
-#ifndef HAL_SWITCH_SWITCH_H_
-#define HAL_SWITCH_SWITCH_H_
+#ifndef HAL_SWITCH_SWITCH_CFG_H_
+#define HAL_SWITCH_SWITCH_CFG_H_
+
 
 /********************************************************************************************************/
 /************************************************Includes************************************************/
 /********************************************************************************************************/
-#include "Std_Lib/Std_Libraries.h"
-#include "SWITCH_CFG.h"
+
 
 /********************************************************************************************************/
 /************************************************Defines*************************************************/
 /********************************************************************************************************/
-#define SWITCH_PRESSED      (1UL)
-#define SWITCH_RELEASED     (0UL)
-
-#define SW_PULL_UP          (1UL)
-#define SW_PULL_DOWN        (0UL)
 
 
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/
 /********************************************************************************************************/
-typedef struct 
+
+/**
+ * You should puts your Switches Here
+        typedef enum
+        {
+            SWITCH_1,
+            SWITCH_2,
+            ALARM_SW,
+            _SWITCHS_NUM
+        }SW_NUM_t;
+*/
+typedef enum
 {
-    void    *SW_Port      ;
-    uint32_t SW_Pin       ;
-    uint32_t SW_Connection; /* PULL-UP or PULL-DOWN */
-    uint32_t SW_State     ;
-
-}SwitchCFG_t;
-
-/********************************************************************************************************/
-/************************************************APIs****************************************************/
-/********************************************************************************************************/
-
-ErrorStatus_t Switch_Init(void);
-ErrorStatus_t Switch_GetState(void* SW_Port,uint32_t SW_Pin,uint32_t* SW_State);
+    SWITCH_1,
+    _SWITCHES_NUM /*Don't change the position of this Enumerator*/
+}SW_NUM_t;
 
 
 
@@ -49,4 +45,11 @@ ErrorStatus_t Switch_GetState(void* SW_Port,uint32_t SW_Pin,uint32_t* SW_State);
 
 
 
-#endif // HAL_SWITCH_SWITCH_H_
+
+
+
+
+
+
+
+#endif // HAL_SWITCH_SWITCH_CFG_H_

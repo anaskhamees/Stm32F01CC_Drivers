@@ -9,8 +9,8 @@
  */
 
 /**
- *@note  : User Should Fill This enum with his Leds
- @warning: Don't Change The Position of _Led_Number, it must be the last item in the enum.
+ *@note   : User Should Fill This enum with his Leds
+ *@warning: Don't Change The Position of _Led_Number, it must be the last item in the enum.
  * For Example :
             typedef enum{
                 Led_Green,
@@ -24,10 +24,9 @@
             }Leds_Number_t;
             
 */
-/*typedef enum{
+typedef enum{
 
 
-
-
+LED1,
 _Led_Number
-}Leds_Number_t;*/
+}Leds_Number_t;
