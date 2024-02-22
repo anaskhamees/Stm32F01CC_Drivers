@@ -13,10 +13,10 @@
 #define SWITCH_PRESSED      (1UL)
 #define SWITCH_RELEASED     (0UL)
 
-#define SW_PULL_UP          (1UL)
-#define SW_PULL_DOWN        (0UL)
+//#define SW_PULL_UP          (1UL)
+//#define SW_PULL_DOWN        (0UL)
 
-
+   // *SwitchState=(*SwitchState)^SWITCHES[SwitchNum].SW_Connection;
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/
@@ -35,7 +35,7 @@ typedef struct
 /********************************************************************************************************/
 
 ErrorStatus_t Switch_Init(void);
-ErrorStatus_t Switch_GetState(void* SW_Port,uint32_t SW_Pin,uint32_t* SW_State);
+ErrorStatus_t Switch_GetState(uint32_t SwitchNum ,uint32_t* SwitchState);
 
 
 
