@@ -16,7 +16,7 @@
 /************************************************Variables***********************************************/
 /********************************************************************************************************/
 
-extern SwitchCFG_t  SWITCHES[_SWITCHES_NUM];
+extern SwitchCFG_t  Switches[_SWITCHES_NUM];
 
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
@@ -38,9 +38,9 @@ ErrorStatus_t Switch_Init(void)
     uint8_t SW_Num;
     for (SW_Num=0;SW_Num<_SWITCHES_NUM;SW_Num++)
     {
-        Switch.GPIO_Port=SWITCHES[SW_Num].SW_Port;
-        Switch.GPIO_Pin=SWITCHES[SW_Num].SW_Pin;
-        Switch.GPIO_Mode=SWITCHES[SW_Num].SW_Connection;
+        Switch.GPIO_Port=Switches[SW_Num].SW_Port;
+        Switch.GPIO_Pin=Switches[SW_Num].SW_Pin;
+        Switch.GPIO_Mode=Switches[SW_Num].SW_Connection;
     }
     Switch.GPIO_Speed=GPIO_HIGH_SPEED;
     ReturnState=GPIO_InitPin(&Switch);
@@ -68,7 +68,7 @@ ErrorStatus_t Switch_Init(void)
     }
     else
     {
-        ReturnError=GPIO_GetPinValue(SWITCHES[SwitchNum].SW_Port,SWITCHES[SwitchNum].SW_Pin,SwitchState);
+        ReturnError=GPIO_GetPinValue(Switches[SwitchNum].SW_Port,Switches[SwitchNum].SW_Pin,SwitchState);
 
         /**
          * ((SWITCHES[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION) : 
@@ -86,7 +86,7 @@ ErrorStatus_t Switch_Init(void)
              | SWITCH_RELEASED (0)  |    GPIO_IN_PD (0)  |   0    |
              +----------------------+--------------------+--------+           
          */
-        *SwitchState=(*SwitchState)^(((SWITCHES[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION)&(MASK_GET_SW_CONNECTION_LSB));
+        *SwitchState=(*SwitchState)^(((Switches[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION)&(MASK_GET_SW_CONNECTION_LSB));
     }
     return ReturnError;
    }
