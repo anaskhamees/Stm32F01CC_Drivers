@@ -39,7 +39,7 @@ LedCFG_t LEDs[_Led_Number]=
     .Led_Port=GPIO_PORTB,
     .Led_Pin=GPIO_PIN1,
     .Led_Connection=LED_FORWARD,
-    .Led_InitialState=LED_ON
+    .Led_InitialState=LED_OFF
   }
     
 };
