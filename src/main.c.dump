@@ -1,0 +1,820 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c"/>
+    <file index="1" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h"/>
+    <file index="2" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h"/>
+    <file index="3" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h"/>
+    <file index="4" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h"/>
+    <file index="5" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h"/>
+    <tok fileIndex="0" linenr="1" column="1" str="#"/>
+    <tok fileIndex="0" linenr="1" column="2" str="include"/>
+    <tok fileIndex="0" linenr="1" column="10" str="&quot;MCAL/RCC/RCC.h&quot;"/>
+    <tok fileIndex="0" linenr="2" column="1" str="#"/>
+    <tok fileIndex="0" linenr="2" column="2" str="include"/>
+    <tok fileIndex="0" linenr="2" column="10" str="&quot;HAL/LED/LED.h&quot;"/>
+    <tok fileIndex="0" linenr="3" column="1" str="#"/>
+    <tok fileIndex="0" linenr="3" column="2" str="include"/>
+    <tok fileIndex="0" linenr="3" column="10" str="&quot;HAL/SWITCH/SWITCH.h&quot;"/>
+    <tok fileIndex="0" linenr="4" column="1" str="int"/>
+    <tok fileIndex="0" linenr="4" column="5" str="main"/>
+    <tok fileIndex="0" linenr="4" column="9" str="("/>
+    <tok fileIndex="0" linenr="4" column="10" str="int"/>
+    <tok fileIndex="0" linenr="4" column="14" str="argc"/>
+    <tok fileIndex="0" linenr="4" column="18" str=","/>
+    <tok fileIndex="0" linenr="4" column="20" str="char"/>
+    <tok fileIndex="0" linenr="4" column="24" str="*"/>
+    <tok fileIndex="0" linenr="4" column="26" str="argv"/>
+    <tok fileIndex="0" linenr="4" column="30" str="["/>
+    <tok fileIndex="0" linenr="4" column="31" str="]"/>
+    <tok fileIndex="0" linenr="4" column="32" str=")"/>
+    <tok fileIndex="0" linenr="5" column="1" str="{"/>
+    <tok fileIndex="0" linenr="7" column="2" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="7" column="16" str="ReturnError"/>
+    <tok fileIndex="0" linenr="7" column="27" str="="/>
+    <tok fileIndex="0" linenr="7" column="28" str="RCC_ControlPeripheralCLK"/>
+    <tok fileIndex="0" linenr="7" column="52" str="("/>
+    <tok fileIndex="0" linenr="7" column="53" str="RCC_AHB1_BUS_REGISTER"/>
+    <tok fileIndex="0" linenr="7" column="74" str=","/>
+    <tok fileIndex="0" linenr="7" column="75" str="RCC_AHB1ENR_GPIOBEN"/>
+    <tok fileIndex="0" linenr="7" column="94" str=","/>
+    <tok fileIndex="0" linenr="7" column="95" str="RCC_PERIPHERAL_ON"/>
+    <tok fileIndex="0" linenr="7" column="112" str=")"/>
+    <tok fileIndex="0" linenr="7" column="113" str=";"/>
+    <tok fileIndex="0" linenr="8" column="2" str="uint32_t"/>
+    <tok fileIndex="0" linenr="8" column="11" str="SwitchValue"/>
+    <tok fileIndex="0" linenr="8" column="22" str=";"/>
+    <tok fileIndex="0" linenr="9" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="9" column="13" str="="/>
+    <tok fileIndex="0" linenr="9" column="14" str="LED_Init"/>
+    <tok fileIndex="0" linenr="9" column="22" str="("/>
+    <tok fileIndex="0" linenr="9" column="23" str=")"/>
+    <tok fileIndex="0" linenr="9" column="24" str=";"/>
+    <tok fileIndex="0" linenr="10" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="10" column="13" str="="/>
+    <tok fileIndex="0" linenr="10" column="14" str="LED_SetState"/>
+    <tok fileIndex="0" linenr="10" column="26" str="("/>
+    <tok fileIndex="0" linenr="10" column="27" str="LED1"/>
+    <tok fileIndex="0" linenr="10" column="31" str=","/>
+    <tok fileIndex="0" linenr="10" column="32" str="LED_ON"/>
+    <tok fileIndex="0" linenr="10" column="38" str=")"/>
+    <tok fileIndex="0" linenr="10" column="39" str=";"/>
+    <tok fileIndex="0" linenr="11" column="2" str="//ReturnError=Switch_Init();"/>
+    <tok fileIndex="0" linenr="13" column="2" str="while"/>
+    <tok fileIndex="0" linenr="13" column="8" str="("/>
+    <tok fileIndex="0" linenr="13" column="9" str="1"/>
+    <tok fileIndex="0" linenr="13" column="10" str=")"/>
+    <tok fileIndex="0" linenr="14" column="5" str="{"/>
+    <tok fileIndex="0" linenr="15" column="3" str="//ReturnError=Switch_GetState(SWITCH_1,&amp;SwitchValue);"/>
+    <tok fileIndex="0" linenr="16" column="1" str="."/>
+    <tok fileIndex="0" linenr="16" column="5" str="ReturnError"/>
+    <tok fileIndex="0" linenr="16" column="16" str="="/>
+    <tok fileIndex="0" linenr="16" column="17" str="LED_SetState"/>
+    <tok fileIndex="0" linenr="16" column="29" str="("/>
+    <tok fileIndex="0" linenr="16" column="30" str="LED1"/>
+    <tok fileIndex="0" linenr="16" column="34" str=","/>
+    <tok fileIndex="0" linenr="16" column="35" str="LED_ON"/>
+    <tok fileIndex="0" linenr="16" column="41" str=")"/>
+    <tok fileIndex="0" linenr="16" column="42" str=";"/>
+    <tok fileIndex="0" linenr="17" column="5" str="}"/>
+    <tok fileIndex="0" linenr="18" column="1" str="}"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c89"/>
+    <cpp version="c++03"/>
+  </standards>
+  <directivelist>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="1" str="#include &quot;MCAL/RCC/RCC.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="2" str="#include &quot;HAL/LED/LED.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="3" str="#include &quot;HAL/SWITCH/SWITCH.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="14" str="#include&quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="15" str="#include&quot;LED_CFG.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="19" str="#define LED_ON (0x00000001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="23" str="#define LED_OFF (0x00010000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="24" str="#define LED_FORWARD (0x00000000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="31" str="#define LED_REVERSE (0x00010001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="1" str="#ifndef HAL_SWITCH_SWITCH_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="2" str="#define HAL_SWITCH_SWITCH_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="7" str="#include &quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="8" str="#include &quot;SWITCH_CFG.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="13" str="#define SWITCH_PRESSED (1UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="14" str="#define SWITCH_RELEASED (0UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="16" str="#define SW_PULL_UP (0x00000008UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="17" str="#define SW_PULL_DOWN (0x00000010UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="64" str="#endif"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="1" str="#ifndef HAL_SWITCH_SWITCH_CFG_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="2" str="#define HAL_SWITCH_SWITCH_CFG_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="55" str="#endif"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="10" str="#ifndef RCC_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="11" str="#define RCC_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="16" str="#include&quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="22" str="#define RCC_BASE_ADDRESS (0x40023800UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="23" str="#define RCC_CR_OFFSET (0x00UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="24" str="#define RCC_CSR_OFFSET (0x74UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="25" str="#define RCC_BDCR_OFFSET (0x70UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="26" str="#define RCC_AHB1ENR_OFFSET (0x30UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="27" str="#define RCC_AHB2ENR_OFFSET (0x34UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="28" str="#define RCC_APB1ENR_OFFSET (0x40UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="29" str="#define RCC_APB2ENR_OFFSET (0x44UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="31" str="#define MASK_HSI_ON_OFF (0x00000001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="32" str="#define MASK_HSE_ON_OFF (0x00010000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="33" str="#define MASK_PLL_ON_OFF (0x01000000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="34" str="#define MASK_PLLI2S_ON_OFF (0x04000000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="35" str="#define MASK_LSE_ON_OFF (0x00000001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="36" str="#define MASK_LSI_ON_OFF (0x00000001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="38" str="#define RCC_HSI_HSE_PLL_PLLI2S_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_CR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="39" str="#define RCC_LSE_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_BDCR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="40" str="#define RCC_LSI_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_CSR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="48" str="#define MASK_SYSCLK_HSI (0x00000000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="49" str="#define MASK_SYSCLK_HSE (0x00000001UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="50" str="#define MASK_SYSCLK_PLL (0x00000002UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="52" str="#define MASK_HSI_READY (0x00000002UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="53" str="#define MASK_HSE_READY (0x00020000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="54" str="#define MASK_PLL_READY (0x02000000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="56" str="#define RCC_PLLSRC_HSI (0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="57" str="#define RCC_PLLSRC_HSE (1)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="59" str="#define RCC_PLL_CFG_MASK (0xF0BC8000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="61" str="#define RCC_PLLP_DIV2 2"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="62" str="#define RCC_PLLP_DIV4 4"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="63" str="#define RCC_PLLP_DIV6 6"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="64" str="#define RCC_PLLP_DIV8 8"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="66" str="#define RCC_PLLM_START_BIT 0"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="67" str="#define RCC_PLLN_START_BIT 6"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="68" str="#define RCC_PLLP_START_BIT 16"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="69" str="#define RCC_PLLSRC_START_BIT 22"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="70" str="#define RCC_PLLQ_START_BIT 24"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="72" str="#define RCC_PERIPHERAL_OFF (0UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="73" str="#define RCC_PERIPHERAL_ON (1UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="75" str="#define RCC_AHB1ENR_DMA2EN 22"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="76" str="#define RCC_AHB1ENR_DMA1EN 21"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="77" str="#define RCC_AHB1ENR_CRCEN 12"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="78" str="#define RCC_AHB1ENR_GPIOHEN 7"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="79" str="#define RCC_AHB1ENR_GPIOEEN 4"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="80" str="#define RCC_AHB1ENR_GPIODEN 3"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="81" str="#define RCC_AHB1ENR_GPIOCEN 2"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="82" str="#define RCC_AHB1ENR_GPIOBEN 1"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="83" str="#define RCC_AHB1ENR_GPIOAEN 0"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="85" str="#define RCC_AHB2ENR_OTGFSEN 7"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="87" str="#define RCC_APB1ENR_PWREN 28"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="88" str="#define RCC_APB1ENR_I2C3EN 23"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="89" str="#define RCC_APB1ENR_I2C2EN 22"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="90" str="#define RCC_APB1ENR_I2C1EN 21"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="91" str="#define RCC_APB1ENR_USART2EN 17"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="92" str="#define RCC_APB1ENR_SPI3EN 15"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="93" str="#define RCC_APB1ENR_SPI2EN 14"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="94" str="#define RCC_APB1ENR_WWDGEN 11"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="95" str="#define RCC_APB1ENR_TIM5EN 3"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="96" str="#define RCC_APB1ENR_TIM4EN 2"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="97" str="#define RCC_APB1ENR_TIM3EN 1"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="98" str="#define RCC_APB1ENR_TIM2EN 0"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="100" str="#define RCC_APB2ENR_TIM11EN 18"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="101" str="#define RCC_APB2ENR_TIM10EN 17"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="102" str="#define RCC_APB2ENR_TIM9EN 16"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="103" str="#define RCC_APB2ENR_SYSCFGEN 14"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="104" str="#define RCC_APB2ENR_SPI4EN 13"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="105" str="#define RCC_APB2ENR_SPI1EN 12"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="106" str="#define RCC_APB2ENR_SDIOEN 11"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="107" str="#define RCC_APB2ENR_ADC1EN 8"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="108" str="#define RCC_APB2ENR_USART6EN 5"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="109" str="#define RCC_APB2ENR_USART1EN 4"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="110" str="#define RCC_APB2ENR_TIM1EN 0"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="112" str="#define RCC_AHB1_BUS_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_AHB1ENR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="113" str="#define RCC_AHB2_BUS_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_AHB2ENR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="114" str="#define RCC_APB1_BUS_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_APB1ENR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="115" str="#define RCC_APB2_BUS_REGISTER (uint32_t*)(RCC_BASE_ADDRESS+RCC_APB2ENR_OFFSET)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="119" str="#define RCC_APB1_PRE_DIV2 (0x00040000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="120" str="#define RCC_APB1_PRE_DIV4 (0x00050000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="121" str="#define RCC_APB1_PRE_DIV8 (0x00060000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="122" str="#define RCC_APB1_PRE_DIV16 (0x00070000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="126" str="#define RCC_APB2_PRE_DIV2 (0x00008000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="127" str="#define RCC_APB2_PRE_DIV4 (0x00280000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="128" str="#define RCC_APB2_PRE_DIV8 (0x00300000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="129" str="#define RCC_APB2_PRE_DIV16 (0x00380000)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="132" str="#define RCC_AHB_PRE_DIV2 (0x00000080)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="133" str="#define RCC_AHB_PRE_DIV4 (0x00000090)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="134" str="#define RCC_AHB_PRE_DIV8 (0x000000A0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="135" str="#define RCC_AHB_PRE_DIV16 (0x000000B0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="136" str="#define RCC_AHB_PRE_DIV64 (0x000000C0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="137" str="#define RCC_AHB_PRE_DIV128 (0x000000D0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="138" str="#define RCC_AHB_PRE_DIV256 (0x000000E0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="139" str="#define RCC_AHB_PRE_DIV512 (0x000000F0)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="142" str="#define RCC_APB1_PRESCALAR_MASK (0x00001C00UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="143" str="#define RCC_APB2_PRESCALAR_MASK (0x0000E000UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="144" str="#define RCC_AHB_PRESCALAR_MASK (0x000000F0UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="338" str="#endif"/>
+  </directivelist>
+  <tokenlist>
+    <token id="000001C7AA1E9F00" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="150" column="9" str="struct" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F1EF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="150" column="0" str="RCC_Registers_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA320" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="150" column="15" str="{" scope="000001C7A9CB70A0" link="000001C7A9F89490"/>
+    <token id="000001C7AA1EA380" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="151" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EABC0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="151" column="11" str="RCC_CR" scope="000001C7A9CB70A0" type="name" varId="1" variable="000001C7AA1D1120" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1E9F60" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="151" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA5C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="152" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EAC80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="152" column="11" str="RCC_PLLCFGR" scope="000001C7A9CB70A0" type="name" varId="2" variable="000001C7AA1D0470" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EA800" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="152" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EACE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="153" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EA4A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="153" column="11" str="RCC_CFGR" scope="000001C7A9CB70A0" type="name" varId="3" variable="000001C7AA1D0DA0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EA0E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="153" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA080" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="154" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EA440" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="154" column="11" str="RCC_CIR" scope="000001C7A9CB70A0" type="name" varId="4" variable="000001C7AA1D0E10" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1E9E40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="154" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA560" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="155" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EA140" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="155" column="11" str="RCC_AHB1RSTR" scope="000001C7A9CB70A0" type="name" varId="5" variable="000001C7AA1D0E80" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EA9E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="155" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA620" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="156" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EA680" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="156" column="11" str="RCC_AHB2RSTR" scope="000001C7A9CB70A0" type="name" varId="6" variable="000001C7AA1CFEC0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EA6E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="156" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EA7A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="157" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EA740" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="157" column="11" str="Reserved0x18" scope="000001C7A9CB70A0" type="name" varId="7" variable="000001C7AA1D0080" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EA980" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="157" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1E9100" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="158" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED0A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="158" column="11" str="Reserved0x1C" scope="000001C7A9CB70A0" type="name" varId="8" variable="000001C7AA1D00F0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECAA0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="158" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ED100" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="159" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ECA40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="159" column="11" str="RCC_APB1RSTR" scope="000001C7A9CB70A0" type="name" varId="9" variable="000001C7AA1D0160" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECDA0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="159" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EC620" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="160" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ECC80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="160" column="11" str="RCC_APB2RSTR" scope="000001C7A9CB70A0" type="name" varId="10" variable="000001C7AA1D04E0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EC800" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="160" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EC740" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="161" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED220" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="161" column="11" str="Reserved0x28" scope="000001C7A9CB70A0" type="name" varId="11" variable="000001C7AA1D0940" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EC980" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="161" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ED460" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="162" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED4C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="162" column="11" str="Reserved0x2C" scope="000001C7A9CB70A0" type="name" varId="12" variable="000001C7AA1D2B60" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECE00" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="162" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EC680" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="163" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EC860" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="163" column="11" str="RCC_AHB1ENR" scope="000001C7A9CB70A0" type="name" varId="13" variable="000001C7AA1D1C10" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECB00" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="163" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ECB60" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="164" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED1C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="164" column="11" str="RCC_AHB2ENR" scope="000001C7A9CB70A0" type="name" varId="14" variable="000001C7AA1D2620" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EC8C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="164" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EC920" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="165" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ECBC0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="165" column="11" str="Reserved0x38" scope="000001C7A9CB70A0" type="name" varId="15" variable="000001C7AA1D1A50" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECC20" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="165" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1EC6E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="166" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1EC7A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="166" column="11" str="Reserved0x3C" scope="000001C7A9CB70A0" type="name" varId="16" variable="000001C7AA1D3110" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1EC9E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="166" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ECCE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="167" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED280" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="167" column="11" str="RCC_APB1ENR" scope="000001C7A9CB70A0" type="name" varId="17" variable="000001C7AA1D1970" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ED160" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="167" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ECE60" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="168" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED2E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="168" column="11" str="RCC_APB2ENR" scope="000001C7A9CB70A0" type="name" varId="18" variable="000001C7AA1D3180" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECD40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="168" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ECEC0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="169" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ECF20" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="169" column="11" str="Reserved0x48" scope="000001C7A9CB70A0" type="name" varId="19" variable="000001C7AA1D31F0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ECF80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="169" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ED340" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="170" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ECFE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="170" column="11" str="Reserved0x4C" scope="000001C7A9CB70A0" type="name" varId="20" variable="000001C7AA1D3260" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ED040" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="170" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7AA1ED3A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="171" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7AA1ED400" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="171" column="11" str="RCC_AHB1LPENR" scope="000001C7A9CB70A0" type="name" varId="21" variable="000001C7AA1D24D0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1ED520" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="171" column="24" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2510" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="172" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB22D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="172" column="11" str="RCC_AHB2LPENR" scope="000001C7A9CB70A0" type="name" varId="22" variable="000001C7AA1D23F0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2FF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="172" column="24" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB26F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="173" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2D50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="173" column="11" str="Reserved0x58" scope="000001C7A9CB70A0" type="name" varId="23" variable="000001C7AA1D20E0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB23F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="173" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2930" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="174" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2330" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="174" column="11" str="Reserved0x5C" scope="000001C7A9CB70A0" type="name" varId="24" variable="000001C7AA1D29A0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2570" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="174" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2F90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="175" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2450" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="175" column="11" str="RCC_APB1LPENR" scope="000001C7A9CB70A0" type="name" varId="25" variable="000001C7AA1D1E40" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2AB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="175" column="24" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB25D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="176" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2810" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="176" column="11" str="RCC_APB2LPENR" scope="000001C7A9CB70A0" type="name" varId="26" variable="000001C7AA1D2EE0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2ED0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="176" column="24" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2BD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="177" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2210" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="177" column="11" str="Reserved0x68" scope="000001C7A9CB70A0" type="name" varId="27" variable="000001C7AA1D2460" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2990" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="177" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2630" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="178" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB27B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="178" column="11" str="Reserved0x6C" scope="000001C7A9CB70A0" type="name" varId="28" variable="000001C7AA1D1EB0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB29F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="178" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2CF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="179" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2750" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="179" column="11" str="RCC_BDCR" scope="000001C7A9CB70A0" type="name" varId="29" variable="000001C7AA1D3420" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2270" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="179" column="21" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2C30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="180" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB24B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="180" column="11" str="RCC_CSR" scope="000001C7A9CB70A0" type="name" varId="30" variable="000001C7AA1D2AF0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2C90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="180" column="20" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2A50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="181" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2DB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="181" column="11" str="Reserved0x78" scope="000001C7A9CB70A0" type="name" varId="31" variable="000001C7AA1D1DD0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2B10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="181" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2B70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="182" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2E10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="182" column="11" str="Reserved0x7C" scope="000001C7A9CB70A0" type="name" varId="32" variable="000001C7AA1D21C0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2E70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="182" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB30B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="183" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2F30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="183" column="11" str="RCC_SSCGR" scope="000001C7A9CB70A0" type="name" varId="33" variable="000001C7AA1D2230" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB3050" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="183" column="22" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB21B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="184" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB2690" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="184" column="11" str="RCC_PLLI2SCFGR" scope="000001C7A9CB70A0" type="name" varId="34" variable="000001C7AA1D2D90" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9FB2870" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="184" column="25" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9FB2390" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="185" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9FB28D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="185" column="11" str="Reserved0x88" scope="000001C7A9CB70A0" type="name" varId="35" variable="000001C7AA1D2700" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F89430" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="185" column="23" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9F88EF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="186" column="2" str="uint32_t" scope="000001C7A9CB70A0" type="name"/>
+    <token id="000001C7A9F890D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="186" column="11" str="RCC_DCKCFGR" scope="000001C7A9CB70A0" type="name" varId="36" variable="000001C7AA1D25B0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F88B90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="186" column="22" str=";" scope="000001C7A9CB70A0"/>
+    <token id="000001C7A9F89490" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="187" column="1" str="}" scope="000001C7A9CB70A0" link="000001C7AA1EA320"/>
+    <token id="000001C7AA1F2850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="187" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F88770" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="189" column="9" str="struct" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F2670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="189" column="0" str="PLLCFG_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F889B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="189" column="16" str="{" scope="000001C7A9CB7920" link="000001C7A9F89310"/>
+    <token id="000001C7A9F895B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="190" column="3" str="uint32_t" scope="000001C7A9CB7920" type="name"/>
+    <token id="000001C7A9F89610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="190" column="12" str="PLLM" scope="000001C7A9CB7920" type="name" varId="37" variable="000001C7AA1D3340" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F88410" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="190" column="16" str=";" scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F89130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="191" column="3" str="uint32_t" scope="000001C7A9CB7920" type="name"/>
+    <token id="000001C7A9F88A10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="191" column="12" str="PLLP" scope="000001C7A9CB7920" type="name" varId="38" variable="000001C7AA1D2770" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F89190" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="191" column="16" str=";" scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F89670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="192" column="3" str="uint32_t" scope="000001C7A9CB7920" type="name"/>
+    <token id="000001C7A9F88E90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="192" column="12" str="PLLN" scope="000001C7A9CB7920" type="name" varId="39" variable="000001C7AA1D1F90" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F896D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="192" column="16" str=";" scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F88FB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="193" column="3" str="uint32_t" scope="000001C7A9CB7920" type="name"/>
+    <token id="000001C7A9F88B30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="193" column="12" str="PLLSRC" scope="000001C7A9CB7920" type="name" varId="40" variable="000001C7AA1D3030" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F88650" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="193" column="18" str=";" scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F88A70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="194" column="3" str="uint32_t" scope="000001C7A9CB7920" type="name"/>
+    <token id="000001C7A9F89010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="194" column="12" str="PLLQ" scope="000001C7A9CB7920" type="name" varId="41" variable="000001C7AA1D3500" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F891F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="194" column="16" str=";" scope="000001C7A9CB7920"/>
+    <token id="000001C7A9F89310" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="195" column="1" str="}" scope="000001C7A9CB7920" link="000001C7A9F889B0"/>
+    <token id="000001C7AA1F2EB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="195" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F88DD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F88F50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="15" str="RCC_EnableClock" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D450"/>
+    <token id="000001C7A9F894F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="30" str="(" scope="000001C7A9CB73D0" link="000001C7A9F88AD0"/>
+    <token id="000001C7A9F89730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="31" str="uint32_t" scope="000001C7A9CB73D0" type="name" astParent="000001C7A9F89850"/>
+    <token id="000001C7A9F89850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="40" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astParent="000001C7A9F88710" astOperand1="000001C7A9F89730" astOperand2="000001C7A9F88BF0"/>
+    <token id="000001C7A9F88BF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="41" str="CLK_Src_Register" scope="000001C7A9CB73D0" type="name" varId="42" variable="000001C7AA1D3AB0" astParent="000001C7A9F89850" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7A9F88710" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="57" str="," scope="000001C7A9CB73D0" astOperand1="000001C7A9F89850" astOperand2="000001C7A9F89370"/>
+    <token id="000001C7A9F88470" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="58" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89370" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="67" str="CLK_SourceMask" scope="000001C7A9CB73D0" type="name" varId="43" variable="000001C7AA1D4E60" astParent="000001C7A9F88710" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F88AD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="81" str=")" scope="000001C7A9CB73D0" link="000001C7A9F894F0"/>
+    <token id="000001C7A9F89250" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="218" column="82" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F881D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F88530" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="15" str="RCC_DisableClock" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D090"/>
+    <token id="000001C7A9F88C50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="31" str="(" scope="000001C7A9CB73D0" link="000001C7A9F89790"/>
+    <token id="000001C7A9F88CB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="32" str="uint32_t" scope="000001C7A9CB73D0" type="name" astParent="000001C7A9F88590"/>
+    <token id="000001C7A9F88590" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="41" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astParent="000001C7A9F88D10" astOperand1="000001C7A9F88CB0" astOperand2="000001C7A9F89070"/>
+    <token id="000001C7A9F89070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="42" str="CLK_Src_Register" scope="000001C7A9CB73D0" type="name" varId="44" variable="000001C7AA1D44C0" astParent="000001C7A9F88590" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7A9F88D10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="58" str="," scope="000001C7A9CB73D0" astOperand1="000001C7A9F88590" astOperand2="000001C7A9F893D0"/>
+    <token id="000001C7A9F88E30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="59" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F893D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="68" str="CLK_SourceMask" scope="000001C7A9CB73D0" type="name" varId="45" variable="000001C7AA1D4ED0" astParent="000001C7A9F88D10" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F89790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="82" str=")" scope="000001C7A9CB73D0" link="000001C7A9F88C50"/>
+    <token id="000001C7A9F897F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="236" column="83" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F884D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F885F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="15" str="RCC_Select_SYSCLK" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D130"/>
+    <token id="000001C7A9F898B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="32" str="(" scope="000001C7A9CB73D0" link="000001C7A9F886B0"/>
+    <token id="000001C7A9F88D70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="33" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="42" str="SYSCLK" scope="000001C7A9CB73D0" type="name" varId="46" variable="000001C7AA1D4530" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F886B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="48" str=")" scope="000001C7A9CB73D0" link="000001C7A9F898B0"/>
+    <token id="000001C7A9F887D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="247" column="49" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F88830" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F88350" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="15" str="RCC_CheckReadyCLK" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D630"/>
+    <token id="000001C7A9F88950" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="32" str="(" scope="000001C7A9CB73D0" link="000001C7A9F88290"/>
+    <token id="000001C7A9F888F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="33" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F88170" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="42" str="CLK_Source" scope="000001C7A9CB73D0" type="name" varId="47" variable="000001C7AA1D3810" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F88290" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="52" str=")" scope="000001C7A9CB73D0" link="000001C7A9F88950"/>
+    <token id="000001C7A9F883B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="260" column="53" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F89C70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89D30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="15" str="RCC_ConfigurePLL" scope="000001C7A9CB73D0" type="name" function="000001C7AA10CCD0"/>
+    <token id="000001C7A9F89970" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="31" str="(" scope="000001C7A9CB73D0" link="000001C7A9F89C10"/>
+    <token id="000001C7A9F89CD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="32" str="struct" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F3450" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="0" str="PLLCFG_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB7920" astParent="000001C7A9F89F70"/>
+    <token id="000001C7A9F89F70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="40" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astOperand1="000001C7AA1F3450" astOperand2="000001C7A9F89EB0"/>
+    <token id="000001C7A9F89EB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="42" str="PLL_Config" scope="000001C7A9CB73D0" type="name" varId="48" variable="000001C7AA1D45A0" astParent="000001C7A9F89F70" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="000001C7A9CB7920"/>
+    <token id="000001C7A9F89C10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="52" str=")" scope="000001C7A9CB73D0" link="000001C7A9F89970"/>
+    <token id="000001C7A9F89B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="273" column="53" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8A090" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89BB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="15" str="RCC_ControlPeripheralCLK" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D1D0"/>
+    <token id="000001C7A9F899D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="39" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8D9F0"/>
+    <token id="000001C7A9F89F10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="40" str="uint32_t" scope="000001C7A9CB73D0" type="name" astParent="000001C7A9F8A030"/>
+    <token id="000001C7A9F8A030" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="49" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astParent="000001C7A9F89DF0" astOperand1="000001C7A9F89F10" astOperand2="000001C7A9F89D90"/>
+    <token id="000001C7A9F89D90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="50" str="BusRegister" scope="000001C7A9CB73D0" type="name" varId="49" variable="000001C7AA1D5090" astParent="000001C7A9F8A030" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7A9F89DF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="61" str="," scope="000001C7A9CB73D0" astParent="000001C7A9F89A30" astOperand1="000001C7A9F8A030" astOperand2="000001C7A9F89FD0"/>
+    <token id="000001C7A9F89E50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="62" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89FD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="71" str="Peripheral" scope="000001C7A9CB73D0" type="name" varId="50" variable="000001C7AA1D4610" astParent="000001C7A9F89DF0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F89A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="81" str="," scope="000001C7A9CB73D0" astOperand1="000001C7A9F89DF0" astOperand2="000001C7A9F89AF0"/>
+    <token id="000001C7A9F89A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="82" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F89AF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="91" str="PeripheralCFG" scope="000001C7A9CB73D0" type="name" varId="51" variable="000001C7AA1D3C70" astParent="000001C7A9F89A30" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8D9F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="104" str=")" scope="000001C7A9CB73D0" link="000001C7A9F899D0"/>
+    <token id="000001C7A9F8D270" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="291" column="105" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8E6B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8DC90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="15" str="RCC_ConfigurePreScalarLowSpeedAPB" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D270"/>
+    <token id="000001C7A9F8DDB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="48" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8DE70"/>
+    <token id="000001C7A9F8D750" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="49" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8DB10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="58" str="APB1_Prescalar" scope="000001C7A9CB73D0" type="name" varId="52" variable="000001C7AA1D46F0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8DE70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="72" str=")" scope="000001C7A9CB73D0" link="000001C7A9F8DDB0"/>
+    <token id="000001C7A9F8E350" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="305" column="73" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8DA50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8D870" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="15" str="RCC_ConfigurePreScalarHighSpeedAPB" scope="000001C7A9CB73D0" type="name" function="000001C7AA10CAF0"/>
+    <token id="000001C7A9F8D690" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="49" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8E410"/>
+    <token id="000001C7A9F8E290" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="50" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8DE10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="59" str="APB2_Prescalar" scope="000001C7A9CB73D0" type="name" varId="53" variable="000001C7AA1D3F80" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8E410" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="73" str=")" scope="000001C7A9CB73D0" link="000001C7A9F8D690"/>
+    <token id="000001C7A9F8DFF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="319" column="74" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8DED0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8E770" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="15" str="RCC_ConfigurePreScalarAHB" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D3B0"/>
+    <token id="000001C7A9F8E8F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="40" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8E1D0"/>
+    <token id="000001C7A9F8E110" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="41" str="uint8_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8DF30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="49" str="AHB_Prescalar" scope="000001C7A9CB73D0" type="name" varId="54" variable="000001C7AA1D4840" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8E1D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="62" str=")" scope="000001C7A9CB73D0" link="000001C7A9F8E8F0"/>
+    <token id="000001C7A9F8D570" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/RCC/RCC.h" linenr="336" column="63" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8D330" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="27" column="9" str="enum" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F25B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="27" column="0" str="Leds_Number_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB71B0"/>
+    <token id="000001C7A9F8E710" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="27" column="13" str="{" scope="000001C7A9CB71B0" link="000001C7A9F8E950"/>
+    <token id="000001C7A9F8D2D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="30" column="1" str="LED1" scope="000001C7A9CB71B0" type="name" values="000001C7A9F8F950" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB71B0"/>
+    <token id="000001C7A9F8E0B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="30" column="5" str="," scope="000001C7A9CB71B0"/>
+    <token id="000001C7A9F8D390" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="31" column="1" str="_Led_Number" scope="000001C7A9CB71B0" type="name" values="000001C7A9F8F8F0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB71B0"/>
+    <token id="000001C7A9F8E950" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="32" column="1" str="}" scope="000001C7A9CB71B0" link="000001C7A9F8E710"/>
+    <token id="000001C7AA1F1E30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED_CFG.h" linenr="32" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA1F2010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="38" column="9" str="struct" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F31B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="38" column="0" str="LedCFG_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB72C0"/>
+    <token id="000001C7A9F8DAB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="38" column="15" str="{" scope="000001C7A9CB72C0" link="000001C7A9F8E470"/>
+    <token id="000001C7A9F8E230" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="39" column="5" str="void" scope="000001C7A9CB72C0" type="name" astParent="000001C7A9F8DC30"/>
+    <token id="000001C7A9F8DC30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="39" column="9" str="*" scope="000001C7A9CB72C0" type="op" isArithmeticalOp="true" astOperand1="000001C7A9F8E230" astOperand2="000001C7A9F8D6F0"/>
+    <token id="000001C7A9F8D6F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="39" column="11" str="Led_Port" scope="000001C7A9CB72C0" type="name" varId="55" variable="000001C7AA1D1B30" astParent="000001C7A9F8DC30" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7A9F8E2F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="39" column="19" str=";" scope="000001C7A9CB72C0"/>
+    <token id="000001C7A9F8D1B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="40" column="5" str="uint32_t" scope="000001C7A9CB72C0" type="name"/>
+    <token id="000001C7A9F8DF90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="40" column="14" str="Led_Pin" scope="000001C7A9CB72C0" type="name" varId="56" variable="000001C7AA1D1BA0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8D8D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="40" column="21" str=";" scope="000001C7A9CB72C0"/>
+    <token id="000001C7A9F8D210" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="41" column="5" str="uint32_t" scope="000001C7A9CB72C0" type="name"/>
+    <token id="000001C7A9F8D3F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="41" column="14" str="Led_Connection" scope="000001C7A9CB72C0" type="name" varId="57" variable="000001C7AA1D41B0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8E3B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="41" column="28" str=";" scope="000001C7A9CB72C0"/>
+    <token id="000001C7A9F8DBD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="42" column="5" str="uint32_t" scope="000001C7A9CB72C0" type="name"/>
+    <token id="000001C7A9F8DCF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="42" column="14" str="Led_InitialState" scope="000001C7A9CB72C0" type="name" varId="58" variable="000001C7AA1D3EA0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8E4D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="42" column="30" str=";" scope="000001C7A9CB72C0"/>
+    <token id="000001C7A9F8E470" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="43" column="1" str="}" scope="000001C7A9CB72C0" link="000001C7A9F8DAB0"/>
+    <token id="000001C7AA1F2910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="43" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8D510" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="49" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8E050" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="49" column="15" str="LED_Init" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D770"/>
+    <token id="000001C7A9F8E650" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="49" column="23" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8D990"/>
+    <token id="000001C7A9F8D990" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="49" column="28" str=")" scope="000001C7A9CB73D0" link="000001C7A9F8E650"/>
+    <token id="000001C7A9F8E7D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="49" column="29" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8E890" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8E590" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="15" str="LED_SetState" scope="000001C7A9CB73D0" type="name" function="000001C7AA10D8B0"/>
+    <token id="000001C7A9F8E5F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="27" str="(" scope="000001C7A9CB73D0" link="000001C7A9F8E9B0"/>
+    <token id="000001C7A9F8E830" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="28" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8D450" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="37" str="LedName" scope="000001C7A9CB73D0" type="name" varId="59" variable="000001C7AA1D4990" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8D4B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="44" str="," scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8D630" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="45" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7A9F8EB90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="54" str="LedState" scope="000001C7A9CB73D0" type="name" varId="60" variable="000001C7AA1D4A70" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7A9F8E9B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="62" str=")" scope="000001C7A9CB73D0" link="000001C7A9F8E5F0"/>
+    <token id="000001C7A9F8F070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/LED/LED.h" linenr="50" column="63" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7A9F8EB30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="30" column="9" str="enum" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F2430" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="30" column="0" str="SW_NUM_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB74E0"/>
+    <token id="000001C7A9F8EBF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="31" column="1" str="{" scope="000001C7A9CB74E0" link="000001C7A9F8EF50"/>
+    <token id="000001C7A9F8ECB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="32" column="5" str="SWITCH_1" scope="000001C7A9CB74E0" type="name" values="000001C7A9F8F5F0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB74E0"/>
+    <token id="000001C7A9F8ED10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="32" column="13" str="," scope="000001C7A9CB74E0"/>
+    <token id="000001C7A9F8EE30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="33" column="5" str="_SWITCHES_NUM" scope="000001C7A9CB74E0" type="name" values="000001C7A9F8F8B0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB74E0"/>
+    <token id="000001C7A9F8EF50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="34" column="1" str="}" scope="000001C7A9CB74E0" link="000001C7A9F8EBF0"/>
+    <token id="000001C7AA1F2130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="34" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA1F2730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="25" column="9" str="struct" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1F2610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="25" column="0" str="SwitchCFG_t" scope="000001C7A9CB73D0" type="name" type-scope="000001C7A9CB75F0"/>
+    <token id="000001C7A9F8EEF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="25" column="16" str="{" scope="000001C7A9CB75F0" link="000001C7AA181F10"/>
+    <token id="000001C7A9F8F010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="26" column="5" str="void" scope="000001C7A9CB75F0" type="name" astParent="000001C7A9F8F0D0"/>
+    <token id="000001C7A9F8F0D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="26" column="10" str="*" scope="000001C7A9CB75F0" type="op" isArithmeticalOp="true" astOperand1="000001C7A9F8F010" astOperand2="000001C7A9F8EA10"/>
+    <token id="000001C7A9F8EA10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="26" column="11" str="SW_Port" scope="000001C7A9CB75F0" type="name" varId="61" variable="000001C7AA1D4140" astParent="000001C7A9F8F0D0" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7A9F8EA70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="26" column="18" str=";" scope="000001C7A9CB75F0"/>
+    <token id="000001C7A9F8EAD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="35" column="5" str="uint32_t" scope="000001C7A9CB75F0" type="name"/>
+    <token id="000001C7AA181B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="35" column="14" str="SW_Pin" scope="000001C7A9CB75F0" type="name" varId="62" variable="000001C7AA1D43E0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181C70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="35" column="20" str=";" scope="000001C7A9CB75F0"/>
+    <token id="000001C7AA181970" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="37" column="5" str="uint32_t" scope="000001C7A9CB75F0" type="name"/>
+    <token id="000001C7AA181A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="37" column="14" str="SW_Connection" scope="000001C7A9CB75F0" type="name" varId="63" variable="000001C7AA1D3D50" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="37" column="27" str=";" scope="000001C7A9CB75F0"/>
+    <token id="000001C7AA181F10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="41" column="1" str="}" scope="000001C7A9CB75F0" link="000001C7A9F8EEF0"/>
+    <token id="000001C7AA1F3330" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="41" column="0" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA1819D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="49" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA181CD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="49" column="15" str="Switch_Init" scope="000001C7A9CB73D0" type="name" function="000001C7AA1F4C50"/>
+    <token id="000001C7AA181BB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="49" column="26" str="(" scope="000001C7A9CB73D0" link="000001C7AA181D30"/>
+    <token id="000001C7AA181D30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="49" column="31" str=")" scope="000001C7A9CB73D0" link="000001C7AA181BB0"/>
+    <token id="000001C7AA1818B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="49" column="32" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA181D90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="1" str="ErrorStatus_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA181C10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="15" str="Switch_GetState" scope="000001C7A9CB73D0" type="name" function="000001C7AA1F4D90"/>
+    <token id="000001C7AA181DF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="30" str="(" scope="000001C7A9CB73D0" link="000001C7AA180B90"/>
+    <token id="000001C7AA181E50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="31" str="uint32_t" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA181A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="40" str="SwitchNum" scope="000001C7A9CB73D0" type="name" varId="64" variable="000001C7AA1D4B50" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181EB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="50" str="," scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA180230" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="51" str="uint32_t" scope="000001C7A9CB73D0" type="name" astParent="000001C7AA1809B0"/>
+    <token id="000001C7AA1809B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="59" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astOperand1="000001C7AA180230" astOperand2="000001C7AA181310"/>
+    <token id="000001C7AA181310" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="61" str="SwitchState" scope="000001C7A9CB73D0" type="name" varId="65" variable="000001C7AA1D4CA0" astParent="000001C7AA1809B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7AA180B90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="72" str=")" scope="000001C7A9CB73D0" link="000001C7AA181DF0"/>
+    <token id="000001C7AA180470" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH.h" linenr="50" column="73" str=";" scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA180FB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="1" str="int" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA180290" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="5" str="main" scope="000001C7A9CB73D0" type="name" function="000001C7AA1F51F0"/>
+    <token id="000001C7AA1805F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="9" str="(" scope="000001C7A9CB73D0" link="000001C7AA1813D0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000001C7AA1802F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="10" str="int" scope="000001C7A9CB73D0" type="name"/>
+    <token id="000001C7AA1808F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="14" str="argc" scope="000001C7A9CB73D0" type="name" varId="66" variable="000001C7AA1D4D10" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000001C7AA180170" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="18" str="," scope="000001C7A9CB73D0"/>
+    <token id="000001C7AA181370" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="20" str="char" scope="000001C7A9CB73D0" type="name" astParent="000001C7AA180650"/>
+    <token id="000001C7AA180650" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="24" str="*" scope="000001C7A9CB73D0" type="op" isArithmeticalOp="true" astOperand1="000001C7AA181370" astOperand2="000001C7AA1816D0" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="000001C7AA180350" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="26" str="argv" scope="000001C7A9CB73D0" type="name" varId="67" variable="000001C7AA1D5100" astParent="000001C7AA1816D0" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="000001C7AA1816D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="30" str="[" scope="000001C7A9CB73D0" link="000001C7AA180950" astParent="000001C7AA180650" astOperand1="000001C7AA180350" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="000001C7AA180950" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="31" str="]" scope="000001C7A9CB73D0" link="000001C7AA1816D0"/>
+    <token id="000001C7AA1813D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="4" column="32" str=")" scope="000001C7A9CB73D0" link="000001C7AA1805F0"/>
+    <token id="000001C7AA1804D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="5" column="1" str="{" scope="000001C7A9CB7A30" link="000001C7AA1F2B50"/>
+    <token id="000001C7AA180D70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="2" str="ErrorStatus_t" scope="000001C7A9CB7A30" type="name"/>
+    <token id="000001C7AA180410" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="16" str="ReturnError" scope="000001C7A9CB7A30" type="name" varId="68" variable="000001C7AA1D4680"/>
+    <token id="000001C7AA180BF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="27" str=";" scope="000001C7A9CB7A30" isSplittedVarDeclEq="true"/>
+    <token id="000001C7AA1F23D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="16" str="ReturnError" scope="000001C7A9CB7A30" type="name" varId="68" variable="000001C7AA1D4680" astParent="000001C7AA1F32D0"/>
+    <token id="000001C7AA1F32D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="27" str="=" scope="000001C7A9CB7A30" type="op" isAssignmentOp="true" astOperand1="000001C7AA1F23D0" astOperand2="000001C7AA1801D0"/>
+    <token id="000001C7AA181670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="28" str="RCC_ControlPeripheralCLK" scope="000001C7A9CB7A30" type="name" function="000001C7AA10D1D0" astParent="000001C7AA1801D0"/>
+    <token id="000001C7AA1801D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="52" str="(" scope="000001C7A9CB7A30" link="000001C7AA181490" astParent="000001C7AA1F32D0" astOperand1="000001C7AA181670" astOperand2="000001C7AA180A10"/>
+    <token id="000001C7AA181010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="(" scope="000001C7A9CB7A30" isExpandedMacro="true" link="000001C7AA1803B0" values="000001C7A9F8F610" astParent="000001C7AA180CB0" astOperand1="000001C7AA1806B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001C7AA180E90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="uint32_t" scope="000001C7A9CB7A30" type="name" isExpandedMacro="true"/>
+    <token id="000001C7AA181430" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="*" scope="000001C7A9CB7A30" type="op" isArithmeticalOp="true" isExpandedMacro="true"/>
+    <token id="000001C7AA1803B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str=")" scope="000001C7A9CB7A30" isExpandedMacro="true" link="000001C7AA181010"/>
+    <token id="000001C7AA180C50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="(" scope="000001C7A9CB7A30" isExpandedMacro="true" link="000001C7AA181130"/>
+    <token id="000001C7AA180EF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="0x40023800UL" scope="000001C7A9CB7A30" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F730" astParent="000001C7AA1806B0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1806B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="+" scope="000001C7A9CB7A30" type="op" isArithmeticalOp="true" isExpandedMacro="true" values="000001C7A9F8F5D0" astParent="000001C7AA181010" astOperand1="000001C7AA180EF0" astOperand2="000001C7AA181730" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str="0x30UL" scope="000001C7A9CB7A30" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F670" astParent="000001C7AA1806B0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="53" str=")" scope="000001C7A9CB7A30" isExpandedMacro="true" link="000001C7AA180C50"/>
+    <token id="000001C7AA180CB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="74" str="," scope="000001C7A9CB7A30" astParent="000001C7AA180A10" astOperand1="000001C7AA181010" astOperand2="000001C7AA180110"/>
+    <token id="000001C7AA180110" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="75" str="1" scope="000001C7A9CB7A30" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F630" astParent="000001C7AA180CB0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000001C7AA180A10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="94" str="," scope="000001C7A9CB7A30" astParent="000001C7AA1801D0" astOperand1="000001C7AA180CB0" astOperand2="000001C7AA180590"/>
+    <token id="000001C7AA180590" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="95" str="1UL" scope="000001C7A9CB7A30" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F650" astParent="000001C7AA180A10" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA181490" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="112" str=")" scope="000001C7A9CB7A30" link="000001C7AA1801D0"/>
+    <token id="000001C7AA181790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="7" column="113" str=";" scope="000001C7A9CB7A30"/>
+    <token id="000001C7AA1817F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="8" column="2" str="uint32_t" scope="000001C7A9CB7A30" type="name"/>
+    <token id="000001C7AA180D10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="8" column="11" str="SwitchValue" scope="000001C7A9CB7A30" type="name" varId="69" variable="000001C7AA1D4C30" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA180890" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="8" column="22" str=";" scope="000001C7A9CB7A30"/>
+    <token id="000001C7AA180A70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="2" str="ReturnError" scope="000001C7A9CB7A30" type="name" varId="68" variable="000001C7AA1D4680" astParent="000001C7AA180AD0"/>
+    <token id="000001C7AA180AD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="13" str="=" scope="000001C7A9CB7A30" type="op" isAssignmentOp="true" astOperand1="000001C7AA180A70" astOperand2="000001C7AA1811F0"/>
+    <token id="000001C7AA181610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="14" str="LED_Init" scope="000001C7A9CB7A30" type="name" function="000001C7AA10D770" astParent="000001C7AA1811F0"/>
+    <token id="000001C7AA1811F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="22" str="(" scope="000001C7A9CB7A30" link="000001C7AA180B30" astParent="000001C7AA180AD0" astOperand1="000001C7AA181610"/>
+    <token id="000001C7AA180B30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="23" str=")" scope="000001C7A9CB7A30" link="000001C7AA1811F0"/>
+    <token id="000001C7AA1815B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="9" column="24" str=";" scope="000001C7A9CB7A30"/>
+    <token id="000001C7AA180DD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="2" str="ReturnError" scope="000001C7A9CB7A30" type="name" varId="68" variable="000001C7AA1D4680" astParent="000001C7AA181070"/>
+    <token id="000001C7AA181070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="13" str="=" scope="000001C7A9CB7A30" type="op" isAssignmentOp="true" astOperand1="000001C7AA180DD0" astOperand2="000001C7AA181850"/>
+    <token id="000001C7AA180E30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="14" str="LED_SetState" scope="000001C7A9CB7A30" type="name" function="000001C7AA10D8B0" astParent="000001C7AA181850"/>
+    <token id="000001C7AA181850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="26" str="(" scope="000001C7A9CB7A30" link="000001C7AA1814F0" astParent="000001C7AA181070" astOperand1="000001C7AA180E30" astOperand2="000001C7AA1810D0"/>
+    <token id="000001C7AA180F50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="27" str="LED1" scope="000001C7A9CB7A30" type="name" values="000001C7A9F8F750" astParent="000001C7AA1810D0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB71B0"/>
+    <token id="000001C7AA1810D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="31" str="," scope="000001C7A9CB7A30" astParent="000001C7AA181850" astOperand1="000001C7AA180F50" astOperand2="000001C7AA181250"/>
+    <token id="000001C7AA181250" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="32" str="0x00000001UL" scope="000001C7A9CB7A30" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F790" astParent="000001C7AA1810D0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1814F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="38" str=")" scope="000001C7A9CB7A30" link="000001C7AA181850"/>
+    <token id="000001C7AA1800B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="10" column="39" str=";" scope="000001C7A9CB7A30"/>
+    <token id="000001C7AA1F29D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="13" column="2" str="while" scope="000001C7A9CB7A30" type="name" astParent="000001C7AA1F3510"/>
+    <token id="000001C7AA1F3510" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="13" column="8" str="(" scope="000001C7A9CB7A30" link="000001C7AA1F24F0" astOperand1="000001C7AA1F29D0" astOperand2="000001C7AA1F33F0"/>
+    <token id="000001C7AA1F33F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="13" column="9" str="1" scope="000001C7A9CB7A30" type="number" isInt="true" values="000001C7A9F8F6B0" astParent="000001C7AA1F3510" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000001C7AA1F24F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="13" column="10" str=")" scope="000001C7A9CB7A30" link="000001C7AA1F3510"/>
+    <token id="000001C7AA1F1DD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="14" column="5" str="{" scope="000001C7A9CB7B40" link="000001C7AA1F2A30"/>
+    <token id="000001C7AA1F1FB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="1" str="." scope="000001C7A9CB7B40"/>
+    <token id="000001C7AA1F2E50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="5" str="ReturnError" scope="000001C7A9CB7B40" type="name" astParent="000001C7AA1F2790"/>
+    <token id="000001C7AA1F2790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="16" str="=" scope="000001C7A9CB7B40" type="op" isAssignmentOp="true" astOperand1="000001C7AA1F2E50" astOperand2="000001C7AA1F28B0"/>
+    <token id="000001C7AA1F30F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="17" str="LED_SetState" scope="000001C7A9CB7B40" type="name" function="000001C7AA10D8B0" astParent="000001C7AA1F28B0"/>
+    <token id="000001C7AA1F28B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="29" str="(" scope="000001C7A9CB7B40" link="000001C7AA1F27F0" astParent="000001C7AA1F2790" astOperand1="000001C7AA1F30F0" astOperand2="000001C7AA1F2F10"/>
+    <token id="000001C7AA1F3150" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="30" str="LED1" scope="000001C7A9CB7B40" type="name" values="000001C7A9F8F6F0" astParent="000001C7AA1F2F10" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001C7A9CB71B0"/>
+    <token id="000001C7AA1F2F10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="34" str="," scope="000001C7A9CB7B40" astParent="000001C7AA1F28B0" astOperand1="000001C7AA1F3150" astOperand2="000001C7AA1F2250"/>
+    <token id="000001C7AA1F2250" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="35" str="0x00000001UL" scope="000001C7A9CB7B40" type="number" isInt="true" isExpandedMacro="true" values="000001C7A9F8F7B0" astParent="000001C7AA1F2F10" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001C7AA1F27F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="41" str=")" scope="000001C7A9CB7B40" link="000001C7AA1F28B0"/>
+    <token id="000001C7AA1F2550" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="16" column="42" str=";" scope="000001C7A9CB7B40"/>
+    <token id="000001C7AA1F2A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="17" column="5" str="}" scope="000001C7A9CB7B40" link="000001C7AA1F1DD0"/>
+    <token id="000001C7AA1F2B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/main.c" linenr="18" column="1" str="}" scope="000001C7A9CB7A30" link="000001C7AA1804D0"/>
+  </tokenlist>
+  <scopes>
+    <scope id="000001C7A9CB73D0" type="Global">
+      <functionList>
+        <function id="000001C7AA10D450" tokenDef="000001C7A9F88F50" name="RCC_EnableClock" type="Function">
+          <arg nr="1" variable="000001C7AA1D3AB0"/>
+          <arg nr="2" variable="000001C7AA1D4E60"/>
+        </function>
+        <function id="000001C7AA10D090" tokenDef="000001C7A9F88530" name="RCC_DisableClock" type="Function">
+          <arg nr="1" variable="000001C7AA1D44C0"/>
+          <arg nr="2" variable="000001C7AA1D4ED0"/>
+        </function>
+        <function id="000001C7AA10D130" tokenDef="000001C7A9F885F0" name="RCC_Select_SYSCLK" type="Function">
+          <arg nr="1" variable="000001C7AA1D4530"/>
+        </function>
+        <function id="000001C7AA10D630" tokenDef="000001C7A9F88350" name="RCC_CheckReadyCLK" type="Function">
+          <arg nr="1" variable="000001C7AA1D3810"/>
+        </function>
+        <function id="000001C7AA10CCD0" tokenDef="000001C7A9F89D30" name="RCC_ConfigurePLL" type="Function">
+          <arg nr="1" variable="000001C7AA1D45A0"/>
+        </function>
+        <function id="000001C7AA10D1D0" tokenDef="000001C7A9F89BB0" name="RCC_ControlPeripheralCLK" type="Function">
+          <arg nr="1" variable="000001C7AA1D5090"/>
+          <arg nr="2" variable="000001C7AA1D4610"/>
+          <arg nr="3" variable="000001C7AA1D3C70"/>
+        </function>
+        <function id="000001C7AA10D270" tokenDef="000001C7A9F8DC90" name="RCC_ConfigurePreScalarLowSpeedAPB" type="Function">
+          <arg nr="1" variable="000001C7AA1D46F0"/>
+        </function>
+        <function id="000001C7AA10CAF0" tokenDef="000001C7A9F8D870" name="RCC_ConfigurePreScalarHighSpeedAPB" type="Function">
+          <arg nr="1" variable="000001C7AA1D3F80"/>
+        </function>
+        <function id="000001C7AA10D3B0" tokenDef="000001C7A9F8E770" name="RCC_ConfigurePreScalarAHB" type="Function">
+          <arg nr="1" variable="000001C7AA1D4840"/>
+        </function>
+        <function id="000001C7AA10D770" tokenDef="000001C7A9F8E050" name="LED_Init" type="Function"/>
+        <function id="000001C7AA10D8B0" tokenDef="000001C7A9F8E590" name="LED_SetState" type="Function">
+          <arg nr="1" variable="000001C7AA1D4990"/>
+          <arg nr="2" variable="000001C7AA1D4A70"/>
+        </function>
+        <function id="000001C7AA1F4C50" tokenDef="000001C7AA181CD0" name="Switch_Init" type="Function"/>
+        <function id="000001C7AA1F4D90" tokenDef="000001C7AA181C10" name="Switch_GetState" type="Function">
+          <arg nr="1" variable="000001C7AA1D4B50"/>
+          <arg nr="2" variable="000001C7AA1D4CA0"/>
+        </function>
+        <function id="000001C7AA1F51F0" tokenDef="000001C7AA180290" name="main" type="Function">
+          <arg nr="1" variable="000001C7AA1D4D10"/>
+          <arg nr="2" variable="000001C7AA1D5100"/>
+        </function>
+      </functionList>
+    </scope>
+    <scope id="000001C7A9CB70A0" type="Struct" className="RCC_Registers_t" bodyStart="000001C7AA1EA320" bodyEnd="000001C7A9F89490" nestedIn="000001C7A9CB73D0">
+      <varlist>
+        <var id="000001C7AA1D1120"/>
+        <var id="000001C7AA1D0470"/>
+        <var id="000001C7AA1D0DA0"/>
+        <var id="000001C7AA1D0E10"/>
+        <var id="000001C7AA1D0E80"/>
+        <var id="000001C7AA1CFEC0"/>
+        <var id="000001C7AA1D0080"/>
+        <var id="000001C7AA1D00F0"/>
+        <var id="000001C7AA1D0160"/>
+        <var id="000001C7AA1D04E0"/>
+        <var id="000001C7AA1D0940"/>
+        <var id="000001C7AA1D2B60"/>
+        <var id="000001C7AA1D1C10"/>
+        <var id="000001C7AA1D2620"/>
+        <var id="000001C7AA1D1A50"/>
+        <var id="000001C7AA1D3110"/>
+        <var id="000001C7AA1D1970"/>
+        <var id="000001C7AA1D3180"/>
+        <var id="000001C7AA1D31F0"/>
+        <var id="000001C7AA1D3260"/>
+        <var id="000001C7AA1D24D0"/>
+        <var id="000001C7AA1D23F0"/>
+        <var id="000001C7AA1D20E0"/>
+        <var id="000001C7AA1D29A0"/>
+        <var id="000001C7AA1D1E40"/>
+        <var id="000001C7AA1D2EE0"/>
+        <var id="000001C7AA1D2460"/>
+        <var id="000001C7AA1D1EB0"/>
+        <var id="000001C7AA1D3420"/>
+        <var id="000001C7AA1D2AF0"/>
+        <var id="000001C7AA1D1DD0"/>
+        <var id="000001C7AA1D21C0"/>
+        <var id="000001C7AA1D2230"/>
+        <var id="000001C7AA1D2D90"/>
+        <var id="000001C7AA1D2700"/>
+        <var id="000001C7AA1D25B0"/>
+      </varlist>
+    </scope>
+    <scope id="000001C7A9CB7920" type="Struct" className="PLLCFG_t" bodyStart="000001C7A9F889B0" bodyEnd="000001C7A9F89310" nestedIn="000001C7A9CB73D0">
+      <varlist>
+        <var id="000001C7AA1D3340"/>
+        <var id="000001C7AA1D2770"/>
+        <var id="000001C7AA1D1F90"/>
+        <var id="000001C7AA1D3030"/>
+        <var id="000001C7AA1D3500"/>
+      </varlist>
+    </scope>
+    <scope id="000001C7A9CB71B0" type="Enum" className="Leds_Number_t" bodyStart="000001C7A9F8E710" bodyEnd="000001C7A9F8E950" nestedIn="000001C7A9CB73D0"/>
+    <scope id="000001C7A9CB72C0" type="Struct" className="LedCFG_t" bodyStart="000001C7A9F8DAB0" bodyEnd="000001C7A9F8E470" nestedIn="000001C7A9CB73D0">
+      <varlist>
+        <var id="000001C7AA1D1B30"/>
+        <var id="000001C7AA1D1BA0"/>
+        <var id="000001C7AA1D41B0"/>
+        <var id="000001C7AA1D3EA0"/>
+      </varlist>
+    </scope>
+    <scope id="000001C7A9CB74E0" type="Enum" className="SW_NUM_t" bodyStart="000001C7A9F8EBF0" bodyEnd="000001C7A9F8EF50" nestedIn="000001C7A9CB73D0"/>
+    <scope id="000001C7A9CB75F0" type="Struct" className="SwitchCFG_t" bodyStart="000001C7A9F8EEF0" bodyEnd="000001C7AA181F10" nestedIn="000001C7A9CB73D0">
+      <varlist>
+        <var id="000001C7AA1D4140"/>
+        <var id="000001C7AA1D43E0"/>
+        <var id="000001C7AA1D3D50"/>
+      </varlist>
+    </scope>
+    <scope id="000001C7A9CB7A30" type="Function" className="main" bodyStart="000001C7AA1804D0" bodyEnd="000001C7AA1F2B50" nestedIn="000001C7A9CB73D0" function="000001C7AA1F51F0">
+      <varlist>
+        <var id="000001C7AA1D4680"/>
+        <var id="000001C7AA1D4C30"/>
+      </varlist>
+    </scope>
+    <scope id="000001C7A9CB7B40" type="While" bodyStart="000001C7AA1F1DD0" bodyEnd="000001C7AA1F2A30" nestedIn="000001C7A9CB7A30"/>
+  </scopes>
+  <variables>
+    <var id="000001C7AA1CFEC0" nameToken="000001C7AA1EA680" typeStartToken="000001C7AA1EA620" typeEndToken="000001C7AA1EA620" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0080" nameToken="000001C7AA1EA740" typeStartToken="000001C7AA1EA7A0" typeEndToken="000001C7AA1EA7A0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D00F0" nameToken="000001C7AA1ED0A0" typeStartToken="000001C7AA1E9100" typeEndToken="000001C7AA1E9100" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0160" nameToken="000001C7AA1ECA40" typeStartToken="000001C7AA1ED100" typeEndToken="000001C7AA1ED100" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0470" nameToken="000001C7AA1EAC80" typeStartToken="000001C7AA1EA5C0" typeEndToken="000001C7AA1EA5C0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D04E0" nameToken="000001C7AA1ECC80" typeStartToken="000001C7AA1EC620" typeEndToken="000001C7AA1EC620" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0940" nameToken="000001C7AA1ED220" typeStartToken="000001C7AA1EC740" typeEndToken="000001C7AA1EC740" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0DA0" nameToken="000001C7AA1EA4A0" typeStartToken="000001C7AA1EACE0" typeEndToken="000001C7AA1EACE0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0E10" nameToken="000001C7AA1EA440" typeStartToken="000001C7AA1EA080" typeEndToken="000001C7AA1EA080" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D0E80" nameToken="000001C7AA1EA140" typeStartToken="000001C7AA1EA560" typeEndToken="000001C7AA1EA560" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1120" nameToken="000001C7AA1EABC0" typeStartToken="000001C7AA1EA380" typeEndToken="000001C7AA1EA380" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1970" nameToken="000001C7AA1ED280" typeStartToken="000001C7AA1ECCE0" typeEndToken="000001C7AA1ECCE0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1A50" nameToken="000001C7AA1ECBC0" typeStartToken="000001C7AA1EC920" typeEndToken="000001C7AA1EC920" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1B30" nameToken="000001C7A9F8D6F0" typeStartToken="000001C7A9F8E230" typeEndToken="000001C7A9F8DC30" access="Public" scope="000001C7A9CB72C0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1BA0" nameToken="000001C7A9F8DF90" typeStartToken="000001C7A9F8D1B0" typeEndToken="000001C7A9F8D1B0" access="Public" scope="000001C7A9CB72C0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1C10" nameToken="000001C7AA1EC860" typeStartToken="000001C7AA1EC680" typeEndToken="000001C7AA1EC680" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1DD0" nameToken="000001C7A9FB2DB0" typeStartToken="000001C7A9FB2A50" typeEndToken="000001C7A9FB2A50" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1E40" nameToken="000001C7A9FB2450" typeStartToken="000001C7A9FB2F90" typeEndToken="000001C7A9FB2F90" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1EB0" nameToken="000001C7A9FB27B0" typeStartToken="000001C7A9FB2630" typeEndToken="000001C7A9FB2630" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D1F90" nameToken="000001C7A9F88E90" typeStartToken="000001C7A9F89670" typeEndToken="000001C7A9F89670" access="Public" scope="000001C7A9CB7920" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D20E0" nameToken="000001C7A9FB2D50" typeStartToken="000001C7A9FB26F0" typeEndToken="000001C7A9FB26F0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D21C0" nameToken="000001C7A9FB2E10" typeStartToken="000001C7A9FB2B70" typeEndToken="000001C7A9FB2B70" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2230" nameToken="000001C7A9FB2F30" typeStartToken="000001C7A9FB30B0" typeEndToken="000001C7A9FB30B0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D23F0" nameToken="000001C7A9FB22D0" typeStartToken="000001C7A9FB2510" typeEndToken="000001C7A9FB2510" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2460" nameToken="000001C7A9FB2210" typeStartToken="000001C7A9FB2BD0" typeEndToken="000001C7A9FB2BD0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D24D0" nameToken="000001C7AA1ED400" typeStartToken="000001C7AA1ED3A0" typeEndToken="000001C7AA1ED3A0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D25B0" nameToken="000001C7A9F890D0" typeStartToken="000001C7A9F88EF0" typeEndToken="000001C7A9F88EF0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2620" nameToken="000001C7AA1ED1C0" typeStartToken="000001C7AA1ECB60" typeEndToken="000001C7AA1ECB60" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2700" nameToken="000001C7A9FB28D0" typeStartToken="000001C7A9FB2390" typeEndToken="000001C7A9FB2390" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2770" nameToken="000001C7A9F88A10" typeStartToken="000001C7A9F89130" typeEndToken="000001C7A9F89130" access="Public" scope="000001C7A9CB7920" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D29A0" nameToken="000001C7A9FB2330" typeStartToken="000001C7A9FB2930" typeEndToken="000001C7A9FB2930" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2AF0" nameToken="000001C7A9FB24B0" typeStartToken="000001C7A9FB2C30" typeEndToken="000001C7A9FB2C30" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2B60" nameToken="000001C7AA1ED4C0" typeStartToken="000001C7AA1ED460" typeEndToken="000001C7AA1ED460" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2D90" nameToken="000001C7A9FB2690" typeStartToken="000001C7A9FB21B0" typeEndToken="000001C7A9FB21B0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D2EE0" nameToken="000001C7A9FB2810" typeStartToken="000001C7A9FB25D0" typeEndToken="000001C7A9FB25D0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3030" nameToken="000001C7A9F88B30" typeStartToken="000001C7A9F88FB0" typeEndToken="000001C7A9F88FB0" access="Public" scope="000001C7A9CB7920" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3110" nameToken="000001C7AA1EC7A0" typeStartToken="000001C7AA1EC6E0" typeEndToken="000001C7AA1EC6E0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3180" nameToken="000001C7AA1ED2E0" typeStartToken="000001C7AA1ECE60" typeEndToken="000001C7AA1ECE60" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D31F0" nameToken="000001C7AA1ECF20" typeStartToken="000001C7AA1ECEC0" typeEndToken="000001C7AA1ECEC0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3260" nameToken="000001C7AA1ECFE0" typeStartToken="000001C7AA1ED340" typeEndToken="000001C7AA1ED340" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3340" nameToken="000001C7A9F89610" typeStartToken="000001C7A9F895B0" typeEndToken="000001C7A9F895B0" access="Public" scope="000001C7A9CB7920" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3420" nameToken="000001C7A9FB2750" typeStartToken="000001C7A9FB2CF0" typeEndToken="000001C7A9FB2CF0" access="Public" scope="000001C7A9CB70A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3500" nameToken="000001C7A9F89010" typeStartToken="000001C7A9F88A70" typeEndToken="000001C7A9F88A70" access="Public" scope="000001C7A9CB7920" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3810" nameToken="000001C7A9F88170" typeStartToken="000001C7A9F888F0" typeEndToken="000001C7A9F888F0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3AB0" nameToken="000001C7A9F88BF0" typeStartToken="000001C7A9F89730" typeEndToken="000001C7A9F89850" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3C70" nameToken="000001C7A9F89AF0" typeStartToken="000001C7A9F89A90" typeEndToken="000001C7A9F89A90" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3D50" nameToken="000001C7AA181A90" typeStartToken="000001C7AA181970" typeEndToken="000001C7AA181970" access="Public" scope="000001C7A9CB75F0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3EA0" nameToken="000001C7A9F8DCF0" typeStartToken="000001C7A9F8DBD0" typeEndToken="000001C7A9F8DBD0" access="Public" scope="000001C7A9CB72C0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D3F80" nameToken="000001C7A9F8DE10" typeStartToken="000001C7A9F8E290" typeEndToken="000001C7A9F8E290" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4140" nameToken="000001C7A9F8EA10" typeStartToken="000001C7A9F8F010" typeEndToken="000001C7A9F8F0D0" access="Public" scope="000001C7A9CB75F0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D41B0" nameToken="000001C7A9F8D3F0" typeStartToken="000001C7A9F8D210" typeEndToken="000001C7A9F8D210" access="Public" scope="000001C7A9CB72C0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D43E0" nameToken="000001C7AA181B50" typeStartToken="000001C7A9F8EAD0" typeEndToken="000001C7A9F8EAD0" access="Public" scope="000001C7A9CB75F0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D44C0" nameToken="000001C7A9F89070" typeStartToken="000001C7A9F88CB0" typeEndToken="000001C7A9F88590" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4530" nameToken="000001C7A9F89910" typeStartToken="000001C7A9F88D70" typeEndToken="000001C7A9F88D70" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D45A0" nameToken="000001C7A9F89EB0" typeStartToken="000001C7AA1F3450" typeEndToken="000001C7A9F89F70" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4610" nameToken="000001C7A9F89FD0" typeStartToken="000001C7A9F89E50" typeEndToken="000001C7A9F89E50" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4680" nameToken="000001C7AA180410" typeStartToken="000001C7AA180D70" typeEndToken="000001C7AA180D70" access="Local" scope="000001C7A9CB7A30" constness="0" isArgument="false" isArray="false" isClass="true" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D46F0" nameToken="000001C7A9F8DB10" typeStartToken="000001C7A9F8D750" typeEndToken="000001C7A9F8D750" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4840" nameToken="000001C7A9F8DF30" typeStartToken="000001C7A9F8E110" typeEndToken="000001C7A9F8E110" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4990" nameToken="000001C7A9F8D450" typeStartToken="000001C7A9F8E830" typeEndToken="000001C7A9F8E830" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4A70" nameToken="000001C7A9F8EB90" typeStartToken="000001C7A9F8D630" typeEndToken="000001C7A9F8D630" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4B50" nameToken="000001C7AA181A30" typeStartToken="000001C7AA181E50" typeEndToken="000001C7AA181E50" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4C30" nameToken="000001C7AA180D10" typeStartToken="000001C7AA1817F0" typeEndToken="000001C7AA1817F0" access="Local" scope="000001C7A9CB7A30" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4CA0" nameToken="000001C7AA181310" typeStartToken="000001C7AA180230" typeEndToken="000001C7AA1809B0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4D10" nameToken="000001C7AA1808F0" typeStartToken="000001C7AA1802F0" typeEndToken="000001C7AA1802F0" access="Argument" scope="000001C7A9CB7A30" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4E60" nameToken="000001C7A9F89370" typeStartToken="000001C7A9F88470" typeEndToken="000001C7A9F88470" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D4ED0" nameToken="000001C7A9F893D0" typeStartToken="000001C7A9F88E30" typeEndToken="000001C7A9F88E30" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D5090" nameToken="000001C7A9F89D90" typeStartToken="000001C7A9F89F10" typeEndToken="000001C7A9F8A030" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001C7AA1D5100" nameToken="000001C7AA180350" typeStartToken="000001C7AA181370" typeEndToken="000001C7AA180650" access="Argument" scope="000001C7A9CB7A30" constness="0" isArgument="true" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+    <values id="000001C7A9F8F950">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="000001C7A9F8F8F0">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F5F0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="000001C7A9F8F8B0">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F610">
+      <value intvalue="1073887280" known="true"/>
+    </values>
+    <values id="000001C7A9F8F730">
+      <value intvalue="1073887232" known="true"/>
+    </values>
+    <values id="000001C7A9F8F5D0">
+      <value intvalue="1073887280" known="true"/>
+    </values>
+    <values id="000001C7A9F8F670">
+      <value intvalue="48" known="true"/>
+    </values>
+    <values id="000001C7A9F8F630">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F650">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F750">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="000001C7A9F8F790">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F6B0">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="000001C7A9F8F6F0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="000001C7A9F8F7B0">
+      <value intvalue="1" known="true"/>
+    </values>
+  </valueflow>
+</dump>
+</dumps>

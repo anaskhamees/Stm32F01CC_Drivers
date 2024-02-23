@@ -20,6 +20,6 @@ SwitchCFG_t Switches[_SWITCHES_NUM]=
     {
         .SW_Port=GPIO_PORTB,
         .SW_Pin=GPIO_PIN1,
-        .SW_Connection=GPIO_IN_PD,
+        .SW_Connection=GPIO_IN_PU,
     }
 };
