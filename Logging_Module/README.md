@@ -14,7 +14,7 @@ I made an application responsible for summing group of variables and log the pas
   - **WARNING**: Show ONLY the operation warnings
   - **ERROR**      : Show ONLY the operation errors 
 
-![Untitled](/home/anas/Downloads/Untitled.jpeg)
+![Untitled](README.assets/Untitled.jpeg)
 
 ### 1. You should Select the logging channel (Console / Terminal or File)
 
@@ -158,6 +158,8 @@ int main() {
 I made a variadic function which summing all the input parameters 
 
 ```c
+#include <stdio.h>
+#include <stdarg.h>
 int AddValues(int count, ...) {
     int sum = 0;
     va_list args;
@@ -175,19 +177,26 @@ int AddValues(int count, ...) {
        
     return sum;
 }
+int main() {
+
+    printf("Sum of 10, 20, 30: %d\n", AddValues(3, 10, 20, 30));
+    
+    return 0
+}
 
 ```
 
- >Certainly! Let's break down the `AddValues` function:
  >
- >1. **`int AddValues(int count, ...)`**: This is the function signature. It defines a function named `AddValues` that takes an integer `count` as its first argument. This argument specifies the number of values that will be provided as variable arguments (`...`).
- >2. **`int sum = 0;`**: This line declares an integer variable named `sum` and initializes it to `0`. This variable will be used to store the sum of the provided values.
- >3. **`va_list args;`**: This declares a variable of type `va_list`, which is used to access the variable arguments passed to the function.
- >4. **`va_start(args, count);`**: This macro initializes the `va_list` object `args` to point to the first variable argument in the argument list. The `count` parameter specifies the last named parameter before the variable arguments.
- >5. **`for (int i = 0; i < count; i++) {`**: This `for` loop iterates `count` times, where `count` is the number of variable arguments specified when calling the function.
- >6. **`int val = va_arg(args, int);`**: Inside the loop, this line retrieves the next variable argument from the `va_list` object `args` and assigns it to the integer variable `val`. Each call to `va_arg` advances the `args` pointer to the next argument in the list.
- >7. **`sum += val;`**: This line adds the value of `val` to the `sum`, accumulating the total sum of all provided values.
- >8. **`va_end(args);`**: This macro cleans up the `va_list` object `args` after all variable arguments have been processed. It must be called before the function returns to release any resources associated with the `va_list`.
+ >
+ >1. It defines a function named `AddValues` that takes an :
+ >   - Integer `count` as its first argument. This argument specifies the number of values that will be provided as variable arguments
+ >   - ellipsis (`...`) to refer to variable number of arguments. 
+ >2. **`va_list args;`**: This declares a variable of type `va_list`, which is used to access the variable arguments passed to the function.
+ >3. **`va_start(args, count);`**: This macro initializes the `va_list` object `args` to point to the first variable argument in the argument list. The `count` parameter specifies the last named parameter before the variable arguments.
+ >4. **`for (int i = 0; i < count; i++) {`**: This `for` loop iterates `count` times, where `count` is the number of variable arguments specified when calling the function.
+ >5. **`int val = va_arg(args, int);`**: Inside the loop, this line retrieves the next variable argument from the `va_list` object `args` and assigns it to the integer variable `val`. Each call to `va_arg` advances the `args` pointer to the next argument in the list.
+ >6. **`sum += val;`**: This line adds the value of `val` to the `sum`, accumulating the total sum of all provided values.
+ >7. **`va_end(args);`**: This macro cleans up the `va_list` object `args` after all variable arguments have been processed. It must be called before the function returns to release any resources associated with the `va_list`.
 
 
 
