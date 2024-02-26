@@ -58,17 +58,26 @@ int main()
 
 ```
 
->- - `time_t rawtime;`: Declares a variable `rawtime` of type `time_t`, which represents calendar time.
+>- `time_t rawtime;`: Declares a variable `rawtime` of type `time_t`, which represents calendar time.
+>
 >  - `struct tm *timeinfo;`: Declares a pointer `timeinfo` to a structure of type `tm`, which holds the components of time (e.g., year, month, day, hour, minute, second).
+>
 >  - `char timestamp[20];`: Declares a character array `timestamp` to store the formatted time string.
+>
 >  - `time(&rawtime);`: Retrieves the current time (in seconds since the Epoch) and stores it in the `rawtime` variable.
->   - `timeinfo = localtime(&rawtime);`: Converts the raw time value to a local time representation and stores it in the `timeinfo` structure.
->  - `strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", timeinfo);`: Formats the time information stored in `timeinfo` according to the specified format ("%Y-%m-%d %H:%M:%S") and stores the result in the `timestamp` array.
->     - The Format is : (Years , Months, Days , Hours , Minutes ,Seconds ).
+>
+>  - `timeinfo = localtime(&rawtime);`: Converts the raw time value to a local time representation and stores it in the `timeinfo` structure.
+>
+>  - `strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", timeinfo);`:
+>
+>    -  Formats the time information stored in `timeinfo` according to the specified format ("%Y-%m-%d %H:%M:%S") and stores the result in the `timestamp` array.
+>
+>    - The Format is : (Years , Months, Days , Hours , Minutes ,Seconds ).
+>
 >  - `printf("[%s] ", timestamp);`: Prints the formatted timestamp to the console, enclosed in square brackets.
 >
 >**Output**:
-> 
+>
 >![image-20240226030512681](README.assets/image-20240226030512681.png)
 
 
@@ -149,7 +158,7 @@ int main() {
 >  - It declares a file pointer `logFile` to handle the log file.
 >  - It opens the `time_log.txt` file in append mode using `fopen`. If the file cannot be opened, it prints an error message using `perror` and returns 1 to indicate an error.
 >  - It calls the `printTime` function to print the current time to the log file.
->  - Finally, it closes the log file using `fclose` to release system resources.
+>  - Finally, it closes the log file using `fclose` to release system resources (txt file).
 
 ![image-20240226030956169](README.assets/image-20240226030956169.png)
 
@@ -168,9 +177,6 @@ int AddValues(int count, ...) {
     // Sum up the values
     for (int i = 0; i < count; i++) {
         int val = va_arg(args, int);
-        if (logSeverity == INFO) {
-       	   Log_Write("[INFO]  : The variable is %d.\n", val);
-        }
         sum += val;
     }
     va_end(args);
