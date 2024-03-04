@@ -20,6 +20,7 @@ ErrorStatus_t LED_Init(void)
     GPIO_CFG_t Led;
     Led.GPIO_Mode=GPIO_OUT_PP_NO_PUPD;
     Led.GPIO_Speed=GPIO_LOW_SPEED;
+    Led.GPIO_AF=GPIO_AF_DISABLED;
     uint8_t LedNum;
     for(LedNum=0;LedNum<_Led_Number;LedNum++)
     {

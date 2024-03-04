@@ -43,6 +43,7 @@ ErrorStatus_t Switch_Init(void)
         Switch.GPIO_Mode=Switches[SW_Num].SW_Connection;
     }
     Switch.GPIO_Speed=GPIO_HIGH_SPEED;
+    Switch.GPIO_AF=GPIO_AF_DISABLED;
     ReturnState=GPIO_InitPin(&Switch);
     return ReturnState;
    }

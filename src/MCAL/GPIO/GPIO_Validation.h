@@ -75,14 +75,23 @@
                                         ((AF) == GPIO_AF15) || \
                                         ((AF) == GPIO_AF_DISABLED))
 
-#define IS_VALID_GPIO_MODE_AF(mode,AF)     ((((mode) == GPIO_AF_PP_NO_PUPD) || \
+#define IS_VALID_GPIO_MODE_AF(mode, AF) (((((mode) == GPIO_AF_PP_NO_PUPD) || \
+                                           ((mode) == GPIO_AF_PP_PU)       || \
+                                           ((mode) == GPIO_AF_PP_PD)       || \
+                                           ((mode) == GPIO_AF_OD_NO_PUPD)  || \
+                                           ((mode) == GPIO_AF_OD_PU)       || \
+                                           ((mode) == GPIO_AF_OD_PD))      && \
+                                           ((AF) != GPIO_AF_DISABLED))      || \
+                                                                                \
+                                          ((!(((mode) == GPIO_AF_PP_NO_PUPD) || \
                                             ((mode) == GPIO_AF_PP_PU)       || \
                                             ((mode) == GPIO_AF_PP_PD)       || \
                                             ((mode) == GPIO_AF_OD_NO_PUPD)  || \
                                             ((mode) == GPIO_AF_OD_PU)       || \
-                                            ((mode) == GPIO_AF_OD_PD))      && \
-                                            ((AF)!=GPIO_AF_DISABLED))  
+                                            ((mode) == GPIO_AF_OD_PD)))     && \
+                                            ((AF) == GPIO_AF_DISABLED)))
 
+                                     
 
 
 
