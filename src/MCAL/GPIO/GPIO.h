@@ -13,7 +13,7 @@
 /******************************************************************************************/
 /*************************************** Includes *****************************************/
 /******************************************************************************************/
-#include"Std_Lib/Std_Libraries.h"
+#include "Std_Lib/Std_Libraries.h"
 
 /******************************************************************************************/
 /**************************************** Defines *****************************************/
@@ -82,7 +82,25 @@
 #define GPIO_AF_OD_NO_PUPD      (0x00000006UL)
 #define GPIO_AF_OD_PU           (0x0000000EUL)
 #define GPIO_AF_OD_PD           (0x00000016UL)
-
+/*==================================================================================*/
+/*--------------------------- Alternative Functions --------------------------------*/
+#define GPIO_AF00         (0UL)
+#define GPIO_AF01         (1UL)
+#define GPIO_AF02         (2UL)
+#define GPIO_AF03         (3UL)
+#define GPIO_AF04         (4UL)
+#define GPIO_AF05         (5UL)
+#define GPIO_AF06         (6UL)
+#define GPIO_AF07         (7UL)
+#define GPIO_AF08         (8UL)
+#define GPIO_AF09         (9UL)
+#define GPIO_AF10         (10UL)
+#define GPIO_AF11         (11UL)
+#define GPIO_AF12         (12UL)
+#define GPIO_AF13         (13UL)
+#define GPIO_AF14         (14UL)
+#define GPIO_AF15         (15UL)
+#define GPIO_AF_DISABLED  (16UL)
 
 /******************************************************************************************/
 /*************************************** Data Types ***************************************/
@@ -116,7 +134,24 @@ typedef struct
                                    - GPIO_MEDIUM_SPEED
                                    - GPIO_HIGH_SPEED
                                    - GPIO_VERY_HIGH_SPEED */
-    //uint32_t GPIO_AF   ;      /*!< GPIO pin Alternative Function:
+    uint32_t GPIO_AF   ;      /*!< GPIO pin Alternative Function: 
+                                    GPIO_AF00
+                                    GPIO_AF01
+                                    GPIO_AF02
+                                    GPIO_AF03
+                                    GPIO_AF04
+                                    GPIO_AF05
+                                    GPIO_AF06
+                                    GPIO_AF07
+                                    GPIO_AF08
+                                    GPIO_AF09
+                                    GPIO_AF10
+                                    GPIO_AF11
+                                    GPIO_AF12
+                                    GPIO_AF13
+                                    GPIO_AF14
+                                    GPIO_AF15
+                                    GPIO_AF_DISABLED */
 } GPIO_CFG_t;
 
 /*----------------------------------------------------------------------------------------------------------------------------------*/

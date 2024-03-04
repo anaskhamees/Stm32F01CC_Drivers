@@ -68,6 +68,14 @@ ErrorStatus_t GPIO_InitPin(GPIO_CFG_t* GPIO_Config)
     {
         ReturnState=GPIO_WrongSpeed;
     }
+     else if(!IS_VALID_GPIO_AF(GPIO_Config->GPIO_AF))
+    {
+        ReturnState=GPIO_WrongAF;
+    }
+    else if(!IS_VALID_GPIO_MODE_AF((GPIO_Config->GPIO_Mode),(GPIO_Config->GPIO_AF)))
+    {
+        ReturnState=GPIO_WrongModeAFCFG;
+    }
 
     else
     {
