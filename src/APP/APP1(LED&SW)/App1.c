@@ -1,6 +1,7 @@
 #include "HAL/PeripheralCLK_Control/CLK_Control.h"
 #include "HAL/LED/LED.h"
 #include "HAL/SWITCH/SWITCH.h"
+
 int main(int argc, char* argv[])
 {
 	ErrorStatus_t ReturnError;

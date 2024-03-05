@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c"/>
+    <tok fileIndex="0" linenr="1" column="1" str="#"/>
+    <tok fileIndex="0" linenr="1" column="2" str="include"/>
+    <tok fileIndex="0" linenr="1" column="10" str="&quot;HAL/PeripheralCLK_Control/CLK_Control.h&quot;"/>
+    <tok fileIndex="0" linenr="2" column="1" str="#"/>
+    <tok fileIndex="0" linenr="2" column="2" str="include"/>
+    <tok fileIndex="0" linenr="2" column="10" str="&quot;HAL/LED/LED.h&quot;"/>
+    <tok fileIndex="0" linenr="3" column="1" str="#"/>
+    <tok fileIndex="0" linenr="3" column="2" str="include"/>
+    <tok fileIndex="0" linenr="3" column="10" str="&quot;HAL/SWITCH/SWITCH.h&quot;"/>
+    <tok fileIndex="0" linenr="5" column="1" str="int"/>
+    <tok fileIndex="0" linenr="5" column="5" str="main"/>
+    <tok fileIndex="0" linenr="5" column="9" str="("/>
+    <tok fileIndex="0" linenr="5" column="10" str="int"/>
+    <tok fileIndex="0" linenr="5" column="14" str="argc"/>
+    <tok fileIndex="0" linenr="5" column="18" str=","/>
+    <tok fileIndex="0" linenr="5" column="20" str="char"/>
+    <tok fileIndex="0" linenr="5" column="24" str="*"/>
+    <tok fileIndex="0" linenr="5" column="26" str="argv"/>
+    <tok fileIndex="0" linenr="5" column="30" str="["/>
+    <tok fileIndex="0" linenr="5" column="31" str="]"/>
+    <tok fileIndex="0" linenr="5" column="32" str=")"/>
+    <tok fileIndex="0" linenr="6" column="1" str="{"/>
+    <tok fileIndex="0" linenr="7" column="2" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="7" column="16" str="ReturnError"/>
+    <tok fileIndex="0" linenr="7" column="27" str=";"/>
+    <tok fileIndex="0" linenr="9" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="9" column="13" str="="/>
+    <tok fileIndex="0" linenr="9" column="14" str="HAL_PeripheralEnableCLK"/>
+    <tok fileIndex="0" linenr="9" column="37" str="("/>
+    <tok fileIndex="0" linenr="9" column="38" str="HAL_GPIOB"/>
+    <tok fileIndex="0" linenr="9" column="47" str=")"/>
+    <tok fileIndex="0" linenr="9" column="48" str=";"/>
+    <tok fileIndex="0" linenr="10" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="10" column="13" str="="/>
+    <tok fileIndex="0" linenr="10" column="14" str="HAL_PeripheralEnableCLK"/>
+    <tok fileIndex="0" linenr="10" column="37" str="("/>
+    <tok fileIndex="0" linenr="10" column="38" str="HAL_GPIOC"/>
+    <tok fileIndex="0" linenr="10" column="47" str=")"/>
+    <tok fileIndex="0" linenr="10" column="48" str=";"/>
+    <tok fileIndex="0" linenr="12" column="2" str="uint32_t"/>
+    <tok fileIndex="0" linenr="12" column="11" str="SwitchValue"/>
+    <tok fileIndex="0" linenr="12" column="22" str=";"/>
+    <tok fileIndex="0" linenr="13" column="2" str="uint32_t"/>
+    <tok fileIndex="0" linenr="13" column="11" str="counter"/>
+    <tok fileIndex="0" linenr="13" column="18" str="="/>
+    <tok fileIndex="0" linenr="13" column="19" str="0"/>
+    <tok fileIndex="0" linenr="13" column="20" str=";"/>
+    <tok fileIndex="0" linenr="14" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="14" column="13" str="="/>
+    <tok fileIndex="0" linenr="14" column="14" str="LED_Init"/>
+    <tok fileIndex="0" linenr="14" column="22" str="("/>
+    <tok fileIndex="0" linenr="14" column="23" str=")"/>
+    <tok fileIndex="0" linenr="14" column="24" str=";"/>
+    <tok fileIndex="0" linenr="15" column="2" str="ReturnError"/>
+    <tok fileIndex="0" linenr="15" column="13" str="="/>
+    <tok fileIndex="0" linenr="15" column="14" str="Switch_Init"/>
+    <tok fileIndex="0" linenr="15" column="25" str="("/>
+    <tok fileIndex="0" linenr="15" column="26" str=")"/>
+    <tok fileIndex="0" linenr="15" column="27" str=";"/>
+    <tok fileIndex="0" linenr="16" column="2" str="while"/>
+    <tok fileIndex="0" linenr="16" column="8" str="("/>
+    <tok fileIndex="0" linenr="16" column="9" str="1"/>
+    <tok fileIndex="0" linenr="16" column="10" str=")"/>
+    <tok fileIndex="0" linenr="17" column="5" str="{"/>
+    <tok fileIndex="0" linenr="18" column="3" str="ReturnError"/>
+    <tok fileIndex="0" linenr="18" column="14" str="="/>
+    <tok fileIndex="0" linenr="18" column="15" str="Switch_GetState"/>
+    <tok fileIndex="0" linenr="18" column="30" str="("/>
+    <tok fileIndex="0" linenr="18" column="31" str="SWITCH_1"/>
+    <tok fileIndex="0" linenr="18" column="39" str=","/>
+    <tok fileIndex="0" linenr="18" column="40" str="&amp;"/>
+    <tok fileIndex="0" linenr="18" column="41" str="SwitchValue"/>
+    <tok fileIndex="0" linenr="18" column="52" str=")"/>
+    <tok fileIndex="0" linenr="18" column="53" str=";"/>
+    <tok fileIndex="0" linenr="19" column="3" str="if"/>
+    <tok fileIndex="0" linenr="19" column="5" str="("/>
+    <tok fileIndex="0" linenr="19" column="6" str="SwitchValue"/>
+    <tok fileIndex="0" linenr="19" column="17" str="=="/>
+    <tok fileIndex="0" linenr="19" column="19" str="SWITCH_PRESSED"/>
+    <tok fileIndex="0" linenr="19" column="33" str=")"/>
+    <tok fileIndex="0" linenr="20" column="3" str="{"/>
+    <tok fileIndex="0" linenr="21" column="4" str="ReturnError"/>
+    <tok fileIndex="0" linenr="21" column="15" str="="/>
+    <tok fileIndex="0" linenr="21" column="16" str="LED_SetState"/>
+    <tok fileIndex="0" linenr="21" column="28" str="("/>
+    <tok fileIndex="0" linenr="21" column="29" str="LED1"/>
+    <tok fileIndex="0" linenr="21" column="33" str=","/>
+    <tok fileIndex="0" linenr="21" column="34" str="LED_ON"/>
+    <tok fileIndex="0" linenr="21" column="40" str=")"/>
+    <tok fileIndex="0" linenr="21" column="41" str=";"/>
+    <tok fileIndex="0" linenr="22" column="4" str="while"/>
+    <tok fileIndex="0" linenr="22" column="10" str="("/>
+    <tok fileIndex="0" linenr="22" column="11" str="counter"/>
+    <tok fileIndex="0" linenr="22" column="18" str="&lt;"/>
+    <tok fileIndex="0" linenr="22" column="19" str="100000"/>
+    <tok fileIndex="0" linenr="22" column="25" str=")"/>
+    <tok fileIndex="0" linenr="23" column="4" str="{"/>
+    <tok fileIndex="0" linenr="24" column="5" str="counter"/>
+    <tok fileIndex="0" linenr="24" column="12" str="++"/>
+    <tok fileIndex="0" linenr="24" column="14" str=";"/>
+    <tok fileIndex="0" linenr="25" column="4" str="}"/>
+    <tok fileIndex="0" linenr="26" column="4" str="ReturnError"/>
+    <tok fileIndex="0" linenr="26" column="15" str="="/>
+    <tok fileIndex="0" linenr="26" column="16" str="LED_SetState"/>
+    <tok fileIndex="0" linenr="26" column="28" str="("/>
+    <tok fileIndex="0" linenr="26" column="29" str="LED1"/>
+    <tok fileIndex="0" linenr="26" column="33" str=","/>
+    <tok fileIndex="0" linenr="26" column="34" str="LED_OFF"/>
+    <tok fileIndex="0" linenr="26" column="41" str=")"/>
+    <tok fileIndex="0" linenr="26" column="42" str=";"/>
+    <tok fileIndex="0" linenr="29" column="3" str="}"/>
+    <tok fileIndex="0" linenr="30" column="5" str="}"/>
+    <tok fileIndex="0" linenr="31" column="1" str="}"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c89"/>
+    <cpp version="c++03"/>
+  </standards>
+  <directivelist>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="1" str="#include &quot;HAL/PeripheralCLK_Control/CLK_Control.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="2" str="#include &quot;HAL/LED/LED.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="3" str="#include &quot;HAL/SWITCH/SWITCH.h&quot;"/>
+  </directivelist>
+  <tokenlist>
+    <token id="0000019E47282C30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="1" str="int" scope="0000019E470573F0" type="name"/>
+    <token id="0000019E4754F6E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="5" str="main" scope="0000019E470573F0" type="name" function="0000019E4746C3A0"/>
+    <token id="0000019E4754F7A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="9" str="(" scope="0000019E470573F0" link="0000019E47282240" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0000019E4754F980" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="10" str="int" scope="0000019E470573F0" type="name"/>
+    <token id="0000019E4754F740" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="14" str="argc" scope="0000019E470573F0" type="name" varId="1" variable="0000019E472D33B0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0000019E4754F800" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="18" str="," scope="0000019E470573F0"/>
+    <token id="0000019E4754F920" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="20" str="char" scope="0000019E470573F0" type="name" astParent="0000019E4754F860"/>
+    <token id="0000019E4754F860" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="24" str="*" scope="0000019E470573F0" type="op" isArithmeticalOp="true" astOperand1="0000019E4754F920" astOperand2="0000019E4754F9E0" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="0000019E4754F8C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="26" str="argv" scope="0000019E470573F0" type="name" varId="2" variable="0000019E472D37A0" astParent="0000019E4754F9E0" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="0000019E4754F9E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="30" str="[" scope="0000019E470573F0" link="0000019E47282720" astParent="0000019E4754F860" astOperand1="0000019E4754F8C0" valueType-type="char" valueType-sign="signed" valueType-pointer="2" valueType-reference="None"/>
+    <token id="0000019E47282720" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="31" str="]" scope="0000019E470573F0" link="0000019E4754F9E0"/>
+    <token id="0000019E47282240" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="5" column="32" str=")" scope="0000019E470573F0" link="0000019E4754F7A0"/>
+    <token id="0000019E472823C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="6" column="1" str="{" scope="0000019E47057500" link="0000019E472D1E80"/>
+    <token id="0000019E472824E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="7" column="2" str="ErrorStatus_t" scope="0000019E47057500" type="name"/>
+    <token id="0000019E47282540" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="7" column="16" str="ReturnError" scope="0000019E47057500" type="name" varId="3" variable="0000019E47496870"/>
+    <token id="0000019E472825A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="7" column="27" str=";" scope="0000019E47057500"/>
+    <token id="0000019E47282600" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="2" str="ReturnError" scope="0000019E47057500" type="name" varId="3" variable="0000019E47496870" astParent="0000019E472826C0"/>
+    <token id="0000019E472826C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="13" str="=" scope="0000019E47057500" type="op" isAssignmentOp="true" astOperand1="0000019E47282600" astOperand2="0000019E472822A0"/>
+    <token id="0000019E47282660" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="14" str="HAL_PeripheralEnableCLK" scope="0000019E47057500" type="name" astParent="0000019E472822A0"/>
+    <token id="0000019E472822A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="37" str="(" scope="0000019E47057500" link="0000019E47282780" astParent="0000019E472826C0" astOperand1="0000019E47282660" astOperand2="0000019E47282300"/>
+    <token id="0000019E47282300" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="38" str="HAL_GPIOB" scope="0000019E47057500" type="name" astParent="0000019E472822A0"/>
+    <token id="0000019E47282780" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="47" str=")" scope="0000019E47057500" link="0000019E472822A0"/>
+    <token id="0000019E472827E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="9" column="48" str=";" scope="0000019E47057500"/>
+    <token id="0000019E472821E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="2" str="ReturnError" scope="0000019E47057500" type="name" varId="3" variable="0000019E47496870" astParent="0000019E47282840"/>
+    <token id="0000019E47282840" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="13" str="=" scope="0000019E47057500" type="op" isAssignmentOp="true" astOperand1="0000019E472821E0" astOperand2="0000019E47282480"/>
+    <token id="0000019E472828A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="14" str="HAL_PeripheralEnableCLK" scope="0000019E47057500" type="name" astParent="0000019E47282480"/>
+    <token id="0000019E47282480" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="37" str="(" scope="0000019E47057500" link="0000019E47282360" astParent="0000019E47282840" astOperand1="0000019E472828A0" astOperand2="0000019E47282180"/>
+    <token id="0000019E47282180" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="38" str="HAL_GPIOC" scope="0000019E47057500" type="name" astParent="0000019E47282480"/>
+    <token id="0000019E47282360" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="47" str=")" scope="0000019E47057500" link="0000019E47282480"/>
+    <token id="0000019E47282420" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="10" column="48" str=";" scope="0000019E47057500"/>
+    <token id="0000019E47539BB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="12" column="2" str="uint32_t" scope="0000019E47057500" type="name"/>
+    <token id="0000019E47539610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="12" column="11" str="SwitchValue" scope="0000019E47057500" type="name" varId="4" variable="0000019E4754EDD0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E47539910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="12" column="22" str=";" scope="0000019E47057500"/>
+    <token id="0000019E47539AF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="2" str="uint32_t" scope="0000019E47057500" type="name"/>
+    <token id="0000019E47539A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="11" str="counter" scope="0000019E47057500" type="name" varId="5" variable="0000019E472D3500" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E47539850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="18" str=";" scope="0000019E47057500" isSplittedVarDeclEq="true"/>
+    <token id="0000019E472D1EE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="11" str="counter" scope="0000019E47057500" type="name" varId="5" variable="0000019E472D3500" astParent="0000019E472D1FA0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E472D1FA0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="18" str="=" scope="0000019E47057500" type="op" isAssignmentOp="true" values="0000019E4712E2F0" astOperand1="0000019E472D1EE0" astOperand2="0000019E475398B0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E475398B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="19" str="0" scope="0000019E47057500" type="number" isInt="true" values="0000019E4712E4B0" astParent="0000019E472D1FA0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0000019E47539A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="13" column="20" str=";" scope="0000019E47057500"/>
+    <token id="0000019E47539D30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="2" str="ReturnError" scope="0000019E47057500" type="name" varId="3" variable="0000019E47496870" astParent="0000019E47539670"/>
+    <token id="0000019E47539670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="13" str="=" scope="0000019E47057500" type="op" isAssignmentOp="true" astOperand1="0000019E47539D30" astOperand2="0000019E47539B50"/>
+    <token id="0000019E475399D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="14" str="LED_Init" scope="0000019E47057500" type="name" astParent="0000019E47539B50"/>
+    <token id="0000019E47539B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="22" str="(" scope="0000019E47057500" link="0000019E47539970" astParent="0000019E47539670" astOperand1="0000019E475399D0"/>
+    <token id="0000019E47539970" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="23" str=")" scope="0000019E47057500" link="0000019E47539B50"/>
+    <token id="0000019E47539790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="14" column="24" str=";" scope="0000019E47057500"/>
+    <token id="0000019E475396D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="2" str="ReturnError" scope="0000019E47057500" type="name" varId="3" variable="0000019E47496870" astParent="0000019E47539730"/>
+    <token id="0000019E47539730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="13" str="=" scope="0000019E47057500" type="op" isAssignmentOp="true" astOperand1="0000019E475396D0" astOperand2="0000019E47539C70"/>
+    <token id="0000019E47539C10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="14" str="Switch_Init" scope="0000019E47057500" type="name" astParent="0000019E47539C70"/>
+    <token id="0000019E47539C70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="25" str="(" scope="0000019E47057500" link="0000019E475397F0" astParent="0000019E47539730" astOperand1="0000019E47539C10"/>
+    <token id="0000019E475397F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="26" str=")" scope="0000019E47057500" link="0000019E47539C70"/>
+    <token id="0000019E47539CD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="15" column="27" str=";" scope="0000019E47057500"/>
+    <token id="0000019E4754E240" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="16" column="2" str="while" scope="0000019E47057500" type="name" astParent="0000019E4754DEE0"/>
+    <token id="0000019E4754DEE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="16" column="8" str="(" scope="0000019E47057500" link="0000019E4754E4E0" astOperand1="0000019E4754E240" astOperand2="0000019E4754E3C0"/>
+    <token id="0000019E4754E3C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="16" column="9" str="1" scope="0000019E47057500" type="number" isInt="true" values="0000019E4712E110" astParent="0000019E4754DEE0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0000019E4754E4E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="16" column="10" str=")" scope="0000019E47057500" link="0000019E4754DEE0"/>
+    <token id="0000019E4754E360" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="17" column="5" str="{" scope="0000019E47056EA0" link="0000019E472D1E20"/>
+    <token id="0000019E4754DF40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="3" str="ReturnError" scope="0000019E47056EA0" type="name" varId="3" variable="0000019E47496870" astParent="0000019E4754E300"/>
+    <token id="0000019E4754E300" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="14" str="=" scope="0000019E47056EA0" type="op" isAssignmentOp="true" astOperand1="0000019E4754DF40" astOperand2="0000019E4754E480"/>
+    <token id="0000019E4754E120" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="15" str="Switch_GetState" scope="0000019E47056EA0" type="name" astParent="0000019E4754E480"/>
+    <token id="0000019E4754E480" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="30" str="(" scope="0000019E47056EA0" link="0000019E4754E0C0" astParent="0000019E4754E300" astOperand1="0000019E4754E120" astOperand2="0000019E4754E420"/>
+    <token id="0000019E4754E180" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="31" str="SWITCH_1" scope="0000019E47056EA0" type="name" astParent="0000019E4754E420"/>
+    <token id="0000019E4754E420" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="39" str="," scope="0000019E47056EA0" astParent="0000019E4754E480" astOperand1="0000019E4754E180" astOperand2="0000019E4754DFA0"/>
+    <token id="0000019E4754DFA0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="40" str="&amp;" scope="0000019E47056EA0" type="op" values="0000019E4712E1B0" astParent="0000019E4754E420" astOperand1="0000019E4754E540" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0000019E4754E540" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="41" str="SwitchValue" scope="0000019E47056EA0" type="name" varId="4" variable="0000019E4754EDD0" astParent="0000019E4754DFA0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E4754E0C0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="52" str=")" scope="0000019E47056EA0" link="0000019E4754E480"/>
+    <token id="0000019E4754E000" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="18" column="53" str=";" scope="0000019E47056EA0"/>
+    <token id="0000019E4754E5A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="3" str="if" scope="0000019E47056EA0" type="name" astParent="0000019E4754DE80"/>
+    <token id="0000019E4754DE80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="5" str="(" scope="0000019E47056EA0" link="0000019E4754CB90" astOperand1="0000019E4754E5A0" astOperand2="0000019E4754E1E0"/>
+    <token id="0000019E4754E060" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="6" str="SwitchValue" scope="0000019E47056EA0" type="name" varId="4" variable="0000019E4754EDD0" astParent="0000019E4754E1E0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E4754E1E0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="17" str="==" scope="0000019E47056EA0" type="op" isComparisonOp="true" astParent="0000019E4754DE80" astOperand1="0000019E4754E060" astOperand2="0000019E4754E2A0" valueType-type="bool" valueType-reference="None"/>
+    <token id="0000019E4754E2A0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="19" str="SWITCH_PRESSED" scope="0000019E47056EA0" type="name" astParent="0000019E4754E1E0"/>
+    <token id="0000019E4754CB90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="19" column="33" str=")" scope="0000019E47056EA0" link="0000019E4754DE80"/>
+    <token id="0000019E4754D010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="20" column="3" str="{" scope="0000019E47057610" link="0000019E472D1DC0"/>
+    <token id="0000019E4754CE90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="4" str="ReturnError" scope="0000019E47057610" type="name" varId="3" variable="0000019E47496870" astParent="0000019E4754CEF0"/>
+    <token id="0000019E4754CEF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="15" str="=" scope="0000019E47057610" type="op" isAssignmentOp="true" astOperand1="0000019E4754CE90" astOperand2="0000019E4754CE30"/>
+    <token id="0000019E4754CF50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="16" str="LED_SetState" scope="0000019E47057610" type="name" astParent="0000019E4754CE30"/>
+    <token id="0000019E4754CE30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="28" str="(" scope="0000019E47057610" link="0000019E4754CFB0" astParent="0000019E4754CEF0" astOperand1="0000019E4754CF50" astOperand2="0000019E4754D190"/>
+    <token id="0000019E4754CA70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="29" str="LED1" scope="0000019E47057610" type="name" astParent="0000019E4754D190"/>
+    <token id="0000019E4754D190" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="33" str="," scope="0000019E47057610" astParent="0000019E4754CE30" astOperand1="0000019E4754CA70" astOperand2="0000019E4754CDD0"/>
+    <token id="0000019E4754CDD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="34" str="LED_ON" scope="0000019E47057610" type="name" astParent="0000019E4754D190"/>
+    <token id="0000019E4754CFB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="40" str=")" scope="0000019E47057610" link="0000019E4754CE30"/>
+    <token id="0000019E4754D130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="21" column="41" str=";" scope="0000019E47057610"/>
+    <token id="0000019E4754D0D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="4" str="while" scope="0000019E47057610" type="name" astParent="0000019E4754CBF0"/>
+    <token id="0000019E4754CBF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="10" str="(" scope="0000019E47057610" link="0000019E4754CD10" astOperand1="0000019E4754D0D0" astOperand2="0000019E4754D070"/>
+    <token id="0000019E4754CAD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="11" str="counter" scope="0000019E47057610" type="name" varId="5" variable="0000019E472D3500" astParent="0000019E4754D070" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E4754D070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="18" str="&lt;" scope="0000019E47057610" type="op" isComparisonOp="true" astParent="0000019E4754CBF0" astOperand1="0000019E4754CAD0" astOperand2="0000019E4754CC50" valueType-type="bool" valueType-reference="None"/>
+    <token id="0000019E4754CC50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="19" str="100000" scope="0000019E47057610" type="number" isInt="true" values="0000019E4712E190" astParent="0000019E4754D070" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0000019E4754CD10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="22" column="25" str=")" scope="0000019E47057610" link="0000019E4754CBF0"/>
+    <token id="0000019E4754CB30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="23" column="4" str="{" scope="0000019E47056B70" link="0000019E472D1AC0"/>
+    <token id="0000019E4754CCB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="24" column="5" str="counter" scope="0000019E47056B70" type="name" varId="5" variable="0000019E472D3500" values="0000019E4712E230" astParent="0000019E4754CD70" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E4754CD70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="24" column="12" str="++" scope="0000019E47056B70" type="op" values="0000019E4712E030" astOperand1="0000019E4754CCB0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0000019E472D1A60" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="24" column="14" str=";" scope="0000019E47056B70"/>
+    <token id="0000019E472D1AC0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="25" column="4" str="}" scope="0000019E47056B70" link="0000019E4754CB30"/>
+    <token id="0000019E472D1F40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="4" str="ReturnError" scope="0000019E47057610" type="name" varId="3" variable="0000019E47496870" astParent="0000019E472D1C40"/>
+    <token id="0000019E472D1C40" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="15" str="=" scope="0000019E47057610" type="op" isAssignmentOp="true" astOperand1="0000019E472D1F40" astOperand2="0000019E472D1BE0"/>
+    <token id="0000019E472D1B80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="16" str="LED_SetState" scope="0000019E47057610" type="name" astParent="0000019E472D1BE0"/>
+    <token id="0000019E472D1BE0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="28" str="(" scope="0000019E47057610" link="0000019E472D2000" astParent="0000019E472D1C40" astOperand1="0000019E472D1B80" astOperand2="0000019E472D1CA0"/>
+    <token id="0000019E472D1B20" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="29" str="LED1" scope="0000019E47057610" type="name" astParent="0000019E472D1CA0"/>
+    <token id="0000019E472D1CA0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="33" str="," scope="0000019E47057610" astParent="0000019E472D1BE0" astOperand1="0000019E472D1B20" astOperand2="0000019E472D1D00"/>
+    <token id="0000019E472D1D00" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="34" str="LED_OFF" scope="0000019E47057610" type="name" astParent="0000019E472D1CA0"/>
+    <token id="0000019E472D2000" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="41" str=")" scope="0000019E47057610" link="0000019E472D1BE0"/>
+    <token id="0000019E472D1D60" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="26" column="42" str=";" scope="0000019E47057610"/>
+    <token id="0000019E472D1DC0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="29" column="3" str="}" scope="0000019E47057610" link="0000019E4754D010"/>
+    <token id="0000019E472D1E20" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="30" column="5" str="}" scope="0000019E47056EA0" link="0000019E4754E360"/>
+    <token id="0000019E472D1E80" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP1(LED&amp;SW)/App1.c" linenr="31" column="1" str="}" scope="0000019E47057500" link="0000019E472823C0"/>
+  </tokenlist>
+  <scopes>
+    <scope id="0000019E470573F0" type="Global">
+      <functionList>
+        <function id="0000019E4746C3A0" tokenDef="0000019E4754F6E0" name="main" type="Function">
+          <arg nr="1" variable="0000019E472D33B0"/>
+          <arg nr="2" variable="0000019E472D37A0"/>
+        </function>
+      </functionList>
+    </scope>
+    <scope id="0000019E47057500" type="Function" className="main" bodyStart="0000019E472823C0" bodyEnd="0000019E472D1E80" nestedIn="0000019E470573F0" function="0000019E4746C3A0">
+      <varlist>
+        <var id="0000019E47496870"/>
+        <var id="0000019E4754EDD0"/>
+        <var id="0000019E472D3500"/>
+      </varlist>
+    </scope>
+    <scope id="0000019E47056EA0" type="While" bodyStart="0000019E4754E360" bodyEnd="0000019E472D1E20" nestedIn="0000019E47057500"/>
+    <scope id="0000019E47057610" type="If" bodyStart="0000019E4754D010" bodyEnd="0000019E472D1DC0" nestedIn="0000019E47056EA0"/>
+    <scope id="0000019E47056B70" type="While" bodyStart="0000019E4754CB30" bodyEnd="0000019E472D1AC0" nestedIn="0000019E47057610"/>
+  </scopes>
+  <variables>
+    <var id="0000019E472D33B0" nameToken="0000019E4754F740" typeStartToken="0000019E4754F980" typeEndToken="0000019E4754F980" access="Argument" scope="0000019E47057500" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="0000019E472D3500" nameToken="0000019E47539A30" typeStartToken="0000019E47539AF0" typeEndToken="0000019E47539AF0" access="Local" scope="0000019E47057500" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="0000019E472D37A0" nameToken="0000019E4754F8C0" typeStartToken="0000019E4754F920" typeEndToken="0000019E4754F860" access="Argument" scope="0000019E47057500" constness="0" isArgument="true" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="0000019E47496870" nameToken="0000019E47282540" typeStartToken="0000019E472824E0" typeEndToken="0000019E472824E0" access="Local" scope="0000019E47057500" constness="0" isArgument="false" isArray="false" isClass="true" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="0000019E4754EDD0" nameToken="0000019E47539610" typeStartToken="0000019E47539BB0" typeEndToken="0000019E47539BB0" access="Local" scope="0000019E47057500" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+    <values id="0000019E4712E2F0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0000019E4712E4B0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0000019E4712E110">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="0000019E4712E1B0">
+      <value lifetime="0000019E4754E540" possible="true"/>
+    </values>
+    <values id="0000019E4712E190">
+      <value intvalue="100000" known="true"/>
+    </values>
+    <values id="0000019E4712E230">
+      <value intvalue="99999" condition-line="22" possible="true"/>
+      <value intvalue="100000" condition-line="22" impossible="true"/>
+    </values>
+    <values id="0000019E4712E030">
+      <value intvalue="99999" condition-line="22" possible="true"/>
+      <value intvalue="100000" condition-line="22" impossible="true"/>
+    </values>
+  </valueflow>
+</dump>
+</dumps>
