@@ -1,11 +1,13 @@
-#include "MCAL/RCC/RCC.h"
+#include "HAL/PeripheralCLK_Control/CLK_Control.h"
 #include "HAL/LED/LED.h"
 #include "HAL/SWITCH/SWITCH.h"
 int main(int argc, char* argv[])
 {
-	
-	ErrorStatus_t ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOCEN,RCC_PERIPHERAL_ON);
-	ReturnError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOBEN,RCC_PERIPHERAL_ON);
+	ErrorStatus_t ReturnError;
+
+	ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOB);
+	ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOC);
+
 	uint32_t SwitchValue;
 	uint32_t counter=0;
 	ReturnError=LED_Init();
