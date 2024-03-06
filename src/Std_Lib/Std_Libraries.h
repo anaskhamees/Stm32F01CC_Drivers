@@ -41,7 +41,10 @@ typedef enum{
 	GPIO_WrongPin,
 	GPIO_WrongPinValue,
 	GPIO_WrongAF,
-	GPIO_WrongModeAFCFG
+	GPIO_WrongModeAFCFG,
+	NVIC_OK,
+	NVIC_NOK,
+	NVIC_WRONG_PARAMETER,
 }ErrorStatus_t;
 
 
