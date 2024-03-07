@@ -1,0 +1,624 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h"/>
+    <tok fileIndex="0" linenr="1" column="1" str="#"/>
+    <tok fileIndex="0" linenr="1" column="2" str="ifndef"/>
+    <tok fileIndex="0" linenr="1" column="9" str="MCAL_NVIC_NVIC_H_"/>
+    <tok fileIndex="0" linenr="2" column="1" str="#"/>
+    <tok fileIndex="0" linenr="2" column="2" str="define"/>
+    <tok fileIndex="0" linenr="2" column="9" str="MCAL_NVIC_NVIC_H_"/>
+    <tok fileIndex="0" linenr="5" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="6" column="1" str="/************************************************Includes************************************************/"/>
+    <tok fileIndex="0" linenr="7" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="8" column="1" str="#"/>
+    <tok fileIndex="0" linenr="8" column="2" str="include"/>
+    <tok fileIndex="0" linenr="8" column="10" str="&quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <tok fileIndex="0" linenr="10" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="11" column="1" str="/************************************************Defines*************************************************/"/>
+    <tok fileIndex="0" linenr="12" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="13" column="1" str="/**x * This values is combination of KeyValue of AIRCR Register and value of prioirty grouping x *  0xFA05 0000 + 00xxx *  0xFA05 0000 + 0100x *  0xFA05 0000 + 0101x *  0xFA05 0000 + 0110x *  0xFA05 0000 + 0111x*/"/>
+    <tok fileIndex="0" linenr="21" column="1" str="#"/>
+    <tok fileIndex="0" linenr="21" column="2" str="define"/>
+    <tok fileIndex="0" linenr="21" column="9" str="NVIC_PREEMPTION_16_SUBGROUP_NONE"/>
+    <tok fileIndex="0" linenr="21" column="49" str="("/>
+    <tok fileIndex="0" linenr="21" column="50" str="0xFA050300UL"/>
+    <tok fileIndex="0" linenr="21" column="62" str=")"/>
+    <tok fileIndex="0" linenr="22" column="1" str="#"/>
+    <tok fileIndex="0" linenr="22" column="2" str="define"/>
+    <tok fileIndex="0" linenr="22" column="9" str="NVIC_PREEMPTION_8_SUBGROUP_TWO"/>
+    <tok fileIndex="0" linenr="22" column="49" str="("/>
+    <tok fileIndex="0" linenr="22" column="50" str="0xFA050400UL"/>
+    <tok fileIndex="0" linenr="22" column="62" str=")"/>
+    <tok fileIndex="0" linenr="23" column="1" str="#"/>
+    <tok fileIndex="0" linenr="23" column="2" str="define"/>
+    <tok fileIndex="0" linenr="23" column="9" str="NVIC_PREEMPTION_4_SUBGROUP_FOUR"/>
+    <tok fileIndex="0" linenr="23" column="49" str="("/>
+    <tok fileIndex="0" linenr="23" column="50" str="0xFA050500UL"/>
+    <tok fileIndex="0" linenr="23" column="62" str=")"/>
+    <tok fileIndex="0" linenr="24" column="1" str="#"/>
+    <tok fileIndex="0" linenr="24" column="2" str="define"/>
+    <tok fileIndex="0" linenr="24" column="9" str="NVIC_PREEMPTION_2_SUBGROUP_EIGHT"/>
+    <tok fileIndex="0" linenr="24" column="49" str="("/>
+    <tok fileIndex="0" linenr="24" column="50" str="0xFA050600UL"/>
+    <tok fileIndex="0" linenr="24" column="62" str=")"/>
+    <tok fileIndex="0" linenr="25" column="1" str="#"/>
+    <tok fileIndex="0" linenr="25" column="2" str="define"/>
+    <tok fileIndex="0" linenr="25" column="9" str="NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEEN"/>
+    <tok fileIndex="0" linenr="25" column="49" str="("/>
+    <tok fileIndex="0" linenr="25" column="50" str="0xFA050700UL"/>
+    <tok fileIndex="0" linenr="25" column="62" str=")"/>
+    <tok fileIndex="0" linenr="27" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="28" column="1" str="/************************************************Types***************************************************/"/>
+    <tok fileIndex="0" linenr="29" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="31" column="1" str="typedef"/>
+    <tok fileIndex="0" linenr="31" column="9" str="struct"/>
+    <tok fileIndex="0" linenr="32" column="1" str="{"/>
+    <tok fileIndex="0" linenr="33" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="33" column="14" str="ISER"/>
+    <tok fileIndex="0" linenr="33" column="18" str="["/>
+    <tok fileIndex="0" linenr="33" column="19" str="8"/>
+    <tok fileIndex="0" linenr="33" column="20" str="]"/>
+    <tok fileIndex="0" linenr="33" column="21" str=";"/>
+    <tok fileIndex="0" linenr="34" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="34" column="14" str="RESERVED0"/>
+    <tok fileIndex="0" linenr="34" column="23" str="["/>
+    <tok fileIndex="0" linenr="34" column="24" str="24"/>
+    <tok fileIndex="0" linenr="34" column="26" str="]"/>
+    <tok fileIndex="0" linenr="34" column="27" str=";"/>
+    <tok fileIndex="0" linenr="35" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="35" column="14" str="ICER"/>
+    <tok fileIndex="0" linenr="35" column="18" str="["/>
+    <tok fileIndex="0" linenr="35" column="19" str="8"/>
+    <tok fileIndex="0" linenr="35" column="20" str="]"/>
+    <tok fileIndex="0" linenr="35" column="21" str=";"/>
+    <tok fileIndex="0" linenr="36" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="36" column="14" str="RESERVED1"/>
+    <tok fileIndex="0" linenr="36" column="23" str="["/>
+    <tok fileIndex="0" linenr="36" column="24" str="24"/>
+    <tok fileIndex="0" linenr="36" column="26" str="]"/>
+    <tok fileIndex="0" linenr="36" column="27" str=";"/>
+    <tok fileIndex="0" linenr="37" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="37" column="14" str="ISPR"/>
+    <tok fileIndex="0" linenr="37" column="18" str="["/>
+    <tok fileIndex="0" linenr="37" column="19" str="8"/>
+    <tok fileIndex="0" linenr="37" column="20" str="]"/>
+    <tok fileIndex="0" linenr="37" column="21" str=";"/>
+    <tok fileIndex="0" linenr="38" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="38" column="14" str="RESERVED2"/>
+    <tok fileIndex="0" linenr="38" column="23" str="["/>
+    <tok fileIndex="0" linenr="38" column="24" str="24"/>
+    <tok fileIndex="0" linenr="38" column="26" str="]"/>
+    <tok fileIndex="0" linenr="38" column="27" str=";"/>
+    <tok fileIndex="0" linenr="39" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="39" column="14" str="ICPR"/>
+    <tok fileIndex="0" linenr="39" column="18" str="["/>
+    <tok fileIndex="0" linenr="39" column="19" str="8"/>
+    <tok fileIndex="0" linenr="39" column="20" str="]"/>
+    <tok fileIndex="0" linenr="39" column="21" str=";"/>
+    <tok fileIndex="0" linenr="40" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="40" column="14" str="RESERVED3"/>
+    <tok fileIndex="0" linenr="40" column="23" str="["/>
+    <tok fileIndex="0" linenr="40" column="24" str="24"/>
+    <tok fileIndex="0" linenr="40" column="26" str="]"/>
+    <tok fileIndex="0" linenr="40" column="27" str=";"/>
+    <tok fileIndex="0" linenr="41" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="41" column="14" str="IABR"/>
+    <tok fileIndex="0" linenr="41" column="18" str="["/>
+    <tok fileIndex="0" linenr="41" column="19" str="8"/>
+    <tok fileIndex="0" linenr="41" column="20" str="]"/>
+    <tok fileIndex="0" linenr="41" column="21" str=";"/>
+    <tok fileIndex="0" linenr="42" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="42" column="14" str="RESERVED4"/>
+    <tok fileIndex="0" linenr="42" column="23" str="["/>
+    <tok fileIndex="0" linenr="42" column="24" str="56"/>
+    <tok fileIndex="0" linenr="42" column="26" str="]"/>
+    <tok fileIndex="0" linenr="42" column="27" str=";"/>
+    <tok fileIndex="0" linenr="43" column="5" str="uint8_t"/>
+    <tok fileIndex="0" linenr="43" column="14" str="IPR"/>
+    <tok fileIndex="0" linenr="43" column="17" str="["/>
+    <tok fileIndex="0" linenr="43" column="18" str="240"/>
+    <tok fileIndex="0" linenr="43" column="21" str="]"/>
+    <tok fileIndex="0" linenr="43" column="22" str=";"/>
+    <tok fileIndex="0" linenr="43" column="24" str="/*Byte Accessible: 60*4=240*/"/>
+    <tok fileIndex="0" linenr="44" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="44" column="14" str="RESERVED5"/>
+    <tok fileIndex="0" linenr="44" column="23" str="["/>
+    <tok fileIndex="0" linenr="44" column="24" str="580"/>
+    <tok fileIndex="0" linenr="44" column="27" str="]"/>
+    <tok fileIndex="0" linenr="44" column="28" str=";"/>
+    <tok fileIndex="0" linenr="45" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="45" column="14" str="STIR"/>
+    <tok fileIndex="0" linenr="45" column="18" str=";"/>
+    <tok fileIndex="0" linenr="46" column="1" str="}"/>
+    <tok fileIndex="0" linenr="46" column="2" str="NVIC_Reg_t"/>
+    <tok fileIndex="0" linenr="46" column="12" str=";"/>
+    <tok fileIndex="0" linenr="48" column="1" str="typedef"/>
+    <tok fileIndex="0" linenr="48" column="9" str="struct"/>
+    <tok fileIndex="0" linenr="49" column="1" str="{"/>
+    <tok fileIndex="0" linenr="50" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="50" column="14" str="CPUID"/>
+    <tok fileIndex="0" linenr="50" column="19" str=";"/>
+    <tok fileIndex="0" linenr="51" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="51" column="14" str="ICSR"/>
+    <tok fileIndex="0" linenr="51" column="18" str=";"/>
+    <tok fileIndex="0" linenr="52" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="52" column="14" str="VTOR"/>
+    <tok fileIndex="0" linenr="52" column="18" str=";"/>
+    <tok fileIndex="0" linenr="53" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="53" column="14" str="AIRCR"/>
+    <tok fileIndex="0" linenr="53" column="19" str=";"/>
+    <tok fileIndex="0" linenr="54" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="54" column="14" str="SCR"/>
+    <tok fileIndex="0" linenr="54" column="17" str=";"/>
+    <tok fileIndex="0" linenr="55" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="55" column="14" str="CCR"/>
+    <tok fileIndex="0" linenr="55" column="17" str=";"/>
+    <tok fileIndex="0" linenr="56" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="56" column="14" str="SHPR1"/>
+    <tok fileIndex="0" linenr="56" column="19" str=";"/>
+    <tok fileIndex="0" linenr="57" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="57" column="14" str="SHPR2"/>
+    <tok fileIndex="0" linenr="57" column="19" str=";"/>
+    <tok fileIndex="0" linenr="58" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="58" column="14" str="SHPR3"/>
+    <tok fileIndex="0" linenr="58" column="19" str=";"/>
+    <tok fileIndex="0" linenr="59" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="59" column="14" str="SHCSR"/>
+    <tok fileIndex="0" linenr="59" column="19" str=";"/>
+    <tok fileIndex="0" linenr="60" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="60" column="14" str="CFSR"/>
+    <tok fileIndex="0" linenr="60" column="18" str=";"/>
+    <tok fileIndex="0" linenr="61" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="61" column="14" str="HFSR"/>
+    <tok fileIndex="0" linenr="61" column="18" str=";"/>
+    <tok fileIndex="0" linenr="62" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="62" column="14" str="MMAR"/>
+    <tok fileIndex="0" linenr="62" column="18" str=";"/>
+    <tok fileIndex="0" linenr="63" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="63" column="14" str="BFAR"/>
+    <tok fileIndex="0" linenr="63" column="18" str=";"/>
+    <tok fileIndex="0" linenr="64" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="64" column="14" str="AFSR"/>
+    <tok fileIndex="0" linenr="64" column="18" str=";"/>
+    <tok fileIndex="0" linenr="66" column="1" str="}"/>
+    <tok fileIndex="0" linenr="66" column="2" str="SCB_Reg_t"/>
+    <tok fileIndex="0" linenr="66" column="11" str=";"/>
+    <tok fileIndex="0" linenr="68" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="69" column="1" str="/************************************************APIs****************************************************/"/>
+    <tok fileIndex="0" linenr="70" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="72" column="1" str="/**x  * @brief  Enables a specific IRQ.x  * @param  IRQ: The IRQ number to be enabled.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="77" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="77" column="15" str="NVIC_EnableIRQ"/>
+    <tok fileIndex="0" linenr="77" column="29" str="("/>
+    <tok fileIndex="0" linenr="77" column="30" str="uint8_t"/>
+    <tok fileIndex="0" linenr="77" column="38" str="IRQ"/>
+    <tok fileIndex="0" linenr="77" column="41" str=")"/>
+    <tok fileIndex="0" linenr="77" column="42" str=";"/>
+    <tok fileIndex="0" linenr="78" column="1" str="/**x  * @brief  Disables a specific IRQ.x  * @param  IRQ: The IRQ number to be disabled.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="83" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="83" column="15" str="NVIC_DisableIRQ"/>
+    <tok fileIndex="0" linenr="83" column="30" str="("/>
+    <tok fileIndex="0" linenr="83" column="31" str="uint8_t"/>
+    <tok fileIndex="0" linenr="83" column="39" str="IRQ"/>
+    <tok fileIndex="0" linenr="83" column="42" str=")"/>
+    <tok fileIndex="0" linenr="83" column="43" str=";"/>
+    <tok fileIndex="0" linenr="84" column="1" str="/**x  * @brief  Sets a pending state for a specific IRQ.x  * @param  IRQ: The IRQ number to set its pending state.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="89" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="89" column="15" str="NVIC_SetPendingIRQ"/>
+    <tok fileIndex="0" linenr="89" column="33" str="("/>
+    <tok fileIndex="0" linenr="89" column="34" str="uint8_t"/>
+    <tok fileIndex="0" linenr="89" column="42" str="IRQ"/>
+    <tok fileIndex="0" linenr="89" column="45" str=")"/>
+    <tok fileIndex="0" linenr="89" column="46" str=";"/>
+    <tok fileIndex="0" linenr="90" column="1" str="/**x  * @brief  Clears a pending state for a specific IRQ.x  * @param  IRQ: The IRQ number to clear its pending state.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="95" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="95" column="15" str="NVIC_ClearPendingIRQ"/>
+    <tok fileIndex="0" linenr="95" column="35" str="("/>
+    <tok fileIndex="0" linenr="95" column="36" str="uint8_t"/>
+    <tok fileIndex="0" linenr="95" column="44" str="IRQ"/>
+    <tok fileIndex="0" linenr="95" column="47" str=")"/>
+    <tok fileIndex="0" linenr="95" column="48" str=";"/>
+    <tok fileIndex="0" linenr="96" column="1" str="/**x  * @brief  Gets the pending state of a specific IRQ.x  * @param  IRQ: The IRQ number to get its pending state.x  * @param  PendingState: Pointer to where the pending state will be stored.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="102" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="102" column="15" str="NVIC_GetPendingIRQ"/>
+    <tok fileIndex="0" linenr="102" column="33" str="("/>
+    <tok fileIndex="0" linenr="102" column="34" str="uint8_t"/>
+    <tok fileIndex="0" linenr="102" column="42" str="IRQ"/>
+    <tok fileIndex="0" linenr="102" column="45" str=","/>
+    <tok fileIndex="0" linenr="102" column="47" str="uint8_t"/>
+    <tok fileIndex="0" linenr="102" column="55" str="*"/>
+    <tok fileIndex="0" linenr="102" column="56" str="PendingState"/>
+    <tok fileIndex="0" linenr="102" column="68" str=")"/>
+    <tok fileIndex="0" linenr="102" column="69" str=";"/>
+    <tok fileIndex="0" linenr="103" column="1" str="/**x  * @brief  Gets the active state of a specific IRQ.x  * @param  IRQ: The IRQ number to get its active state.x  * @param  ActiveState: Pointer to where the active state will be stored.x  * @retval ErrorStatus_t: Indicates the status of the function.x  */"/>
+    <tok fileIndex="0" linenr="109" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="109" column="15" str="NVIC_GetActiveState"/>
+    <tok fileIndex="0" linenr="109" column="34" str="("/>
+    <tok fileIndex="0" linenr="109" column="35" str="uint8_t"/>
+    <tok fileIndex="0" linenr="109" column="43" str="IRQ"/>
+    <tok fileIndex="0" linenr="109" column="46" str=","/>
+    <tok fileIndex="0" linenr="109" column="48" str="uint8_t"/>
+    <tok fileIndex="0" linenr="109" column="56" str="*"/>
+    <tok fileIndex="0" linenr="109" column="57" str="ActiveState"/>
+    <tok fileIndex="0" linenr="109" column="68" str=")"/>
+    <tok fileIndex="0" linenr="109" column="69" str=";"/>
+    <tok fileIndex="0" linenr="110" column="1" str="/**x  * @brief  Sets the priority for a given interrupt request (IRQ).x  * @param  IRQ: The IRQ number for which the priority is to be set.x  * @param  PriorityGrouping: The priority grouping configuration value.x  *              This value determines the number of bits used for preemption and subgroup priority.x  *              It should be one of the values:x  *              - NVIC_PREEMPTION_16_SUBGROUP_NONEx  *              - NVIC_PREEMPTION_8_SUBGROUP_TWOx  *              - NVIC_PREEMPTION_4_SUBGROUP_FOURx  *              - NVIC_PREEMPTION_2_SUBGROUP_EIGHTx  *              - NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEENx  * x  * @param  Preemption: The preemption priority value for the IRQ.x  *              This value specifies the priority of the IRQ within its preemption group.x  *              The range of valid values is determined by the number of bits allocated(By PriorityGrouping) for preemption priority.x  * @param  SubGroup: The subgroup priority value for the IRQ.x  *              This value specifies the priority of the IRQ within its subgroup.x  *              The range of valid values is determined by the number of bits (By PriorityGrouping) allocated for subgroup priority.x  * @retval ErrorStatus_t: Indicates the status of the function execution.x  *              - NVIC_OK: The operation was successful.x  *              - NVIC_WRONG_PARAMETER: One or more parameters are invalid.x  */"/>
+    <tok fileIndex="0" linenr="132" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="132" column="15" str="NVIC_SetPriority"/>
+    <tok fileIndex="0" linenr="132" column="31" str="("/>
+    <tok fileIndex="0" linenr="132" column="32" str="uint8_t"/>
+    <tok fileIndex="0" linenr="132" column="40" str="IRQ"/>
+    <tok fileIndex="0" linenr="132" column="43" str=","/>
+    <tok fileIndex="0" linenr="132" column="45" str="uint32_t"/>
+    <tok fileIndex="0" linenr="132" column="54" str="PriorityGrouping"/>
+    <tok fileIndex="0" linenr="132" column="70" str=","/>
+    <tok fileIndex="0" linenr="132" column="72" str="uint8_t"/>
+    <tok fileIndex="0" linenr="132" column="80" str="Preemption"/>
+    <tok fileIndex="0" linenr="132" column="90" str=","/>
+    <tok fileIndex="0" linenr="132" column="92" str="uint8_t"/>
+    <tok fileIndex="0" linenr="132" column="100" str="SubGroup"/>
+    <tok fileIndex="0" linenr="132" column="108" str=")"/>
+    <tok fileIndex="0" linenr="134" column="1" str="//ErrorStatus_t NVIC_GetPriority(uint8_t IRQ,uint32_t Priority);"/>
+    <tok fileIndex="0" linenr="163" column="1" str="#"/>
+    <tok fileIndex="0" linenr="163" column="2" str="endif"/>
+    <tok fileIndex="0" linenr="163" column="8" str="// MCAL_NVIC_NVIC_H_"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c89"/>
+    <cpp version="c++03"/>
+  </standards>
+  <directivelist>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="1" str="#ifndef MCAL_NVIC_NVIC_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="2" str="#define MCAL_NVIC_NVIC_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="8" str="#include &quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="21" str="#define NVIC_PREEMPTION_16_SUBGROUP_NONE (0xFA050300UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="22" str="#define NVIC_PREEMPTION_8_SUBGROUP_TWO (0xFA050400UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="23" str="#define NVIC_PREEMPTION_4_SUBGROUP_FOUR (0xFA050500UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="24" str="#define NVIC_PREEMPTION_2_SUBGROUP_EIGHT (0xFA050600UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="25" str="#define NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEEN (0xFA050700UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="163" str="#endif"/>
+  </directivelist>
+  <tokenlist>
+    <token id="000002983BF50DF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="31" column="9" str="struct" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02C390" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="31" column="0" str="NVIC_Reg_t" scope="000002983BF06280" type="name" type-scope="000002983BF069F0"/>
+    <token id="000002983BF4FE90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="32" column="1" str="{" scope="000002983BF069F0" link="000002983BF57BD0"/>
+    <token id="000002983BF4FEF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF51090" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="14" str="ISER" scope="000002983BF069F0" type="name" varId="1" variable="000002983C03AE00" astParent="000002983BF50A90" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="18" str="[" scope="000002983BF069F0" link="000002983BF500D0" astOperand1="000002983BF51090" astOperand2="000002983BF4FFB0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF4FFB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="19" str="8" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0ED0" astParent="000002983BF50A90" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF500D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="20" str="]" scope="000002983BF069F0" link="000002983BF50A90"/>
+    <token id="000002983BF510F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="33" column="21" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF511B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF51210" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="14" str="RESERVED0" scope="000002983BF069F0" type="name" varId="2" variable="000002983C03A1C0" astParent="000002983BF50010" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="23" str="[" scope="000002983BF069F0" link="000002983BF50130" astOperand1="000002983BF51210" astOperand2="000002983BF50070" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="24" str="24" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0D50" astParent="000002983BF50010" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF50130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="26" str="]" scope="000002983BF069F0" link="000002983BF50010"/>
+    <token id="000002983BF51270" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="34" column="27" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF50250" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF50370" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="14" str="ICER" scope="000002983BF069F0" type="name" varId="3" variable="000002983C03B180" astParent="000002983BF50AF0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50AF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="18" str="[" scope="000002983BF069F0" link="000002983BF512D0" astOperand1="000002983BF50370" astOperand2="000002983BF506D0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF506D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="19" str="8" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0F30" astParent="000002983BF50AF0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF512D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="20" str="]" scope="000002983BF069F0" link="000002983BF50AF0"/>
+    <token id="000002983BF50670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="35" column="21" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF50C70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF51390" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="14" str="RESERVED1" scope="000002983BF069F0" type="name" varId="4" variable="000002983C03A150" astParent="000002983BF503D0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF503D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="23" str="[" scope="000002983BF069F0" link="000002983BF50490" astOperand1="000002983BF51390" astOperand2="000002983BF50730" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="24" str="24" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0B10" astParent="000002983BF503D0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF50490" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="26" str="]" scope="000002983BF069F0" link="000002983BF503D0"/>
+    <token id="000002983BF509D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="36" column="27" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF504F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF50550" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="14" str="ISPR" scope="000002983BF069F0" type="name" varId="5" variable="000002983C03AEE0" astParent="000002983BF50610" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="18" str="[" scope="000002983BF069F0" link="000002983BF507F0" astOperand1="000002983BF50550" astOperand2="000002983BF50790" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF50790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="19" str="8" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0BF0" astParent="000002983BF50610" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF507F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="20" str="]" scope="000002983BF069F0" link="000002983BF50610"/>
+    <token id="000002983BF50B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="37" column="21" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF50CD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF56F10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="14" str="RESERVED2" scope="000002983BF069F0" type="name" varId="6" variable="000002983C03A700" astParent="000002983BF56850" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="23" str="[" scope="000002983BF069F0" link="000002983BF57330" astOperand1="000002983BF56F10" astOperand2="000002983BF56DF0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56DF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="24" str="24" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0FF0" astParent="000002983BF56850" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF57330" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="26" str="]" scope="000002983BF069F0" link="000002983BF56850"/>
+    <token id="000002983BF56CD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="38" column="27" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF56A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF567F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="14" str="ICPR" scope="000002983BF069F0" type="name" varId="7" variable="000002983C03A8C0" astParent="000002983BF56D30" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56D30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="18" str="[" scope="000002983BF069F0" link="000002983BF56AF0" astOperand1="000002983BF567F0" astOperand2="000002983BF56E50" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56E50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="19" str="8" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0B90" astParent="000002983BF56D30" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56AF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="20" str="]" scope="000002983BF069F0" link="000002983BF56D30"/>
+    <token id="000002983BF575D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="39" column="21" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF55F50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF573F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="14" str="RESERVED3" scope="000002983BF069F0" type="name" varId="8" variable="000002983C03B1F0" astParent="000002983BF571B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF571B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="23" str="[" scope="000002983BF069F0" link="000002983BF56A30" astOperand1="000002983BF573F0" astOperand2="000002983BF562B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF562B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="24" str="24" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD1030" astParent="000002983BF571B0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="26" str="]" scope="000002983BF069F0" link="000002983BF571B0"/>
+    <token id="000002983BF56070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="40" column="27" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF57450" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF57630" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="14" str="IABR" scope="000002983BF069F0" type="name" varId="9" variable="000002983C03AAF0" astParent="000002983BF568B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF568B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="18" str="[" scope="000002983BF069F0" link="000002983BF56EB0" astOperand1="000002983BF57630" astOperand2="000002983BF56370" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56370" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="19" str="8" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0D90" astParent="000002983BF568B0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56EB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="20" str="]" scope="000002983BF069F0" link="000002983BF568B0"/>
+    <token id="000002983BF57090" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="41" column="21" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF55E90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF55EF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="14" str="RESERVED4" scope="000002983BF069F0" type="name" varId="10" variable="000002983C03A850" astParent="000002983BF57210" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF57210" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="23" str="[" scope="000002983BF069F0" link="000002983BF56B50" astOperand1="000002983BF55EF0" astOperand2="000002983BF55FB0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF55FB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="24" str="56" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0B30" astParent="000002983BF57210" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="26" str="]" scope="000002983BF069F0" link="000002983BF57210"/>
+    <token id="000002983BF57390" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="42" column="27" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF560D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="5" str="uint8_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF56BB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="14" str="IPR" scope="000002983BF069F0" type="name" varId="11" variable="000002983C03A230" astParent="000002983BF56190" valueType-type="char" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF56190" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="17" str="[" scope="000002983BF069F0" link="000002983BF56250" astOperand1="000002983BF56BB0" astOperand2="000002983BF561F0" valueType-type="char" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF561F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="18" str="240" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD11F0" astParent="000002983BF56190" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56250" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="21" str="]" scope="000002983BF069F0" link="000002983BF56190"/>
+    <token id="000002983BF563D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="43" column="22" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF56430" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF56490" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="14" str="RESERVED5" scope="000002983BF069F0" type="name" varId="12" variable="000002983C03B500" astParent="000002983BF564F0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF564F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="23" str="[" scope="000002983BF069F0" link="000002983BF56910" astOperand1="000002983BF56490" astOperand2="000002983BF565B0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983BF565B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="24" str="580" scope="000002983BF069F0" type="number" isInt="true" values="000002983BFD0F50" astParent="000002983BF564F0" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="000002983BF56910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="27" str="]" scope="000002983BF069F0" link="000002983BF564F0"/>
+    <token id="000002983BF569D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="44" column="28" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF57AB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="45" column="5" str="uint32_t" scope="000002983BF069F0" type="name"/>
+    <token id="000002983BF57B70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="45" column="14" str="STIR" scope="000002983BF069F0" type="name" varId="13" variable="000002983C03B960" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983BF57DB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="45" column="18" str=";" scope="000002983BF069F0"/>
+    <token id="000002983BF57BD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="46" column="1" str="}" scope="000002983BF069F0" link="000002983BF4FE90"/>
+    <token id="000002983C02B850" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="46" column="0" str=";" scope="000002983BF06280"/>
+    <token id="000002983BF57CF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="48" column="9" str="struct" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02B910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="48" column="0" str="SCB_Reg_t" scope="000002983BF06280" type="name" type-scope="000002983BF064A0"/>
+    <token id="000002983BF57690" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="49" column="1" str="{" scope="000002983BF064A0" link="000002983C029E70"/>
+    <token id="000002983BF57B10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="50" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983BF57C30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="50" column="14" str="CPUID" scope="000002983BF064A0" type="name" varId="14" variable="000002983C039F20" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983BF57C90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="50" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983BF57D50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="51" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983BF576F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="51" column="14" str="ICSR" scope="000002983BF064A0" type="name" varId="15" variable="000002983C039F90" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983BF57750" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="51" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983BF577B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="52" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983BF57810" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="52" column="14" str="VTOR" scope="000002983BF064A0" type="name" varId="16" variable="000002983C03A2A0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983BF578D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="52" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983BF57930" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="53" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983BF579F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="53" column="14" str="AIRCR" scope="000002983BF064A0" type="name" varId="17" variable="000002983C03A7E0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C201B50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="53" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C201D90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="54" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C202930" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="54" column="14" str="SCR" scope="000002983BF064A0" type="name" varId="18" variable="000002983C03A930" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C202990" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="54" column="17" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C202A50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="55" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983BF8C360" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="55" column="14" str="CCR" scope="000002983BF064A0" type="name" varId="19" variable="000002983C03ABD0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C029F90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="55" column="17" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A050" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="56" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02ADD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="56" column="14" str="SHPR1" scope="000002983BF064A0" type="name" varId="20" variable="000002983C03AD20" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A650" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="56" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C029FF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="57" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02AD70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="57" column="14" str="SHPR2" scope="000002983BF064A0" type="name" varId="21" variable="000002983C03D560" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A0B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="57" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A350" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="58" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02A6B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="58" column="14" str="SHPR3" scope="000002983BF064A0" type="name" varId="22" variable="000002983C03D480" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02AA70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="58" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A110" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="59" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02A9B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="59" column="14" str="SHCSR" scope="000002983BF064A0" type="name" varId="23" variable="000002983C03C300" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A170" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="59" column="19" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02AAD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="60" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02A4D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="60" column="14" str="CFSR" scope="000002983BF064A0" type="name" varId="24" variable="000002983C03C0D0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A410" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="60" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C029E10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="61" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02AE30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="61" column="14" str="HFSR" scope="000002983BF064A0" type="name" varId="25" variable="000002983C03D100" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C029F30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="61" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A290" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="62" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C029DB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="62" column="14" str="MMAR" scope="000002983BF064A0" type="name" varId="26" variable="000002983C03CBC0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A2F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="62" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A230" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="63" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02A7D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="63" column="14" str="BFAR" scope="000002983BF064A0" type="name" varId="27" variable="000002983C03BAB0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02AFB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="63" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C02A1D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="64" column="5" str="uint32_t" scope="000002983BF064A0" type="name"/>
+    <token id="000002983C02B010" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="64" column="14" str="AFSR" scope="000002983BF064A0" type="name" varId="28" variable="000002983C03D330" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A530" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="64" column="18" str=";" scope="000002983BF064A0"/>
+    <token id="000002983C029E70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="66" column="1" str="}" scope="000002983BF064A0" link="000002983BF57690"/>
+    <token id="000002983C02C630" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="66" column="0" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02AE90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02ABF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="15" str="NVIC_EnableIRQ" scope="000002983BF06280" type="name" function="000002983BFD4300"/>
+    <token id="000002983C029ED0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="29" str="(" scope="000002983BF06280" link="000002983C02A5F0"/>
+    <token id="000002983C02AEF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="30" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02AB30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="38" str="IRQ" scope="000002983BF06280" type="name" varId="29" variable="000002983C03BA40" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A5F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="41" str=")" scope="000002983BF06280" link="000002983C029ED0"/>
+    <token id="000002983C02AD10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="77" column="42" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02A3B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02B070" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="15" str="NVIC_DisableIRQ" scope="000002983BF06280" type="name" function="000002983BFD4620"/>
+    <token id="000002983C02AB90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="30" str="(" scope="000002983BF06280" link="000002983C02AC50"/>
+    <token id="000002983C02A710" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="31" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C029C30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="39" str="IRQ" scope="000002983BF06280" type="name" varId="30" variable="000002983C03CD10" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02AC50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="42" str=")" scope="000002983BF06280" link="000002983C02AB90"/>
+    <token id="000002983C02ACB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="83" column="43" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02A890" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02A470" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="15" str="NVIC_SetPendingIRQ" scope="000002983BF06280" type="name" function="000002983BFD49E0"/>
+    <token id="000002983C029B10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="33" str="(" scope="000002983BF06280" link="000002983C02A8F0"/>
+    <token id="000002983C02A770" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="34" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02AF50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="42" str="IRQ" scope="000002983BF06280" type="name" varId="31" variable="000002983C03C7D0" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02A8F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="45" str=")" scope="000002983BF06280" link="000002983C029B10"/>
+    <token id="000002983C02B0D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="89" column="46" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02B130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02A830" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="15" str="NVIC_ClearPendingIRQ" scope="000002983BF06280" type="name" function="000002983BFD4440"/>
+    <token id="000002983C02A950" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="35" str="(" scope="000002983BF06280" link="000002983C029990"/>
+    <token id="000002983C0299F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="36" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C029B70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="44" str="IRQ" scope="000002983BF06280" type="name" varId="32" variable="000002983C03BB20" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C029990" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="47" str=")" scope="000002983BF06280" link="000002983C02A950"/>
+    <token id="000002983C029A50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="95" column="48" str=";" scope="000002983BF06280"/>
+    <token id="000002983C029AB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C029BD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="15" str="NVIC_GetPendingIRQ" scope="000002983BF06280" type="name" function="000002983BFD48A0"/>
+    <token id="000002983C029C90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="33" str="(" scope="000002983BF06280" link="000002983C02BAF0"/>
+    <token id="000002983C029CF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="34" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C029D50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="42" str="IRQ" scope="000002983BF06280" type="name" varId="33" variable="000002983C03BC70" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02C330" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="45" str="," scope="000002983BF06280"/>
+    <token id="000002983C02C5D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="47" str="uint8_t" scope="000002983BF06280" type="name" astParent="000002983C02BC70"/>
+    <token id="000002983C02BC70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="55" str="*" scope="000002983BF06280" type="op" isArithmeticalOp="true" astOperand1="000002983C02C5D0" astOperand2="000002983C02BA30"/>
+    <token id="000002983C02BA30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="56" str="PendingState" scope="000002983BF06280" type="name" varId="34" variable="000002983C03CD80" astParent="000002983C02BC70" valueType-type="char" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983C02BAF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="68" str=")" scope="000002983BF06280" link="000002983C029C90"/>
+    <token id="000002983C02BF10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="102" column="69" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02C690" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02C810" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="15" str="NVIC_GetActiveState" scope="000002983BF06280" type="name" function="000002983BFD4760"/>
+    <token id="000002983C02C7B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="34" str="(" scope="000002983BF06280" link="000002983C02BB50"/>
+    <token id="000002983C02BE50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="35" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02B670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="43" str="IRQ" scope="000002983BF06280" type="name" varId="35" variable="000002983C03CDF0" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000002983C02B8B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="46" str="," scope="000002983BF06280"/>
+    <token id="000002983C02B4F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="48" str="uint8_t" scope="000002983BF06280" type="name" astParent="000002983C02B6D0"/>
+    <token id="000002983C02B6D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="56" str="*" scope="000002983BF06280" type="op" isArithmeticalOp="true" astOperand1="000002983C02B4F0" astOperand2="000002983C02BD30"/>
+    <token id="000002983C02BD30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="57" str="ActiveState" scope="000002983BF06280" type="name" varId="36" variable="000002983C03CAE0" astParent="000002983C02B6D0" valueType-type="char" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000002983C02BB50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="68" str=")" scope="000002983BF06280" link="000002983C02C7B0"/>
+    <token id="000002983C02C1B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="109" column="69" str=";" scope="000002983BF06280"/>
+    <token id="000002983C02B730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="1" str="ErrorStatus_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02C570" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="15" str="NVIC_SetPriority" scope="000002983BF06280" type="name" astParent="000002983C02BD90"/>
+    <token id="000002983C02BD90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="31" str="(" scope="000002983BF06280" link="000002983C02C150" astOperand1="000002983C02C570" astOperand2="000002983C02C450"/>
+    <token id="000002983C02BF70" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="32" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02BDF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="40" str="IRQ" scope="000002983BF06280" type="name" astParent="000002983C02B610"/>
+    <token id="000002983C02B610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="43" str="," scope="000002983BF06280" astParent="000002983C02BFD0" astOperand1="000002983C02BDF0" astOperand2="000002983C02C870"/>
+    <token id="000002983C02B7F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="45" str="uint32_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02C870" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="54" str="PriorityGrouping" scope="000002983BF06280" type="name" varId="37" astParent="000002983C02B610"/>
+    <token id="000002983C02BFD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="70" str="," scope="000002983BF06280" astParent="000002983C02C450" astOperand1="000002983C02B610" astOperand2="000002983C02BBB0"/>
+    <token id="000002983C02B310" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="72" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02BBB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="80" str="Preemption" scope="000002983BF06280" type="name" varId="38" astParent="000002983C02BFD0"/>
+    <token id="000002983C02C450" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="90" str="," scope="000002983BF06280" astParent="000002983C02BD90" astOperand1="000002983C02BFD0" astOperand2="000002983C02BEB0"/>
+    <token id="000002983C02C2D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="92" str="uint8_t" scope="000002983BF06280" type="name"/>
+    <token id="000002983C02BEB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="100" str="SubGroup" scope="000002983BF06280" type="name" varId="39" astParent="000002983C02C450"/>
+    <token id="000002983C02C150" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/MCAL/NVIC/NVIC.h" linenr="132" column="108" str=")" scope="000002983BF06280" link="000002983C02BD90"/>
+  </tokenlist>
+  <scopes>
+    <scope id="000002983BF06280" type="Global">
+      <functionList>
+        <function id="000002983BFD4300" tokenDef="000002983C02ABF0" name="NVIC_EnableIRQ" type="Function">
+          <arg nr="1" variable="000002983C03BA40"/>
+        </function>
+        <function id="000002983BFD4620" tokenDef="000002983C02B070" name="NVIC_DisableIRQ" type="Function">
+          <arg nr="1" variable="000002983C03CD10"/>
+        </function>
+        <function id="000002983BFD49E0" tokenDef="000002983C02A470" name="NVIC_SetPendingIRQ" type="Function">
+          <arg nr="1" variable="000002983C03C7D0"/>
+        </function>
+        <function id="000002983BFD4440" tokenDef="000002983C02A830" name="NVIC_ClearPendingIRQ" type="Function">
+          <arg nr="1" variable="000002983C03BB20"/>
+        </function>
+        <function id="000002983BFD48A0" tokenDef="000002983C029BD0" name="NVIC_GetPendingIRQ" type="Function">
+          <arg nr="1" variable="000002983C03BC70"/>
+          <arg nr="2" variable="000002983C03CD80"/>
+        </function>
+        <function id="000002983BFD4760" tokenDef="000002983C02C810" name="NVIC_GetActiveState" type="Function">
+          <arg nr="1" variable="000002983C03CDF0"/>
+          <arg nr="2" variable="000002983C03CAE0"/>
+        </function>
+      </functionList>
+    </scope>
+    <scope id="000002983BF069F0" type="Struct" className="NVIC_Reg_t" bodyStart="000002983BF4FE90" bodyEnd="000002983BF57BD0" nestedIn="000002983BF06280">
+      <varlist>
+        <var id="000002983C03AE00"/>
+        <var id="000002983C03A1C0"/>
+        <var id="000002983C03B180"/>
+        <var id="000002983C03A150"/>
+        <var id="000002983C03AEE0"/>
+        <var id="000002983C03A700"/>
+        <var id="000002983C03A8C0"/>
+        <var id="000002983C03B1F0"/>
+        <var id="000002983C03AAF0"/>
+        <var id="000002983C03A850"/>
+        <var id="000002983C03A230"/>
+        <var id="000002983C03B500"/>
+        <var id="000002983C03B960"/>
+      </varlist>
+    </scope>
+    <scope id="000002983BF064A0" type="Struct" className="SCB_Reg_t" bodyStart="000002983BF57690" bodyEnd="000002983C029E70" nestedIn="000002983BF06280">
+      <varlist>
+        <var id="000002983C039F20"/>
+        <var id="000002983C039F90"/>
+        <var id="000002983C03A2A0"/>
+        <var id="000002983C03A7E0"/>
+        <var id="000002983C03A930"/>
+        <var id="000002983C03ABD0"/>
+        <var id="000002983C03AD20"/>
+        <var id="000002983C03D560"/>
+        <var id="000002983C03D480"/>
+        <var id="000002983C03C300"/>
+        <var id="000002983C03C0D0"/>
+        <var id="000002983C03D100"/>
+        <var id="000002983C03CBC0"/>
+        <var id="000002983C03BAB0"/>
+        <var id="000002983C03D330"/>
+      </varlist>
+    </scope>
+  </scopes>
+  <variables>
+    <var id="000002983C039F20" nameToken="000002983BF57C30" typeStartToken="000002983BF57B10" typeEndToken="000002983BF57B10" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C039F90" nameToken="000002983BF576F0" typeStartToken="000002983BF57D50" typeEndToken="000002983BF57D50" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A150" nameToken="000002983BF51390" typeStartToken="000002983BF50C70" typeEndToken="000002983BF50C70" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A1C0" nameToken="000002983BF51210" typeStartToken="000002983BF511B0" typeEndToken="000002983BF511B0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A230" nameToken="000002983BF56BB0" typeStartToken="000002983BF560D0" typeEndToken="000002983BF560D0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A2A0" nameToken="000002983BF57810" typeStartToken="000002983BF577B0" typeEndToken="000002983BF577B0" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A700" nameToken="000002983BF56F10" typeStartToken="000002983BF50CD0" typeEndToken="000002983BF50CD0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A7E0" nameToken="000002983BF579F0" typeStartToken="000002983BF57930" typeEndToken="000002983BF57930" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A850" nameToken="000002983BF55EF0" typeStartToken="000002983BF55E90" typeEndToken="000002983BF55E90" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A8C0" nameToken="000002983BF567F0" typeStartToken="000002983BF56A90" typeEndToken="000002983BF56A90" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03A930" nameToken="000002983C202930" typeStartToken="000002983C201D90" typeEndToken="000002983C201D90" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03AAF0" nameToken="000002983BF57630" typeStartToken="000002983BF57450" typeEndToken="000002983BF57450" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03ABD0" nameToken="000002983BF8C360" typeStartToken="000002983C202A50" typeEndToken="000002983C202A50" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03AD20" nameToken="000002983C02ADD0" typeStartToken="000002983C02A050" typeEndToken="000002983C02A050" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03AE00" nameToken="000002983BF51090" typeStartToken="000002983BF4FEF0" typeEndToken="000002983BF4FEF0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03AEE0" nameToken="000002983BF50550" typeStartToken="000002983BF504F0" typeEndToken="000002983BF504F0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03B180" nameToken="000002983BF50370" typeStartToken="000002983BF50250" typeEndToken="000002983BF50250" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03B1F0" nameToken="000002983BF573F0" typeStartToken="000002983BF55F50" typeEndToken="000002983BF55F50" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03B500" nameToken="000002983BF56490" typeStartToken="000002983BF56430" typeEndToken="000002983BF56430" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="true" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03B960" nameToken="000002983BF57B70" typeStartToken="000002983BF57AB0" typeEndToken="000002983BF57AB0" access="Public" scope="000002983BF069F0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03BA40" nameToken="000002983C02AB30" typeStartToken="000002983C02AEF0" typeEndToken="000002983C02AEF0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03BAB0" nameToken="000002983C02A7D0" typeStartToken="000002983C02A230" typeEndToken="000002983C02A230" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03BB20" nameToken="000002983C029B70" typeStartToken="000002983C0299F0" typeEndToken="000002983C0299F0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03BC70" nameToken="000002983C029D50" typeStartToken="000002983C029CF0" typeEndToken="000002983C029CF0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03C0D0" nameToken="000002983C02A4D0" typeStartToken="000002983C02AAD0" typeEndToken="000002983C02AAD0" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03C300" nameToken="000002983C02A9B0" typeStartToken="000002983C02A110" typeEndToken="000002983C02A110" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03C7D0" nameToken="000002983C02AF50" typeStartToken="000002983C02A770" typeEndToken="000002983C02A770" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03CAE0" nameToken="000002983C02BD30" typeStartToken="000002983C02B4F0" typeEndToken="000002983C02B6D0" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000002983C03CBC0" nameToken="000002983C029DB0" typeStartToken="000002983C02A290" typeEndToken="000002983C02A290" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03CD10" nameToken="000002983C029C30" typeStartToken="000002983C02A710" typeEndToken="000002983C02A710" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03CD80" nameToken="000002983C02BA30" typeStartToken="000002983C02C5D0" typeEndToken="000002983C02BC70" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000002983C03CDF0" nameToken="000002983C02B670" typeStartToken="000002983C02BE50" typeEndToken="000002983C02BE50" access="Argument" scope="0000000000000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03D100" nameToken="000002983C02AE30" typeStartToken="000002983C029E10" typeEndToken="000002983C029E10" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03D330" nameToken="000002983C02B010" typeStartToken="000002983C02A1D0" typeEndToken="000002983C02A1D0" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03D480" nameToken="000002983C02A6B0" typeStartToken="000002983C02A350" typeEndToken="000002983C02A350" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000002983C03D560" nameToken="000002983C02AD70" typeStartToken="000002983C029FF0" typeEndToken="000002983C029FF0" access="Public" scope="000002983BF064A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+    <values id="000002983BFD0ED0">
+      <value intvalue="8" known="true"/>
+    </values>
+    <values id="000002983BFD0D50">
+      <value intvalue="24" known="true"/>
+    </values>
+    <values id="000002983BFD0F30">
+      <value intvalue="8" known="true"/>
+    </values>
+    <values id="000002983BFD0B10">
+      <value intvalue="24" known="true"/>
+    </values>
+    <values id="000002983BFD0BF0">
+      <value intvalue="8" known="true"/>
+    </values>
+    <values id="000002983BFD0FF0">
+      <value intvalue="24" known="true"/>
+    </values>
+    <values id="000002983BFD0B90">
+      <value intvalue="8" known="true"/>
+    </values>
+    <values id="000002983BFD1030">
+      <value intvalue="24" known="true"/>
+    </values>
+    <values id="000002983BFD0D90">
+      <value intvalue="8" known="true"/>
+    </values>
+    <values id="000002983BFD0B30">
+      <value intvalue="56" known="true"/>
+    </values>
+    <values id="000002983BFD11F0">
+      <value intvalue="240" known="true"/>
+    </values>
+    <values id="000002983BFD0F50">
+      <value intvalue="580" known="true"/>
+    </values>
+  </valueflow>
+</dump>
+</dumps>
