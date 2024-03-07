@@ -10,8 +10,19 @@
 /********************************************************************************************************/
 /************************************************Defines*************************************************/
 /********************************************************************************************************/
-
-
+/**
+ * This values is combination of KeyValue of AIRCR Register and value of prioirty grouping 
+ *  0xFA05 0000 + 00xx
+ *  0xFA05 0000 + 0100
+ *  0xFA05 0000 + 0101
+ *  0xFA05 0000 + 0110
+ *  0xFA05 0000 + 0111
+*/
+#define NVIC_PREEMPTION_16_SUBGROUP_NONE        (0xFA050300UL)
+#define NVIC_PREEMPTION_8_SUBGROUP_TWO          (0xFA050400UL)
+#define NVIC_PREEMPTION_4_SUBGROUP_FOUR         (0xFA050500UL)
+#define NVIC_PREEMPTION_2_SUBGROUP_EIGHT        (0xFA050600UL)
+#define NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEEN   (0xFA050700UL)
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/
@@ -52,7 +63,7 @@ typedef struct
     uint32_t BFAR;
     uint32_t AFSR;
 
-}SCB_Reg_t
+}SCB_Reg_t;
 
 /********************************************************************************************************/
 /************************************************APIs****************************************************/
@@ -62,8 +73,9 @@ ErrorStatus_t NVIC_EnableIRQ(uint8_t IRQ);
 ErrorStatus_t NVIC_DisableIRQ(uint8_t IRQ);
 ErrorStatus_t NVIC_SetPendingIRQ(uint8_t IRQ);
 ErrorStatus_t NVIC_ClearPendingIRQ(uint8_t IRQ);
-ErrorStatus_t NVIC_GetPendingIRQ(uint8_t IRQ);
-ErrorStatus_t NVIC_SetPriority(uint8_t IRQ,uint32_t Priority);
+ErrorStatus_t NVIC_GetPendingIRQ(uint8_t IRQ, uint8_t *PendingState);
+ErrorStatus_t NVIC_GetActiveState(uint8_t IRQ, uint8_t *ActiveState);
+ErrorStatus_t NVIC_SetPrioirityGrouping(uint8_t IRQ,uint32_t PriorityGrouping,uint8_t Preemption,uint8_t SubGroup);
 ErrorStatus_t NVIC_GetPriority(uint8_t IRQ,uint32_t Priority);
 
 

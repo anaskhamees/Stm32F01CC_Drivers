@@ -58,7 +58,12 @@
 #define NVIC_I2C3_ER_INTERRUPT          73
 #define NVIC_FPU_INTERRUPT              81
 #define NVIC_SPI4_INTERRUPT             84
+
 #define MAX_IRQ_VALUE                   84  /* For validation only*/
+
+/*=========================== Number of Implemented Bits of Priority Register IPR  in Stm32F401CC ===================================*/
+#define IMPLEMENTED_IPR_BITS            4
+
 
 
 
