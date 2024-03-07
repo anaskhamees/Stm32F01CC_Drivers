@@ -13,6 +13,7 @@
 #define MASK_READ_3BITS                 (0x00000007UL)
 #define MASK_NONE_SUBGROUP              (0x03U)
 
+
 /********************************************************************************************************/
 /************************************************Variables***********************************************/
 /********************************************************************************************************/
@@ -222,7 +223,7 @@ ErrorStatus_t NVIC_SetPriority(uint8_t IRQ,uint32_t PriorityGrouping,uint8_t Pre
       else
       {
         SCB->AIRCR=PriorityGrouping;
-        NVIC->IPR[IRQ]=(SubGroup|(Preemption<<SubGroupBits));
+        NVIC->IPR[IRQ]=((SubGroup|(Preemption<<SubGroupBits))<<IMPLEMENTED_IPR_BITS);
         Return_State=NVIC_OK;
       }
       return Return_State;

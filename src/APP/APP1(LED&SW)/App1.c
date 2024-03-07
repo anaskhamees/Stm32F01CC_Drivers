@@ -1,3 +1,6 @@
+#include "APP/APP.h"
+#ifdef APP
+#if (APP==APP1_LED_SWITCH)
 #include "HAL/PeripheralCLK_Control/CLK_Control.h"
 #include "HAL/LED/LED.h"
 #include "HAL/SWITCH/SWITCH.h"
@@ -29,3 +32,5 @@ int main(int argc, char* argv[])
 		}	
     }
 }
+#endif
+#endif

@@ -129,7 +129,7 @@ ErrorStatus_t NVIC_GetActiveState(uint8_t IRQ, uint8_t *ActiveState);
   *              - NVIC_OK: The operation was successful.
   *              - NVIC_WRONG_PARAMETER: One or more parameters are invalid.
   */
-ErrorStatus_t NVIC_SetPriority(uint8_t IRQ, uint32_t PriorityGrouping, uint8_t Preemption, uint8_t SubGroup)
+ErrorStatus_t NVIC_SetPriority(uint8_t IRQ, uint32_t PriorityGrouping, uint8_t Preemption, uint8_t SubGroup);
 
 //ErrorStatus_t NVIC_GetPriority(uint8_t IRQ,uint32_t Priority);
 
