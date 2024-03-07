@@ -11,12 +11,12 @@
 /************************************************Defines*************************************************/
 /********************************************************************************************************/
 /**
- * This values is combination of KeyValue of AIRCR Register and value of prioirty grouping 
- *  0xFA05 0000 + 00xx
- *  0xFA05 0000 + 0100
- *  0xFA05 0000 + 0101
- *  0xFA05 0000 + 0110
- *  0xFA05 0000 + 0111
+ * This values is combination of KeyValue of AIRCR Register and value of pr4ioirty grouping 
+ *  0xFA05 0000 + ((00xx) in Bit8:Bit10 = 300)
+ *  0xFA05 0000 + ((0100) in Bit8:Bit10 = 400)
+ *  0xFA05 0000 + ((0101) in Bit8:Bit10 = 500)
+ *  0xFA05 0000 + ((0110) in Bit8:Bit10 = 600)
+ *  0xFA05 0000 + ((0111) in Bit8:Bit10 = 700)
 */
 #define NVIC_PREEMPTION_16_SUBGROUP_NONE        (0xFA050300UL)
 #define NVIC_PREEMPTION_8_SUBGROUP_TWO          (0xFA050400UL)
