@@ -45,6 +45,8 @@ typedef enum{
 	NVIC_OK,
 	NVIC_NOK,
 	NVIC_WRONG_PARAMETER,
+	SYSTICK_OK,
+	SYSTICK_WRONG_PARAMETER
 }ErrorStatus_t;
 
 
