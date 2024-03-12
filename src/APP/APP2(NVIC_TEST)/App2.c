@@ -1,5 +1,4 @@
 #include "APP/APP.h"
-#include "APP/APP.h"
 #ifdef APP
 #if (APP==APP2_NVIC_TEST)
 #include "MCAL/NVIC/NVIC.h"

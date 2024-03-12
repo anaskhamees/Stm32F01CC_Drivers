@@ -48,3 +48,4 @@ typedef struct{
 
 ErrorStatus_t LED_Init(void);
 ErrorStatus_t LED_SetState(uint32_t LedName,uint32_t LedState);
+ErrorStatus_t LED_Toggle(uint32_t LedNum);

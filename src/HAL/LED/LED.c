@@ -46,3 +46,21 @@ ErrorStatus_t LED_SetState(uint32_t LedNum,uint32_t LedState)
     }
     return ReturnState;
 }
+/* Need Enhancement to be Generic*/
+ErrorStatus_t LED_Toggle(uint32_t LedNum)
+{
+    uint32_t PinState;
+    ErrorStatus_t ReturnState;
+    if(LedNum>_Led_Number)
+    {
+        ReturnState=WRONG_PARAMETER;
+    }
+    else
+    {
+        ReturnState=GPIO_GetPinValue(LEDs[LedNum].Led_Port,LEDs[LedNum].Led_Pin,&PinState);
+        ReturnState=GPIO_SetPinValue(LEDs[LedNum].Led_Port,LEDs[LedNum].Led_Pin,(1^PinState)); /*PinState^(LedState^(LEDs[LedNum].Led_Connection))*/
+        ReturnState=OK;
+    }
+    return ReturnState;
+}
+   

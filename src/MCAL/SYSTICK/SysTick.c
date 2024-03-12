@@ -29,7 +29,7 @@
 /********************************************************************************************************/
 volatile SysTick_Registers_t*const SYSTICK=(volatile SysTick_Registers_t*const)(SYSTICK_BASE_ADDRESS);
 static uint32_t SysTickMode;
-static SysTick_CallBack_t AppCallBack;
+static SysTick_CallBack_t AppCallBack=NULL;
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
 /********************************************************************************************************/
@@ -47,11 +47,11 @@ ErrorStatus_t SYSTICK_Start(uint32_t CFG,uint32_t Mode)
     else
     {
         SysTickMode=Mode;
+        SYSTICK->STK_VAL&=~MASK_READ_VAL;
         uint32_t Loc_STK_CTRL=SYSTICK->STK_CTRL;
         Loc_STK_CTRL&=~SYSTICK_CTR_CLEAR_MASK;
         Loc_STK_CTRL|=CFG;
         SYSTICK->STK_CTRL=Loc_STK_CTRL;
-        SYSTICK->STK_VAL&=~MASK_READ_VAL;
         ReturnError=SYSTICK_OK;
     }
     return ReturnError;
@@ -65,7 +65,7 @@ ErrorStatus_t SYSTICK_SetTimeMs(uint32_t TimeMS)
     ErrorStatus_t ReturnError;
     
     uint32_t CPU_Freq=(SYSTICK_CLOCK_SOURCE==SYSTICK_ENABLE_INT_AHB)?(SYSTICK_AHB_CLK_SOURCE):(SYSTICK_AHB_CLK_SOURCE/(uint32_t)8);
-    uint32_t ReloadValue=(((TimeMS*CPU_Freq)/(uint32_t)1000))-(uint32_t)1;
+    uint32_t ReloadValue=(((uint64_t)TimeMS*(uint64_t)CPU_Freq)/(uint64_t)1000)-(uint32_t)1;
     if(ReloadValue>SYSTICK_MAX_RELOAD)   
     {
         ReturnError=SYSTICK_WRONG_PARAMETER;
@@ -106,10 +106,12 @@ ErrorStatus_t SYSTICK_SetCallBack(SysTick_CallBack_t SysTickCB)
 
 void SysTick_Handler(void)
 {
+    static x=0;
     if(AppCallBack)
     {
         AppCallBack();
-    }
+        x++;
+    } 
     if(SysTickMode==SYSTICK_MODE_ONE_TIME)
     {
         SYSTICK_Stop();    

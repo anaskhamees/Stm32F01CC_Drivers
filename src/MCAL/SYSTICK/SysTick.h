@@ -49,7 +49,6 @@ typedef void (*SysTick_CallBack_t)(void);
  * @param  CFG: 
  *            - SYSTICK_ENABLE_INT_AHB_8: Set the SysTick clock source to be the AHB clock divided by 8 (Interrupt Enabled).
  *            - SYSTICK_ENABLE_INT_AHB  : Set the SysTick clock source to be the AHB clock  (Interrupt Enabled).
- *            - SYSTICK_DISABLE         : Disable SysTick timer.
  * @param  Mode: Mode of operation for the SysTick timer:
  *            - SYSTICK_MODE_ONE_TIME   : The SysTick timer operates in single-shot mode, triggering an interrupt after counting down once.
  *            - SYSTICK_MODE_PERIODIC   : The SysTick timer operates in periodic mode, counting down and triggering interrupts and repeat.
