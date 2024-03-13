@@ -106,12 +106,12 @@ ErrorStatus_t SYSTICK_SetCallBack(SysTick_CallBack_t SysTickCB)
 
 void SysTick_Handler(void)
 {
-    static x=0;
+    static uint64_t x =0;
     if(AppCallBack)
     {
         AppCallBack();
         x++;
-    } 
+    }
     if(SysTickMode==SYSTICK_MODE_ONE_TIME)
     {
         SYSTICK_Stop();    

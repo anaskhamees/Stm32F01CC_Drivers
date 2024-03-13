@@ -14,6 +14,7 @@
 /*--------------------------------- Data Types ----------------------------------------*/
 
 typedef unsigned char      uint8_t ;
+typedef unsigned char      char_t ;
 typedef signed char        sint8_t ;
 typedef unsigned short     uint16_t;
 typedef signed short int   sint16_t;
@@ -48,7 +49,9 @@ typedef enum{
 	SYSTICK_OK,
 	SYSTICK_WRONG_PARAMETER,
 	SYSTICK_NULL_POINTER,
-	SYSTICK_NOK
+	SYSTICK_NOK,
+	SCHED_OK,
+	SCHED_NULL_POINTER
 }ErrorStatus_t;
 
 
