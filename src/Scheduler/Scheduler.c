@@ -75,12 +75,7 @@ static void SchedulerTicksCB(void)
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
 /********************************************************************************************************/
-/**
- * @brief   Initializes the scheduler.
- * @details This function sets up the scheduler by configuring the system tick timer,
- *          setting the callback function for scheduler ticks, and initializing the runnable tasks.
- * @note The scheduler must be initialized before starting it.
- */
+
 void Scheduler_Init(void)
 {
     ErrorStatus_t ReturnError;
@@ -98,12 +93,7 @@ void Scheduler_Init(void)
     }
 }
 
-/**
- * @brief   Starts the scheduler.
- * @details This function starts the scheduler by enabling the system tick interrupt
- *          and entering a loop to handle scheduler ticks.
- * @note The scheduler must be initialized before calling this function.
- */
+
 void Scheduler_Start(void)
 {
     ErrorStatus_t ReturnError;
