@@ -16,24 +16,25 @@
 
 #include "Std_Lib/Std_Libraries.h"
 #include "SchedulerCFG.h"
-/********************************************************************************************************/
-/************************************************Defines*************************************************/
-/********************************************************************************************************/
 
+/**
+ * @brief Type definition for a callback function pointer.
+ *        This type is used to declare functions that can be registered as callbacks.
+ * @details The callback function must have no parameters and return type `void`.
+ */
+typedef void (*RunnableCB_t)(void);
 
-/********************************************************************************************************/
-/************************************************Types***************************************************/
-/********************************************************************************************************/
-typedef void(*RunnableCB_t)(void);
+/**
+ * @brief   Structure representing a user-defined runnable task.
+ * @details This structure holds information about a task, including its periodicity,
+ *          initial delay, and callback function to execute.
+ */
 typedef struct 
 {
-    /* No need for Priority parameter because I used Method of Array of structs
-     * So, The order of runables in the array refer to their periority.
-     */
-    uint32_t     PeriodicityMS;
-    uint32_t     FirstDelayMS ;
-    RunnableCB_t CallBack     ;
-}Runnable_t;
+    uint32_t     PeriodicityMS; /**< The periodicity of the task in milliseconds. */
+    uint32_t     FirstDelayMS;  /**< The initial delay before the task starts executing, in milliseconds. */
+    RunnableCB_t CallBack;      /**< Pointer to the callback function to execute for this task. */
+} UserRunnable_t;
 
 
 /********************************************************************************************************/

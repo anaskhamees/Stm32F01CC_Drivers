@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h"/>
+    <file index="1" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h"/>
+    <tok fileIndex="0" linenr="1" column="1" str="/*x * File Name: Scheduler.hx * Layerx: Schedulerx * Modulex: Schedulerx * Version  : V 0.0x * Createdx:  Mar 13, 2024x * Authorx: Anas Khameesx */"/>
+    <tok fileIndex="0" linenr="10" column="1" str="#"/>
+    <tok fileIndex="0" linenr="10" column="2" str="ifndef"/>
+    <tok fileIndex="0" linenr="10" column="9" str="SCHEDULER_SCHEDULER_H_"/>
+    <tok fileIndex="0" linenr="11" column="1" str="#"/>
+    <tok fileIndex="0" linenr="11" column="2" str="define"/>
+    <tok fileIndex="0" linenr="11" column="9" str="SCHEDULER_SCHEDULER_H_"/>
+    <tok fileIndex="0" linenr="13" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="14" column="1" str="/************************************************Includes************************************************/"/>
+    <tok fileIndex="0" linenr="15" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="17" column="1" str="#"/>
+    <tok fileIndex="0" linenr="17" column="2" str="include"/>
+    <tok fileIndex="0" linenr="17" column="10" str="&quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <tok fileIndex="0" linenr="18" column="1" str="#"/>
+    <tok fileIndex="0" linenr="18" column="2" str="include"/>
+    <tok fileIndex="0" linenr="18" column="10" str="&quot;SchedulerCFG.h&quot;"/>
+    <tok fileIndex="0" linenr="20" column="1" str="/** * @brief Type definition for a callback function pointer. *        This type is used to declare functions that can be registered as callbacks. * @details The callback function must have no parameters and return type `void`. */"/>
+    <tok fileIndex="0" linenr="25" column="1" str="typedef"/>
+    <tok fileIndex="0" linenr="25" column="9" str="void"/>
+    <tok fileIndex="0" linenr="25" column="14" str="("/>
+    <tok fileIndex="0" linenr="25" column="15" str="*"/>
+    <tok fileIndex="0" linenr="25" column="16" str="RunnableCB_t"/>
+    <tok fileIndex="0" linenr="25" column="28" str=")"/>
+    <tok fileIndex="0" linenr="25" column="29" str="("/>
+    <tok fileIndex="0" linenr="25" column="30" str="void"/>
+    <tok fileIndex="0" linenr="25" column="34" str=")"/>
+    <tok fileIndex="0" linenr="25" column="35" str=";"/>
+    <tok fileIndex="0" linenr="27" column="1" str="/**x * @brief   Structure representing a user-defined runnable task.x * @details This structure holds information about a task, including its periodicity,x *          initial delay, and callback function to execute.x */"/>
+    <tok fileIndex="0" linenr="32" column="1" str="typedef"/>
+    <tok fileIndex="0" linenr="32" column="9" str="struct"/>
+    <tok fileIndex="0" linenr="33" column="1" str="{"/>
+    <tok fileIndex="0" linenr="34" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="34" column="18" str="PeriodicityMS"/>
+    <tok fileIndex="0" linenr="34" column="31" str=";"/>
+    <tok fileIndex="0" linenr="34" column="33" str="/**&lt; The periodicity of the task in milliseconds. */"/>
+    <tok fileIndex="0" linenr="35" column="5" str="uint32_t"/>
+    <tok fileIndex="0" linenr="35" column="18" str="FirstDelayMS"/>
+    <tok fileIndex="0" linenr="35" column="30" str=";"/>
+    <tok fileIndex="0" linenr="35" column="33" str="/**&lt; The initial delay before the task starts executing, in milliseconds. */"/>
+    <tok fileIndex="0" linenr="36" column="5" str="RunnableCB_t"/>
+    <tok fileIndex="0" linenr="36" column="18" str="CallBack"/>
+    <tok fileIndex="0" linenr="36" column="26" str=";"/>
+    <tok fileIndex="0" linenr="36" column="33" str="/**&lt; Pointer to the callback function to execute for this task. */"/>
+    <tok fileIndex="0" linenr="37" column="1" str="}"/>
+    <tok fileIndex="0" linenr="37" column="3" str="UserRunnable_t"/>
+    <tok fileIndex="0" linenr="37" column="17" str=";"/>
+    <tok fileIndex="0" linenr="40" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="41" column="1" str="/************************************************APIs****************************************************/"/>
+    <tok fileIndex="0" linenr="42" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="43" column="1" str="void"/>
+    <tok fileIndex="0" linenr="43" column="6" str="Scheduler_Init"/>
+    <tok fileIndex="0" linenr="43" column="20" str="("/>
+    <tok fileIndex="0" linenr="43" column="21" str="void"/>
+    <tok fileIndex="0" linenr="43" column="25" str=")"/>
+    <tok fileIndex="0" linenr="43" column="26" str=";"/>
+    <tok fileIndex="0" linenr="44" column="1" str="void"/>
+    <tok fileIndex="0" linenr="44" column="6" str="Scheduler_Start"/>
+    <tok fileIndex="0" linenr="44" column="21" str="("/>
+    <tok fileIndex="0" linenr="44" column="22" str="void"/>
+    <tok fileIndex="0" linenr="44" column="26" str=")"/>
+    <tok fileIndex="0" linenr="44" column="27" str=";"/>
+    <tok fileIndex="0" linenr="48" column="1" str="#"/>
+    <tok fileIndex="0" linenr="48" column="2" str="endif"/>
+    <tok fileIndex="0" linenr="48" column="8" str="// SCHEDULER_SCHEDULER_H_"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c89"/>
+    <cpp version="c++03"/>
+  </standards>
+  <directivelist>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="10" str="#ifndef SCHEDULER_SCHEDULER_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="11" str="#define SCHEDULER_SCHEDULER_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="17" str="#include &quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="18" str="#include &quot;SchedulerCFG.h&quot;"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="48" str="#endif"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="1" str="#ifndef SCHEDULER_SCHEDULERCFG_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="2" str="#define SCHEDULER_SCHEDULERCFG_H_"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="8" str="#define TICK_TIME (10UL)"/>
+    <directive file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="17" str="#endif"/>
+  </directivelist>
+  <tokenlist>
+    <token id="000001AC96945D90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="12" column="9" str="enum" scope="000001AC968E5E00" type="name"/>
+    <token id="000001AC96947230" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="12" column="0" str="runnable_list_t" scope="000001AC968E5E00" type="name" type-scope="000001AC968E5140" astParent="000001AC969452B0"/>
+    <token id="000001AC969452B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="13" column="1" str="{" scope="000001AC968E5140" link="000001AC96945D30" astOperand1="000001AC96947230" astOperand2="000001AC96945190"/>
+    <token id="000001AC96945130" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="14" column="5" str="Runnable_1" scope="000001AC968E5140" type="name" values="000001AC96952980" astParent="000001AC96945190" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001AC968E5140"/>
+    <token id="000001AC96945190" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="14" column="15" str="," scope="000001AC968E5140" astParent="000001AC969452B0" astOperand1="000001AC96945130" astOperand2="000001AC96945790"/>
+    <token id="000001AC96945790" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="15" column="5" str="_MAX_RUNNABLE" scope="000001AC968E5140" type="name" values="000001AC969529A0" astParent="000001AC96945190" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="000001AC968E5140"/>
+    <token id="000001AC96945D30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="16" column="1" str="}" scope="000001AC968E5140" link="000001AC969452B0"/>
+    <token id="000001AC96946D50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/SchedulerCFG.h" linenr="16" column="0" str=";" scope="000001AC968E5E00"/>
+    <token id="000001AC96945490" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="32" column="9" str="struct" scope="000001AC968E5E00" type="name"/>
+    <token id="000001AC96944B90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="32" column="0" str="UserRunnable_t" scope="000001AC968E5E00" type="name" type-scope="000001AC968E5250"/>
+    <token id="000001AC96945EB0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="33" column="1" str="{" scope="000001AC968E5250" link="000001AC969460F0"/>
+    <token id="000001AC96945550" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="34" column="5" str="uint32_t" scope="000001AC968E5250" type="name"/>
+    <token id="000001AC96945610" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="34" column="18" str="PeriodicityMS" scope="000001AC968E5250" type="name" varId="1" variable="000001AC96D7E9A0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001AC96945F10" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="34" column="31" str=";" scope="000001AC968E5250"/>
+    <token id="000001AC96945670" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="35" column="5" str="uint32_t" scope="000001AC968E5250" type="name"/>
+    <token id="000001AC96945FD0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="35" column="18" str="FirstDelayMS" scope="000001AC968E5250" type="name" varId="2" variable="000001AC96D7E2A0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="000001AC96946030" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="35" column="30" str=";" scope="000001AC968E5250"/>
+    <token id="000001AC96945910" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="5" str="void" scope="000001AC968E5250" type="name" astParent="000001AC96944B30"/>
+    <token id="000001AC96944B30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="0" str="(" scope="000001AC968E5250" link="000001AC96945730" astParent="000001AC969478F0" astOperand1="000001AC96945910" astOperand2="000001AC96944BF0" valueType-type="void" valueType-reference="None"/>
+    <token id="000001AC96944BF0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="0" str="*" scope="000001AC968E5250" type="op" isArithmeticalOp="true" astParent="000001AC96944B30" astOperand1="000001AC96945A30" valueType-type="void" valueType-reference="None"/>
+    <token id="000001AC96945A30" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="18" str="CallBack" scope="000001AC968E5250" type="name" varId="3" variable="000001AC96D7E700" astParent="000001AC96944BF0" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="000001AC96945730" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="0" str=")" scope="000001AC968E5250" link="000001AC96944B30"/>
+    <token id="000001AC969478F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="0" str="(" scope="000001AC968E5250" link="000001AC969464B0" astOperand1="000001AC96944B30"/>
+    <token id="000001AC969464B0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="0" str=")" scope="000001AC968E5250" link="000001AC969478F0"/>
+    <token id="000001AC96945A90" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="36" column="26" str=";" scope="000001AC968E5250"/>
+    <token id="000001AC969460F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="37" column="1" str="}" scope="000001AC968E5250" link="000001AC96945EB0"/>
+    <token id="000001AC96945310" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="37" column="0" str=";" scope="000001AC968E5E00"/>
+    <token id="000001AC96947590" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="43" column="1" str="void" scope="000001AC968E5E00" type="name"/>
+    <token id="000001AC96946690" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="43" column="6" str="Scheduler_Init" scope="000001AC968E5E00" type="name" function="000001AC96D3CDA0"/>
+    <token id="000001AC96946A50" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="43" column="20" str="(" scope="000001AC968E5E00" link="000001AC96947710" valueType-type="void" valueType-reference="None"/>
+    <token id="000001AC96947710" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="43" column="25" str=")" scope="000001AC968E5E00" link="000001AC96946A50"/>
+    <token id="000001AC96946270" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="43" column="26" str=";" scope="000001AC968E5E00"/>
+    <token id="000001AC96947410" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="44" column="1" str="void" scope="000001AC968E5E00" type="name"/>
+    <token id="000001AC96947350" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="44" column="6" str="Scheduler_Start" scope="000001AC968E5E00" type="name" function="000001AC96D3C3A0"/>
+    <token id="000001AC969462D0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="44" column="21" str="(" scope="000001AC968E5E00" link="000001AC969463F0" valueType-type="void" valueType-reference="None"/>
+    <token id="000001AC969463F0" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="44" column="26" str=")" scope="000001AC968E5E00" link="000001AC969462D0"/>
+    <token id="000001AC96947050" file="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/Scheduler/Scheduler.h" linenr="44" column="27" str=";" scope="000001AC968E5E00"/>
+  </tokenlist>
+  <scopes>
+    <scope id="000001AC968E5E00" type="Global">
+      <functionList>
+        <function id="000001AC96D3CDA0" tokenDef="000001AC96946690" name="Scheduler_Init" type="Function"/>
+        <function id="000001AC96D3C3A0" tokenDef="000001AC96947350" name="Scheduler_Start" type="Function"/>
+      </functionList>
+    </scope>
+    <scope id="000001AC968E5140" type="Enum" className="runnable_list_t" bodyStart="000001AC969452B0" bodyEnd="000001AC96945D30" nestedIn="000001AC968E5E00"/>
+    <scope id="000001AC968E5250" type="Struct" className="UserRunnable_t" bodyStart="000001AC96945EB0" bodyEnd="000001AC969460F0" nestedIn="000001AC968E5E00">
+      <varlist>
+        <var id="000001AC96D7E9A0"/>
+        <var id="000001AC96D7E2A0"/>
+        <var id="000001AC96D7E700"/>
+      </varlist>
+    </scope>
+  </scopes>
+  <variables>
+    <var id="000001AC96D7E2A0" nameToken="000001AC96945FD0" typeStartToken="000001AC96945670" typeEndToken="000001AC96945670" access="Public" scope="000001AC968E5250" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="000001AC96D7E700" nameToken="000001AC96945A30" typeStartToken="000001AC96945910" typeEndToken="000001AC96944BF0" access="Public" scope="000001AC968E5250" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="000001AC96D7E9A0" nameToken="000001AC96945610" typeStartToken="000001AC96945550" typeEndToken="000001AC96945550" access="Public" scope="000001AC968E5250" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+    <values id="000001AC96952980">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="000001AC969529A0">
+      <value intvalue="1" known="true"/>
+    </values>
+  </valueflow>
+</dump>
+</dumps>

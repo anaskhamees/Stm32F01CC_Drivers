@@ -15,14 +15,14 @@
 /********************************************************************************************************/
 /************************************************Defines*************************************************/
 /********************************************************************************************************/
-#define TICK_TIME           10
+
 /********************************************************************************************************/
 /************************************************Types***************************************************/
 /********************************************************************************************************/
 
 typedef struct 
 {
-    Runnable_t* runnable  ;
+    UserRunnable_t* runnable  ;
     uint32_t   RemainTime;
 }RunableInfo_t;
 
@@ -30,7 +30,7 @@ typedef struct
 /************************************************Variables***********************************************/
 /********************************************************************************************************/
 static RunableInfo_t RunInfo[_MAX_RUNNABLE];
-extern const Runnable_t UserRunnables[_MAX_RUNNABLE];
+extern const UserRunnable_t UserRunnables[_MAX_RUNNABLE];
 
 
 volatile static uint32_t SchedulerTicks;
@@ -38,53 +38,86 @@ volatile static uint32_t SchedulerTicks;
 /********************************************************************************************************/
 /*****************************************Static Functions Prototype*************************************/
 /********************************************************************************************************/
+
+/**
+ * @brief   Executes the scheduler.
+ * @details This function is called periodically by the scheduler to execute the runnable tasks.
+ *          It iterates through all runnable tasks, checks if any task is ready to run based on
+ *          its remaining time, and executes the task if it's ready.
+ *          After executing a task, it updates its remaining time to its periodicity.
+ */
 static void Scheduler(void)
 {
-    for(uint32_t priorityIdx=0;priorityIdx<_MAX_RUNNABLE;priorityIdx++)
+    for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
-        if((RunInfo[priorityIdx].runnable->CallBack)&&(RunInfo[priorityIdx].RemainTime==0))
+        if ((RunInfo[priorityIdx].runnable->CallBack) && (RunInfo[priorityIdx].RemainTime == 0))
         {
+            /* Execute runnable task */
             RunInfo[priorityIdx].runnable->CallBack();
-            RunInfo[priorityIdx].RemainTime=RunInfo[priorityIdx].runnable->PeriodicityMS;
+            RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable->PeriodicityMS;
         }
-        RunInfo->runnable->PeriodicityMS-=TICK_TIME;
+
+        RunInfo[priorityIdx].RemainTime -= TICK_TIME;
     }
-  
 }
 
-void SchedulerTicksCB(void)
+/**
+ * @brief   Callback function for scheduler ticks.
+ * @details This function is called when a system tick interrupt occurs, and it increments
+ *          the `SchedulerTicks` variable, indicating that a scheduler tick has occurred.
+ */
+static void SchedulerTicksCB(void)
 {
-    /*This Variable will increament When SysTick Interrupt Occured*/
+    // Increment scheduler ticks counter
     SchedulerTicks++;
 }
 
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
 /********************************************************************************************************/
+/**
+ * @brief   Initializes the scheduler.
+ * @details This function sets up the scheduler by configuring the system tick timer,
+ *          setting the callback function for scheduler ticks, and initializing the runnable tasks.
+ * @note The scheduler must be initialized before starting it.
+ */
 void Scheduler_Init(void)
 {
     ErrorStatus_t ReturnError;
-    ReturnError=SYSTICK_SetTimeMs(TICK_TIME);
-    ReturnError=SYSTICK_SetCallBack(SchedulerTicksCB);
-    for(uint32_t priorityIdx=0;priorityIdx<_MAX_RUNNABLE;priorityIdx++)
+    ReturnError = SYSTICK_SetTimeMs(TICK_TIME);
+    ReturnError = SYSTICK_SetCallBack(SchedulerTicksCB);
+
+    /* Initialize runnable tasks*/
+    for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
-        if((UserRunnables[priorityIdx].CallBack)&&((RunInfo[priorityIdx].runnable->CallBack)==NULL))
+        if (UserRunnables[priorityIdx].CallBack && (RunInfo[priorityIdx].runnable->CallBack == NULL))
         {
-            *(RunInfo[priorityIdx].runnable)=UserRunnables[priorityIdx];
-            RunInfo[priorityIdx].RemainTime=UserRunnables[priorityIdx].FirstDelayMS;
+            *(RunInfo[priorityIdx].runnable) = UserRunnables[priorityIdx];
+            RunInfo[priorityIdx].RemainTime = UserRunnables[priorityIdx].FirstDelayMS;
         }
     }
 }
+
+/**
+ * @brief   Starts the scheduler.
+ * @details This function starts the scheduler by enabling the system tick interrupt
+ *          and entering a loop to handle scheduler ticks.
+ * @note The scheduler must be initialized before calling this function.
+ */
 void Scheduler_Start(void)
 {
-        ErrorStatus_t ReturnError;
-        ReturnError=SYSTICK_Start(SYSTICK_ENABLE_INT_AHB,SYSTICK_MODE_PERIODIC);
-        while (1)
+    ErrorStatus_t ReturnError;
+
+    /* Start system tick */
+    ReturnError = SYSTICK_Start(SYSTICK_ENABLE_INT_AHB, SYSTICK_MODE_PERIODIC);
+
+    while (1)
+    {
+        if (SchedulerTicks)
         {
-            if(SchedulerTicks)
-            {
-                SchedulerTicks--;
-                Scheduler();
-            }
-        }      
-} 
+            SchedulerTicks--;
+            Scheduler(); 
+        }
+    }      
+}
+
