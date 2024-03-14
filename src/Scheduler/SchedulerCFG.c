@@ -19,7 +19,7 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .CallBack=ToggleLed1
  }, 
  [Runnable_2]={
-    .PeriodicityMS=1500,
+    .PeriodicityMS=1000,
     .FirstDelayMS=0,
     .CallBack=ToggleLed2
  } 
