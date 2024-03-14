@@ -1,6 +1,6 @@
 #include "APP/APP.h"
 #ifdef APP
-#if (APP==APP2_NVIC_TEST)
+#if (APP==APP3_NVIC_TEST)
 #include "MCAL/NVIC/NVIC.h"
 #include "MCAL/NVIC/STM32F401xx.h"
 
