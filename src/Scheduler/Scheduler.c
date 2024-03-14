@@ -18,7 +18,7 @@
 
 typedef struct 
 {
-    UserRunnable_t* runnable  ;
+    UserRunnable_t runnable  ;
     uint32_t   RemainTime;
 }RunableInfo_t;
 
@@ -46,11 +46,11 @@ static void Scheduler(void)
 {
     for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
-        if ((RunInfo[priorityIdx].runnable->CallBack) && (RunInfo[priorityIdx].RemainTime == 0))
+        if ((RunInfo[priorityIdx].runnable.CallBack) && (RunInfo[priorityIdx].RemainTime == 0))
         {
             /* Execute runnable task */
-            RunInfo[priorityIdx].runnable->CallBack();
-            RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable->PeriodicityMS;
+            RunInfo[priorityIdx].runnable.CallBack();
+            RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable.PeriodicityMS;
         }
 
         RunInfo[priorityIdx].RemainTime -= TICK_TIME;
@@ -81,9 +81,9 @@ void Scheduler_Init(void)
     /* Initialize runnable tasks*/
     for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
-        if (UserRunnables[priorityIdx].CallBack && (RunInfo[priorityIdx].runnable->CallBack == NULL))
+         if (UserRunnables[priorityIdx].CallBack && (RunInfo[priorityIdx].runnable.CallBack == NULL))
         {
-            *(RunInfo[priorityIdx].runnable) = UserRunnables[priorityIdx];
+            RunInfo[priorityIdx].runnable = UserRunnables[priorityIdx];
             RunInfo[priorityIdx].RemainTime = UserRunnables[priorityIdx].FirstDelayMS;
         }
     }

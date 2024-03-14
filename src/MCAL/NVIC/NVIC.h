@@ -18,11 +18,11 @@
  *  0xFA05 0000 + ((0110) in Bit8:Bit10 = 600)
  *  0xFA05 0000 + ((0111) in Bit8:Bit10 = 700)
 */
-#define NVIC_PREEMPTION_16_SUBGROUP_NONE        (0xFA050300UL)
-#define NVIC_PREEMPTION_8_SUBGROUP_TWO          (0xFA050400UL)
-#define NVIC_PREEMPTION_4_SUBGROUP_FOUR         (0xFA050500UL)
-#define NVIC_PREEMPTION_2_SUBGROUP_EIGHT        (0xFA050600UL)
-#define NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEEN   (0xFA050700UL)
+#define NVIC_PREEMPTION_16_SUBGROUP_NONE        (0x05FA0300UL)
+#define NVIC_PREEMPTION_8_SUBGROUP_TWO          (0x05FA0400UL)
+#define NVIC_PREEMPTION_4_SUBGROUP_FOUR         (0x05FA0500UL)
+#define NVIC_PREEMPTION_2_SUBGROUP_EIGHT        (0x05FA0600UL)
+#define NVIC_PREEMPTION_NONE_SUBGROUP_SIXTEEN   (0x05FA0700UL)
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/

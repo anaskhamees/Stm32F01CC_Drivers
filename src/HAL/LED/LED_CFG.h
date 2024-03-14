@@ -28,5 +28,6 @@ typedef enum{
 
 
 LED1,
+LED2,
 _Led_Number
 }Leds_Number_t;
