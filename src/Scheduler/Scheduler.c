@@ -81,9 +81,9 @@ void Scheduler_Init(void)
     /* Initialize runnable tasks*/
     for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
-         if (UserRunnables[priorityIdx].CallBack && (RunInfo[priorityIdx].runnable.CallBack == NULL))
+         if (UserRunnables[priorityIdx].CallBack)
         {
-            RunInfo[priorityIdx].runnable = UserRunnables[priorityIdx];
+            RunInfo[priorityIdx].runnable= UserRunnables[priorityIdx];
             RunInfo[priorityIdx].RemainTime = UserRunnables[priorityIdx].FirstDelayMS;
         }
     }

@@ -3,17 +3,15 @@
 /********************************************************************************************************/
 
 #include "Scheduler.h"
-
+#include "APP/AppRunnables.h"
 /********************************************************************************************************/
 /************************************************Variables***********************************************/
 /********************************************************************************************************/
 
-extern void ToggleLed1(void);
-extern void ToggleLed2(void);
 
 const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
 {
- [Runnable_1]={
+ /*[Runnable_1]={
     .PeriodicityMS=500,
     .FirstDelayMS=0,
     .CallBack=ToggleLed1
@@ -22,5 +20,15 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .PeriodicityMS=1000,
     .FirstDelayMS=0,
     .CallBack=ToggleLed2
- } 
+ }*/
+ [HSwitchRunnable]={
+   .PeriodicityMS=5,
+   .FirstDelayMS=0,
+   .CallBack=HSwitch_Runnable
+ },
+ [AppSwitchRun]={
+   .PeriodicityMS=100,
+   .FirstDelayMS=0,
+   .CallBack=AppSWitch_Runnable
+ }
 };

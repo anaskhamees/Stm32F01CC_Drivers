@@ -1,16 +1,17 @@
 /*
- * File Name: SWITCH.c
+ * File Name: SwitchSched.c
  * Layer	: HAL
- * Module	: Switch
- * Version  : V 0.0
- * Created	:  
+ * Module	: Switch without bouncing
+ * Version  : V 0.1
+ * Created	: 15/3/2024 
  * Author	: Anas Khamees
  */
+
 /********************************************************************************************************/
 /************************************************Includes************************************************/
 /********************************************************************************************************/
 
-#include "SWITCH.h"
+#include "SwitchSched.h"
 #include "MCAL/GPIO/GPIO.h"
 #include "MCAL/GPIO/GPIO_Validation.h"
 /********************************************************************************************************/
@@ -24,7 +25,8 @@
 /************************************************Variables***********************************************/
 /********************************************************************************************************/
 
-extern SwitchCFG_t  Switches[_SWITCHES_NUM];
+extern HSwitchCFG_t  HSwitches[_HSWITCHES_NUM];
+static uint32_t HSwitchState[_HSWITCHES_NUM]={0};
 
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
@@ -37,22 +39,22 @@ extern SwitchCFG_t  Switches[_SWITCHES_NUM];
  * specified in the SWITCHES array.
  * @return ErrorStatus_t Returns SUCCESS if the switches are successfully initialized, otherwise returns an error code.
  */
-ErrorStatus_t Switch_Init(void)
+ErrorStatus_t HSwitch_Init(void)
 {
     ErrorStatus_t   ReturnState;
    
-    GPIO_CFG_t Switch;
+    GPIO_CFG_t HSwitch;
   
     uint8_t SW_Num;
-    for (SW_Num=0;SW_Num<_SWITCHES_NUM;SW_Num++)
+    for (SW_Num=0;SW_Num<_HSWITCHES_NUM;SW_Num++)
     {
-        Switch.GPIO_Port=Switches[SW_Num].SW_Port;
-        Switch.GPIO_Pin=Switches[SW_Num].SW_Pin;
-        Switch.GPIO_Mode=Switches[SW_Num].SW_Connection;
+        HSwitch.GPIO_Port=HSwitches[SW_Num].SW_Port;
+        HSwitch.GPIO_Pin=HSwitches[SW_Num].SW_Pin;
+        HSwitch.GPIO_Mode=HSwitches[SW_Num].SW_Connection;
     }
-    Switch.GPIO_Speed=GPIO_HIGH_SPEED;
-    Switch.GPIO_AF=GPIO_AF_DISABLED;
-    ReturnState=GPIO_InitPin(&Switch);
+    HSwitch.GPIO_Speed=GPIO_HIGH_SPEED;
+    HSwitch.GPIO_AF=GPIO_AF_DISABLED;
+    ReturnState=GPIO_InitPin(&HSwitch);
     return ReturnState;
    }
 
@@ -64,39 +66,51 @@ ErrorStatus_t Switch_Init(void)
  *         - NULL_POINTER if the SwitchState pointer is NULL.
  *         - WRONG_PARAMETER if SwitchNum is out of range.
  */
-   ErrorStatus_t Switch_GetState(uint32_t SwitchNum ,uint32_t* SwitchState)
+   ErrorStatus_t HSwitch_GetState(uint32_t SwitchNum ,uint32_t* SwitchState)
    {
     ErrorStatus_t ReturnError;
     if(SwitchState==NULL)
     {
         ReturnError=NULL_POINTER;
     }
-    else if(SwitchNum>(uint32_t)_SWITCHES_NUM)
+    else if(SwitchNum>(uint32_t)_HSWITCHES_NUM)
     {
         ReturnError=WRONG_PARAMETER;
     }
     else
     {
-        ReturnError=GPIO_GetPinValue(Switches[SwitchNum].SW_Port,Switches[SwitchNum].SW_Pin,SwitchState);
-
-        /**
-         * ((SWITCHES[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION) : 
-         * @brief : I used tha same Mask of GPIO , so I want to shift it by 3 to get the value of connection
-         *  &(MASK_GET_SW_CONNECTION_LSB):
-         * @brief : Then I masked the Output of the previous MASK by 0x00000001 to Get the LSB bit to know the Switch State.
-         * @brief : (*Switch State) is the result of XORing operation as follow  :
-         * 
-         *   +----------------------+--------------------+--------+
-             |   Switch State       | Switch Connection  | Result |
-             +----------------------+--------------------+--------+
-             | SWITCH_PRESSED  (1)  |    GPIO_IN_PU (1)  |   0    |
-             | SWITCH_PRESSED  (1)  |    GPIO_IN_PD (0)  |   1    |
-             | SWITCH_RELEASED (0)  |    GPIO_IN_PU (1)  |   1    |
-             | SWITCH_RELEASED (0)  |    GPIO_IN_PD (0)  |   0    |
-             +----------------------+--------------------+--------+           
-         */
-        *SwitchState=(*SwitchState)^(((Switches[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION)&(MASK_GET_SW_CONNECTION_LSB));
+       *SwitchState=HSwitchState[SwitchNum]^(((HSwitches[SwitchNum].SW_Connection)>>MASK_SHIF_SW_CONNECTION)&(MASK_GET_SW_CONNECTION_LSB));
+       ReturnError=OK;
     }
     return ReturnError;
+   }
+
+/**
+ * @brief  Runnable function to handle the Bouncing of hardware switches.
+ */
+   void HSwitch_Runnable(void)
+   {
+        uint8_t CurrentState=0;
+        static uint8_t PrevoiusState[_HSWITCHES_NUM]={0};
+        static uint8_t Counts[_HSWITCHES_NUM]={0};
+        ErrorStatus_t ReturnError;
+        for(uint8_t SwitchNum=0;SwitchNum<_HSWITCHES_NUM;SwitchNum++)
+        {
+            ReturnError=GPIO_GetPinValue(HSwitches[SwitchNum].SW_Port,HSwitches[SwitchNum].SW_Pin,&CurrentState);
+            if(CurrentState==PrevoiusState[SwitchNum])
+            {
+                Counts[SwitchNum]++;
+            }
+            else
+            {
+                Counts[SwitchNum]=0;
+            }
+            if(Counts[SwitchNum]%5==0)
+            {
+                HSwitchState[SwitchNum]=CurrentState;
+            }
+            PrevoiusState[SwitchNum]=CurrentState;
+        }
+
    }
 
