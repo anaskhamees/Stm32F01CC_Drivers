@@ -99,7 +99,7 @@ void Scheduler_Start(void)
 
     while (1)
     {
-        if (SchedulerTicks)
+b         if (SchedulerTicks)
         {
             SchedulerTicks--;
             Scheduler(); 
