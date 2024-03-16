@@ -12,7 +12,45 @@
 #define MASK_SHIFT_8                    (0x00000008UL)
 #define MASK_READ_3BITS                 (0x00000007UL)
 #define MASK_NONE_SUBGROUP              (0x03U)
+/********************************************************************************************************/
+/************************************************ Types *************************************************/
+/********************************************************************************************************/
+typedef struct
+{
+    uint32_t ISER[8];
+    uint32_t RESERVED0[24];
+    uint32_t ICER[8];
+    uint32_t RESERVED1[24];
+    uint32_t ISPR[8];
+    uint32_t RESERVED2[24];
+    uint32_t ICPR[8];
+    uint32_t RESERVED3[24];
+    uint32_t IABR[8];
+    uint32_t RESERVED4[56];
+    uint8_t  IPR[240]; /*Byte Accessible: 60*4=240*/
+    uint32_t RESERVED5[580];
+    uint32_t STIR;
+}NVIC_Reg_t;
 
+typedef struct 
+{
+    uint32_t CPUID;
+    uint32_t ICSR;
+    uint32_t VTOR;
+    uint32_t AIRCR;
+    uint32_t SCR;
+    uint32_t CCR;
+    uint32_t SHPR1;
+    uint32_t SHPR2;
+    uint32_t SHPR3;
+    uint32_t SHCSR;
+    uint32_t CFSR;
+    uint32_t HFSR;
+    uint32_t MMAR;
+    uint32_t BFAR;
+    uint32_t AFSR;
+
+}SCB_Reg_t;
 
 /********************************************************************************************************/
 /************************************************Variables***********************************************/

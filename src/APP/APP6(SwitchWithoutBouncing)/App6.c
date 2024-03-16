@@ -34,14 +34,15 @@ void AppSWitch_Runnable(void)
     ErrorStatus_t ReturnState=HSwitch_GetState(HSWITCH_1,&SwitchState);
     if(SwitchState==SWITCH_PRESSED)
     {
-        //ToggleLed1();
-        ReturnState=LED_SetState(LED1,LED_ON);
+        ToggleLed1();
+        //ReturnState=LED_SetState(LED1,LED_ON);
     }
 }
 int main(int argc, char* argv[])
 {
 	ErrorStatus_t ReturnError;
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOA);
+    ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOC);
 	ReturnError=LED_Init();
     ReturnError=HSwitch_Init();
     Scheduler_Init();

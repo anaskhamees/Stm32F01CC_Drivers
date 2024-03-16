@@ -147,45 +147,6 @@
 /******************************************************************************************/
 /*************************************** Data Types ***************************************/
 /******************************************************************************************/
-typedef struct{
-	uint32_t RCC_CR      ;
-	uint32_t RCC_PLLCFGR ;
-	uint32_t RCC_CFGR    ;
-	uint32_t RCC_CIR     ;
-	uint32_t RCC_AHB1RSTR;
-	uint32_t RCC_AHB2RSTR;
-	uint32_t Reserved0x18;
-	uint32_t Reserved0x1C;
-	uint32_t RCC_APB1RSTR;
-	uint32_t RCC_APB2RSTR;
-	uint32_t Reserved0x28;
-	uint32_t Reserved0x2C;
-	uint32_t RCC_AHB1ENR ;
-	uint32_t RCC_AHB2ENR ;
-	uint32_t Reserved0x38;
-	uint32_t Reserved0x3C;
-	uint32_t RCC_APB1ENR ;
-	uint32_t RCC_APB2ENR ;
-	uint32_t Reserved0x48;
-	uint32_t Reserved0x4C;
-	uint32_t RCC_AHB1LPENR;
-	uint32_t RCC_AHB2LPENR;
-	uint32_t Reserved0x58;
-	uint32_t Reserved0x5C;
-	uint32_t RCC_APB1LPENR;
-	uint32_t RCC_APB2LPENR;
-	uint32_t Reserved0x68;
-	uint32_t Reserved0x6C;
-	uint32_t RCC_BDCR	 ;
-	uint32_t RCC_CSR	 ;
-	uint32_t Reserved0x78;
-	uint32_t Reserved0x7C;
-	uint32_t RCC_SSCGR	 ;
-	uint32_t RCC_PLLI2SCFGR;
-	uint32_t Reserved0x88;
-	uint32_t RCC_DCKCFGR;
-}RCC_Registers_t;
-
 typedef struct {
 	 uint32_t PLLM;   /*PLLM Value must be between 2 and 63*/
 	 uint32_t PLLP;   /*PLLP must be RCC_PLLP_DIV2, RCC_PLLP_DIV4, RCC_PLLP_DIV6, or RCC_PLLP_DIV8*/
