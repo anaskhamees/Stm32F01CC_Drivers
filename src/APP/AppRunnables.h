@@ -8,6 +8,8 @@ extern void ToggleLed2(void);
 #elif(APP==APP6_SWITCH_DEBOUNCING)
 extern void HSwitch_Runnable(void);
 extern void AppSWitch_Runnable(void);
+#elif(APP==APP7_TRAFFIC_LIGHT)
+extern void TrafficLight(void);
 #endif
 
 

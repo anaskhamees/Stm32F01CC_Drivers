@@ -21,7 +21,7 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .FirstDelayMS=0,
     .CallBack=ToggleLed2
  }*/
- [HSwitchRunnable]={
+ /*[HSwitchRunnable]={
    .PeriodicityMS=5,
    .FirstDelayMS=0,
    .CallBack=HSwitch_Runnable
@@ -30,5 +30,10 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
    .PeriodicityMS=150,
    .FirstDelayMS=0,
    .CallBack=AppSWitch_Runnable
+ }*/
+ [TRAFFIC_LIGHT]={
+  .PeriodicityMS=2000,
+  .FirstDelayMS=0,
+  .CallBack=TrafficLight
  }
 };

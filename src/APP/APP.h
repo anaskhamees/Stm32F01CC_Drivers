@@ -9,7 +9,7 @@
 #define APP6_SWITCH_DEBOUNCING  6
 #define APP7_TRAFFIC_LIGHT      7
 
-#define APP      APP6_SWITCH_DEBOUNCING
+#define APP      APP7_TRAFFIC_LIGHT
 
 
 
