@@ -7,7 +7,7 @@
 #define APP4_SYSTICK_TEST       4
 #define APP5_SCHEDULER_TEST     5
 #define APP6_SWITCH_DEBOUNCING  6
-
+#define APP7_TRAFFIC_LIGHT      7
 
 #define APP      APP6_SWITCH_DEBOUNCING
 

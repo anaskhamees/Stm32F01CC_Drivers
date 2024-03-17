@@ -27,7 +27,7 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
    .CallBack=HSwitch_Runnable
  },
  [AppSwitchRun]={
-   .PeriodicityMS=100,
+   .PeriodicityMS=150,
    .FirstDelayMS=0,
    .CallBack=AppSWitch_Runnable
  }

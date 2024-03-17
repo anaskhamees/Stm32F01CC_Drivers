@@ -1,5 +1,5 @@
 /*
- * File Name: App5.h
+ * File Name: App6.h
  * Layer	: App
  * Version  : V 0.0
  * Created	:  Mar 14, 2024
@@ -19,11 +19,11 @@ void ToggleLed1(void) {
     State ^= 1; 
     if(State==1)
     {
-        RetError = LED_SetState(LED1, LED_ON);
+        RetError = LED_SetState(RED_LED, LED_ON);
     }
     else
     {
-        RetError=LED_SetState(LED1,LED_OFF);
+        RetError=LED_SetState(RED_LED,LED_OFF);
     }
      
 }

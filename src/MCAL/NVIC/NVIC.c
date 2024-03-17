@@ -28,7 +28,7 @@ typedef struct
     uint32_t IABR[8];
     uint32_t RESERVED4[56];
     uint8_t  IPR[240]; /*Byte Accessible: 60*4=240*/
-    uint32_t RESERVED5[580];
+    uint32_t RESERVED5[644];
     uint32_t STIR;
 }NVIC_Reg_t;
 
