@@ -11,6 +11,16 @@
 
 const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
 {
+  [LCD_TASK_RUN]={
+    .FirstDelayMS=0,
+    .PeriodicityMS=1,
+    .CallBack=LCD_Task
+  },
+  [LCD_APP_RUN]={
+    .FirstDelayMS=0,
+    .PeriodicityMS=100,
+    .CallBack=LCD_App
+  }
  /*[Runnable_1]={
     .PeriodicityMS=500,
     .FirstDelayMS=0,
@@ -31,9 +41,9 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
    .FirstDelayMS=0,
    .CallBack=AppSWitch_Runnable
  }*/
- [TRAFFIC_LIGHT]={
+ /*[TRAFFIC_LIGHT]={
   .PeriodicityMS=2000,
   .FirstDelayMS=0,
   .CallBack=TrafficLight
- }
+ }*/
 };

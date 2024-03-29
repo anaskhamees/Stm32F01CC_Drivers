@@ -8,8 +8,9 @@
 #define APP5_SCHEDULER_TEST     5
 #define APP6_SWITCH_DEBOUNCING  6
 #define APP7_TRAFFIC_LIGHT      7
+#define APP8_LCD_SCHED_APP      8
 
-#define APP      APP7_TRAFFIC_LIGHT
+#define APP      APP8_LCD_SCHED_APP
 
 
 
