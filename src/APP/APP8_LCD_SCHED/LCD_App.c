@@ -17,9 +17,12 @@
 /******************************************************************************************/
 /**************************************** Defines *****************************************/
 /******************************************************************************************/
-#define CLEAR   1
-#define SET_POS 2
-#define WRITE   3
+#define SET_POS   1
+#define WAIT1     2
+#define WRITE     3
+#define WAIT2     4
+#define CLEAR     5
+#define WAIT3     6
 /******************************************************************************************/
 /*************************************** Variables ****************************************/
 /******************************************************************************************/
@@ -32,18 +35,20 @@ extern const UserRunnable_t UserRunnables[_MAX_RUNNABLE];
 /******************************** Application Function ************************************/
 /******************************************************************************************/
 //Runnable Each 100ms
-ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY,ReqCallBack_t CB);
-ErrorStatus_t LCD_WriteStringAsynch(uint8_t LCD_Name, char_t* string,uint8_t length,ReqCallBack_t CB);
-
 void LCD_App(void)
 {
     static uint8_t appState=SET_POS;
+    static uint8_t counter=0;
+    counter+=TICK_TIME;
     ErrorStatus_t ReturnError;
 
     switch (appState)
     {
     case SET_POS:
        ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);
+       appState=WAIT1;
+        break;
+    case WAIT1:
         if(LCD_GetState(LCD1)==LCD_READY)
         {
             appState=WRITE;
@@ -51,9 +56,20 @@ void LCD_App(void)
         break;
     case WRITE:
        ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);
+       appState=WAIT2;
+       break;
+    case WAIT2:
+       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==20))
+        {
+            appState=CLEAR;
+            counter=0;
+        }
         break;
     case CLEAR:
         LCD_ClearScreenAsynch(LCD1,NULL);
+        appState=WAIT3;
+        break;
+    case WAIT3:
         if(LCD_GetState(LCD1)==LCD_READY)
         {
             appState=SET_POS;
