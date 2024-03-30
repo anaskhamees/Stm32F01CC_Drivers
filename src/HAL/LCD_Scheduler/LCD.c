@@ -114,7 +114,7 @@ uint8_t LCD_State[_LCD_NUMBER];
 extern LCD_t LCDs[_LCD_NUMBER];
 uint8_t LCD_Command_DataState[_LCD_NUMBER]={LCD_SEND_COMMAND_DATA_READY};
 UserRequest_t userRequest[_LCD_NUMBER];
- 
+uint8_t currentPos=0;
 
 /********************************************************************************************************/
 /*****************************************Static Functions***********************************************/
@@ -130,7 +130,7 @@ static void LCD_PinsInit(void)
     for (uint16_t LCD_Num=0;LCD_Num<_LCD_NUMBER;LCD_Num++)
     {
         LCD_pins=(LCDs[LCD_Num].LCD_DataLength==EIGHT_BIT_MODE)?EIGHT_BIT_MODE:FOUR_BIT_MODE;
-        for(uint16_t Pin=0;Pin<LCD_pins;Pin++)
+        for(uint16_t Pin=0;Pin<LCD_pins+2;Pin++)
         {
           LCD_Pin.GPIO_Port=LCDs[LCD_Num].LCD_Pins[Pin].port;
           LCD_Pin.GPIO_Pin =LCDs[LCD_Num].LCD_Pins[Pin].pin;
@@ -295,8 +295,6 @@ static void LCD_SendData(LCD_Num_t LCD_Name ,uint8_t Data)
 static void LCD_InitStateMachine(void)
 {
     static uint8_t InitState=LCD_POWER_ON;
-    TimeMS+=TICK_TIME;
-
     /**
      * @note : I calculate the Time required for Done Sending a command depend on the max Time requird (4-bit mode)
     */
@@ -405,7 +403,6 @@ static void LCD_InitStateMachine(void)
 /* ------------------------------ LCD Processes -------------------------------------*/
 static void LCD_WriteProcess(uint8_t LCD_Name)
 {
-    uint8_t currentPos=0;
     uint8_t length=userRequest[LCD_Name].StringLength;
     uint8_t* string=userRequest[LCD_Name].String;
 
@@ -417,6 +414,7 @@ static void LCD_WriteProcess(uint8_t LCD_Name)
     if((LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)&&(currentPos==length))
     {
         userRequest[LCD_Name].LCD_State=LCD_READY;
+        currentPos=0;
     }
 }
 
@@ -433,7 +431,7 @@ static void LCD_SetPosProcess(uint8_t LCD_Name)
 {
     uint8_t row=userRequest[LCD_Name].PosX;
     uint8_t colm=userRequest[LCD_Name].PosY;
-    uint8_t CursorPos=0;
+    uint8_t  CursorPos=0;
     /* 
      * @note: start Address of DDRAM is  0x80.
      * The first location in DDRAM is (0x80 +0x00) > First Location in the First Row at LCD.
@@ -451,7 +449,7 @@ static void LCD_SetPosProcess(uint8_t LCD_Name)
      * Row 1 , the second row */
     else
     {
-        CursorPos=LCD_DDRAM_START_ADDRESS+40+colm;
+        CursorPos=LCD_DDRAM_START_ADDRESS+0x40+colm;
     }
 
     LCD_SendCommand(LCD_Name,CursorPos);
@@ -519,12 +517,12 @@ ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY
     
     ErrorStatus_t ReturnError=NOK;
     /* I use 16x2 LCD, so LCD The max Xposition is 15 */
-    if(PosX>15)
+    if(PosX>1)
     {
         ReturnError=WRONG_PARAMETER;
     }
     /* I use 16x2 LCD, so LCD The max Yposition is 1 */
-    else if(PosY>1)
+    else if(PosY>15)
     {
         ReturnError=WRONG_PARAMETER;
     }
@@ -549,6 +547,7 @@ ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY
 /* Task comes each 2 mSec*/
 void LCD_Task(void)
 {
+    TimeMS+=TICK_TIME;
     for (uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
     {   
         if(LCD_State[LCD_Name]==LCD_STATE_INIT)

@@ -50,7 +50,7 @@ static void Scheduler(void)
         {
             /* Execute runnable task */
             RunInfo[priorityIdx].runnable.CallBack();
-            RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable.PeriodicityMS;
+             RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable.PeriodicityMS;
         }
 
         RunInfo[priorityIdx].RemainTime -= TICK_TIME;
