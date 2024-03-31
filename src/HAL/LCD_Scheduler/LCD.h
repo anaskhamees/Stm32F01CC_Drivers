@@ -27,25 +27,18 @@
 #define LCD_ROW2		0x02
 /*----------------------- LCD Request State --------------------------*/
 #define LCD_BUSY                1
-#define LCD_READY               2
+#define LCD_READY               0
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/
 /********************************************************************************************************/
 
+/**
+ * @brief Type definition for a pointer to a function with no arguments and returning void.
+ * 
+ * This type is used to define callback functions that notify the user , The Asynchrounous function is Done.
+ */
 typedef void (*ReqCallBack_t)(void);
-// typedef struct
-// {
-//     uint32_t pin; /* Which Pin Number will connect with LCD */
-//     void* port;   /* The Pin in which Port ?                */
-// }LCD_Pin_t;
-
-// typedef struct 
-// {
-//     LCD_Pin_t LCD_Pins[_LCD_PINS]; /* Array of Pins CFG for 1 LCD      */
-//     uint8_t LCD_DataLength       ; /* LCD Data Length 4-Bits or 8-Bits */  
-// }LCD_t;
-
 
 typedef struct 
 {
@@ -69,12 +62,68 @@ typedef struct
 }UserRequest_t;
 
 /********************************************************************************************************/
-/************************************************APIs****************************************************/
+/*                                      API's Prototypes                                                */
 /********************************************************************************************************/
- void LCD_Init(uint8_t LCD_Name);
+
+/**
+ * @brief Initializes the LCD with the specified name.
+ * 
+ * This function initializes the LCD with the specified name by setting its state to initialization.
+ * 
+ * @param LCD_Name The index of the LCD to be initialized.
+ */
+void LCD_Init(uint8_t LCD_Name);
+/**
+ * @brief Gets the state of the specified LCD.
+ * 
+ * This function retrieves the state of the specified LCD. If the LCD is ready and in operation state,
+ * it returns LCD_READY, otherwise, it returns LCD_BUSY.
+ * 
+ * @param LCD_Name The LCD ID .
+ * @return The state of the LCD (LCD_READY if ready and in operation state, LCD_BUSY otherwise).
+ */
 uint8_t LCD_GetState(uint8_t LCD_Name);
+
+/**
+ * @brief Sets the cursor position asynchronously for the specified LCD.
+ * 
+ * This function initiates an asynchronous request to set the cursor position for the specified LCD.
+ * It checks the validity of the position coordinates (PosX and PosY) and the LCD state.
+ * If the position coordinates exceed the maximum allowed values or if the LCD is not ready,
+ * it returns a WRONG_PARAMETER error status. Otherwise, it sets the request type to set position,
+ * sets the LCD state to busy, assigns the position coordinates, assigns the callback function,
+ * and returns an OK status.
+ * 
+ * @param LCD_Name The ID of the LCD for which the cursor position is to be set.
+ * @param PosX The X position of the cursor (row) (0 or 1 for a 16x2 LCD).
+ * @param PosY The Y position of the cursor (column) (0 to 15 for a 16x2 LCD).
+ * @param CB The callback function to be executed after the request is completed.
+ * @return Error status indicating success or failure of the operation.
+ */
 ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY,ReqCallBack_t CB);
+/**
+ * @brief Writes a string to the LCD asynchronously.
+ * 
+ * This function initiates an asynchronous request to write a string to the LCD.
+ * It checks for null pointer and string length constraints, and if the LCD is ready and in operation state,
+ * it sets the string, string length, request type, LCD state to busy, and assigns the callback function.
+ * 
+ * @param LCD_Name The ID of the LCD to which the string is to be written.
+ * @param string The string to be written to the LCD.
+ * @param length The length of the string.
+ * @param CB The callback function to be executed after the request is completed.
+ * @return Error status indicating success or failure of the operation.
+ */
 ErrorStatus_t LCD_WriteStringAsynch(uint8_t LCD_Name, char_t* string,uint8_t length,ReqCallBack_t CB);
+/**
+ * @brief Clears the LCD asynchronously for the specified LCD.
+ * 
+ * This function initiates an asynchronous request to clear the screen for the specified LCD.
+ * It sets the LCD state to busy, sets the request type to clear, and assigns the callback function.
+ * 
+ * @param LCD_Name The ID of the LCD for which the screen is to be cleared.
+ * @param CB The callback function to be executed after the request is completed.
+ */
 void LCD_ClearScreenAsynch(uint8_t LCD_Name, ReqCallBack_t CB);
 
 

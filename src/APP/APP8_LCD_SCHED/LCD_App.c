@@ -23,24 +23,18 @@
 #define WAIT2     4
 #define CLEAR     5
 #define WAIT3     6
-/******************************************************************************************/
-/*************************************** Variables ****************************************/
-/******************************************************************************************/
-extern const UserRunnable_t UserRunnables[_MAX_RUNNABLE];
-/******************************************************************************************/
-/************************************ Static Function *************************************/
-/******************************************************************************************/
 
 /******************************************************************************************/
-/******************************** Application Function ************************************/
+/*                                Application Function                                    */
 /******************************************************************************************/
 //Runnable Each 100ms
 void LCD_App(void)
 {
     static uint8_t appState=SET_POS;
     static uint8_t counter=0;
-    counter+=TICK_TIME;
+    counter++;
     ErrorStatus_t ReturnError;
+
 
     switch (appState)
     {
@@ -49,7 +43,7 @@ void LCD_App(void)
        appState=WAIT1;
         break;
     case WAIT1:
-        if(LCD_GetState(LCD1)==LCD_READY)
+        if((LCD_GetState(LCD1)==LCD_READY))
         {
             appState=WRITE;
         }
@@ -59,7 +53,7 @@ void LCD_App(void)
        appState=WAIT2;
        break;
     case WAIT2:
-       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==20))
+       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==10)) /* Each 1000 mSec Clear the LCD */
         {
             appState=CLEAR;
             counter=0;
@@ -78,17 +72,6 @@ void LCD_App(void)
     default: 
         break;
     } 
-/*uint8_t static counter=0;
-counter+=TICK_TIME;
-ReturnError=LCD_SetCursorPosAsynch(LCD1,1,5,NULL);
-if(counter==40)
-{
-ReturnError=LCD_WriteStringAsynch(LCD1,"Anas",5,NULL);
-}
-if(counter==45)
-{
-    LCD_ClearScreenAsynch(LCD1,NULL);
-}*/
 }
 
 int main(int argc, char* argv[])

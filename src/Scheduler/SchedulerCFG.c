@@ -13,7 +13,7 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
 {
   [LCD_TASK_RUN]={
     .FirstDelayMS=0,
-    .PeriodicityMS=1,
+    .PeriodicityMS=2,
     .CallBack=LCD_Task
   },
   [LCD_APP_RUN]={

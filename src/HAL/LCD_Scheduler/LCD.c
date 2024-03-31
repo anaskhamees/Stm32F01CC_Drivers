@@ -8,7 +8,7 @@
  */ 
 
 /********************************************************************************************************/
-/************************************************Includes************************************************/
+/*                                               Includes                                               */
 /********************************************************************************************************/
 #include "MCAL/GPIO/GPIO.h"
 #include "LCD.h"
@@ -16,10 +16,8 @@
 #include "Scheduler/Scheduler.h"
 
 /********************************************************************************************************/
-/************************************************Defines*************************************************/
+/*                                  LCD Commands MACROs                                                 */
 /********************************************************************************************************/
-
-/*--------------------------------- Commands MACROs ----------------------------------------------------*/
 
 /** 
  *@brief: Clear command, write spaces on all DDRAM addresses.
@@ -82,10 +80,11 @@
 #define LCD_REQ_CLEAR           2
 #define LCD_REQ_SET_POS         3
 /*-------------- state machine of Send Commands on LCD ---------------*/
-#define LCD_SEND_COMMAND_DATA_READY    1
+#define LCD_SEND_COMMAND_DATA_READY    0
 #define LCD_RESET_ENABLE               2
 #define LCD_SEND_COMMAND_DATA_4BIT     3
 #define LCD_RESET_ENABLE_4BIT          4
+#define LCD_SEND_COMMAND_DATA_IDLE     5
 /*--------------------- Required Time to Write Command on LCD -----------------------*/
 /**
  *@brief : 
@@ -98,309 +97,496 @@
 
 #define LCD_4BIT_SEND_DATA_COMND_REQ_TIME    4    /* 4 mSec required to Done Send Data in 4 bit mode            */
 
-
+/**
+ * @brief Macro Function to read a specific bit from a value.
+ * 
+ * This macro takes two arguments: COMMAND_DATA and BIT_POS. It shifts the COMMAND_DATA
+ * right by BIT_POS positions and then performs a bitwise AND operation with 0x01 to
+ * extract the desired bit value.
+ * 
+ * @param COMMAND_DATA The data value from which to read the bit.
+ * @param BIT_POS      The position of the bit to be read (0 to 8).
+ * @return             The value of the specified bit (0 or 1).
+ */
 #define READ_BIT(COMMAND_DATA,BIT_POS)      (((COMMAND_DATA)>>(BIT_POS))&(0x01))
-/********************************************************************************************************/
-/************************************************Types***************************************************/
-/********************************************************************************************************/
-
-
 
 /********************************************************************************************************/
-/*****************************************Global Variables***********************************************/
+/*                                        Global Variables                                              */
 /********************************************************************************************************/
+
+/**
+ * @brief : Variable represent Time in milliSeconds
+*/
 uint8_t TimeMS=0;
+
+#define LCD_STATE_INIT          1
+#define LCD_STATE_OPERATION     2
+#define LCD_STATE_OFF           3
+
+/**
+ * @brief : Variable represent the State of LCD : 
+ *          - LCD_STATE_INIT
+ *          - LCD_STATE_OPERATION
+ *          - LCD_STATE_OFF
+*/
 uint8_t LCD_State[_LCD_NUMBER];
+
 extern LCD_t LCDs[_LCD_NUMBER];
+/**
+ * @brief : variable for State machine of send command function
+*/
 uint8_t LCD_Command_DataState[_LCD_NUMBER]={LCD_SEND_COMMAND_DATA_READY};
+/**
+ * @brief : struct contains the user request data for send data or command to LCD.
+*/
 UserRequest_t userRequest[_LCD_NUMBER];
+/**
+ * @brief : variable for Current position of string charaters
+*/
 uint8_t currentPos=0;
 
 /********************************************************************************************************/
-/*****************************************Static Functions***********************************************/
+/*                                  Static Functions Prototypes                                         */
 /********************************************************************************************************/
-static void LCD_PinsInit(void)
+static void LCD_PinsInit(void);
+static void LCD_Send4Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand);
+static void LCD_Send8Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand);
+static void LCD_SendCommand(LCD_Num_t LCD_Name, uint8_t command);
+static void LCD_SendData(LCD_Num_t LCD_Name, uint8_t Data);
+static void LCD_InitStateMachine(void);
+static void LCD_WriteProcess(uint8_t LCD_Name);
+static void LCD_ClearProcess(uint8_t LCD_Name);
+static void LCD_SetPosProcess(uint8_t LCD_Name);
+
+/**
+ * @brief Task function for handling LCD operations, comes each 2 mSec.
+ * 
+ * This function is called periodically at a 2ms interval to handle LCD-related tasks.
+ * It increments the TimeMS variable to keep track of time and iterates through each LCD
+ * device to perform LCD initialization or handle user requests based on the current LCD state.
+ * If a user request is pending and the LCD is not busy, the function processes the request
+ * accordingly (write, clear, or set position).
+ */
+void LCD_Task(void)
 {
-    ErrorStatus_t ReturnError;
-    GPIO_CFG_t LCD_Pin;
-    LCD_Pin.GPIO_AF=GPIO_AF_DISABLED;
-    LCD_Pin.GPIO_Mode=GPIO_OUT_PP_NO_PUPD;
-    LCD_Pin.GPIO_Speed=GPIO_LOW_SPEED;
-    uint8_t LCD_pins=0;
-    for (uint16_t LCD_Num=0;LCD_Num<_LCD_NUMBER;LCD_Num++)
-    {
-        LCD_pins=(LCDs[LCD_Num].LCD_DataLength==EIGHT_BIT_MODE)?EIGHT_BIT_MODE:FOUR_BIT_MODE;
-        for(uint16_t Pin=0;Pin<LCD_pins+2;Pin++)
+    TimeMS += TICK_TIME;  /**< Increment the time variable by the tick time */
+
+    /* Iterate through each LCD device */
+    for (uint8_t LCD_Name = 0; LCD_Name < _LCD_NUMBER; LCD_Name++)
+    {   
+        /* Check if LCD is in initialization state */
+        if (LCD_State[LCD_Name] == LCD_STATE_INIT)
         {
-          LCD_Pin.GPIO_Port=LCDs[LCD_Num].LCD_Pins[Pin].port;
-          LCD_Pin.GPIO_Pin =LCDs[LCD_Num].LCD_Pins[Pin].pin;
-          ReturnError=GPIO_InitPin(&LCD_Pin);
+            LCD_InitStateMachine();  /**< Initialize LCD state machine */
         }
-    }
-}
-
-static void LCD_Send4Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand)
-{
-    ErrorStatus_t ReturnError;
-    uint8_t BitPos=0;
-
-    for (uint8_t DataBus = DB0; DataBus <= DB3; DataBus++)
-    {
-        if(READ_BIT(DataORcommand,BitPos++))
+        /* Check if LCD is in operation state */
+        else if (LCD_State[LCD_Name] == LCD_STATE_OPERATION)
         {
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port,LCDs[LCD_Name].LCD_Pins[DataBus].pin,GPIO_SET_PIN_HIGH);
-        }
-        else
-        {
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port,LCDs[LCD_Name].LCD_Pins[DataBus].pin,GPIO_SET_PIN_LOW);
-        }
-    }
-}
-
-static void LCD_Send8Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand)
-{
-    ErrorStatus_t ReturnError;
-    uint8_t BitPos=0;
-
-    for (uint8_t DataBus = DB0; DataBus <= DB7; DataBus++)
-    {
-        if(READ_BIT(DataORcommand,BitPos++))
-        {
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port,LCDs[LCD_Name].LCD_Pins[DataBus].pin,GPIO_SET_PIN_HIGH);
-        }
-        else
-        {
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port,LCDs[LCD_Name].LCD_Pins[DataBus].pin,GPIO_SET_PIN_LOW);
-        }
-    }
-}
-
-static void LCD_SendCommand(LCD_Num_t LCD_Name,uint8_t command)
-{
-    ErrorStatus_t ReturnError;
-    if(LCD_Name>=_LCD_NUMBER)
-    {
-        ReturnError=NOK;
-    }
-    else
-    {
-            /* 1. Reset Register Select Pin To LOW (Command mode) */
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[RegisterSelect].port,LCDs[LCD_Name].LCD_Pins[RegisterSelect].pin,GPIO_SET_PIN_LOW);
-            /* 2. I grounded the Read/Write Pin in Hardware, so Read/Write Pin is Always LOW */
-            /* 3. Send Command to LCD Data Bus pins but depend on 4-bits or 8-bits Mode.     */
-           
-           switch (LCD_Command_DataState[LCD_Name])
-           {
-            case LCD_SEND_COMMAND_DATA_READY:
-                if(LCDs[LCD_Name].LCD_DataLength==FOUR_BIT_MODE)
-                {
-                    LCD_Send4Bit(LCD_Name,command>>4);
-                }
-            else
-                {
-                    LCD_Send8Bit(LCD_Name,command);
-                }
-                /* 4. Set Enable Signal To HIGH */
-                ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_HIGH);
-                LCD_Command_DataState[LCD_Name]=LCD_RESET_ENABLE;
-                break;
-
-            case LCD_RESET_ENABLE:
-                /* 5. Reset Enable Signal To LOW */
-                ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_LOW);
-                if(LCDs->LCD_DataLength==FOUR_BIT_MODE)
-                {
-                LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_4BIT; 
-                }
-                else
-                {
-                    LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_READY; 
-                }
-                break;
-                case LCD_SEND_COMMAND_DATA_4BIT:
-                    LCD_Send4Bit(LCD_Name,command);
-                /* 6. Set Enable Signal To HIGH */
-                    ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_HIGH);
-                    LCD_Command_DataState[LCD_Name]=LCD_RESET_ENABLE_4BIT; 
-                    break;
-                    
-                case LCD_RESET_ENABLE_4BIT:
-                    ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_LOW);
-                    LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_READY;
-                    break;
-            default: /* No thing to do but for MISRA*/
-                break;
-           }
-    }
-}
-
-static void LCD_SendData(LCD_Num_t LCD_Name ,uint8_t Data)
-{
-    ErrorStatus_t ReturnError;
-    if(LCD_Name>=_LCD_NUMBER)
-    {
-        ReturnError=NOK;
-    }
-    else
-    {
-            /* 1. Set Register Select Pin To HIGH (Data mode) */
-            ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[RegisterSelect].port,LCDs[LCD_Name].LCD_Pins[RegisterSelect].pin,GPIO_SET_PIN_HIGH);
-            /* 2. I grounded the Read/Write Pin in Hardware */
-            /* 3. Send Charachter to LCD Data Bus pins */
-            switch (LCD_Command_DataState[LCD_Name])
+            /* Check if LCD is not busy and user request is pending */
+            if (userRequest[LCD_Name].LCD_State == LCD_BUSY)
             {
-                case LCD_SEND_COMMAND_DATA_READY:
-                    if(LCDs[LCD_Name].LCD_DataLength==FOUR_BIT_MODE)
-                    {
-                        LCD_Send4Bit(LCD_Name,Data>>4);
-                    }
-                else
-                    {
-                        LCD_Send8Bit(LCD_Name,Data);
-                    }
-                    /* 4. Set Enable Signal To HIGH */
-                    ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_HIGH);
-                    LCD_Command_DataState[LCD_Name]=LCD_RESET_ENABLE;
-                    break;
+                /* Process user request based on request type */
+                switch (userRequest[LCD_Name].RequestType)
+                {
+                    case LCD_REQ_WRITE:
+                        LCD_WriteProcess(LCD_Name);  /**< Process write request */
+                        break;
+                    case LCD_REQ_CLEAR:
+                        LCD_ClearProcess(LCD_Name);  /**< Process clear request */
+                        break;
+                    case LCD_REQ_SET_POS:
+                        LCD_SetPosProcess(LCD_Name);  /**< Process set position request */
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+}
 
-                case LCD_RESET_ENABLE:
-                    /* 5. Reset Enable Signal To LOW  (Send is DONE)*/
-                    ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_LOW);
-                    if(LCDs->LCD_DataLength==FOUR_BIT_MODE)
+
+
+/**
+ * @brief Initializes the LCD state machine to configure the LCD display.
+ * 
+ * This function manages the LCD initialization process by transitioning through different
+ * states to set up the LCD display. It calculates the time required for sending commands
+ * based on the maximum time required in 4-bit mode. The initialization process includes
+ * powering on the LCD, setting the functional mode (4-bit or 8-bit), configuring display
+ * settings, clearing the display, setting the entry mode, and completing the initialization.
+ * Once initialization is complete, it transitions the LCD state to operation mode.
+ */
+static void LCD_InitStateMachine(void)
+{
+    static uint8_t InitState = LCD_POWER_ON; /**< Current initialization state */
+
+    switch (InitState)
+    {
+        case LCD_POWER_ON:
+            /* Power on the LCD and wait for more than 30 ms after VDD rises to 4.5V */
+            if (TimeMS > 30)
+            {
+                LCD_PinsInit(); /**< Initialize LCD pins */
+                InitState = LCD_FUNCTIONAL_SET;
+                TimeMS = 0;
+            }
+            break;
+        
+        case LCD_FUNCTIONAL_SET:
+            /* Send Function Set Command for 4-bit or 8-bit mode */
+            for (uint8_t LCD_Name = 0; LCD_Name < _LCD_NUMBER; LCD_Name++)
+            {
+                if (LCDs[LCD_Name].LCD_DataLength == EIGHT_BIT_MODE)
+                {
+                    LCD_SendCommand(LCD_Name, LCD_8BIT_MODE); /**< Send 8-bit mode command */
+                }
+                else
+                {
+                    if (TimeMS <= LCD_4BIT_SEND_DATA_COMND_REQ_TIME)
                     {
-                        LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_4BIT; 
+                        /* Send function set command (Need Enhancement) */
+                        LCD_SendCommand(LCD_Name, 0x02);
                     }
                     else
                     {
-                        LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_READY; 
+                        LCD_SendCommand(LCD_Name, LCD_4BIT_MODE); /**< Send 4-bit mode command */
                     }
-                    break;
-                    case LCD_SEND_COMMAND_DATA_4BIT:
-                        LCD_Send4Bit(LCD_Name,Data);
-                    /* 6. Set Enable Signal To HIGH */
-                        ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_HIGH);
-                        LCD_Command_DataState[LCD_Name]=LCD_RESET_ENABLE_4BIT; 
-                        break;
-                        
-                    case LCD_RESET_ENABLE_4BIT:
-                        ReturnError=GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,LCDs[LCD_Name].LCD_Pins[Enable].pin,GPIO_SET_PIN_LOW);
-                        LCD_Command_DataState[LCD_Name]=LCD_SEND_COMMAND_DATA_READY;
-                        break;
-                default: /* No thing to do but for MISRA*/
-                    break;
-            }
-    }
-}
-
-static void LCD_InitStateMachine(void)
-{
-    static uint8_t InitState=LCD_POWER_ON;
-    /**
-     * @note : I calculate the Time required for Done Sending a command depend on the max Time requird (4-bit mode)
-    */
-    switch (InitState)
-    {
-    case LCD_POWER_ON:
-        /* 1- Power on the LCD and wait for more than 30 ms after VDD rises to 4.5V */
-        if(TimeMS>30)
-        {
-            LCD_PinsInit();
-            InitState=LCD_FUNCTIONAL_SET;
-            TimeMS=0;
-        }
-        break;
-    
-    case LCD_FUNCTIONAL_SET:
-        
-        /* 2- Send Function Set Command for 4-bit or 8-bit mode */					
-        for(uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
-        {
-            if(LCDs[LCD_Name].LCD_DataLength==EIGHT_BIT_MODE)
-            {
-                LCD_SendCommand(LCD_Name,LCD_8BIT_MODE);
-            }
-            else
-            {
-                if(TimeMS<=LCD_4BIT_SEND_DATA_COMND_REQ_TIME)
-                {
-                /* LCD Data sheet constrain */
-                LCD_SendCommand(LCD_Name,0x02); /* Need Enhancement */
                 }
-               else
-               {
-                    LCD_SendCommand(LCD_Name,LCD_4BIT_MODE);
-               }
             }
-        }
+            
+            if ((TimeMS > LCD_4BIT_FUN_SET_REQ_TIME) && (LCD_Command_DataState[0] == LCD_SEND_COMMAND_DATA_READY))
+            {
+                InitState = LCD_DISPLAY_SETTINGS;
+                TimeMS = 0;
+            }
+            break;
+
+        case LCD_DISPLAY_SETTINGS:
+            /* Send Display ON/OFF Control Command */
+            for (uint8_t LCD_Name = 0; LCD_Name < _LCD_NUMBER; LCD_Name++)
+            {
+                LCD_SendCommand(LCD_Name, LCD_DISPLAY_CURSOR_BLINK_ALL_ON);
+            }
+
+            if ((TimeMS > LCD_4BIT_SEND_DATA_COMND_REQ_TIME) && (LCD_Command_DataState[0] == LCD_SEND_COMMAND_DATA_READY))
+            {       
+                InitState = LCD_DISPLAY_CLEAR;
+                TimeMS = 0;
+            }
+            break;
+
+        case LCD_DISPLAY_CLEAR:
+            /* Send Clear Display Command */
+            for (uint8_t LCD_Name = 0; LCD_Name < _LCD_NUMBER; LCD_Name++)
+            {
+                LCD_SendCommand(LCD_Name, LCD_CLEAR_DISPLAY);
+            }
+            
+            if ((TimeMS > LCD_4BIT_SEND_DATA_COMND_REQ_TIME) && (LCD_Command_DataState[0] == LCD_SEND_COMMAND_DATA_READY))
+            {
+                InitState = LCD_ENTRY_MODE;
+                TimeMS = 0;
+            }    
+            break;
+
+        case LCD_ENTRY_MODE:
+            /* Send Entry Mode Command */
+            for (uint8_t LCD_Name = 0; LCD_Name < _LCD_NUMBER; LCD_Name++)
+            {
+                LCD_SendCommand(LCD_Name, LCD_ENTRY_MODE_INC_SHIFT_OFF);
+            }
+
+            if ((TimeMS > LCD_4BIT_SEND_DATA_COMND_REQ_TIME) && (LCD_Command_DataState[0] == LCD_SEND_COMMAND_DATA_READY))
+            {
+                InitState = LCD_END;
+                TimeMS = 0;
+            }    
+            break;
+
+        case LCD_END:
+            /* End of LCD Initialization */
+            for (uint8_t LCD_ID = 0; LCD_ID < _LCD_NUMBER; LCD_ID++) 
+            {
+                LCD_State[LCD_ID] = LCD_STATE_OPERATION; /**< Transition LCD state to operation */
+            }
+            break;
         
-        if((TimeMS>LCD_4BIT_FUN_SET_REQ_TIME)&&(LCD_Command_DataState[0]==LCD_SEND_COMMAND_DATA_READY))
-        {
-            InitState=LCD_DISPLAY_SETTINGS;
-            TimeMS=0;
-        }
-        break;
-
-    case LCD_DISPLAY_SETTINGS:
-        
-        /*3- Send Display ON/OFF Control Command */
-        for(uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
-        {
-            LCD_SendCommand(LCD_Name,LCD_DISPLAY_CURSOR_BLINK_ALL_ON);
-        }
-
-        if((TimeMS>LCD_4BIT_SEND_DATA_COMND_REQ_TIME)&&(LCD_Command_DataState[0]==LCD_SEND_COMMAND_DATA_READY))
-        {       
-            InitState=LCD_DISPLAY_CLEAR;
-            TimeMS=0;
-        }
-        break;
-
-    case LCD_DISPLAY_CLEAR:
-        /* 4- Send Clear Display Command */
-        for(uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
-        {
-            LCD_SendCommand(LCD_Name,LCD_CLEAR_DISPLAY);
-        }
-        if((TimeMS>LCD_4BIT_SEND_DATA_COMND_REQ_TIME)&&(LCD_Command_DataState[0]==LCD_SEND_COMMAND_DATA_READY))
-        {
-            InitState=LCD_ENTRY_MODE;
-            TimeMS=0;
-        }    
-        
-        break;
-
-     case LCD_ENTRY_MODE:
-         
-        /* 5- Send Clear Display Command */
-        for(uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
-        {
-            LCD_SendCommand(LCD_Name,LCD_ENTRY_MODE_INC_SHIFT_OFF);
-        }
-
-       if((TimeMS>LCD_4BIT_SEND_DATA_COMND_REQ_TIME)&&(LCD_Command_DataState[0]==LCD_SEND_COMMAND_DATA_READY))
-        {
-            InitState=LCD_END;
-            TimeMS=0;
-        }    
-        break;
-
-    case LCD_END:
-       
-        for (uint8_t LCD_ID = 0; LCD_ID < _LCD_NUMBER; LCD_ID++) 
-        {
-             /* 6- End of LCD Initialization */
-            LCD_State[LCD_ID]=LCD_STATE_OPERATION;
-           /* Initialize LCD_State to LCD_READY for each UserRequest_t structure*/
-            userRequest[LCD_ID].LCD_State = LCD_READY;
-        }
-        break;
-    
-    default: /* Nothing to do but for MISRA */
-        break;
+        default: /* Nothing to do but for MISRA */
+            break;
     }
 }
 
-/* ------------------------------ LCD Processes -------------------------------------*/
+
+
+
+
+
+/**
+ * @brief Initializes the GPIO pins used for controlling the LCD.
+ * 
+ * This function configures the GPIO pins associated with the LCD control signals
+ * such as Register Select (RS), Enable (EN), and data bus pins (DB0-DB7).
+ * The configuration settings for each pin are set according to the specified
+ * mode (8-bit or 4-bit) of operation for each LCD .
+ */
+static void LCD_PinsInit(void)
+{
+    ErrorStatus_t ReturnError;                  
+    GPIO_CFG_t LCD_Pin;                        /**< Structure to hold GPIO configuration              */
+    LCD_Pin.GPIO_AF = GPIO_AF_DISABLED;        /**< Configure GPIO Alternate Function as disabled      */
+    LCD_Pin.GPIO_Mode = GPIO_OUT_PP_NO_PUPD;   /**< Configure GPIO as output with no pull-up/pull-down */
+    LCD_Pin.GPIO_Speed = GPIO_LOW_SPEED;       /**< Configure GPIO speed as low speed                   */
+    uint8_t LCD_pins = 0;                      /**< Variable to hold the number of LCD data pins (8-bit or 4-bit mode)  */
+
+    /* Loop through each LCD device */
+    for (uint16_t LCD_Num = 0; LCD_Num < _LCD_NUMBER; LCD_Num++)
+    {
+        /* Determine the number of LCD data pins based on the mode of operation */
+        LCD_pins = (LCDs[LCD_Num].LCD_DataLength == EIGHT_BIT_MODE) ? EIGHT_BIT_MODE : FOUR_BIT_MODE;
+
+        /* Loop through each pin associated with the LCD device */
+        for (uint16_t Pin = 0; Pin < LCD_pins + 2; Pin++)
+        {
+            /* Configure the GPIO port and pin for the current LCD pin */
+            LCD_Pin.GPIO_Port = LCDs[LCD_Num].LCD_Pins[Pin].port;
+            LCD_Pin.GPIO_Pin = LCDs[LCD_Num].LCD_Pins[Pin].pin;
+
+            /* Initialize the GPIO pin with the specified configuration */
+            ReturnError = GPIO_InitPin(&LCD_Pin);
+        }
+    }
+}
+
+/**
+ * @brief Sends a 4-bit data/command to the specified LCD.
+ * 
+ * This function sends a 4-bit data/command to the specified LCD device.
+ * It iterates through the data bus pins (DB0-DB3) associated with the LCD
+ * and sets their values according to the provided data/command byte.
+ * 
+ * @param LCD_Name  the LCD ID.
+ * @param DataORcommand The 4-bit data/command to be sent to the LCD.
+ */
+static void LCD_Send4Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand)
+{
+    ErrorStatus_t ReturnError;     /**< Variable to hold the status of GPIO pin value setting */
+    uint8_t BitPos = 0;            /**< Variable to track the bit position in the data/command byte */
+
+    /* Iterate through the 4-bit data bus */
+    for (uint8_t DataBus = DB0; DataBus <= DB3; DataBus++)
+    {
+        /* Set the value of the current data bus pin based on the corresponding bit in the data/command byte */
+        if (READ_BIT(DataORcommand, BitPos++))
+        {
+            ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port, LCDs[LCD_Name].LCD_Pins[DataBus].pin, GPIO_SET_PIN_HIGH);
+        }
+        else
+        {
+            ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port, LCDs[LCD_Name].LCD_Pins[DataBus].pin, GPIO_SET_PIN_LOW);
+        }
+    }
+}
+
+/**
+ * @brief Sends an 8-bit data/command to the specified LCD.
+ * 
+ * This function sends an 8-bit data/command to the specified LCD device.
+ * It iterates through the data bus pins (DB0-DB7) associated with the LCD
+ * and sets their values according to the provided data/command byte.
+ * 
+ * @param LCD_Name The identifier of the target LCD device.
+ * @param DataORcommand The 8-bit data/command to be sent to the LCD.
+ */
+static void LCD_Send8Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand)
+{
+    ErrorStatus_t ReturnError;     /**< Variable to hold the status of GPIO pin value setting */
+    uint8_t BitPos = 0;            /**< Variable to track the bit position in the data/command byte */
+
+    /* Iterate through the 8-bit data bus */
+    for (uint8_t DataBus = DB0; DataBus <= DB7; DataBus++)
+    {
+        /* Set the value of the current data bus pin based on the corresponding bit in the data/command byte */
+        if (READ_BIT(DataORcommand, BitPos++))
+        {
+            ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port, LCDs[LCD_Name].LCD_Pins[DataBus].pin, GPIO_SET_PIN_HIGH);
+        }
+        else
+        {
+            ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[DataBus].port, LCDs[LCD_Name].LCD_Pins[DataBus].pin, GPIO_SET_PIN_LOW);
+        }
+    }
+}
+
+
+/**
+ * @brief Sends a command to the specified LCD device.
+ * 
+ * This function sends a command to the specified LCD device using the configured GPIO pins.
+ * It sets the Register Select pin to LOW (indicating command mode), sends the command  to
+ * the LCD data bus pins (either 4-bit or 8-bit mode), and toggles the Enable signal to initiate
+ * the command transmission. The function handles the necessary state transitions based on the
+ * current LCD command/data state.
+ * 
+ * @param LCD_Name The LCD ID.
+ * @param command  The command to be sent to the LCD.
+ */
+static void LCD_SendCommand(LCD_Num_t LCD_Name, uint8_t command)
+{
+    ErrorStatus_t ReturnError;     
+
+    /* Verify if the LCD identifier is within the valid range */
+    if (LCD_Name >= _LCD_NUMBER)
+    {
+        ReturnError = NOK;  /**< Return error if the LCD identifier is invalid */
+    }
+    else
+    {
+        /* Reset Register Select Pin to LOW (Command mode) */
+        ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[RegisterSelect].port,
+                                        LCDs[LCD_Name].LCD_Pins[RegisterSelect].pin, GPIO_SET_PIN_LOW);
+
+        /* Send command to LCD data bus pins depending on 4-bits or 8-bits mode */
+        switch (LCD_Command_DataState[LCD_Name])
+        {
+            case LCD_SEND_COMMAND_DATA_READY:
+                if (LCDs[LCD_Name].LCD_DataLength == FOUR_BIT_MODE)
+                {
+                    LCD_Send4Bit(LCD_Name, command >> 4);  /**< Send upper nibble in 4-bit mode */
+                }
+                else
+                {
+                    LCD_Send8Bit(LCD_Name, command);  /**< Send full byte in 8-bit mode */
+                }
+                /* Set Enable Signal to HIGH */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_HIGH);
+                LCD_Command_DataState[LCD_Name] = LCD_RESET_ENABLE;
+                break;
+
+            case LCD_RESET_ENABLE:
+                /* Reset Enable Signal to LOW */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_LOW);
+                /* Update LCD command state based on data length */
+                LCD_Command_DataState[LCD_Name] = (LCDs->LCD_DataLength == FOUR_BIT_MODE) ? 
+                                                    LCD_SEND_COMMAND_DATA_4BIT : LCD_SEND_COMMAND_DATA_READY;
+                break;
+
+            case LCD_SEND_COMMAND_DATA_4BIT:
+                LCD_Send4Bit(LCD_Name, command);  /**< Send lower nibble in 4-bit mode */
+                /* Set Enable Signal to HIGH */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_HIGH);
+                LCD_Command_DataState[LCD_Name] = LCD_RESET_ENABLE_4BIT;
+                break;
+
+            case LCD_RESET_ENABLE_4BIT:
+                /* Reset Enable Signal to LOW */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_LOW);
+                LCD_Command_DataState[LCD_Name] = LCD_SEND_COMMAND_DATA_IDLE;
+                break;
+
+            default:
+                /* No action needed but for MISRA */
+                break;
+        }
+    }
+}
+
+
+/**
+ * @brief Sends data to the specified LCD device.
+ * 
+ * This function sends data to the specified LCD device using the configured GPIO pins.
+ * It sets the Register Select pin to HIGH (indicating data mode), sends the data to
+ * the LCD data bus pins (either 4-bit or 8-bit mode), and toggles the Enable signal to
+ * initiate the data transmission. The function handles the necessary state transitions
+ * based on the current LCD data state.
+ * 
+ * @param LCD_Name The LCD ID.
+ * @param Data The data byte to be sent to the LCD.
+ */
+static void LCD_SendData(LCD_Num_t LCD_Name, uint8_t Data)
+{
+    ErrorStatus_t ReturnError;     
+
+    /* Verify if the LCD ID is within the valid range */
+    if (LCD_Name >= _LCD_NUMBER)
+    {
+        ReturnError = NOK;  /**< Return error if the LCD identifier is invalid */
+    }
+    else
+    {
+        /* Set Register Select Pin to HIGH (Data mode) */
+        ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[RegisterSelect].port,
+                                        LCDs[LCD_Name].LCD_Pins[RegisterSelect].pin, GPIO_SET_PIN_HIGH);
+
+        /* Send data to LCD data bus pins depending on 4-bits or 8-bits mode */
+        switch (LCD_Command_DataState[LCD_Name])
+        {
+            case LCD_SEND_COMMAND_DATA_READY:
+                if (LCDs[LCD_Name].LCD_DataLength == FOUR_BIT_MODE)
+                {
+                    LCD_Send4Bit(LCD_Name, Data >> 4);  /**< Send upper nibble in 4-bit mode */
+                }
+                else
+                {
+                    LCD_Send8Bit(LCD_Name, Data);  /**< Send full byte in 8-bit mode */
+                }
+                /* Set Enable Signal to HIGH */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_HIGH);
+                LCD_Command_DataState[LCD_Name] = LCD_RESET_ENABLE;
+                break;
+
+            case LCD_RESET_ENABLE:
+                /* Reset Enable Signal to LOW */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_LOW);
+                /* Update LCD command/data state based on data length */
+                LCD_Command_DataState[LCD_Name] = (LCDs->LCD_DataLength == FOUR_BIT_MODE) ? 
+                                                    LCD_SEND_COMMAND_DATA_4BIT : LCD_SEND_COMMAND_DATA_READY;
+                break;
+
+            case LCD_SEND_COMMAND_DATA_4BIT:
+                LCD_Send4Bit(LCD_Name, Data);  /**< Send lower nibble in 4-bit mode */
+                /* Set Enable Signal to HIGH */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_HIGH);
+                LCD_Command_DataState[LCD_Name] = LCD_RESET_ENABLE_4BIT;
+                break;
+
+            case LCD_RESET_ENABLE_4BIT:
+                /* Reset Enable Signal to LOW */
+                ReturnError = GPIO_SetPinValue(LCDs[LCD_Name].LCD_Pins[Enable].port,
+                                                LCDs[LCD_Name].LCD_Pins[Enable].pin, GPIO_SET_PIN_LOW);
+                LCD_Command_DataState[LCD_Name] = LCD_SEND_COMMAND_DATA_READY;
+                break;
+
+            default:
+                /* No action needed but for MISRA */
+                break;
+        }
+    }
+}
+
+
+/* ----------------------------------------------------------------------------------*/
+/*                                  LCD Processes                                    */
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * @brief Processes the write request for the specified LCD.
+ * 
+ * This function processes the write request for the specified LCD by sending data characters
+ * one by one to the LCD display. It retrieves the string and its length from the user request
+ * structure. It sends each character to the LCD using the LCD_SendData function and increments
+ * the current position index. Once all characters are sent, it sets the LCD state to ready.
+ * 
+ * @param LCD_Name The ID of the LCD for which the write request is being processed.
+ */
 static void LCD_WriteProcess(uint8_t LCD_Name)
 {
     uint8_t length=userRequest[LCD_Name].StringLength;
@@ -418,161 +604,216 @@ static void LCD_WriteProcess(uint8_t LCD_Name)
     }
 }
 
+/**
+ * @brief Processes the clear request for the specified LCD.
+ * 
+ * This function processes the clear request for the specified LCD by sending the clear display
+ * command to the LCD. It checks if the command data state is ready before setting the LCD state
+ * to ready.
+ * 
+ * @param LCD_Name The index of the LCD for which the clear request is being processed.
+ */
+
 static void LCD_ClearProcess(uint8_t LCD_Name)
 {
-    LCD_SendCommand(LCD_Name,LCD_CLEAR_DISPLAY);
-     if(LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)
+    /* Send clear display command to the LCD */
+    LCD_SendCommand(LCD_Name, LCD_CLEAR_DISPLAY);
+
+    /* If command data state is ready, set LCD state to ready */
+    if (LCD_Command_DataState[LCD_Name] == LCD_SEND_COMMAND_DATA_READY)
     {
-        userRequest[LCD_Name].LCD_State=LCD_READY;
+        userRequest[LCD_Name].LCD_State = LCD_READY; /**< Set LCD state to ready */
     }
 }
+
+/**
+ * @brief Processes the set position request for the specified LCD.
+ * 
+ * This function processes the set position request for the specified LCD by calculating
+ * the cursor position based on the given row and column indices. It determines the start
+ * address of the DDRAM based on the row index. Then it calculates the cursor position
+ * by adding the column index to the start address. Once the cursor position is determined,
+ * it sends the command to set the cursor position to the LCD and sets the LCD state to ready.
+ * 
+ * @param LCD_Name The index of the LCD for which the set position request is being processed.
+ */
 
 static void LCD_SetPosProcess(uint8_t LCD_Name)
 {
-    uint8_t row=userRequest[LCD_Name].PosX;
-    uint8_t colm=userRequest[LCD_Name].PosY;
-    uint8_t  CursorPos=0;
-    /* 
-     * @note: start Address of DDRAM is  0x80.
-     * The first location in DDRAM is (0x80 +0x00) > First Location in the First Row at LCD.
-     * The second location is (0x80 +0x01) > Second Location in the First Row at LCD, and so on.
-     * Row 0 , the first row 
-     */
-    if(row==0)
+    uint8_t row = userRequest[LCD_Name].PosX; /**< Row index for the cursor position */
+    uint8_t colm = userRequest[LCD_Name].PosY; /**< Column index for the cursor position */
+    uint8_t CursorPos = 0; /**< Cursor position */
+
+    /* Calculate cursor position based on row and column indices */
+    if (row == 0)
     {
-        CursorPos=LCD_DDRAM_START_ADDRESS+colm;
+        /* First row */
+        CursorPos = LCD_DDRAM_START_ADDRESS + colm;
     }
-    /* 
-     * @note: The Second Line at LCD start from (0x80 + 0x40) because each line can stores 40 characters.
-     * The First Location in the Second Row at LCD is 0xC0 (0x80+0x40).
-     * The Second Location in the Second Row at LCD is (0xC0 +0x01), and so on.
-     * Row 1 , the second row */
     else
     {
-        CursorPos=LCD_DDRAM_START_ADDRESS+0x40+colm;
+        /* Second row */
+        CursorPos = LCD_DDRAM_START_ADDRESS + 0x40 + colm;
     }
 
-    LCD_SendCommand(LCD_Name,CursorPos);
-     if(LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)
+    /* Send command to set cursor position to the LCD */
+    LCD_SendCommand(LCD_Name, CursorPos);
+
+    /* If command data state is ready, set LCD state to ready */
+    if (LCD_Command_DataState[LCD_Name] == LCD_SEND_COMMAND_DATA_READY)
     {
-        userRequest[LCD_Name].LCD_State=LCD_READY;
+        userRequest[LCD_Name].LCD_State = LCD_READY; /**< Set LCD state to ready */
     }
-
 }
+
+
 /********************************************************************************************************/
-/*********************************************APIs Implementation****************************************/
+/*                                      APIs Implementation                                             */
 /********************************************************************************************************/
 
+/**
+ * @brief Initializes the LCD with the specified name.
+ * 
+ * This function initializes the LCD with the specified name by setting its state to initialization.
+ * 
+ * @param LCD_Name The index of the LCD to be initialized.
+ */
 void LCD_Init(uint8_t LCD_Name)
 {
-    LCD_State[LCD_Name]=LCD_STATE_INIT;
+    LCD_State[LCD_Name] = LCD_STATE_INIT; /**< Set LCD state to initialization */
 }
 
+/**
+ * @brief Gets the state of the specified LCD.
+ * 
+ * This function retrieves the state of the specified LCD. If the LCD is ready and in operation state,
+ * it returns LCD_READY, otherwise, it returns LCD_BUSY.
+ * 
+ * @param LCD_Name The LCD ID .
+ * @return The state of the LCD (LCD_READY if ready and in operation state, LCD_BUSY otherwise).
+ */
 uint8_t LCD_GetState(uint8_t LCD_Name)
 {
-    uint8_t State=0;
-    State=((userRequest[LCD_Name].LCD_State==LCD_READY)&&(LCD_State[LCD_Name]==LCD_STATE_OPERATION))?LCD_READY:LCD_BUSY;
-    
-    return State;
+    uint8_t State = 0; 
+
+    /* Determine the state of the LCD */
+    State = ((userRequest[LCD_Name].LCD_State == LCD_READY) && (LCD_State[LCD_Name] == LCD_STATE_OPERATION)) ? LCD_READY : LCD_BUSY;
+
+    return State; /**< Return the state of the LCD */
 }
 
+/**
+ * @brief Clears the LCD asynchronously for the specified LCD.
+ * 
+ * This function initiates an asynchronous request to clear the screen for the specified LCD.
+ * It sets the LCD state to busy, sets the request type to clear, and assigns the callback function.
+ * 
+ * @param LCD_Name The ID of the LCD for which the screen is to be cleared.
+ * @param CB The callback function to be executed after the request is completed.
+ */
 void LCD_ClearScreenAsynch(uint8_t LCD_Name, ReqCallBack_t CB)
-{   //check state
-    userRequest[LCD_Name].LCD_State=LCD_BUSY;
-    userRequest[LCD_Name].RequestType=LCD_REQ_CLEAR; 
-    userRequest[LCD_Name].CallBack=CB;
+{
+    if (userRequest[LCD_Name].LCD_State == LCD_READY)
+    {
+        userRequest[LCD_Name].LCD_State = LCD_BUSY;        /**< Set LCD state to busy        */
+        userRequest[LCD_Name].RequestType = LCD_REQ_CLEAR; /**< Set request type to clear    */
+        userRequest[LCD_Name].CallBack = CB;               /**< Assign the callback function */
+    }
+    
 }
 
-ErrorStatus_t LCD_WriteStringAsynch(uint8_t LCD_Name, char_t* string,uint8_t length,ReqCallBack_t CB)
+/**
+ * @brief Writes a string to the LCD asynchronously.
+ * 
+ * This function initiates an asynchronous request to write a string to the LCD.
+ * It checks for null pointer and string length constraints, and if the LCD is ready and in operation state,
+ * it sets the string, string length, request type, LCD state to busy, and assigns the callback function.
+ * 
+ * @param LCD_Name The ID of the LCD to which the string is to be written.
+ * @param string The string to be written to the LCD.
+ * @param length The length of the string.
+ * @param CB The callback function to be executed after the request is completed.
+ * @return Error status indicating success or failure of the operation.
+ */
+ErrorStatus_t LCD_WriteStringAsynch(uint8_t LCD_Name, char_t* string, uint8_t length, ReqCallBack_t CB)
 {
-    ErrorStatus_t ReturnError=NOK;
-    if(string==NULL)
-    {
-        ReturnError=NULL_POINTER;
-    }
-    /* I use 16x2 LCD, so LCD The max length of String is 16 bytes */
-    else if(length>16)
-    {
-        ReturnError=WRONG_PARAMETER;
-    }
-    else if((LCD_State[LCD_Name]==LCD_STATE_OPERATION)&&(userRequest[LCD_Name].LCD_State==LCD_READY))
-    {
-        userRequest[LCD_Name].String=string;
-        userRequest[LCD_Name].StringLength=length;
-        userRequest[LCD_Name].RequestType=LCD_REQ_WRITE;
-        userRequest[LCD_Name].LCD_State=LCD_BUSY;
-        userRequest[LCD_Name].CallBack=CB;
+    ErrorStatus_t ReturnError = NOK; 
     
-        ReturnError=OK;
+    /* Check for null pointer */
+    if (string == NULL)
+    {
+        ReturnError = NULL_POINTER;
+    }
+    /* Check string length */
+    else if (length > 16)
+    {
+        ReturnError = WRONG_PARAMETER;
+    }
+    /* Check LCD state and user request state */
+    else if (userRequest[LCD_Name].LCD_State == LCD_READY)
+    {
+        /* Set string, string length, request type, LCD state to busy, and assign the callback function */
+        userRequest[LCD_Name].String = string;
+        userRequest[LCD_Name].StringLength = length;
+        userRequest[LCD_Name].RequestType = LCD_REQ_WRITE;
+        userRequest[LCD_Name].LCD_State = LCD_BUSY;
+        userRequest[LCD_Name].CallBack = CB;
+        
+        ReturnError = OK; /**< Set return error to OK */
     }
     else
     {
-        /* Do Nothing but for MISRA */
+        /* Do nothing (MISRA compliance) */
     }
-    return ReturnError;
+    
+    return ReturnError; /**< Return the error status */
 }
 
-ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY,ReqCallBack_t CB)
+/**
+ * @brief Sets the cursor position asynchronously for the specified LCD.
+ * 
+ * This function initiates an asynchronous request to set the cursor position for the specified LCD.
+ * It checks the validity of the position coordinates (PosX and PosY) and the LCD state.
+ * If the position coordinates exceed the maximum allowed values or if the LCD is not ready,
+ * it returns a WRONG_PARAMETER error status. Otherwise, it sets the request type to set position,
+ * sets the LCD state to busy, assigns the position coordinates, assigns the callback function,
+ * and returns an OK status.
+ * 
+ * @param LCD_Name The ID of the LCD for which the cursor position is to be set.
+ * @param PosX The X position of the cursor (row) (0 or 1 for a 16x2 LCD).
+ * @param PosY The Y position of the cursor (column) (0 to 15 for a 16x2 LCD).
+ * @param CB The callback function to be executed after the request is completed.
+ * @return Error status indicating success or failure of the operation.
+ */
+ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX, uint8_t PosY, ReqCallBack_t CB)
 {
-    
-    ErrorStatus_t ReturnError=NOK;
-    /* I use 16x2 LCD, so LCD The max Xposition is 15 */
-    if(PosX>1)
-    {
-        ReturnError=WRONG_PARAMETER;
-    }
-    /* I use 16x2 LCD, so LCD The max Yposition is 1 */
-    else if(PosY>15)
-    {
-        ReturnError=WRONG_PARAMETER;
-    }
-    else if((LCD_State[LCD_Name]==LCD_STATE_OPERATION)&&(userRequest[LCD_Name].LCD_State==LCD_READY))
-    {
-        userRequest[LCD_Name].RequestType=LCD_REQ_SET_POS;
-        userRequest[LCD_Name].LCD_State=LCD_BUSY;
-        userRequest[LCD_Name].PosX=PosX;
-        userRequest[LCD_Name].PosY=PosY;
-        userRequest[LCD_Name].CallBack=CB;
-        ReturnError=OK;
+    ErrorStatus_t ReturnError = NOK; /**< Error status */
 
+    /* Check for maximum X position */
+    if (PosX > 1)
+    {
+        ReturnError = WRONG_PARAMETER;
+    }
+    /* Check for maximum Y position */
+    else if (PosY > 15)
+    {
+        ReturnError = WRONG_PARAMETER;
+    }
+    /* Check if LCD is ready */
+    else if (userRequest[LCD_Name].LCD_State == LCD_READY)
+    {
+        /* Set request type, LCD state, position coordinates, callback function */
+        userRequest[LCD_Name].RequestType = LCD_REQ_SET_POS;
+        userRequest[LCD_Name].LCD_State = LCD_BUSY;
+        userRequest[LCD_Name].PosX = PosX;
+        userRequest[LCD_Name].PosY = PosY;
+        userRequest[LCD_Name].CallBack = CB;
+        ReturnError = OK; 
     }
     else
     {
-        /* Do Nothing but for MISRA */
+        /* Do nothing (MISRA Rule) */
     }
 
-    return ReturnError;
-}
-
-/* Task comes each 2 mSec*/
-void LCD_Task(void)
-{
-    TimeMS+=TICK_TIME;
-    for (uint8_t LCD_Name=0;LCD_Name<_LCD_NUMBER;LCD_Name++)
-    {   
-        if(LCD_State[LCD_Name]==LCD_STATE_INIT)
-        {
-            LCD_InitStateMachine();
-        }
-        else if(LCD_State[LCD_Name]==LCD_STATE_OPERATION)
-        {
-            if(userRequest[LCD_Name].LCD_State==LCD_BUSY)
-            {
-                switch (userRequest[LCD_Name].RequestType)
-                {
-                case LCD_REQ_WRITE:
-                    LCD_WriteProcess(LCD_Name);
-                    break;
-                case LCD_REQ_CLEAR:
-                    LCD_ClearProcess(LCD_Name);
-                    break;
-                case LCD_REQ_SET_POS:
-                    LCD_SetPosProcess(LCD_Name);
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-    }
+    return ReturnError; 
 }
