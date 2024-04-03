@@ -343,8 +343,9 @@ static void LCD_PinsInit(void)
     for (uint16_t LCD_Num = 0; LCD_Num < _LCD_NUMBER; LCD_Num++)
     {
         /* Determine the number of LCD data pins based on the mode of operation */
+        /* Remove comment after test please*/
         LCD_pins = (LCDs[LCD_Num].LCD_DataLength == EIGHT_BIT_MODE) ? EIGHT_BIT_MODE : FOUR_BIT_MODE;
-
+        
         /* Loop through each pin associated with the LCD device */
         for (uint16_t Pin = 0; Pin < LCD_pins + 2; Pin++)
         {
@@ -374,7 +375,7 @@ static void LCD_Send4Bit(LCD_Num_t LCD_Name, uint8_t DataORcommand)
     uint8_t BitPos = 0;            /**< Variable to track the bit position in the data/command byte */
 
     /* Iterate through the 4-bit data bus */
-    for (uint8_t DataBus = DB0; DataBus <= DB3; DataBus++)
+    for (uint8_t DataBus = DB4; DataBus <= DB7; DataBus++)
     {
         /* Set the value of the current data bus pin based on the corresponding bit in the data/command byte */
         if (READ_BIT(DataORcommand, BitPos++))
