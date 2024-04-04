@@ -38,8 +38,8 @@ GPIO_CFG_t UART_TX_PIN=
 {
     .GPIO_AF   = GPIO_AF07,
     .GPIO_Mode = GPIO_AF_PP_NO_PUPD,
-    .GPIO_Pin  = GPIO_PIN9,
-    .GPIO_Port = GPIO_PORTA,
+    .GPIO_Pin  = GPIO_PIN6,
+    .GPIO_Port = GPIO_PORTB,
     .GPIO_Speed= GPIO_HIGH_SPEED   
 };
 
@@ -48,8 +48,8 @@ GPIO_CFG_t UART_RX_PIN=
 {
     .GPIO_AF   = GPIO_AF07,
     .GPIO_Mode = GPIO_AF_PP_NO_PUPD,
-    .GPIO_Pin  = GPIO_PIN10,
-    .GPIO_Port = GPIO_PORTA,
+    .GPIO_Pin  = GPIO_PIN7,
+    .GPIO_Port = GPIO_PORTB,
     .GPIO_Speed= GPIO_HIGH_SPEED   
 };
 
@@ -77,6 +77,7 @@ int main(int argc, char* argv[])
 {
 	ErrorStatus_t ReturnError;
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOA);
+    ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOB);
     ReturnError=HAL_PeripheralEnableCLK(HAL_USART1);
     ReturnError=GPIO_InitPin(&UART_TX_PIN);
     ReturnError=GPIO_InitPin(&UART_RX_PIN);
