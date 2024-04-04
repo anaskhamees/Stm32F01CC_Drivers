@@ -9,8 +9,9 @@
 #define APP6_SWITCH_DEBOUNCING  6
 #define APP7_TRAFFIC_LIGHT      7
 #define APP8_LCD_SCHED_APP      8
+#define APP9_UART_TEST          9
 
-#define APP      APP8_LCD_SCHED_APP
+#define APP      APP9_UART_TEST
 
 
 

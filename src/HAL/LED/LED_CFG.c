@@ -37,11 +37,11 @@ LedCFG_t LEDs[_Led_Number]=
   [RED_LED]=
   {
     .Led_Port=GPIO_PORTA,
-    .Led_Pin=GPIO_PIN1,
+    .Led_Pin=GPIO_PIN0,
     .Led_Connection=LED_FORWARD,
     .Led_InitialState=LED_OFF
   },
-  [GREEN_LED]=
+  /*[GREEN_LED]=
   {
     .Led_Port=GPIO_PORTA,
     .Led_Pin=GPIO_PIN2,
@@ -54,6 +54,6 @@ LedCFG_t LEDs[_Led_Number]=
     .Led_Pin=GPIO_PIN3,
     .Led_Connection=LED_FORWARD,
     .Led_InitialState=LED_OFF
-  }
+  }*/
     
 };

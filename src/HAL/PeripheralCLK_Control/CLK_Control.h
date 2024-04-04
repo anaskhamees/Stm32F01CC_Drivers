@@ -17,6 +17,9 @@
 #define HAL_GPIOD       (3UL) 
 #define HAL_GPIOE       (4UL) 
 #define HAL_GPIOH       (5UL) 
+#define HAL_USART1      (6UL)
+#define HAL_USART2      (7UL)
+#define HAL_USART6      (8UL)
 
 /********************************************************************************************************/
 /************************************************Types***************************************************/
@@ -30,7 +33,7 @@
 
 /**
   * @brief  Enables the peripheral clock for a specific GPIO port.
-  * @param  Port: GPIO port to enable its clock.
+  * @param  Bus: GPIO port to enable its clock.
   *          This parameter can be one of the following values:
   *            - HAL_GPIOA: GPIO port A
   *            - HAL_GPIOB: GPIO port B
@@ -44,7 +47,7 @@
   *            - NOK: Operation failed
   *            - WRONG_PARAMETER: Invalid GPIO port specified
   */
-ErrorStatus_t HAL_PeripheralEnableCLK(uint32_t Port);
+ErrorStatus_t HAL_PeripheralEnableCLK(uint32_t Bus);
 
 
 

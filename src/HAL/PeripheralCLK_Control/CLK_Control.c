@@ -25,16 +25,16 @@
   *            - NOK: Operation failed
   *            - WRONG_PARAMETER: Invalid GPIO port specified
   */
-ErrorStatus_t HAL_PeripheralEnableCLK(uint32_t Port)
+ErrorStatus_t HAL_PeripheralEnableCLK(uint32_t Bus)
 {
     ErrorStatus_t RetError;
-    if((Port >HAL_GPIOH)||(Port<HAL_GPIOA))  
+    if(Bus >HAL_USART6)  
     {
         RetError=WRONG_PARAMETER;
     }
     else
     {
-        switch (Port)
+        switch (Bus)
         {
         case HAL_GPIOA:
 	        RetError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOAEN,RCC_PERIPHERAL_ON);
@@ -53,6 +53,15 @@ ErrorStatus_t HAL_PeripheralEnableCLK(uint32_t Port)
             break;
          case HAL_GPIOH:
 	        RetError=RCC_ControlPeripheralCLK(RCC_AHB1_BUS_REGISTER,RCC_AHB1ENR_GPIOHEN,RCC_PERIPHERAL_ON);
+            break;
+         case HAL_USART1:
+	        RetError=RCC_ControlPeripheralCLK(RCC_APB2_BUS_REGISTER,RCC_APB2ENR_USART1EN,RCC_PERIPHERAL_ON);
+            break; 
+        case HAL_USART2:
+	        RetError=RCC_ControlPeripheralCLK(RCC_APB1_BUS_REGISTER,RCC_APB1ENR_USART2EN,RCC_PERIPHERAL_ON);
+            break; 
+         case HAL_USART6:
+	        RetError=RCC_ControlPeripheralCLK(RCC_APB2_BUS_REGISTER,RCC_APB2ENR_USART6EN,RCC_PERIPHERAL_ON);
             break;
         default:
             RetError=NOK;

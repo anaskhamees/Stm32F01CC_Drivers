@@ -5,8 +5,6 @@
 #include "Std_Lib/Std_Libraries.h"
 #include "USART.h"
 #include "USART_Validation.h"
-
-
 /***********************************************************************************/
 /*										Defines									   */
 /***********************************************************************************/
@@ -20,7 +18,6 @@
 /***********************************************************************************/
 /*										Types									   */
 /***********************************************************************************/
-
 typedef struct 
 {
     uint32_t SR  ;
@@ -41,15 +38,14 @@ typedef struct
     CallBack_t CB    ;
 }Buffer_t;
 
-
-
 /************************************************************************************/
 /*									Variables									    */
 /************************************************************************************/
+
 volatile USART_Registers_t*const USARTs[_USART_CHANNELS_NUM] = { ((volatile USART_Registers_t*const)0x40011000),
-                                               ((volatile USART_Registers_t*const)0x40004400),
-                                               ((volatile USART_Registers_t*const)0x40011400)
-                                             };
+                                                                 ((volatile USART_Registers_t*const)0x40004400),
+                                                                 ((volatile USART_Registers_t*const)0x40011400)
+                                                               };
 
 const float32_t ClockFreq[_USART_CHANNELS_NUM]= {USART1_FREQ,USART2_FREQ,USART6_FREQ};
 Buffer_t TxBuffer[_USART_CHANNELS_NUM]={{.ReqState=USART_READY},{.ReqState=USART_READY},{.ReqState=USART_READY}};
@@ -305,6 +301,7 @@ ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
     }
     return ReturnError;
 }
+
 ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
 {
     ErrorStatus_t ReturnError;
@@ -349,19 +346,20 @@ ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
 
 void USART1_IRQHandler(void)
 {
-    uint8_t RXNE_BitValue=(((USARTs[USART1]->SR)>>RXNE)&(1UL));
-    uint8_t TXE_BitValue =(((USARTs[USART1]->SR)>>TXE)&(1UL));
+    static uint32_t counter=0;
+    volatile uint8_t RXNE_BitValue=(((USARTs[USART1]->SR)>>RXNE)&(1UL));
+    volatile uint8_t TXE_BitValue =(((USARTs[USART1]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
     if(TXE_BitValue)
     {
         /* If There is data to be sent */
-        if(RxBuffer[USART1].position<RxBuffer[USART1].Length)
+        if(TxBuffer[USART1].position<TxBuffer[USART1].Length)
         {
             /* Write the next byte in Data register to be send */
-            USARTs[USART1]->DR=RxBuffer[USART1].data[RxBuffer[USART1].position];
+            USARTs[USART1]->DR=TxBuffer[USART1].data[TxBuffer[USART1].position];
             /* Update the Byte Index in the Buffer             */
-            RxBuffer[USART1].position++;
+            TxBuffer[USART1].position++;
         }
         else
         {
@@ -371,7 +369,7 @@ void USART1_IRQHandler(void)
             /* Disable Transmit Complete TCE Interrupt              */
             USARTs[USART1]->CR1 &=~(1<<TCIE);
             /* Set the Request state to be ready to receive requests*/
-            TxBuffer[USART1].ReqState==USART_READY;
+            TxBuffer[USART1].ReqState=USART_READY;
             /* Check Call Back Function                             */
             if(TxBuffer[USART1].CB)
             {
@@ -389,7 +387,7 @@ void USART1_IRQHandler(void)
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART1].position<RxBuffer[USART1].Length)
         {
-            /*RXNE Flag is Cleared Automatic when read dara register*/
+            /* RXNE Flag is Cleared Automatic when read data register */
             RxBuffer[USART1].data[RxBuffer[USART1].position]=USARTs[USART1]->DR;
             RxBuffer[USART1].position++;
             if (RxBuffer[USART1].position==RxBuffer[USART1].Length)
@@ -398,7 +396,7 @@ void USART1_IRQHandler(void)
                 /* Disable RXNE Interrupt to prevent triggering useless interrupt */
                 USARTs[USART1]->CR1 &=~(1<<RXNEIE)  ;
                 /* Set the Request state to be ready to receive requests          */
-                RxBuffer[USART1].ReqState==USART_READY;
+                RxBuffer[USART1].ReqState=USART_READY;
                 /* Check Call Back  */
                 if(RxBuffer[USART1].CB)
                 {
@@ -424,6 +422,7 @@ void USART1_IRQHandler(void)
     {
         /* Nothing to do but for MISRA */
     }
+    counter++;
 }
 
 
@@ -436,12 +435,12 @@ void USART2_IRQHandler(void)
     if(TXE_BitValue)
     {
         /* If There is data to be sent */
-        if(RxBuffer[USART2].position<RxBuffer[USART2].Length)
+        if(TxBuffer[USART2].position<TxBuffer[USART2].Length)
         {
             /* Write the next byte in Data register to be send */
-            USARTs[USART2]->DR=RxBuffer[USART2].data[RxBuffer[USART2].position];
+            USARTs[USART2]->DR=TxBuffer[USART2].data[TxBuffer[USART2].position];
             /* Update the Byte Index in the Buffer             */
-            RxBuffer[USART2].position++;
+            TxBuffer[USART2].position++;
         }
         else
         {
@@ -451,7 +450,7 @@ void USART2_IRQHandler(void)
             /* Disable Transmit Complete TCE Interrupt              */
             USARTs[USART2]->CR1 &=~(1<<TCIE);
             /* Set the Request state to be ready to receive requests*/
-            TxBuffer[USART2].ReqState==USART_READY;
+            TxBuffer[USART2].ReqState=USART_READY;
             /* Check Call Back Function                             */
             if(TxBuffer[USART2].CB)
             {
@@ -469,7 +468,7 @@ void USART2_IRQHandler(void)
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART2].position<RxBuffer[USART2].Length)
         {
-            /*RXNE Flag is Cleared Automatic when read dara register*/
+            /*RXNE Flag is Cleared Automatic when read data register*/
             RxBuffer[USART2].data[RxBuffer[USART2].position]=USARTs[USART2]->DR;
             RxBuffer[USART2].position++;
             if (RxBuffer[USART2].position==RxBuffer[USART2].Length)
@@ -478,7 +477,7 @@ void USART2_IRQHandler(void)
                 /* Disable RXNE Interrupt to prevent triggering useless interrupt */
                 USARTs[USART2]->CR1 &=~(1<<RXNEIE)  ;
                 /* Set the Request state to be ready to receive requests          */
-                RxBuffer[USART2].ReqState==USART_READY;
+                RxBuffer[USART2].ReqState=USART_READY;
                 /* Check Call Back  */
                 if(RxBuffer[USART2].CB)
                 {
@@ -515,12 +514,12 @@ void USART6_IRQHandler(void)
     if(TXE_BitValue)
     {
         /* If There is data to be sent */
-        if(RxBuffer[USART6].position<RxBuffer[USART6].Length)
+        if(TxBuffer[USART6].position<TxBuffer[USART6].Length)
         {
             /* Write the next byte in Data register to be send */
-            USARTs[USART6]->DR=RxBuffer[USART6].data[RxBuffer[USART6].position];
+            USARTs[USART6]->DR=TxBuffer[USART6].data[TxBuffer[USART6].position];
             /* Update the Byte Index in the Buffer             */
-            RxBuffer[USART6].position++;
+            TxBuffer[USART6].position++;
         }
         else
         {
@@ -530,7 +529,7 @@ void USART6_IRQHandler(void)
             /* Disable Transmit Complete TCE Interrupt              */
             USARTs[USART6]->CR1 &=~(1<<TCIE);
             /* Set the Request state to be ready to receive requests*/
-            TxBuffer[USART6].ReqState==USART_READY;
+            TxBuffer[USART6].ReqState=USART_READY;
             /* Check Call Back Function                             */
             if(TxBuffer[USART6].CB)
             {
@@ -557,7 +556,7 @@ void USART6_IRQHandler(void)
                 /* Disable RXNE Interrupt to prevent triggering useless interrupt */
                 USARTs[USART6]->CR1 &=~(1<<RXNEIE)  ;
                 /* Set the Request state to be ready to receive requests          */
-                RxBuffer[USART6].ReqState==USART_READY;
+                RxBuffer[USART6].ReqState=USART_READY;
                 /* Check Call Back  */
                 if(RxBuffer[USART6].CB)
                 {
