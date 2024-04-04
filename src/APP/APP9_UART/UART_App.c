@@ -82,13 +82,20 @@ int main(int argc, char* argv[])
     ReturnError=GPIO_InitPin(&UART_TX_PIN);
     ReturnError=GPIO_InitPin(&UART_RX_PIN);
     ReturnError=NVIC_EnableIRQ(NVIC_USART1_INTERRUPT);
-    ReturnError=ReturnError=LED_Init();
+    ReturnError=LED_Init();
     ReturnError=USART_Init(&UART1_CFG);
     //ReturnError=USART_SendBufferAsynchZeroCopy(USART1,Buffer,5,TurnLedON);
-    
+    ReturnError=USART_SendByte(USART1,'A');
+    ReturnError=USART_SendByte(USART1,'B');
+    ReturnError=USART_SendByte(USART1,'C');
+
     while (1)
     {
         ReturnError=USART_SendByte(USART1,'A');
+        ReturnError=USART_SendByte(USART1,'B');
+        ReturnError=USART_SendByte(USART1,'C');
+        ReturnError=USART_SendByte(USART1,'\n');
+
     }
      
     return 0;

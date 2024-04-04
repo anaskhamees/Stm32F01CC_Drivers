@@ -280,10 +280,11 @@ ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
             /*Write the Byte in Data Register to be transmit*/
             USARTs[USART_ID]->DR=Byte;
             /* Read TXE Bit for Ensure that Interrupt occured or Not */
-            uint8_t TXE_BitValue=(((USARTs[USART_ID]->SR)>>TXE)&(1UL));
-            uint32_t TimeOut=2000;
-            while (TimeOut&&(!TXE_BitValue))
+            //uint8_t volatile TXE_BitValue=(((USARTs[USART_ID]->SR)>>TXE)&(1UL));
+            uint32_t volatile TimeOut=3000;
+            while (TimeOut&&(!(((USARTs[USART_ID]->SR)>>TXE)&(1UL))))
             {
+                //uint8_t volatile TXE_BitValue=(((USARTs[USART_ID]->SR)>>TXE)&(1UL));
                 TimeOut--;
             }
             if(TimeOut==0)
@@ -318,9 +319,9 @@ ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
         if(RxBuffer[USART_ID].ReqState==USART_READY)
         {
             RxBuffer[USART_ID].ReqState=USART_BUSY;
-            uint8_t RXNE_BitValue=(((USARTs[USART_ID]->SR)>>RXNE)&(1UL));
+           // uint8_t RXNE_BitValue=(((USARTs[USART_ID]->SR)>>RXNE)&(1UL));
             uint32_t TimeOut=2000;
-            while (TimeOut&&(!RXNE_BitValue))
+            while (TimeOut&&(!(((USARTs[USART_ID]->SR)>>TXE)&(1UL))))
             {
                 TimeOut--;
             }
@@ -382,7 +383,8 @@ void USART1_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    if(RXNE_BitValue)
+    /*(((USARTs[USART1]->SR)>>RXNE)&(1UL)) ----> RXNE BIT */
+    if((((USARTs[USART1]->SR)>>RXNE)&(1UL)))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART1].position<RxBuffer[USART1].Length)
