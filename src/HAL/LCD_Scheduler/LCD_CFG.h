@@ -9,6 +9,8 @@
 #ifndef HAL_LCD_SCHEDULER_LCD_CFG_H_
 #define HAL_LCD_SCHEDULER_LCD_CFG_H_
 
+#define BUFFER_SIZE     10
+
 typedef enum
 {
     RegisterSelect,
@@ -45,52 +47,5 @@ typedef struct
     uint8_t LCD_DataLength       ; /* LCD Data Length 4-Bits or 8-Bits */  
 }LCD_t;
 
-// Enumeration for different LCD modules
-// typedef enum
-// {
-//     LCD1,
-//     LCD2,
-//     LCD_Num,
-// } LCD_Modules_t;
-
-// // Structure for LCD pin connections
-// typedef struct
-// {
-//     uint8_t Port;    // Port number
-//     uint8_t Pin;     // Pin number
-// } LCD_Pins_Connection_t;
-
-// /* LCD Module pins */
-// typedef enum
-// {
-//     /* Register Selection */
-//     LCD_RS,
-    
-//     /* Read/Write Selection */
-//     LCD_RW,
-    
-//     /* Enable Signal */
-//     LCD_E,
-    
-//     /* Low-Order Bi-Directional data bus */
-//     LCD_DB0,
-//     LCD_DB1,
-//     LCD_DB2,
-//     LCD_DB3,
-    
-//     /* High-Order Bi-Directional data bus */
-//     LCD_DB4,
-//     LCD_DB5,
-//     LCD_DB6,
-//     LCD_DB7,
-    
-//     LCD_Pins_Num,
-// } LCD_Pins_t;
-
-// // Structure for LCD port and pin connections
-// typedef struct
-// {
-//     LCD_Pins_Connection_t LCD_arr[LCD_Pins_Num];    // Array of LCD pin connections
-// } LCD_PortPin_t;
 
 #endif 

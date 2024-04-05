@@ -9,6 +9,8 @@
 /*										Defines									   */
 /***********************************************************************************/
 #define USART_REG_CLEAR_MASK            (0x0000FFFFUL)
+#define USART_TXE_FLAG_MASK             (0x00000080UL)
+#define USART_RXNE_FLAG_MASK            (0x00000020UL)
 #define _USART_CHANNELS_NUM             (3UL)
 #define USART1_FREQ                     (16000000UL)
 #define USART2_FREQ                     (16000000UL)
@@ -57,7 +59,7 @@ Buffer_t RxBuffer[_USART_CHANNELS_NUM]={{.ReqState=USART_READY},{.ReqState=USART
 
 ErrorStatus_t USART_Init(USART_CFG_t* USART_Config)
 {
-    ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError=USART_NOK;
     if(USART_Config==NULL)
     {
         ReturnError=USART_NULL_PTR;
@@ -183,7 +185,7 @@ ErrorStatus_t USART_Init(USART_CFG_t* USART_Config)
 
 ErrorStatus_t USART_SendBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint32_t BufferLength,CallBack_t cbFun)
 {
-    ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError=USART_NOK;
     if(Buffer==NULL)
     {
         ReturnError=USART_NULL_PTR;
@@ -229,7 +231,7 @@ ErrorStatus_t USART_SendBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,ui
 
 ErrorStatus_t USART_ReceiveBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint32_t BufferLength,CallBack_t cbFun)
 {
-    ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError=USART_NOK;
      if(Buffer==NULL)
     {
         ReturnError=USART_NULL_PTR;
@@ -267,7 +269,7 @@ ErrorStatus_t USART_ReceiveBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer
 
 ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
 {
-    ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError=USART_NOK;
     if(USART_ID>USART6)
     {
         ReturnError=USART_INVALID_USART_CHANNEL;
@@ -282,9 +284,8 @@ ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
             /* Read TXE Bit for Ensure that Interrupt occured or Not */
             //uint8_t volatile TXE_BitValue=(((USARTs[USART_ID]->SR)>>TXE)&(1UL));
             uint32_t volatile TimeOut=3000;
-            while (TimeOut&&(!(((USARTs[USART_ID]->SR)>>TXE)&(1UL))))
+            while (TimeOut&&(!((USARTs[USART_ID]->SR)&(USART_TXE_FLAG_MASK))))
             {
-                //uint8_t volatile TXE_BitValue=(((USARTs[USART_ID]->SR)>>TXE)&(1UL));
                 TimeOut--;
             }
             if(TimeOut==0)
@@ -294,10 +295,10 @@ ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
             else
             {
                 /* Transmission Done !*/
-                TxBuffer[USART_ID].ReqState=USART_READY;
                 ReturnError=USART_OK;
             }
-
+            
+            TxBuffer[USART_ID].ReqState=USART_READY;
         }
     }
     return ReturnError;
@@ -305,7 +306,7 @@ ErrorStatus_t USART_SendByte(uint8_t USART_ID,uint8_t Byte)
 
 ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
 {
-    ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError=USART_NOK;
     if(USART_ID>USART6)
     {
         ReturnError=USART_INVALID_USART_CHANNEL;
@@ -321,7 +322,7 @@ ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
             RxBuffer[USART_ID].ReqState=USART_BUSY;
            // uint8_t RXNE_BitValue=(((USARTs[USART_ID]->SR)>>RXNE)&(1UL));
             uint32_t TimeOut=2000;
-            while (TimeOut&&(!(((USARTs[USART_ID]->SR)>>TXE)&(1UL))))
+            while (TimeOut&&(!((USARTs[USART_ID]->SR)&(USART_RXNE_FLAG_MASK))))
             {
                 TimeOut--;
             }
@@ -332,10 +333,10 @@ ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
             else
             {
                 *Byte=USARTs[USART_ID]->DR;
-                RxBuffer[USART_ID].ReqState=USART_READY;
-                ReturnError=USART_OK;
-
+                 ReturnError=USART_OK;
             }
+
+            RxBuffer[USART_ID].ReqState=USART_READY;
         }
         else
         {
@@ -348,11 +349,11 @@ ErrorStatus_t USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte)
 void USART1_IRQHandler(void)
 {
     static uint32_t counter=0;
-    volatile uint8_t RXNE_BitValue=(((USARTs[USART1]->SR)>>RXNE)&(1UL));
-    volatile uint8_t TXE_BitValue =(((USARTs[USART1]->SR)>>TXE)&(1UL));
+    // volatile uint8_t RXNE_BitValue=(((USARTs[USART1]->SR)>>RXNE)&(1UL));
+    // volatile uint8_t TXE_BitValue =(((USARTs[USART1]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
-    if(TXE_BitValue)
+    if((USARTs[USART1]->SR)&(USART_TXE_FLAG_MASK))
     {
         /* If There is data to be sent */
         if(TxBuffer[USART1].position<TxBuffer[USART1].Length)
@@ -383,8 +384,7 @@ void USART1_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    /*(((USARTs[USART1]->SR)>>RXNE)&(1UL)) ----> RXNE BIT */
-    if((((USARTs[USART1]->SR)>>RXNE)&(1UL)))
+    if((USARTs[USART1]->SR)&(USART_RXNE_FLAG_MASK))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART1].position<RxBuffer[USART1].Length)
@@ -430,11 +430,11 @@ void USART1_IRQHandler(void)
 
 void USART2_IRQHandler(void)
 {
-    uint8_t RXNE_BitValue=(((USARTs[USART2]->SR)>>RXNE)&(1UL));
-    uint8_t TXE_BitValue =(((USARTs[USART2]->SR)>>TXE)&(1UL));
+    // uint8_t RXNE_BitValue=(((USARTs[USART2]->SR)>>RXNE)&(1UL));
+    // uint8_t TXE_BitValue =(((USARTs[USART2]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
-    if(TXE_BitValue)
+    if((USARTs[USART1]->SR)&(USART_TXE_FLAG_MASK))
     {
         /* If There is data to be sent */
         if(TxBuffer[USART2].position<TxBuffer[USART2].Length)
@@ -465,7 +465,7 @@ void USART2_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    if(RXNE_BitValue)
+    if((USARTs[USART1]->SR)&(USART_RXNE_FLAG_MASK))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART2].position<RxBuffer[USART2].Length)
@@ -509,11 +509,11 @@ void USART2_IRQHandler(void)
 
 void USART6_IRQHandler(void)
 {
-    uint8_t RXNE_BitValue=(((USARTs[USART6]->SR)>>RXNE)&(1UL));
-    uint8_t TXE_BitValue =(((USARTs[USART6]->SR)>>TXE)&(1UL));
+    // uint8_t RXNE_BitValue=(((USARTs[USART6]->SR)>>RXNE)&(1UL));
+    // uint8_t TXE_BitValue =(((USARTs[USART6]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
-    if(TXE_BitValue)
+    if((USARTs[USART1]->SR)&(USART_TXE_FLAG_MASK))
     {
         /* If There is data to be sent */
         if(TxBuffer[USART6].position<TxBuffer[USART6].Length)
@@ -544,7 +544,7 @@ void USART6_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    if(RXNE_BitValue)
+    if((USARTs[USART1]->SR)&(USART_RXNE_FLAG_MASK))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART6].position<RxBuffer[USART6].Length)

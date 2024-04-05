@@ -28,7 +28,7 @@
 /*                                Application Function                                    */
 /******************************************************************************************/
 //Runnable Each 100ms
-void LCD_App(void)
+/*void LCD_App(void)
 {
     static uint8_t appState=SET_POS;
     static uint8_t counter=0;
@@ -53,7 +53,7 @@ void LCD_App(void)
        appState=WAIT2;
        break;
     case WAIT2:
-       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==10)) /* Each 1000 mSec Clear the LCD */
+       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==10)) // Each 1000 mSec Clear the LCD 
         {
             appState=CLEAR;
             counter=0;
@@ -72,6 +72,15 @@ void LCD_App(void)
     default: 
         break;
     } 
+}*/
+
+void LCD_App(void)
+{
+     ErrorStatus_t ReturnError;
+    ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);
+    ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);
+    LCD_ClearScreenAsynch(LCD1,NULL);
+
 }
 
 int main(int argc, char* argv[])

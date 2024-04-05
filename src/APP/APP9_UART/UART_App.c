@@ -76,6 +76,7 @@ void TurnLedON(void)
 int main(int argc, char* argv[])
 {
 	ErrorStatus_t ReturnError;
+    uint8_t byte=0;
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOA);
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOB);
     ReturnError=HAL_PeripheralEnableCLK(HAL_USART1);
@@ -85,17 +86,30 @@ int main(int argc, char* argv[])
     ReturnError=LED_Init();
     ReturnError=USART_Init(&UART1_CFG);
     //ReturnError=USART_SendBufferAsynchZeroCopy(USART1,Buffer,5,TurnLedON);
-    ReturnError=USART_SendByte(USART1,'A');
-    ReturnError=USART_SendByte(USART1,'B');
-    ReturnError=USART_SendByte(USART1,'C');
+    // ReturnError=USART_SendByte(USART1,'A');
+    // ReturnError=USART_SendByte(USART1,'B');
+    // ReturnError=USART_SendByte(USART1,'C');
 
     while (1)
     {
-        ReturnError=USART_SendByte(USART1,'A');
-        ReturnError=USART_SendByte(USART1,'B');
-        ReturnError=USART_SendByte(USART1,'C');
-        ReturnError=USART_SendByte(USART1,'\n');
-
+        // ReturnError=USART_SendByte(USART1,'A');
+        // ReturnError=USART_SendByte(USART1,'N');
+        // ReturnError=USART_SendByte(USART1,'A');
+        // ReturnError=USART_SendByte(USART1,'S');
+        // ReturnError=USART_SendByte(USART1,'\n');
+        ReturnError=USART_ReceiveByte(USART1,&byte);
+        if(byte==0x0A)
+        {
+            ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
+        }
+        else if(byte==0x0B)
+        {
+            ErrorStatus_t RetError=LED_SetState(RED_LED,LED_OFF);
+        }
+        else
+        {
+            /* Nothing to Do but for MISRA */
+        }
     }
      
     return 0;
