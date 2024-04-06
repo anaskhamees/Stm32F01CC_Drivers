@@ -66,11 +66,23 @@ USART_CFG_t UART1_CFG=
 };
 
 uint8_t Buffer[5]={'A','B','C','D','E'};
+uint8_t ReciverBuffer[3]={0};
 
 /*------------------- USART1 CallBack Fun --------------------*/
 void TurnLedON(void)
 {
-    ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
+    ErrorStatus_t ReturnError;
+    // if((ReciverBuffer[0]==0x0A)&&(ReciverBuffer[1]==0x0B)&&(ReciverBuffer[2]==0x0C))
+    // {
+    //     //ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
+    //     ReturnError=USART_SendBufferAsynchZeroCopy(USART1,ReciverBuffer,3,NULL);
+    // }
+
+  if((ReciverBuffer[0]=='A')&&(ReciverBuffer[1]=='B')&&(ReciverBuffer[2]=='C'))
+    {
+        ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
+        ReturnError=USART_SendBufferAsynchZeroCopy(USART1,ReciverBuffer,3,NULL);
+    }  
 }
 
 int main(int argc, char* argv[])
@@ -85,6 +97,7 @@ int main(int argc, char* argv[])
     ReturnError=NVIC_EnableIRQ(NVIC_USART1_INTERRUPT);
     ReturnError=LED_Init();
     ReturnError=USART_Init(&UART1_CFG);
+    ReturnError=USART_ReceiveBufferAsynchZeroCopy(USART1,ReciverBuffer,3,TurnLedON);
     //ReturnError=USART_SendBufferAsynchZeroCopy(USART1,Buffer,5,TurnLedON);
     // ReturnError=USART_SendByte(USART1,'A');
     // ReturnError=USART_SendByte(USART1,'B');
@@ -97,19 +110,19 @@ int main(int argc, char* argv[])
         // ReturnError=USART_SendByte(USART1,'A');
         // ReturnError=USART_SendByte(USART1,'S');
         // ReturnError=USART_SendByte(USART1,'\n');
-        ReturnError=USART_ReceiveByte(USART1,&byte);
-        if(byte==0x0A)
-        {
-            ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
-        }
-        else if(byte==0x0B)
-        {
-            ErrorStatus_t RetError=LED_SetState(RED_LED,LED_OFF);
-        }
-        else
-        {
-            /* Nothing to Do but for MISRA */
-        }
+        // ReturnError=USART_ReceiveByte(USART1,&byte);
+        // if(byte==0x0A)
+        // {
+        //     ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
+        // }
+        // else if(byte==0x0B)
+        // {
+        //     ErrorStatus_t RetError=LED_SetState(RED_LED,LED_OFF);
+        // }
+        // else
+        // {
+        //     /* Nothing to Do but for MISRA */
+        // }
     }
      
     return 0;

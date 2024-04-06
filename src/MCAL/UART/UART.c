@@ -190,10 +190,10 @@ ErrorStatus_t USART_SendBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,ui
     {
         ReturnError=USART_NULL_PTR;
     }
-    else if(cbFun==NULL)
+    /*else if(cbFun==NULL)
     {
         ReturnError=USART_NULL_PTR;
-    }
+    }*/
     else if((USART_ID)>USART6)
     {
         ReturnError=USART_INVALID_USART_CHANNEL;
@@ -236,10 +236,10 @@ ErrorStatus_t USART_ReceiveBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer
     {
         ReturnError=USART_NULL_PTR;
     }
-    else if(cbFun==NULL)
+    /*else if(cbFun==NULL)
     {
         ReturnError=USART_NULL_PTR;
-    }
+    }*/
     else if((USART_ID)>USART6)
     {
         ReturnError=USART_INVALID_USART_CHANNEL;
