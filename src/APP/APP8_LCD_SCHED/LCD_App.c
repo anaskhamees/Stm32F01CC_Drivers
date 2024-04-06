@@ -17,69 +17,42 @@
 /******************************************************************************************/
 /**************************************** Defines *****************************************/
 /******************************************************************************************/
-#define SET_POS   1
-#define WAIT1     2
-#define WRITE     3
-#define WAIT2     4
-#define CLEAR     5
-#define WAIT3     6
+
 
 /******************************************************************************************/
 /*                                Application Function                                    */
 /******************************************************************************************/
-//Runnable Each 100ms
-/*void LCD_App(void)
-{
-    static uint8_t appState=SET_POS;
-    static uint8_t counter=0;
-    counter++;
-    ErrorStatus_t ReturnError;
 
-
-    switch (appState)
-    {
-    case SET_POS:
-       ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);
-       appState=WAIT1;
-        break;
-    case WAIT1:
-        if((LCD_GetState(LCD1)==LCD_READY))
-        {
-            appState=WRITE;
-        }
-        break;
-    case WRITE:
-       ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);
-       appState=WAIT2;
-       break;
-    case WAIT2:
-       if((LCD_GetState(LCD1)==LCD_READY)&&(counter==10)) // Each 1000 mSec Clear the LCD 
-        {
-            appState=CLEAR;
-            counter=0;
-        }
-        break;
-    case CLEAR:
-        LCD_ClearScreenAsynch(LCD1,NULL);
-        appState=WAIT3;
-        break;
-    case WAIT3:
-        if(LCD_GetState(LCD1)==LCD_READY)
-        {
-            appState=SET_POS;
-        }
-        break;
-    default: 
-        break;
-    } 
-}*/
-
+/* Each 10mSec */
 void LCD_App(void)
 {
+    static uint32_t time=0;
+    time++;
      ErrorStatus_t ReturnError;
-    ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);
-    ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);
-    LCD_ClearScreenAsynch(LCD1,NULL);
+    switch (time)
+    {
+    case 1:ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);break;
+    case 2:ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);break;
+    case 3:ReturnError=LCD_SetCursorPosAsynch(LCD1,1,9,NULL);break;
+    case 5:ReturnError=LCD_WriteStringAsynch(LCD1,"Belal",5,NULL);break;
+    case 6:ReturnError=LCD_SetCursorPosAsynch(LCD1,0,1,NULL);break;
+    
+    case 7:ReturnError=LCD_WriteStringAsynch(LCD1,"ali",3,NULL);break;
+    case 8:ReturnError=LCD_SetCursorPosAsynch(LCD1,1,1,NULL);break;
+    case 9: ReturnError=LCD_WriteStringAsynch(LCD1,"mohamed",7,NULL);break;
+    default: 
+        break;
+    }    
+    
+//  ReturnError=LCD_SetCursorPosAsynch(LCD1,0,6,NULL);
+//  ReturnError=LCD_WriteStringAsynch(LCD1,"Anas ",5,NULL);
+//  ReturnError=LCD_SetCursorPosAsynch(LCD1,1,6,NULL);
+//  ReturnError=LCD_WriteStringAsynch(LCD1,"Belal",5,NULL);
+//  ReturnError=LCD_SetCursorPosAsynch(LCD1,0,1,NULL);
+ 
+//  ReturnError=LCD_WriteStringAsynch(LCD1,"mohamed",7,NULL);
+//  ReturnError=LCD_SetCursorPosAsynch(LCD1,1,1,NULL);
+//  ReturnError=LCD_WriteStringAsynch(LCD1,"ali",3,NULL);
 
 }
 
