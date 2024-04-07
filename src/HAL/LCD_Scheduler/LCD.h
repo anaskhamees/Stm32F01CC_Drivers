@@ -44,6 +44,8 @@ typedef struct
     const char_t* String;       /* String To be Written on LCD */
     uint8_t StringLength;       /* The Length of String        */
 
+    //uint8_t ReqNumberDigits[32] ;
+    uint32_t Number;
     uint8_t LCD_State   ;       /* LCD handles current Request or Ready to recieve Requests:
                                  * LCD_BUSY
                                  * LCD_READY
@@ -51,6 +53,7 @@ typedef struct
 
     uint8_t RequestType ;       /* Write Request, Clear Request and Set Position:
                                  * LCD_REQ_WRITE
+                                 * LCD_REQ_WRITE_NUM
                                  * LCD_REQ_CLEAR
                                  * LCD_REQ_SET_POS
                                  */
@@ -114,6 +117,9 @@ ErrorStatus_t LCD_SetCursorPosAsynch(uint8_t LCD_Name, uint8_t PosX,uint8_t PosY
  * @return Error status indicating success or failure of the operation.
  */
 ErrorStatus_t LCD_WriteStringAsynch(uint8_t LCD_Name, char_t* string,uint8_t length,ReqCallBack_t CB);
+
+ErrorStatus_t LCD_WriteNumAsynch(uint8_t LCD_Name, uint32_t number,ReqCallBack_t CB);
+
 /**
  * @brief Clears the LCD asynchronously for the specified LCD.
  * 

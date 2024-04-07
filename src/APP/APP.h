@@ -11,7 +11,7 @@
 #define APP8_LCD_SCHED_APP      8
 #define APP9_UART_TEST          9
 
-#define APP      APP9_UART_TEST
+#define APP      APP8_LCD_SCHED_APP
 
 
 
