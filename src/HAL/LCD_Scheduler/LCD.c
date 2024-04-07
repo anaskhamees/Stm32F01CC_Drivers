@@ -164,9 +164,10 @@ uint8_t DoneUsrReqIdx=0;
  */
 uint8_t currentPos=0;
 /**
- * @brief : Array for Number Digits (max 16  digit)
+ * @brief : Array for Number Digits (max 3  digit)
  */
-uint8_t NumDigitsArr[3] = {0};
+#define _MAX_DIGITS      (2)
+uint8_t NumDigitsArr[_MAX_DIGITS] = {0};
 
 /********************************************************************************************************/
 /*                                  Static Functions Prototypes                                         */
@@ -644,35 +645,60 @@ static void LCD_WriteProcess(uint8_t LCD_Name)
 
 static void LCD_WriteNumProcess(uint8_t LCD_Name)
 {
-    uint32_t Number=Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number;
+    uint32_t  Number=Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number;
 
-            uint8_t Digit=0;
-            static sint8_t DigitsIdx = 0;
+            static uint8_t FirstTime=0;
+            static uint8_t DigitsIdx = 0;
 
-            while (Number!= 0)
+            // while (Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number!= 0)
+            // {
+            //     Digit = (Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number) % 10;
+            //     NumDigitsArr[DigitsIdx] = Digit;
+            //     (Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number) /= 10;
+            //     if((Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].Number)!= 0)
+            //     {
+            //         DigitsIdx++;
+            //     }
+            // }
+            
+            //  while (DigitsIdx>0)
+            //  {
+            //     LCD_SendData(LCD_Name,(NumDigitsArr[DigitsIdx]+'0'));
+            //     if(LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)
+            //     {
+            //             DigitsIdx--;                
+            //     }
+            // }
+            if(FirstTime==0)
             {
-                Digit = Number % 10;
-                NumDigitsArr[DigitsIdx] = Digit;
-                Number /= 10;
-                if(Number!= 0)
+                /*Convert Integer Num (3 digits) to its ASCII Charachter*/
+                for (uint8_t i = 0; i < _MAX_DIGITS; i++)
                 {
-                    DigitsIdx++;
+                    NumDigitsArr[i]=(Number%10)+'0';
+                    Number=Number/10;
                 }
+                for(uint8_t i = 0, j = _MAX_DIGITS-1; i < j; i++, j--)
+                {
+                    uint8_t Temp =NumDigitsArr[i];
+                    NumDigitsArr[i]=NumDigitsArr[j];
+                    NumDigitsArr[j]=Temp;
+                }
+                FirstTime++;
+            }
+            LCD_SendData(LCD_Name,NumDigitsArr[DigitsIdx]);
+            if(LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)
+            {
+                DigitsIdx++;
             }
             
-             while (DigitsIdx>0)
-             {
-                LCD_SendData(LCD_Name,(NumDigitsArr[DigitsIdx]+'0'));
-                if(LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)
-                {
-                        DigitsIdx--;                
-                }
-            }
- 
-        if((LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)&&(DigitsIdx==0))
-        {
-        Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].LCD_State=LCD_READY;
+            
 
+ 
+        if((LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)&&(DigitsIdx==_MAX_DIGITS))
+        {
+            Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].LCD_State=LCD_READY;
+            DigitsIdx=0;
+            FirstTime=0;
             /* check if the Buffer is Full, Circulate it again to position 0 */
             if(DoneUsrReqIdx==(BUFFER_SIZE-1))
             {
