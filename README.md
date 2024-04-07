@@ -4,4 +4,10 @@
 - LED DRIVER  is DONE
 - Switch DRIVER  is DONE
 - NVIC DRIVER  is DONE
+- SysTick is DONE
+- Scheduler is DONE
+- SwitchWithoutBouncing is DONE
+- LCD is DONE
+- UART is DONE
+- Demo1 in Progress
 
