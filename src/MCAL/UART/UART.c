@@ -434,7 +434,7 @@ void USART2_IRQHandler(void)
     // uint8_t TXE_BitValue =(((USARTs[USART2]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
-    if((USARTs[USART1]->SR)&(USART_TXE_FLAG_MASK))
+    if((USARTs[USART2]->SR)&(USART_TXE_FLAG_MASK))
     {
         /* If There is data to be sent */
         if(TxBuffer[USART2].position<TxBuffer[USART2].Length)
@@ -465,7 +465,7 @@ void USART2_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    if((USARTs[USART1]->SR)&(USART_RXNE_FLAG_MASK))
+    if((USARTs[USART2]->SR)&(USART_RXNE_FLAG_MASK))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART2].position<RxBuffer[USART2].Length)
@@ -513,7 +513,7 @@ void USART6_IRQHandler(void)
     // uint8_t TXE_BitValue =(((USARTs[USART6]->SR)>>TXE)&(1UL));
 
     /* If the Transmission is the source of interrupt */
-    if((USARTs[USART1]->SR)&(USART_TXE_FLAG_MASK))
+    if((USARTs[USART6]->SR)&(USART_TXE_FLAG_MASK))
     {
         /* If There is data to be sent */
         if(TxBuffer[USART6].position<TxBuffer[USART6].Length)
@@ -544,7 +544,7 @@ void USART6_IRQHandler(void)
         /* Nothing to Do But for MISRA */
     }
 
-    if((USARTs[USART1]->SR)&(USART_RXNE_FLAG_MASK))
+    if((USARTs[USART6]->SR)&(USART_RXNE_FLAG_MASK))
     {
         /* Check the Buffer is Full or Not */
         if(RxBuffer[USART6].position<RxBuffer[USART6].Length)

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="d:/ITI_9Month/EmbeddedSystems/Tourky/Stm32F401CC_Drivers/src/APP/APP10_Demo1/StopWatchApp.c"/>
+    <tok fileIndex="0" linenr="1" column="1" str="/*x * File Name: StopWatchApp.hx * Layerx: Appx * Version  : V 0.0x * Createdx:  Apr 8, 2024x * Author 1x: Yasmin Amrx * Author 2 : Anas Khameesx */"/>
+    <tok fileIndex="0" linenr="10" column="1" str="/**********************************************************************************/"/>
+    <tok fileIndex="0" linenr="11" column="1" str="/*xxxxxxxxxxIncludesxxxx     xxx  */"/>
+    <tok fileIndex="0" linenr="12" column="1" str="/**********************************************************************************/"/>
+    <tok fileIndex="0" linenr="15" column="1" str="/***********************************************************************************/"/>
+    <tok fileIndex="0" linenr="16" column="1" str="/*xxxxxxxxxxDefinesxxxxxxxxx   */"/>
+    <tok fileIndex="0" linenr="17" column="1" str="/***********************************************************************************/"/>
+    <tok fileIndex="0" linenr="21" column="1" str="/***********************************************************************************/"/>
+    <tok fileIndex="0" linenr="22" column="1" str="/*xxxxxxxxxxTypesxxxxxxxxx   */"/>
+    <tok fileIndex="0" linenr="23" column="1" str="/***********************************************************************************/"/>
+    <tok fileIndex="0" linenr="27" column="1" str="/************************************************************************************/"/>
+    <tok fileIndex="0" linenr="28" column="1" str="/*xxxxxxxxxVariablesxxxxxxxxx    */"/>
+    <tok fileIndex="0" linenr="29" column="1" str="/************************************************************************************/"/>
+    <tok fileIndex="0" linenr="33" column="1" str="/*************************************************************************************/"/>
+    <tok fileIndex="0" linenr="34" column="1" str="/*xxxxxxxStatic Functions Prototypexxxxxxxx */"/>
+    <tok fileIndex="0" linenr="35" column="1" str="/*************************************************************************************/"/>
+    <tok fileIndex="0" linenr="39" column="1" str="/************************************************************************************/"/>
+    <tok fileIndex="0" linenr="40" column="1" str="/*                            APIs Implementationxxxxxxxx    */"/>
+    <tok fileIndex="0" linenr="41" column="1" str="/************************************************************************************/"/>
+    <tok fileIndex="0" linenr="43" column="1" str="static"/>
+    <tok fileIndex="0" linenr="43" column="8" str="uint32_t"/>
+    <tok fileIndex="0" linenr="43" column="17" str="seconds"/>
+    <tok fileIndex="0" linenr="43" column="24" str="="/>
+    <tok fileIndex="0" linenr="43" column="25" str="0"/>
+    <tok fileIndex="0" linenr="43" column="26" str=";"/>
+    <tok fileIndex="0" linenr="44" column="5" str="static"/>
+    <tok fileIndex="0" linenr="44" column="12" str="uint32_t"/>
+    <tok fileIndex="0" linenr="44" column="21" str="minutes"/>
+    <tok fileIndex="0" linenr="44" column="28" str="="/>
+    <tok fileIndex="0" linenr="44" column="29" str="59"/>
+    <tok fileIndex="0" linenr="44" column="31" str=";"/>
+    <tok fileIndex="0" linenr="45" column="5" str="static"/>
+    <tok fileIndex="0" linenr="45" column="12" str="uint32_t"/>
+    <tok fileIndex="0" linenr="45" column="21" str="hours"/>
+    <tok fileIndex="0" linenr="45" column="26" str="="/>
+    <tok fileIndex="0" linenr="45" column="27" str="0"/>
+    <tok fileIndex="0" linenr="45" column="28" str=";"/>
+    <tok fileIndex="0" linenr="46" column="5" str="ReturnError"/>
+    <tok fileIndex="0" linenr="46" column="16" str="="/>
+    <tok fileIndex="0" linenr="46" column="17" str="LCD_SetCursorPosAsynch"/>
+    <tok fileIndex="0" linenr="46" column="39" str="("/>
+    <tok fileIndex="0" linenr="46" column="40" str="LCD1"/>
+    <tok fileIndex="0" linenr="46" column="44" str=","/>
+    <tok fileIndex="0" linenr="46" column="45" str="0"/>
+    <tok fileIndex="0" linenr="46" column="46" str=","/>
+    <tok fileIndex="0" linenr="46" column="47" str="3"/>
+    <tok fileIndex="0" linenr="46" column="48" str=","/>
+    <tok fileIndex="0" linenr="46" column="49" str="NULL"/>
+    <tok fileIndex="0" linenr="46" column="53" str=")"/>
+    <tok fileIndex="0" linenr="46" column="54" str=";"/>
+    <tok fileIndex="0" linenr="47" column="5" str="ReturnError"/>
+    <tok fileIndex="0" linenr="47" column="16" str="="/>
+    <tok fileIndex="0" linenr="47" column="17" str="LCD_WriteStringAsynch"/>
+    <tok fileIndex="0" linenr="47" column="38" str="("/>
+    <tok fileIndex="0" linenr="47" column="39" str="LCD1"/>
+    <tok fileIndex="0" linenr="47" column="43" str=","/>
+    <tok fileIndex="0" linenr="47" column="44" str="&quot;Stop Watch&quot;"/>
+    <tok fileIndex="0" linenr="47" column="56" str=","/>
+    <tok fileIndex="0" linenr="47" column="57" str="10"/>
+    <tok fileIndex="0" linenr="47" column="59" str=","/>
+    <tok fileIndex="0" linenr="47" column="60" str="NULL"/>
+    <tok fileIndex="0" linenr="47" column="64" str=")"/>
+    <tok fileIndex="0" linenr="47" column="65" str=";"/>
+    <tok fileIndex="0" linenr="48" column="5" str="ReturnError"/>
+    <tok fileIndex="0" linenr="48" column="16" str="="/>
+    <tok fileIndex="0" linenr="48" column="17" str="LCD_SetCursorPosAsynch"/>
+    <tok fileIndex="0" linenr="48" column="39" str="("/>
+    <tok fileIndex="0" linenr="48" column="40" str="LCD1"/>
+    <tok fileIndex="0" linenr="48" column="44" str=","/>
+    <tok fileIndex="0" linenr="48" column="45" str="1"/>
+    <tok fileIndex="0" linenr="48" column="46" str=","/>
+    <tok fileIndex="0" linenr="48" column="47" str="4"/>
+    <tok fileIndex="0" linenr="48" column="48" str=","/>
+    <tok fileIndex="0" linenr="48" column="49" str="NULL"/>
+    <tok fileIndex="0" linenr="48" column="53" str=")"/>
+    <tok fileIndex="0" linenr="48" column="54" str=";"/>
+    <tok fileIndex="0" linenr="49" column="9" str="seconds"/>
+    <tok fileIndex="0" linenr="49" column="16" str="++"/>
+    <tok fileIndex="0" linenr="49" column="18" str=";"/>
+    <tok fileIndex="0" linenr="50" column="9" str="if"/>
+    <tok fileIndex="0" linenr="50" column="12" str="("/>
+    <tok fileIndex="0" linenr="50" column="13" str="seconds"/>
+    <tok fileIndex="0" linenr="50" column="21" str="&gt;"/>
+    <tok fileIndex="0" linenr="50" column="23" str="59"/>
+    <tok fileIndex="0" linenr="50" column="25" str=")"/>
+    <tok fileIndex="0" linenr="51" column="9" str="{"/>
+    <tok fileIndex="0" linenr="52" column="13" str="seconds"/>
+    <tok fileIndex="0" linenr="52" column="21" str="="/>
+    <tok fileIndex="0" linenr="52" column="23" str="0"/>
+    <tok fileIndex="0" linenr="52" column="24" str=";"/>
+    <tok fileIndex="0" linenr="53" column="13" str="minutes"/>
+    <tok fileIndex="0" linenr="53" column="20" str="++"/>
+    <tok fileIndex="0" linenr="53" column="22" str=";"/>
+    <tok fileIndex="0" linenr="54" column="13" str="if"/>
+    <tok fileIndex="0" linenr="54" column="16" str="("/>
+    <tok fileIndex="0" linenr="54" column="17" str="minutes"/>
+    <tok fileIndex="0" linenr="54" column="25" str="&gt;"/>
+    <tok fileIndex="0" linenr="54" column="27" str="59"/>
+    <tok fileIndex="0" linenr="54" column="29" str=")"/>
+    <tok fileIndex="0" linenr="55" column="13" str="{"/>
+    <tok fileIndex="0" linenr="56" column="17" str="minutes"/>
+    <tok fileIndex="0" linenr="56" column="25" str="="/>
+    <tok fileIndex="0" linenr="56" column="27" str="0"/>
+    <tok fileIndex="0" linenr="56" column="28" str=";"/>
+    <tok fileIndex="0" linenr="57" column="17" str="hours"/>
+    <tok fileIndex="0" linenr="57" column="22" str="++"/>
+    <tok fileIndex="0" linenr="57" column="24" str=";"/>
+    <tok fileIndex="0" linenr="58" column="17" str="if"/>
+    <tok fileIndex="0" linenr="58" column="20" str="("/>
+    <tok fileIndex="0" linenr="58" column="21" str="hours"/>
+    <tok fileIndex="0" linenr="58" column="27" str="&gt;"/>
+    <tok fileIndex="0" linenr="58" column="29" str="23"/>
+    <tok fileIndex="0" linenr="58" column="31" str=")"/>
+    <tok fileIndex="0" linenr="59" column="17" str="{"/>
+    <tok fileIndex="0" linenr="60" column="21" str="hours"/>
+    <tok fileIndex="0" linenr="60" column="27" str="="/>
+    <tok fileIndex="0" linenr="60" column="29" str="0"/>
+    <tok fileIndex="0" linenr="60" column="30" str=";"/>
+    <tok fileIndex="0" linenr="61" column="17" str="}"/>
+    <tok fileIndex="0" linenr="62" column="13" str="}"/>
+    <tok fileIndex="0" linenr="63" column="9" str="}"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+</dumps>

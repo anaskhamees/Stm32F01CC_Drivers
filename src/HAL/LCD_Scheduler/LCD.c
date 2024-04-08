@@ -79,6 +79,8 @@
 #define LCD_REQ_WRITE_NUM       2
 #define LCD_REQ_CLEAR           3
 #define LCD_REQ_SET_POS         4
+#define LCD_REQ_ENABLE_CURSOR   5
+#define LCD_REQ_DISABLE_CURSOR  6
 /*-------------- state machine of Send Commands on LCD ---------------*/
 #define LCD_SEND_COMMAND_DATA_READY    0
 #define LCD_RESET_ENABLE               1
@@ -182,6 +184,8 @@ static void LCD_WriteProcess(uint8_t LCD_Name);
 static void LCD_WriteNumProcess(uint8_t LCD_Name);
 static void LCD_ClearProcess(uint8_t LCD_Name);
 static void LCD_SetPosProcess(uint8_t LCD_Name);
+static void LCD_EnableCursorProcess(uint8_t LCD_Name);
+static void LCD_DisableCursorProcess(uint8_t LCD_Name);
 
 /**
  * @brief Task function for handling LCD operations, comes each 2 mSec.
@@ -224,6 +228,12 @@ void LCD_Task(void)
                         break;
                     case LCD_REQ_SET_POS:
                         LCD_SetPosProcess(LCD_Name);  /**< Process set position request */
+                        break;
+                    case LCD_REQ_ENABLE_CURSOR:
+                        LCD_EnableCursorProcess(LCD_Name);  /**< Process enable cursor request */
+                        break;
+                    case LCD_REQ_DISABLE_CURSOR:
+                        LCD_DisableCursorProcess(LCD_Name); /**< Process disable cursor request */
                         break;
                     default:
                         break;
@@ -796,6 +806,51 @@ static void LCD_SetPosProcess(uint8_t LCD_Name)
     }
 }
 
+static void LCD_EnableCursorProcess(uint8_t LCD_Name)
+{
+    /* Send clear display command to the LCD */
+    LCD_SendCommand(LCD_Name, LCD_DISPLAY_ON_CURSOR_ON_BLINK_OFF);
+
+    /* If command data state is ready, set LCD state to ready */
+    if (LCD_Command_DataState[LCD_Name] == LCD_SEND_COMMAND_DATA_READY)
+    {
+        Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].LCD_State=LCD_READY; /**< Set LCD state to ready */
+        
+        /* check if the Buffer is Full, Circulate it again to position 0 */
+        if(DoneUsrReqIdx==(BUFFER_SIZE-1))
+        {
+            DoneUsrReqIdx=0;
+        }
+        else
+        {
+            /* Else, Update the Request Index (Which points to the Done Request) to handle the next User Request */
+            DoneUsrReqIdx++;
+        }
+    }
+}
+
+static void LCD_DisableCursorProcess(uint8_t LCD_Name)
+{
+/* Send clear display command to the LCD */
+    LCD_SendCommand(LCD_Name, LCD_DISPLAY_ON_CURSOR_OFF_BLINK_OFF);
+
+    /* If command data state is ready, set LCD state to ready */
+    if (LCD_Command_DataState[LCD_Name] == LCD_SEND_COMMAND_DATA_READY)
+    {
+        Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].LCD_State=LCD_READY; /**< Set LCD state to ready */
+        
+        /* check if the Buffer is Full, Circulate it again to position 0 */
+        if(DoneUsrReqIdx==(BUFFER_SIZE-1))
+        {
+            DoneUsrReqIdx=0;
+        }
+        else
+        {
+            /* Else, Update the Request Index (Which points to the Done Request) to handle the next User Request */
+            DoneUsrReqIdx++;
+        }
+    }
+}
 
 /********************************************************************************************************/
 /*                                      APIs Implementation                                             */
@@ -1017,3 +1072,67 @@ ErrorStatus_t LCD_WriteNumAsynch(uint8_t LCD_Name, uint32_t number,ReqCallBack_t
     
     return ReturnError;
 }
+
+ ErrorStatus_t LCD_EnableCursorAsynch(uint8_t LCD_Name, ReqCallBack_t CB)
+ {
+    ErrorStatus_t ReturnError=NOK;
+    if(LCD_Name>_LCD_NUMBER)
+    {
+        ReturnError=WRONG_PARAMETER;
+    }
+    else if (Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].LCD_State == LCD_READY)
+    {
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].RequestType = LCD_REQ_ENABLE_CURSOR;
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].LCD_State = LCD_BUSY;
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].CallBack=CB;
+         /* check if the Buffer is Full, Circulate it again to position 0 */
+        if(UsrReqBufferIdx==(BUFFER_SIZE-1))
+        {
+            UsrReqBufferIdx=0;
+        }
+        else
+        {
+        /* Else, Update the UserRequest Index of the next Request should be Saved */
+            UsrReqBufferIdx++;
+        }
+        ReturnError = OK; 
+    }
+    else
+    {
+        /* Do nothing (MISRA Rule) */
+    }
+    
+    return ReturnError;
+ }
+
+ ErrorStatus_t LCD_DisableCursorAsynch(uint8_t LCD_Name,ReqCallBack_t CB)
+ {
+    ErrorStatus_t ReturnError=NOK;
+    if(LCD_Name>_LCD_NUMBER)
+    {
+        ReturnError=WRONG_PARAMETER;
+    }
+    else if (Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].LCD_State == LCD_READY)
+    {
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].RequestType = LCD_REQ_DISABLE_CURSOR;
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].LCD_State = LCD_BUSY;
+        Buffer[LCD_Name].userRequestBuffer[UsrReqBufferIdx].CallBack=CB;
+         /* check if the Buffer is Full, Circulate it again to position 0 */
+        if(UsrReqBufferIdx==(BUFFER_SIZE-1))
+        {
+            UsrReqBufferIdx=0;
+        }
+        else
+        {
+        /* Else, Update the UserRequest Index of the next Request should be Saved */
+            UsrReqBufferIdx++;
+        }
+        ReturnError = OK; 
+    }
+    else
+    {
+        /* Do nothing (MISRA Rule) */
+    }
+    
+    return ReturnError;
+ }

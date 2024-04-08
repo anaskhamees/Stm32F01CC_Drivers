@@ -131,5 +131,7 @@ ErrorStatus_t LCD_WriteNumAsynch(uint8_t LCD_Name, uint32_t number,ReqCallBack_t
  */
 void LCD_ClearScreenAsynch(uint8_t LCD_Name, ReqCallBack_t CB);
 
+ErrorStatus_t LCD_EnableCursorAsynch(uint8_t LCD_Name,ReqCallBack_t CB);
+ErrorStatus_t LCD_DisableCursorAsynch(uint8_t LCD_Name,ReqCallBack_t CB);
 
 #endif // HAL_LCD_SCHEDULER_LCD_H_
