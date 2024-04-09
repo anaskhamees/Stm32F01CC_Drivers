@@ -27,28 +27,28 @@ LCD_t LCDs[_LCD_NUMBER]=
         .LCD_Pins[Enable].pin=GPIO_PIN1,
         .LCD_Pins[Enable].port=GPIO_PORTA,  
 
-        .LCD_Pins[DB0].pin=GPIO_PIN2,
+        .LCD_Pins[DB0].pin=GPIO_PIN4,
         .LCD_Pins[DB0].port=GPIO_PORTA,
 
-        .LCD_Pins[DB1].pin=GPIO_PIN3,
+        .LCD_Pins[DB1].pin=GPIO_PIN5,
         .LCD_Pins[DB1].port=GPIO_PORTA,
 
-        .LCD_Pins[DB2].pin=GPIO_PIN4,
+        .LCD_Pins[DB2].pin=GPIO_PIN6,
         .LCD_Pins[DB2].port=GPIO_PORTA,
 
-        .LCD_Pins[DB3].pin=GPIO_PIN5,
+        .LCD_Pins[DB3].pin=GPIO_PIN7,
         .LCD_Pins[DB3].port=GPIO_PORTA,
 
-        .LCD_Pins[DB4].pin=GPIO_PIN6,
+        .LCD_Pins[DB4].pin=GPIO_PIN8,
         .LCD_Pins[DB4].port=GPIO_PORTA,
 
-        .LCD_Pins[DB5].pin=GPIO_PIN7,
+        .LCD_Pins[DB5].pin=GPIO_PIN9,
         .LCD_Pins[DB5].port=GPIO_PORTA,
 
-        .LCD_Pins[DB6].pin=GPIO_PIN8,
+        .LCD_Pins[DB6].pin=GPIO_PIN10,
         .LCD_Pins[DB6].port=GPIO_PORTA,
 
-        .LCD_Pins[DB7].pin=GPIO_PIN9,
+        .LCD_Pins[DB7].pin=GPIO_PIN11,
         .LCD_Pins[DB7].port=GPIO_PORTA,
 
         .LCD_DataLength=EIGHT_BIT_MODE,

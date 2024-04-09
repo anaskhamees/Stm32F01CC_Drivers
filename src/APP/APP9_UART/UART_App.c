@@ -38,8 +38,8 @@ GPIO_CFG_t UART_TX_PIN=
 {
     .GPIO_AF   = GPIO_AF07,
     .GPIO_Mode = GPIO_AF_PP_NO_PUPD,
-    .GPIO_Pin  = GPIO_PIN6,
-    .GPIO_Port = GPIO_PORTB,
+    .GPIO_Pin  = GPIO_PIN2,
+    .GPIO_Port = GPIO_PORTA,
     .GPIO_Speed= GPIO_HIGH_SPEED   
 };
 
@@ -48,13 +48,24 @@ GPIO_CFG_t UART_RX_PIN=
 {
     .GPIO_AF   = GPIO_AF07,
     .GPIO_Mode = GPIO_AF_PP_NO_PUPD,
-    .GPIO_Pin  = GPIO_PIN7,
-    .GPIO_Port = GPIO_PORTB,
+    .GPIO_Pin  = GPIO_PIN3,
+    .GPIO_Port = GPIO_PORTA,
     .GPIO_Speed= GPIO_HIGH_SPEED   
 };
 
 /*--------------- Configure USART1 Peripheral ------------------*/
-USART_CFG_t UART1_CFG=
+// USART_CFG_t UART1_CFG=
+// {
+//     .BaudRate=9600,
+//     .BitSampleMethod=USART_SAMPLE_BIT3,
+//     .DataBits=USART_DATA_BITS_8,
+//     .OverSample=USART_OVERSAMPLING_16,
+//     .Parity=USART_PARITY_NONE,
+//     .StopBits=UART_STOP_BITS_ONE,
+//     .USART_ID=USART1
+// };
+
+USART_CFG_t UART2_CFG=
 {
     .BaudRate=9600,
     .BitSampleMethod=USART_SAMPLE_BIT3,
@@ -62,9 +73,8 @@ USART_CFG_t UART1_CFG=
     .OverSample=USART_OVERSAMPLING_16,
     .Parity=USART_PARITY_NONE,
     .StopBits=UART_STOP_BITS_ONE,
-    .USART_ID=USART1
+    .USART_ID=USART2
 };
-
 uint8_t Buffer[5]={'A','B','C','D','E'};
 uint8_t ReciverBuffer[3]={0};
 
@@ -81,7 +91,7 @@ void TurnLedON(void)
   if((ReciverBuffer[0]=='A')&&(ReciverBuffer[1]=='B')&&(ReciverBuffer[2]=='C'))
     {
         ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
-        ReturnError=USART_SendBufferAsynchZeroCopy(USART1,ReciverBuffer,3,NULL);
+        ReturnError=USART_SendBufferAsynchZeroCopy(USART2,ReciverBuffer,3,NULL);
     }  
 }
 
@@ -91,13 +101,13 @@ int main(int argc, char* argv[])
     uint8_t byte=0;
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOA);
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOB);
-    ReturnError=HAL_PeripheralEnableCLK(HAL_USART1);
+    ReturnError=HAL_PeripheralEnableCLK(HAL_USART2);
     ReturnError=GPIO_InitPin(&UART_TX_PIN);
     ReturnError=GPIO_InitPin(&UART_RX_PIN);
-    ReturnError=NVIC_EnableIRQ(NVIC_USART1_INTERRUPT);
+    ReturnError=NVIC_EnableIRQ(NVIC_USART2_INTERRUPT);
     ReturnError=LED_Init();
-    ReturnError=USART_Init(&UART1_CFG);
-    ReturnError=USART_ReceiveBufferAsynchZeroCopy(USART1,ReciverBuffer,3,TurnLedON);
+    ReturnError=USART_Init(&UART2_CFG);
+    ReturnError=USART_ReceiveBufferAsynchZeroCopy(USART2,ReciverBuffer,3,TurnLedON);
     //ReturnError=USART_SendBufferAsynchZeroCopy(USART1,Buffer,5,TurnLedON);
     // ReturnError=USART_SendByte(USART1,'A');
     // ReturnError=USART_SendByte(USART1,'B');

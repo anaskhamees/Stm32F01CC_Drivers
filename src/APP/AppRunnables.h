@@ -13,6 +13,9 @@ extern void TrafficLight(void);
 #elif(APP==APP8_LCD_SCHED_APP)
 extern void LCD_App(void);
 extern void LCD_Task(void);
+#elif(APP==APP11_DEMO1_STOPWATCH_TEST)
+extern void LCD_DisplayStopWatch(void);
+extern void LCD_Task(void);
 #endif
 
 

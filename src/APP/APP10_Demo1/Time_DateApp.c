@@ -1,3 +1,6 @@
+#include "APP/APP.h"
+#ifdef APP
+#if (APP==APP10_DEMO1)
 /*
  * File Name: Time_DateApp.c
  * Layer	: App
@@ -38,6 +41,8 @@
 #define FirstLine   0
 #define SecondLine  1
 
+#define ON                           1
+#define OFF                          0
 
 /***********************************************************************************/
 /*										Types									   */
@@ -67,15 +72,64 @@ uint8_t Seconds=40;
 
 uint8_t CurrentDisplay=StopWatch;
 
+uint8_t EditMode=OFF;
+
+uint8_t PosX=FirstLine;
+uint8_t PosY=0;
+
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
-/*************************************************************************************
- 
+/*************************************************************************************/
+ static void LCD_ShiftRight(void);
+ static void LCD_ShiftLeft(void);
+ static void LCD_DisplayDateTime(void);
+ static void LCD_DisplayStopWatch(void);
+ static void LCD_DisplayMainMenu(void);
+ static void LCD_IncrementDateTime(void);
+ static void LCD_DecrementDateTime(void);
+ static void USART_ReceiveCbf(void);
 
 /************************************************************************************/
 /*                            APIs Implementation								    */
 /************************************************************************************/
-void LCD_DisplayMainMenu(void)
+static void LCD_ShiftRight(void)
+{
+    if(PosY==7&&PosX==FirstLine)
+    {
+        PosX=SecondLine;
+        PosY=0;
+    }
+    else if(PosY==7&&PosX==SecondLine)
+    {
+        PosX=FirstLine;
+        PosY=0;
+    }
+    else
+    {
+        PosY++;
+    }
+    LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+}
+
+static void LCD_ShiftLeft(void)
+{
+    if(PosY==0&&PosX==FirstLine)
+    {
+        PosX=SecondLine;
+        PosY=7;
+    }
+    else if(PosY==0&&PosX==SecondLine)
+    {
+        PosX=FirstLine;
+        PosY=7;
+    }
+    else
+    {
+        PosY--;
+    }
+    LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+}
+static void LCD_DisplayMainMenu(void)
 {
     /*Display "Date and Time" */
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
@@ -87,7 +141,7 @@ void LCD_DisplayMainMenu(void)
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
 
-void LCD_DisplayDateTime(void)
+static void LCD_DisplayDateTime(void)
 {
     if(CurrentDisplay!=DateTime)
     {
@@ -134,8 +188,69 @@ void LCD_DisplayDateTime(void)
     }
 }
 
+static void LCD_IncrementDateTime(void)
+{
+    /*-------------------------- Date ------------------------*/
 
-void USART_ReceiveCbf(void)
+    /*-------------------------- Time ------------------------*/
+
+    /**************************************/
+    /*      ___________________________   */
+    /*     |                           |  */
+    /*     |       08:27:40            |  */
+    /*     |       HH:MM:SS            |  */
+    /*     |___________________________|  */
+    /*                                    */
+    /**************************************/
+
+    /*Cursor H1*/
+    if(PosX==SecondLine&&PosY==0)
+    {
+        // if((Hour<10)&&(Hour==9))
+        // {
+        //     Hour=0;
+        // }
+        // else
+        // {
+        //     Hour++;
+        // }
+    }
+    /*Cursor H2*/
+    if(PosX==SecondLine&&PosY==1)
+    {
+
+    }
+    /*Cursor M1*/
+    if(PosX==SecondLine&&PosY==3)
+    {
+        
+    }
+    /*Cursor M2*/
+    if(PosX==SecondLine&&PosY==4)
+    {
+        
+    }
+    /*Cursor S1*/
+    if(PosX==SecondLine&&PosY==6)
+    {
+        
+    }
+    /*Cursor S2*/
+    if(PosX==SecondLine&&PosY==7)
+    {
+        
+    }
+}
+
+static void LCD_DecrementDateTime(void)
+{
+    /*-------------------------- Date ------------------------*/
+
+    /*-------------------------- Time ------------------------*/
+}
+ 
+
+static void USART_ReceiveCbf(void)
 {
     switch(CurrentMode)
     {
@@ -145,13 +260,13 @@ void USART_ReceiveCbf(void)
             {
                 case UP:
                 {
-                   LCD_SetCursorPosAsynch(LCD1,0,FirstLine,NULL);  
+                   LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
                    MM_CursorLoc=FirstLine;
                 }
                 break;
                 case DOWN:
                 {
-                   LCD_SetCursorPosAsynch(LCD1,0,SecondLine,NULL);
+                   LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
                    MM_CursorLoc=SecondLine;
                 }
                 break;
@@ -167,6 +282,11 @@ void USART_ReceiveCbf(void)
                         CurrentMode=StopWatch;
                         //LCD_DisplayStopWatch();
                     }
+                }
+                break;
+                default:
+                {
+                    //Do Nothing
                 }
                 break;
             }
@@ -206,51 +326,72 @@ void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
+            LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
                 case UP:
                 {
-
+                    if(EditMode==ON)
+                    {
+                        LCD_IncrementDateTime();
+                    }
                 }
                 break;
                 case DOWN:
                 {
-
+                    if(EditMode==ON)
+                    {
+                        LCD_DecrementDateTime();
+                    }
                 }
                 break;
                 case RIGHT:
                 {
-                    
+                    LCD_ShiftRight();
                 }
                 break;
                 case LEFT:
                 {
-
+                    LCD_ShiftLeft();
                 }
                 break;
                 case EDIT:
                 {
-
+                    if(EditMode==OFF)
+                    {
+                        EditMode=ON;
+                        LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
+                        LCD_EnableCursorAsynch(LCD1,NULL);
+                    }
+                    else if(EditMode==ON)
+                    {
+                        EditMode=OFF;
+                        LCD_DisableCursorAsynch(LCD1,NULL);
+                    }                   
                 }
                 break;
                 case MODE:
                 {
-
+                    
                 }
                 break;
+
             }
         }
         break;
     }
+    buffer=0;
 }
 
 /* Each 125mSec */
 void Display_App(void)
 {
-    USART_ReceiveBufferAsynchZeroCopy(USART1,&buffer,1,USART_ReceiveCbf);
+    USART_ReceiveBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
 }
 
 void APP_Init(void)
 {
     LCD_DisplayMainMenu();
 }
+#endif
+#endif

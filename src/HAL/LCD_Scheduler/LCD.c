@@ -168,7 +168,8 @@ uint8_t currentPos=0;
 /**
  * @brief : Array for Number Digits (max 3  digit)
  */
-#define _MAX_DIGITS      (2)
+#define _MAX_DIGITS      (1 )
+
 uint8_t NumDigitsArr[_MAX_DIGITS] = {0};
 
 /********************************************************************************************************/
@@ -681,7 +682,7 @@ static void LCD_WriteNumProcess(uint8_t LCD_Name)
             // }
             if(FirstTime==0)
             {
-                /*Convert Integer Num (3 digits) to its ASCII Charachter*/
+                /*Convert Integer Num (2 digits) to its ASCII Charachter*/
                 for (uint8_t i = 0; i < _MAX_DIGITS; i++)
                 {
                     NumDigitsArr[i]=(Number%10)+'0';
@@ -700,10 +701,7 @@ static void LCD_WriteNumProcess(uint8_t LCD_Name)
             {
                 DigitsIdx++;
             }
-            
-            
-
- 
+   
         if((LCD_Command_DataState[LCD_Name]==LCD_SEND_COMMAND_DATA_READY)&&(DigitsIdx==_MAX_DIGITS))
         {
             Buffer[LCD_Name].userRequestBuffer[DoneUsrReqIdx].LCD_State=LCD_READY;
@@ -809,7 +807,7 @@ static void LCD_SetPosProcess(uint8_t LCD_Name)
 static void LCD_EnableCursorProcess(uint8_t LCD_Name)
 {
     /* Send clear display command to the LCD */
-    LCD_SendCommand(LCD_Name, LCD_DISPLAY_ON_CURSOR_ON_BLINK_OFF);
+    LCD_SendCommand(LCD_Name, LCD_DISPLAY_CURSOR_BLINK_ALL_ON);
 
     /* If command data state is ready, set LCD state to ready */
     if (LCD_Command_DataState[LCD_Name] == LCD_SEND_COMMAND_DATA_READY)
