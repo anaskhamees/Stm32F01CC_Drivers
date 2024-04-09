@@ -19,7 +19,9 @@ extern void LCD_Task(void);
 #elif(APP==APP10_DEMO1)
 extern void Display_App(void);
 extern void LCD_Task(void);
-extern void LCD_DisplayStopWatch();
+extern void LCD_DisplayDateTime();
+extern void LCD_DisplayStopwatch();
+
 #endif
 
 

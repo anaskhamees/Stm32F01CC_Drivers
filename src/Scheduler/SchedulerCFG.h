@@ -11,8 +11,9 @@
 /********************************************************************************************************/
 typedef enum
 {
-    STOP_WATCH,
     LCD_TASK_RUN,
+    STOP_WATCH,
+    DATE_TIME,
     DISPLAY_APP,
     LCD_APP_RUN,
     /*TRAFFIC_LIGHT,

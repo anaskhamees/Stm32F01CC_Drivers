@@ -9,7 +9,7 @@
 #ifndef HAL_LCD_SCHEDULER_LCD_CFG_H_
 #define HAL_LCD_SCHEDULER_LCD_CFG_H_
 
-#define BUFFER_SIZE     20
+#define BUFFER_SIZE     25
 
 typedef enum
 {
