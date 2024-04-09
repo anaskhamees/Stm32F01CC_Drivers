@@ -84,6 +84,20 @@ uint8_t PosY=0;
 
 uint8_t ModeState=CONSTANT;
 
+/************************************************************************************/
+/*                              Time Variables                                      */
+/************************************************************************************/
+
+uint32_t TimeSeconds=30;
+uint32_t TimeMinutes=59;
+uint32_t TimeHours=0;
+/************************************************************************************/
+/*                              Stop Watch Variables                                */
+/************************************************************************************/
+uint32_t StopWatchTensSeconds=30;
+uint32_t StopWatchSeconds=30;
+uint32_t StopWatchMinutes=59;
+uint32_t StopWatchHours=0;
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
 /*************************************************************************************/
@@ -149,34 +163,24 @@ static void LCD_DisplayMainMenu(void)
 
  void LCD_DisplayDateTime(void)
  {
-    static uint32_t Tens_Seconds=0;
-    static uint32_t seconds=30;
-    static uint32_t minutes=59;
-    static uint32_t hours=0;
     static uint8_t First_Time=0;
     ErrorStatus_t ReturnError;
-
-    Tens_Seconds++;
-
-       if(Tens_Seconds>9) 
-       {
-            Tens_Seconds=0;
-            seconds++;
-            if (seconds > 59) 
+            TimeSeconds++;
+            if (TimeSeconds > 59) 
             {
-                seconds = 0;
-                minutes++;
-                if (minutes > 59) 
+                TimeSeconds = 0;
+                TimeMinutes++;
+                if (TimeMinutes > 59) 
                 {
-                    minutes = 0;
-                    hours++;
-                    if (hours > 23) 
+                    TimeMinutes = 0;
+                    TimeHours++;
+                    if (TimeHours > 23) 
                     {
-                        hours = 0;
+                        TimeHours = 0;
                     }
                 }
             }
-       }
+       
 
 
         //if((MM_CursorLoc==FirstLine)&&(buffer==OK))
@@ -197,18 +201,18 @@ static void LCD_DisplayMainMenu(void)
             ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
             //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours%10,NULL); 
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours%10,NULL); 
     
             ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes%10,NULL);
 
             ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds%10,NULL);
 
             ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
             ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
@@ -230,30 +234,27 @@ static void LCD_DisplayMainMenu(void)
  
 void LCD_DisplayStopwatch()
 {
-    static uint32_t Tens_Seconds=0;
-    static uint32_t seconds=30;
-    static uint32_t minutes=59;
-    static uint32_t hours=0;
+   
     static uint8_t First_Time=0;
     ErrorStatus_t ReturnError;
 
-    Tens_Seconds++;
+    StopWatchTensSeconds++;
 
-       if(Tens_Seconds>9) 
+       if(StopWatchTensSeconds>9) 
        {
-            Tens_Seconds=0;
-            seconds++;
-            if (seconds > 59) 
+            StopWatchTensSeconds=0;
+            StopWatchSeconds++;
+            if (StopWatchSeconds > 59) 
             {
-                seconds = 0;
-                minutes++;
-                if (minutes > 59) 
+                StopWatchSeconds = 0;
+                StopWatchMinutes++;
+                if (StopWatchMinutes > 59) 
                 {
-                    minutes = 0;
-                    hours++;
-                    if (hours > 23) 
+                    StopWatchMinutes = 0;
+                    StopWatchHours++;
+                    if (StopWatchHours > 23) 
                     {
-                        hours = 0;
+                        StopWatchHours = 0;
                     }
                 }
             }
@@ -278,23 +279,23 @@ void LCD_DisplayStopwatch()
             ReturnError=LCD_WriteStringAsynch(LCD1,"Stop Watch",10,NULL);
             ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours%10,NULL); 
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours%10,NULL); 
     
             ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes%10,NULL);
 
             ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds%10,NULL);
 
             ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,Tens_Seconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Tens_Seconds%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds%10,NULL);
         }
 }
 static void LCD_IncrementDateTime(void)
