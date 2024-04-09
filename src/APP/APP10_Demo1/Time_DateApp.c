@@ -80,7 +80,7 @@ uint8_t CurrentDisplay=StopWatch;
 uint8_t EditMode=OFF;
 
 uint8_t PosX=FirstLine;
-uint8_t PosY=0;
+uint8_t PosY=6;
 
 uint8_t ModeState=CONSTANT;
 
@@ -99,15 +99,15 @@ uint8_t ModeState=CONSTANT;
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
-    if(PosY==7&&PosX==FirstLine)
+    if(PosY==13&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=0;
+        PosY=6;
     }
-    else if(PosY==7&&PosX==SecondLine)
+    else if(PosY==13&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=0;
+        PosY=6;
     }
     else
     {
@@ -118,15 +118,15 @@ static void LCD_ShiftRight(void)
 
 static void LCD_ShiftLeft(void)
 {
-    if(PosY==0&&PosX==FirstLine)
+    if(PosY==6&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=7;
+        PosY=13;
     }
-    else if(PosY==0&&PosX==SecondLine)
+    else if(PosY==6&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=7;
+        PosY=13;
     }
     else
     {
@@ -217,28 +217,21 @@ static void LCD_DisplayMainMenu(void)
     static uint8_t First_Time=0;
     ErrorStatus_t ReturnError;
 
-    Tens_Seconds++;
-
-       if(Tens_Seconds>9) 
-       {
-            Tens_Seconds=0;
-            seconds++;
-            if (seconds > 59) 
+        seconds++;
+        if (seconds > 59) 
+        {
+            seconds = 0;
+            minutes++;
+            if (minutes > 59) 
             {
-                seconds = 0;
-                minutes++;
-                if (minutes > 59) 
+                minutes = 0;
+                hours++;
+                if (hours > 23) 
                 {
-                    minutes = 0;
-                    hours++;
-                    if (hours > 23) 
-                    {
-                        hours = 0;
-                    }
+                    hours = 0;
                 }
             }
-       }
-
+        }
 
         //if((MM_CursorLoc==FirstLine)&&(buffer==OK))
         if(CurrentMode==DateTime)
@@ -253,39 +246,43 @@ static void LCD_DisplayMainMenu(void)
                 LCD_ClearScreenAsynch(LCD1,NULL);
                 ModeState=CONSTANT;             
             }
-
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-            ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
-            //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
-
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,hours%10,NULL); 
-    
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,minutes%10,NULL);
+            if(EditMode==OFF)
+            {
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
+                //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
 
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,hours/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,hours%10,NULL); 
+        
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,minutes/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,minutes%10,NULL);
+
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,seconds/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,seconds%10,NULL);
+
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
+
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
+        
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
+
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,Year/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Year%10,NULL);
+            }
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,seconds%10,NULL);
-
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-            ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
-
-            ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
-    
-            ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
-
-            ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,Year/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Year%10,NULL);
         }
  }
  
@@ -442,6 +439,7 @@ static void USART_ReceiveCbf(void)
                 break;
                 case OK:
                 {
+                    LCD_DisableCursorAsynch(LCD1,NULL);
                     if(MM_CursorLoc==FirstLine)
                     {
                         CurrentMode=DateTime;
@@ -496,7 +494,7 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
-            LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+            //LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
                 case UP:
@@ -530,7 +528,7 @@ static void USART_ReceiveCbf(void)
                     if(EditMode==OFF)
                     {
                         EditMode=ON;
-                        LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
+                        LCD_SetCursorPosAsynch(LCD1,FirstLine,6,NULL);  
                         LCD_EnableCursorAsynch(LCD1,NULL);
                     }
                     else if(EditMode==ON)
