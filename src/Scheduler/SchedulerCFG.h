@@ -13,6 +13,7 @@ typedef enum
 {
     STOP_WATCH,
     LCD_TASK_RUN,
+    DISPLAY_APP,
     LCD_APP_RUN,
     /*TRAFFIC_LIGHT,
     Runnable_1,

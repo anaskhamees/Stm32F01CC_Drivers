@@ -6,8 +6,10 @@
  * Layer	: App
  * Version  : V 0.0
  * Created	:  Apr 8, 2024
- * Author 	: Yasmin Amr
+ * Author1 	: Yasmin Amr
+ * Author2  : Anas Khamees
  */
+
 /**********************************************************************************/
 /*										Includes				     			  */
 /**********************************************************************************/
@@ -83,7 +85,7 @@ uint8_t PosY=0;
  static void LCD_ShiftRight(void);
  static void LCD_ShiftLeft(void);
  static void LCD_DisplayDateTime(void);
- static void LCD_DisplayStopWatch(void);
+ //static void LCD_DisplayStopWatch(void);
  static void LCD_DisplayMainMenu(void);
  static void LCD_IncrementDateTime(void);
  static void LCD_DecrementDateTime(void);
@@ -188,6 +190,68 @@ static void LCD_DisplayDateTime(void)
     }
 }
 
+void LCD_DisplayStopWatch()
+{
+    static uint32_t Tens_Seconds=0;
+    static uint32_t seconds=30;
+    static uint32_t minutes=59;
+    static uint32_t hours=0;
+    static uint8_t First_Time=0;
+    ErrorStatus_t ReturnError;
+
+    Tens_Seconds++;
+
+       if(Tens_Seconds>9) 
+       {
+            Tens_Seconds=0;
+            seconds++;
+            if (seconds > 59) 
+            {
+                seconds = 0;
+                minutes++;
+                if (minutes > 59) 
+                {
+                    minutes = 0;
+                    hours++;
+                    if (hours > 23) 
+                    {
+                        hours = 0;
+                    }
+                }
+            }
+       }
+
+        if((MM_CursorLoc==SecondLine)&&(buffer==OK))
+        {
+            if(First_Time==0)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                First_Time++;
+            }
+            ReturnError=LCD_SetCursorPosAsynch(LCD1,0,3,NULL);
+            ReturnError=LCD_WriteStringAsynch(LCD1,"Stop Watch",10,NULL);
+            ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
+
+            ReturnError=LCD_WriteNumAsynch(LCD1,hours/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,hours%10,NULL); 
+    
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+            
+            ReturnError=LCD_WriteNumAsynch(LCD1,minutes/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,minutes%10,NULL);
+
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+            
+            ReturnError=LCD_WriteNumAsynch(LCD1,seconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,seconds%10,NULL);
+
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+
+            ReturnError=LCD_WriteNumAsynch(LCD1,Tens_Seconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,Tens_Seconds%10,NULL);
+        }
+       
+}
 static void LCD_IncrementDateTime(void)
 {
     /*-------------------------- Date ------------------------*/
@@ -280,7 +344,8 @@ static void USART_ReceiveCbf(void)
                     else if(MM_CursorLoc==SecondLine)
                     {
                         CurrentMode=StopWatch;
-                        //LCD_DisplayStopWatch();
+                        buffer=OK;
+                        LCD_DisplayStopWatch();
                     }
                 }
                 break;
@@ -380,7 +445,7 @@ static void USART_ReceiveCbf(void)
         }
         break;
     }
-    buffer=0;
+   // buffer=0;
 }
 
 /* Each 125mSec */

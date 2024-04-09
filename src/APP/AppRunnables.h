@@ -16,6 +16,10 @@ extern void LCD_Task(void);
 #elif(APP==APP11_DEMO1_STOPWATCH_TEST)
 extern void LCD_DisplayStopWatch(void);
 extern void LCD_Task(void);
+#elif(APP==APP10_DEMO1)
+extern void Display_App(void);
+extern void LCD_Task(void);
+extern void LCD_DisplayStopWatch();
 #endif
 
 
