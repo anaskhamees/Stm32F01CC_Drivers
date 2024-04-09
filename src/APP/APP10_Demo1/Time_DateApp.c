@@ -46,6 +46,9 @@
 #define ON                           1
 #define OFF                          0
 
+#define CONSTANT                    0
+#define MODIFIED                    1
+
 /***********************************************************************************/
 /*										Types									   */
 /***********************************************************************************/
@@ -78,6 +81,8 @@ uint8_t EditMode=OFF;
 
 uint8_t PosX=FirstLine;
 uint8_t PosY=0;
+
+uint8_t ModeState=CONSTANT;
 
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
@@ -243,6 +248,11 @@ static void LCD_DisplayMainMenu(void)
                 LCD_ClearScreenAsynch(LCD1,NULL);
                 First_Time++;
             }
+            else if(ModeState==MODIFIED)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                ModeState=CONSTANT;             
+            }
 
             ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
             ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
@@ -318,7 +328,12 @@ void LCD_DisplayStopwatch()
             {
                 LCD_ClearScreenAsynch(LCD1,NULL);
                 First_Time++;
-            }      
+            } 
+            else if(ModeState==MODIFIED)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                ModeState=CONSTANT;             
+            }     
 
             ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,3,NULL);
             ReturnError=LCD_WriteStringAsynch(LCD1,"Stop Watch",10,NULL);
@@ -473,6 +488,7 @@ static void USART_ReceiveCbf(void)
                 case MODE:
                 {
                     CurrentMode=DateTime;
+                    ModeState=MODIFIED;
                 }
                 break;
             }       
@@ -527,6 +543,7 @@ static void USART_ReceiveCbf(void)
                 case MODE:
                 {
                     CurrentMode=StopWatch;
+                    ModeState=MODIFIED;
                 }
                 break;
 
