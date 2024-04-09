@@ -64,7 +64,7 @@ uint8_t MM_CursorLoc=FirstLine;
 
 uint8_t Day=9;
 uint8_t Month=4;
-uint16_t Year=24;
+uint16_t Year=2024;
 
 uint8_t DayLength=1;
 uint8_t MonthLength=1;
@@ -217,7 +217,7 @@ static void LCD_DisplayMainMenu(void)
             ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
             ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,Day/1000,NULL);
             ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
     
             ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
@@ -226,9 +226,17 @@ static void LCD_DisplayMainMenu(void)
             ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
 
             ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+             
+            uint8_t YearThousandsDigit=Year/1000      ;  /* Thousands place */
+            uint8_t YearHundredsDigit =(Year%1000)/100;  /* Hundreds place  */
+            uint8_t YearTensDigit     =(Year%100)/10  ;  /* Tens place      */
+            uint8_t YearOnesDigit     =Year%10        ;  /* Ones place      */
             
-            ReturnError=LCD_WriteNumAsynch(LCD1,Year/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Year%10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,YearThousandsDigit,NULL); 
+            ReturnError=LCD_WriteNumAsynch(LCD1,YearHundredsDigit,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,YearTensDigit,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,YearOnesDigit,NULL);
+
         }
  }
  
