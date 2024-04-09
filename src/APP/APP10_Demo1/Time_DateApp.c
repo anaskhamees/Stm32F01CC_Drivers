@@ -141,68 +141,7 @@ static void LCD_DisplayMainMenu(void)
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
 
-// static void LCD_DisplayDateTime(void)
-// {
-//     if(CurrentDisplay!=DateTime)
-//     {
-//         /*Update Current Display*/
-//         CurrentDisplay=DateTime;
 
-//         LCD_ClearScreenAsynch(LCD1,NULL);
-
-//             Seconds++;
-//             if (Seconds > 59) 
-//             {
-//                 Seconds = 0;
-//                 Minutes++;
-//                 if (Minutes > 59) 
-//                 {
-//                     Minutes = 0;
-//                     Hour++;
-//                     if (Hour > 23) 
-//                     {
-//                         Hour = 0;
-//                     }
-//                 }
-//             }
-     
-//         /*Display Date*/
-//         LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-//         LCD_WriteNumAsynch(LCD1,Day,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,FirstLine,2,NULL);
-//         LCD_WriteStringAsynch(LCD1,"/",1,NULL); 
-
-//         LCD_SetCursorPosAsynch(LCD1,FirstLine,3,NULL);
-//         LCD_WriteNumAsynch(LCD1,Month,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,FirstLine,5,NULL);
-//         LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,FirstLine,6,NULL);
-//         LCD_WriteNumAsynch(LCD1,Year,NULL);
-
-//         /*Display Time*/
-//         LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-//         LCD_WriteNumAsynch(LCD1,Hour,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,SecondLine,2,NULL);
-//         LCD_WriteStringAsynch(LCD1,":",1,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,SecondLine,3,NULL);
-//         LCD_WriteNumAsynch(LCD1,Minutes,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,SecondLine,5,NULL);
-//         LCD_WriteStringAsynch(LCD1,":",1,NULL);
-
-//         LCD_SetCursorPosAsynch(LCD1,SecondLine,6,NULL);
-//         LCD_WriteNumAsynch(LCD1,Seconds,NULL);
-
-//         /*Disable Cursor*/
-//         LCD_DisableCursorAsynch(LCD1,NULL);
-        
-//     }
-// }
  void LCD_DisplayDateTime(void)
  {
     static uint32_t Tens_Seconds=0;
