@@ -75,6 +75,7 @@
 /************************************************************************************/
 /*									Variables									    */
 /************************************************************************************/
+
 uint8_t buffer=0;
 uint8_t CurrentMode= MainMenu;
 uint8_t MM_CursorLoc=FirstLine;
@@ -106,7 +107,6 @@ uint8_t EditUpdate=CONSTANT;
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
-
 /************************************************************************************/
 /*                              Stop Watch Variables                                */
 /************************************************************************************/
@@ -169,13 +169,14 @@ static void LCD_DisplayMainMenu(void)
 {
     /*Display "Date and Time" */
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-    LCD_WriteStringAsynch(LCD1,"1.Date and Time",15,NULL);
+    LCD_WriteStringAsynch(LCD1,"Date and Time",13,NULL);
     /*Display "Stopwatch" */
     LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-    LCD_WriteStringAsynch(LCD1,"2.Stopwatch",11,NULL);
+    LCD_WriteStringAsynch(LCD1,"Stopwatch",9,NULL);
     /*Return Cursor to Beginning*/
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
+
 
  void LCD_DisplayDateTime(void)
  {
@@ -271,11 +272,11 @@ static void LCD_DisplayMainMenu(void)
  
 void LCD_DisplayStopwatch()
 {
-      ErrorStatus_t ReturnError;
+   
     static uint8_t First_Time=0;
-    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&(StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
-    {
-        StopWatchTensSeconds++;
+    ErrorStatus_t ReturnError;
+
+    StopWatchTensSeconds++;
 
        if(StopWatchTensSeconds>9) 
        {
@@ -296,16 +297,9 @@ void LCD_DisplayStopwatch()
                 }
             }
        }
-    }
-    else if (StopWatchReset==STOP_WATCH_RESET_ON)
-    {
-        StopWatchTensSeconds=0;
-        StopWatchSeconds=0;
-        StopWatchMinutes=0;
-        StopWatchHours=0;
-        StopWatchReset=STOP_WATCH_RESET_OFF;
-    }
         
+
+        //if((MM_CursorLoc==SecondLine)&&(buffer==OK))
         if(CurrentMode==StopWatch)
         {
             if(First_Time==0)
@@ -599,40 +593,26 @@ static void USART_ReceiveCbf(void)
         break;
         case StopWatch:
         {
-             switch(buffer)
+            switch(buffer)
             {
                 case START_STOP_STOPWATCH:
                 {
-                    if(StopWatchStartStop==STOP_WATCH_STOP)
-                    {
-                        StopWatchStartStop=STOP_WATCH_START;
-                    }
-                    else if(StopWatchStartStop==STOP_WATCH_START)
-                    {
-                        StopWatchStartStop=STOP_WATCH_STOP;
-                    }         
+
                 }
                 break;
                 case RESET_STOPWATCH:
                 {
-                    StopWatchReset=STOP_WATCH_RESET_ON;
+
                 }
                 break;
                 case PAUSE_CONTINUE_STOPWATCH:
                 {
-                    if(StopWatchPauseContinue==STOP_WATCH_CONTINUE)
-                    {
-                        StopWatchPauseContinue=STOP_WATCH_PAUSE;
-                    }
-                    else if(StopWatchPauseContinue==STOP_WATCH_PAUSE)
-                    {
-                        StopWatchPauseContinue=STOP_WATCH_CONTINUE;
-                    }
+                    
                 }
                 break;
                 case EDIT:
                 {
-                    /* No Edits in StopWatch */
+
                 }
                 break;
                 case MODE:
