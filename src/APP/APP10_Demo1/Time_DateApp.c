@@ -75,6 +75,7 @@
 /************************************************************************************/
 /*									Variables									    */
 /************************************************************************************/
+
 uint8_t buffer=0;
 uint8_t CurrentMode= MainMenu;
 uint8_t MM_CursorLoc=FirstLine;
@@ -88,9 +89,6 @@ uint8_t MonthLength=1;
 
 uint8_t DateTimePosCounter=0;
 
-// uint8_t Hour=6;
-// uint8_t Minutes=27;
-// uint8_t Seconds=40;
 
 uint8_t CurrentDisplay=StopWatch;
 
@@ -109,7 +107,6 @@ uint8_t EditUpdate=CONSTANT;
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
-
 /************************************************************************************/
 /*                              Stop Watch Variables                                */
 /************************************************************************************/
