@@ -49,6 +49,12 @@
 #define CONSTANT                    0
 #define MODIFIED                    1
 
+#define STOP_WATCH_PAUSE            0
+#define STOP_WATCH_CONTINUE         1
+#define STOP_WATCH_RESET_ON         2
+#define STOP_WATCH_RESET_OFF        3
+#define STOP_WATCH_START            4
+#define STOP_WATCH_STOP             5
 /***********************************************************************************/
 /*										Types									   */
 /***********************************************************************************/
@@ -71,9 +77,6 @@ uint8_t MonthLength=1;
 
 uint8_t DateTimePosCounter=0;
 
-// uint8_t Hour=6;
-// uint8_t Minutes=27;
-// uint8_t Seconds=40;
 
 uint8_t CurrentDisplay=StopWatch;
 
@@ -91,13 +94,20 @@ uint8_t ModeState=CONSTANT;
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
+
 /************************************************************************************/
 /*                              Stop Watch Variables                                */
 /************************************************************************************/
-uint32_t StopWatchTensSeconds=30;
-uint32_t StopWatchSeconds=30;
-uint32_t StopWatchMinutes=59;
-uint32_t StopWatchHours=0;
+uint8_t StopWatchTensSeconds=0;
+uint8_t StopWatchSeconds=0;
+uint8_t StopWatchMinutes=0;
+uint8_t StopWatchHours=0;
+// uint8_t StopWatchMode=STOP_WATCH_STOP;
+
+uint8_t StopWatchStartStop=STOP_WATCH_STOP;
+uint8_t StopWatchPauseContinue=STOP_WATCH_CONTINUE;
+uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
+
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
 /*************************************************************************************/
@@ -113,6 +123,7 @@ uint32_t StopWatchHours=0;
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
+    
     if(PosY==7&&PosX==FirstLine)
     {
         PosX=SecondLine;
@@ -152,14 +163,13 @@ static void LCD_DisplayMainMenu(void)
 {
     /*Display "Date and Time" */
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-    LCD_WriteStringAsynch(LCD1,"Date and Time",13,NULL);
+    LCD_WriteStringAsynch(LCD1,"1.Date and Time",15,NULL);
     /*Display "Stopwatch" */
     LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-    LCD_WriteStringAsynch(LCD1,"Stopwatch",9,NULL);
+    LCD_WriteStringAsynch(LCD1,"2.Stopwatch",11,NULL);
     /*Return Cursor to Beginning*/
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
-
 
  void LCD_DisplayDateTime(void)
  {
@@ -180,8 +190,6 @@ static void LCD_DisplayMainMenu(void)
                     }
                 }
             }
-       
-
 
         //if((MM_CursorLoc==FirstLine)&&(buffer==OK))
         if(CurrentMode==DateTime)
@@ -242,11 +250,11 @@ static void LCD_DisplayMainMenu(void)
  
 void LCD_DisplayStopwatch()
 {
-   
+      ErrorStatus_t ReturnError;
     static uint8_t First_Time=0;
-    ErrorStatus_t ReturnError;
-
-    StopWatchTensSeconds++;
+    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&(StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
+    {
+        StopWatchTensSeconds++;
 
        if(StopWatchTensSeconds>9) 
        {
@@ -267,9 +275,16 @@ void LCD_DisplayStopwatch()
                 }
             }
        }
+    }
+    else if (StopWatchReset==STOP_WATCH_RESET_ON)
+    {
+        StopWatchTensSeconds=0;
+        StopWatchSeconds=0;
+        StopWatchMinutes=0;
+        StopWatchHours=0;
+        StopWatchReset=STOP_WATCH_RESET_OFF;
+    }
         
-
-        //if((MM_CursorLoc==SecondLine)&&(buffer==OK))
         if(CurrentMode==StopWatch)
         {
             if(First_Time==0)
@@ -411,26 +426,40 @@ static void USART_ReceiveCbf(void)
         break;
         case StopWatch:
         {
-            switch(buffer)
+             switch(buffer)
             {
                 case START_STOP_STOPWATCH:
                 {
-
+                    if(StopWatchStartStop==STOP_WATCH_STOP)
+                    {
+                        StopWatchStartStop=STOP_WATCH_START;
+                    }
+                    else if(StopWatchStartStop==STOP_WATCH_START)
+                    {
+                        StopWatchStartStop=STOP_WATCH_STOP;
+                    }         
                 }
                 break;
                 case RESET_STOPWATCH:
                 {
-
+                    StopWatchReset=STOP_WATCH_RESET_ON;
                 }
                 break;
                 case PAUSE_CONTINUE_STOPWATCH:
                 {
-                    
+                    if(StopWatchPauseContinue==STOP_WATCH_CONTINUE)
+                    {
+                        StopWatchPauseContinue=STOP_WATCH_PAUSE;
+                    }
+                    else if(StopWatchPauseContinue==STOP_WATCH_PAUSE)
+                    {
+                        StopWatchPauseContinue=STOP_WATCH_CONTINUE;
+                    }
                 }
                 break;
                 case EDIT:
                 {
-
+                    /* No Edits in StopWatch */
                 }
                 break;
                 case MODE:
