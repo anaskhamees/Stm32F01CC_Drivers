@@ -64,6 +64,9 @@
 #define MONTH_INDEX2    10
 #define YEAR_INDEX1     12
 #define YEAR_INDEX2     13
+#define YEAR_INDEX3     14
+#define YEAR_INDEX4     15
+
 
 #define STOP_WATCH_PAUSE            0
 #define STOP_WATCH_CONTINUE         1
@@ -145,12 +148,12 @@ static void LCD_ShiftRight(void)
      if(PosY==SECONDS_INDEX2&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=DAY_INDEX1; /* Anas: I think DayIndex1 (the same but for Readabiliy) */
+        PosY=YEAR_INDEX4; /* Anas: I think DayIndex1 (the same but for Readabiliy) */
     }
-    else if(PosY==YEAR_INDEX2&&PosX==SecondLine)
+    else if(PosY==YEAR_INDEX4&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=HOURS_INDEX1;  /* Anas: I think HoursIndex1 (the same but for Readabiliy) */
+        PosY=SECONDS_INDEX2;  /* Anas: I think HoursIndex1 (the same but for Readabiliy) */
     }
     else
     {
@@ -164,12 +167,12 @@ static void LCD_ShiftLeft(void)
     if(PosY==HOURS_INDEX1&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=YEAR_INDEX2;
+        PosY=DAY_INDEX1;
     }
     else if(PosY==DAY_INDEX1&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=SECONDS_INDEX2;
+        PosY=HOURS_INDEX1;
     }
     else
     {
@@ -371,9 +374,111 @@ static void LCD_IncrementDateTime(void)
     /*                                    */
     /**************************************/
 
-     /*-------------------------- Date ------------------------*/
+    /*-------------------------- Date ------------------------*/
+    uint8_t DayIndex1  =(Day/10)       ;
+    uint8_t DayIndex2  =(Day%10)       ;
+    uint8_t MonthIndex1=(Month/10)     ;
+    uint8_t MonthIndex2=(Month%10)     ;
+    uint8_t YearIndex1 =Year/1000      ;  /* Thousands place */
+    uint8_t YearIndex2 =(Year%1000)/100;  /* Hundreds place  */
+    uint8_t YearIndex3 =(Year%100)/10  ;  /* Tens place      */
+    uint8_t YearIndex4 =Year%10        ;  /* Ones place      */
+    
+    /*-------------------- Edit DayIndex1 -------------------*/
+    if((PosX== SecondLine)&&(PosY==DAY_INDEX1))
+    {
+        if(DayIndex1==3)
+        {
+            DayIndex1=0;
+        }
+         
+        else 
+        {
+            DayIndex1++;
+            if((DayIndex1==3)&&(DayIndex2>1))
+            {
+                DayIndex2=0;
+            }
+        }
+    }
+    /*-------------------- Edit DayIndex2 -------------------*/
+    if((PosX== SecondLine)&&(PosY==DAY_INDEX2))
+    {
+        if((DayIndex1==3)&&(DayIndex2==1)) /* For 31 days in months*/
+        {
+            DayIndex2=0;
+        }
+        if(DayIndex2==9)
+        {
+            DayIndex2=0;
+        }
+        else
+        {
+            DayIndex2++;
+        }
+    }
+    /*---------------------- Edit MonthIndex1 -----------------*/
+    if((PosX==SecondLine)&&(PosY==MONTH_INDEX1))
+    {
+        if(MonthIndex1==1)
+        {
+            MonthIndex1=0;
+        }
+        else if(MonthIndex2<=2)  /* Months 10 - 11 - 12  Only */
+        {
+            MonthIndex1++;
+        }
+    }
+    /*-------------------- Edit MonthIndex2 ------------------*/
+    if((PosX==SecondLine)&&(PosY==MONTH_INDEX2))
+    {
+        if(MonthIndex2==9)
+        {
+            MonthIndex2=0;
+        }
+        else if((MonthIndex2==2) &&(MonthIndex1==1))
+        {
+            MonthIndex2=0;            
+        }
+        else
+        {
+            MonthIndex2++;
+        }
+    }
 
-    /*-------------------------- Time ------------------------*/
+    /*------- Don't Edit in YearIndex1, YearIndex2  Meaningless -----*/
+    /*------------------- Edit YearIndex3 ---------------------*/
+    if((PosX==SecondLine)&&(PosY==YEAR_INDEX3))
+    {
+        if(YearIndex3==9)
+        {
+            YearIndex3=0;
+        }
+        else
+        {
+            YearIndex3++;
+        }
+    }
+    /*------------------- Edit YearIndex4 ---------------------*/
+     if((PosX==SecondLine)&&(PosY==YEAR_INDEX4))
+    {
+        if(YearIndex4==9)
+        {
+            YearIndex4=0;
+        }
+        else
+        {
+            YearIndex4++;
+        }
+    }
+
+/*============================ Date Updated Values =============================================*/
+    Day  =((DayIndex1*10)+DayIndex2);
+    Month=((MonthIndex1*10)+MonthIndex2);
+    Year =((YearIndex1*1000)+(YearIndex2*100)+(YearIndex3*10)+(YearIndex4));
+/*===============================================================================================*/
+    
+    /*-------------------------- Time -------------------------*/
     uint8_t TimeHoursIndex1= (TimeHours/10);
     uint8_t TimeHoursIndex2= (TimeHours%10);
     uint8_t TimeMinutesIndex1= (TimeMinutes/10);
@@ -477,8 +582,109 @@ static void LCD_IncrementDateTime(void)
 
 static void LCD_DecrementDateTime(void)
 {
-     /*-------------------------- Date ------------------------*/
+/*-------------------------- Date ------------------------*/
+    uint8_t DayIndex1  =(Day/10)       ;
+    uint8_t DayIndex2  =(Day%10)       ;
+    uint8_t MonthIndex1=(Month/10)     ;
+    uint8_t MonthIndex2=(Month%10)     ;
+    uint8_t YearIndex1 =Year/1000      ;  /* Thousands place */
+    uint8_t YearIndex2 =(Year%1000)/100;  /* Hundreds place  */
+    uint8_t YearIndex3 =(Year%100)/10  ;  /* Tens place      */
+    uint8_t YearIndex4 =Year%10        ;  /* Ones place      */
+    
+    /*-------------------- Edit DayIndex1 -------------------*/
+    if((PosX== SecondLine)&&(PosY==DAY_INDEX1))
+    {
+        if((DayIndex1==0)&&(DayIndex2<2))
+        {
+            DayIndex1=3;
+        }
+        else
+        {
+            DayIndex1--;
+        }
+    }
+    /*-------------------- Edit DayIndex2 -------------------*/
+    if((PosX== SecondLine)&&(PosY==DAY_INDEX2))
+    {
+        
+        if((DayIndex2==0)&&(DayIndex1<3))
+        {
+            DayIndex2=9;
+        }
+        else if((DayIndex2==0)&&(DayIndex1==3))
+        {
+            DayIndex2=1;
+        }
+        else
+        {
+            DayIndex2--;
+        }
+    }
+    /*---------------------- Edit MonthIndex1 -----------------*/
+    if((PosX==SecondLine)&&(PosY==MONTH_INDEX1))
+    {
+        if((MonthIndex1==0)&&(MonthIndex2<3))
+        {
+            MonthIndex1=1;
+        }
+        if((MonthIndex1==0)&&(MonthIndex2>=3))
+        {
+            MonthIndex1=0;
+        }
+        else 
+        {
+            MonthIndex1--;
+        }
+    }
+    /*-------------------- Edit MonthIndex2 ------------------*/
+    if((PosX==SecondLine)&&(PosY==MONTH_INDEX2))
+    {
+        if((MonthIndex2==0)&&(MonthIndex1==0))
+        {
+            MonthIndex2=9;
+        }
+        else if((MonthIndex2==0)&&(MonthIndex1==1))
+        {
+            MonthIndex2=2; /*Month 12*/
+        }
+        else
+        {
+            MonthIndex2--;
+        }
+    }
 
+    /*------- Don't Edit in YearIndex1, YearIndex2  Meaningless -----*/
+    /*------------------- Edit YearIndex3 ---------------------*/
+    if((PosX==SecondLine)&&(PosY==YEAR_INDEX3))
+    {
+        if(YearIndex3==0)
+        {
+            YearIndex3=9;
+        }
+        else
+        {
+            YearIndex3--;
+        }
+    }
+    /*------------------- Edit YearIndex4 ---------------------*/
+     if((PosX==SecondLine)&&(PosY==YEAR_INDEX4))
+    {
+        if(YearIndex4==0)
+        {
+            YearIndex4=9;
+        }
+        else
+        {
+            YearIndex4--;
+        }
+    }
+
+/*============================ Date Updated Values =============================================*/
+    Day  =((DayIndex1*10)+DayIndex2);
+    Month=((MonthIndex1*10)+MonthIndex2);
+    Year =((YearIndex1*1000)+(YearIndex2*100)+(YearIndex3*10)+(YearIndex4));
+/*===============================================================================================*/
     /*-------------------------- Time ------------------------*/
     uint8_t TimeHoursIndex1  = (TimeHours/10)  ;
     uint8_t TimeHoursIndex2  = (TimeHours%10)  ;
@@ -671,6 +877,7 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
+            // static uint8_t DateTimeFirstTime=0;
             LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
@@ -684,6 +891,11 @@ static void USART_ReceiveCbf(void)
                 break;
                 case DOWN:
                 {
+                    // if(DateTimeFirstTime==0) /* For, If I want to edit in Date */
+                    // {
+                    //     LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
+                    //       DateTimeFirstTime++;
+                    // }
                     if(EditMode==ON)
                     {
                         LCD_DecrementDateTime();
