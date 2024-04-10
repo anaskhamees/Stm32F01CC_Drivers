@@ -43,18 +43,29 @@
 #define FirstLine   0
 #define SecondLine  1
 
-#define ON                           1
-#define OFF                          0
+#define ON          1
+#define OFF         0
 
-#define CONSTANT                    0
-#define MODIFIED                    1
+#define CONSTANT    0
+#define MODIFIED    1
 
-#define STOP_WATCH_PAUSE            0
-#define STOP_WATCH_CONTINUE         1
-#define STOP_WATCH_RESET_ON         2
-#define STOP_WATCH_RESET_OFF        3
-#define STOP_WATCH_START            4
-#define STOP_WATCH_STOP             5
+#define DATE_TIME_INDEX 6
+
+#define HOURS_INDEX1    6    
+#define HOURS_INDEX2    7
+#define MINUTES_INDEX1  9
+#define MINUTES_INDEX2  10
+#define SECONDS_INDEX1  12
+#define SECONDS_INDEX2  13
+
+#define DAY_INDEX1      6
+#define DAY_INDEX2      7
+#define MONTH_INDEX1    9
+#define MONTH_INDEX2    10
+#define YEAR_INDEX1     12
+#define YEAR_INDEX2     13
+
+
 /***********************************************************************************/
 /*										Types									   */
 /***********************************************************************************/
@@ -68,7 +79,7 @@ uint8_t buffer=0;
 uint8_t CurrentMode= MainMenu;
 uint8_t MM_CursorLoc=FirstLine;
 
-uint8_t Day=9;
+uint8_t Day=10;
 uint8_t Month=4;
 uint16_t Year=2024;
 
@@ -83,14 +94,15 @@ uint8_t CurrentDisplay=StopWatch;
 uint8_t EditMode=OFF;
 
 uint8_t PosX=FirstLine;
-uint8_t PosY=0;
+uint8_t PosY=DATE_TIME_INDEX;
 
 uint8_t ModeState=CONSTANT;
+
+uint8_t EditUpdate=CONSTANT;
 
 /************************************************************************************/
 /*                              Time Variables                                      */
 /************************************************************************************/
-
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
@@ -98,15 +110,10 @@ uint32_t TimeHours=0;
 /************************************************************************************/
 /*                              Stop Watch Variables                                */
 /************************************************************************************/
-uint8_t StopWatchTensSeconds=0;
-uint8_t StopWatchSeconds=0;
-uint8_t StopWatchMinutes=0;
-uint8_t StopWatchHours=0;
-// uint8_t StopWatchMode=STOP_WATCH_STOP;
-
-uint8_t StopWatchStartStop=STOP_WATCH_STOP;
-uint8_t StopWatchPauseContinue=STOP_WATCH_CONTINUE;
-uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
+uint32_t StopWatchTensSeconds=30;
+uint32_t StopWatchSeconds=30;
+uint32_t StopWatchMinutes=59;
+uint32_t StopWatchHours=0;
 
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
@@ -123,16 +130,15 @@ uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
-    
-    if(PosY==7&&PosX==FirstLine)
+    if(PosY==SECONDS_INDEX2&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=0;
+        PosY=HOURS_INDEX1;
     }
-    else if(PosY==7&&PosX==SecondLine)
+    else if(PosY==YEAR_INDEX2&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=0;
+        PosY=DAY_INDEX1;
     }
     else
     {
@@ -143,15 +149,15 @@ static void LCD_ShiftRight(void)
 
 static void LCD_ShiftLeft(void)
 {
-    if(PosY==0&&PosX==FirstLine)
+    if(PosY==HOURS_INDEX1&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=7;
+        PosY=YEAR_INDEX2;
     }
-    else if(PosY==0&&PosX==SecondLine)
+    else if(PosY==6&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=7;
+        PosY=SECONDS_INDEX2;
     }
     else
     {
@@ -175,10 +181,14 @@ static void LCD_DisplayMainMenu(void)
  {
     static uint8_t First_Time=0;
     ErrorStatus_t ReturnError;
+
+        if(EditMode==OFF)
+        {
             TimeSeconds++;
             if (TimeSeconds > 59) 
             {
                 TimeSeconds = 0;
+
                 TimeMinutes++;
                 if (TimeMinutes > 59) 
                 {
@@ -190,61 +200,72 @@ static void LCD_DisplayMainMenu(void)
                     }
                 }
             }
+        }
 
         //if((MM_CursorLoc==FirstLine)&&(buffer==OK))
         if(CurrentMode==DateTime)
         {
+            /*First Function Entry*/
             if(First_Time==0)
             {
                 LCD_ClearScreenAsynch(LCD1,NULL);
                 First_Time++;
             }
+            /*Mode Change: Stopwatch/DateTime*/
             else if(ModeState==MODIFIED)
             {
                 LCD_ClearScreenAsynch(LCD1,NULL);
-                ModeState=CONSTANT;             
+                ModeState=CONSTANT; 
+            }
+            else
+            {
+                //Do Nothing
             }
 
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-            ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
-            //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
+            /*Don't Update in Edit Mode*/
+            if((EditMode==OFF)||(EditUpdate==MODIFIED))
+            {   
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours%10,NULL); 
-    
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes%10,NULL);
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
+                //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
 
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds%10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours%10,NULL); 
+        
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes%10,NULL);
 
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-            ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds%10,NULL);
 
-            ReturnError=LCD_WriteNumAsynch(LCD1,Day/1000,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
-    
-            ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
 
-            ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-             
-            uint8_t YearThousandsDigit=Year/1000      ;  /* Thousands place */
-            uint8_t YearHundredsDigit =(Year%1000)/100;  /* Hundreds place  */
-            uint8_t YearTensDigit     =(Year%100)/10  ;  /* Tens place      */
-            uint8_t YearOnesDigit     =Year%10        ;  /* Ones place      */
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,YearThousandsDigit,NULL); 
-            ReturnError=LCD_WriteNumAsynch(LCD1,YearHundredsDigit,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,YearTensDigit,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,YearOnesDigit,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
+        
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
 
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,Year/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Year%10,NULL);
+
+                if(EditUpdate==MODIFIED)
+                {
+                    EditUpdate=CONSTANT;
+                    /*Set Cursor Back to Sme Position (No Incrementing)*/
+                    LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+                }
+            }
         }
  }
  
@@ -323,56 +344,109 @@ void LCD_DisplayStopwatch()
 }
 static void LCD_IncrementDateTime(void)
 {
+   
     /*-------------------------- Date ------------------------*/
 
     /*-------------------------- Time ------------------------*/
+    uint8_t TimeHoursIndex1= (TimeHours/10);
+    uint8_t TimeHoursIndex2= (TimeHours%10);
+    uint8_t TimeMinutesIndex1= (TimeMinutes/10);
+    uint8_t TimeMinutesIndex2= (TimeMinutes%10);  
+    uint8_t TimeSecondsIndex1= (TimeSeconds/10);
+    uint8_t TimeSecondsIndex2= (TimeSeconds%10);  
 
-    /**************************************/
-    /*      ___________________________   */
-    /*     |                           |  */
-    /*     |       08:27:40            |  */
-    /*     |       HH:MM:SS            |  */
-    /*     |___________________________|  */
-    /*                                    */
-    /**************************************/
+    /*Cursor Hour Index1*/
+    if(PosX==FirstLine&&PosY==HOURS_INDEX1)
+    {
+        /*Condition to Not Exceed Hours=23*/
+        if((TimeHoursIndex1==1)&&(TimeHoursIndex2>3))
+        {
+            //Do Nothing
+        }
+        else if(TimeHoursIndex1==2)
+        {
+            TimeHoursIndex1=0;
+        }
+        else
+        {
+            TimeHoursIndex1++;
+        }
+    }
 
-    /*Cursor H1*/
-    if(PosX==SecondLine&&PosY==0)
+    /*Cursor Hour Index2*/
+    if(PosX==FirstLine&&PosY==HOURS_INDEX2)
     {
-        // if((Hour<10)&&(Hour==9))
-        // {
-        //     Hour=0;
-        // }
-        // else
-        // {
-        //     Hour++;
-        // }
-    }
-    /*Cursor H2*/
-    if(PosX==SecondLine&&PosY==1)
-    {
+        if(TimeHoursIndex1==2&&TimeHoursIndex2==3)
+        {
+            TimeHoursIndex2=0;
+        }
+        else
+        {
+            if(TimeHoursIndex2==9)
+            {
+                TimeHoursIndex2=0;
+            }
+            else
+            {
+                TimeHoursIndex2++;
+            }
+        }
 
     }
-    /*Cursor M1*/
-    if(PosX==SecondLine&&PosY==3)
+    /*Cursor Minute Index1*/
+    if(PosX==FirstLine&&PosY==MINUTES_INDEX1)
     {
-        
+        if(TimeMinutesIndex1==5)
+        {
+            TimeMinutesIndex1=0;
+        }
+        else
+        {
+            TimeMinutesIndex1++;
+        }
     }
-    /*Cursor M2*/
-    if(PosX==SecondLine&&PosY==4)
+    /*Cursor Minute Index2*/
+    if(PosX==FirstLine&&PosY==MINUTES_INDEX2)
     {
-        
+        if(TimeMinutesIndex2==9)
+        {
+            TimeMinutesIndex2=0;
+        }
+        else
+        {
+            TimeMinutesIndex2++;
+        }
     }
-    /*Cursor S1*/
-    if(PosX==SecondLine&&PosY==6)
+
+    /*Cursor Seconds Index1*/
+    if(PosX==FirstLine&&PosY==SECONDS_INDEX1)
     {
-        
+        if(TimeSecondsIndex1==5)
+        {
+            TimeSecondsIndex1=0;
+        }
+        else
+        {
+            TimeSecondsIndex1++;
+        }
     }
-    /*Cursor S2*/
-    if(PosX==SecondLine&&PosY==7)
+    /*Cursor Seconds Index2*/
+    if(PosX==FirstLine&&PosY==SECONDS_INDEX2)
     {
-        
+        if(TimeSecondsIndex2==9)
+        {
+            TimeSecondsIndex2=0;
+        }
+        else
+        {
+            TimeSecondsIndex2++;
+        }
     }
+
+    TimeHours= (TimeHoursIndex1*10)+TimeHoursIndex2;
+    TimeMinutes= (TimeMinutesIndex1*10)+TimeMinutesIndex2;
+    TimeSeconds= (TimeSecondsIndex1*10)+TimeSecondsIndex2;
+    EditUpdate=MODIFIED;
 }
 
 static void LCD_DecrementDateTime(void)
@@ -380,6 +454,104 @@ static void LCD_DecrementDateTime(void)
     /*-------------------------- Date ------------------------*/
 
     /*-------------------------- Time ------------------------*/
+    uint8_t TimeHoursIndex1= (TimeHours/10);
+    uint8_t TimeHoursIndex2= (TimeHours%10);
+    uint8_t TimeMinutesIndex1= (TimeMinutes/10);
+    uint8_t TimeMinutesIndex2= (TimeMinutes%10);  
+    uint8_t TimeSecondsIndex1= (TimeSeconds/10);
+    uint8_t TimeSecondsIndex2= (TimeSeconds%10);  
+    /*Cursor Hour Index1*/
+    if(PosX==FirstLine&&PosY==HOURS_INDEX1)
+    {
+        /*Condition to Not Exceed Hours=23*/
+        if((TimeHoursIndex1==0)&&(TimeHoursIndex2>3))
+        {
+            //Do Nothing
+        }
+        else if(TimeHoursIndex1==0)
+        {
+            TimeHoursIndex1=2;
+        }
+        else
+        {
+            TimeHoursIndex1--;
+        }
+        
+    }
+    /*Cursor Hour Index2*/
+    if(PosX==FirstLine&&PosY==HOURS_INDEX2)
+    {
+        if(TimeHoursIndex1==2&&TimeHoursIndex2==0)
+        {
+            TimeHoursIndex2=3;
+        }
+        else
+        {
+            if(TimeHoursIndex2==0)
+            {
+                TimeHoursIndex2=9;
+            }
+            else
+            {
+                TimeHoursIndex2--;
+            }
+        }
+
+    }
+    /*Cursor Minute Index1*/
+    if(PosX==FirstLine&&PosY==MINUTES_INDEX1)
+    {
+        if(TimeMinutesIndex1==0)
+        {
+            TimeMinutesIndex1=5;
+        }
+        else
+        {
+            TimeMinutesIndex1--;
+        }
+    }
+    /*Cursor Minute Index2*/
+    if(PosX==FirstLine&&PosY==MINUTES_INDEX2)
+    {
+        if(TimeMinutesIndex2==0)
+        {
+            TimeMinutesIndex2=9;
+        }
+        else
+        {
+            TimeMinutesIndex2--;
+        }
+    }
+
+    /*Cursor Seconds Index1*/
+    if(PosX==FirstLine&&PosY==SECONDS_INDEX1)
+    {
+        if(TimeSecondsIndex1==0)
+        {
+            TimeSecondsIndex1=5;
+        }
+        else
+        {
+            TimeSecondsIndex1--;
+        }
+    }
+    /*Cursor Seconds Index2*/
+    if(PosX==FirstLine&&PosY==SECONDS_INDEX2)
+    {
+        if(TimeSecondsIndex2==0)
+        {
+            TimeSecondsIndex2=9;
+        }
+        else
+        {
+            TimeSecondsIndex2--;
+        }
+    }
+
+    TimeHours= (TimeHoursIndex1*10)+TimeHoursIndex2;
+    TimeMinutes= (TimeMinutesIndex1*10)+TimeMinutesIndex2;
+    TimeSeconds= (TimeSecondsIndex1*10)+TimeSecondsIndex2;
+    EditUpdate=MODIFIED;
 }
  
 
@@ -405,6 +577,7 @@ static void USART_ReceiveCbf(void)
                 break;
                 case OK:
                 {
+                    LCD_DisableCursorAsynch(LCD1,NULL);
                     if(MM_CursorLoc==FirstLine)
                     {
                         CurrentMode=DateTime;
@@ -473,7 +646,7 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
-            LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+            //LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
                 case UP:
@@ -507,7 +680,7 @@ static void USART_ReceiveCbf(void)
                     if(EditMode==OFF)
                     {
                         EditMode=ON;
-                        LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
+                        LCD_SetCursorPosAsynch(LCD1,FirstLine,DAY_INDEX1,NULL);  
                         LCD_EnableCursorAsynch(LCD1,NULL);
                     }
                     else if(EditMode==ON)
@@ -521,6 +694,9 @@ static void USART_ReceiveCbf(void)
                 {
                     CurrentMode=StopWatch;
                     ModeState=MODIFIED;
+                    /*Disable Editing Mode*/
+                    LCD_DisableCursorAsynch(LCD1,NULL);
+                    EditMode=OFF;
                 }
                 break;
 

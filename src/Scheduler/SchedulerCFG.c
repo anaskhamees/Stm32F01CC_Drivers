@@ -23,7 +23,7 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
   },
   [DATE_TIME]={
     .FirstDelayMS=0,
-    .PeriodicityMS=1000, 
+    .PeriodicityMS=1000,
     .CallBack=LCD_DisplayDateTime 
     },
   [DISPLAY_APP]={
