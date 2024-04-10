@@ -234,7 +234,7 @@ static void LCD_DisplayMainMenu(void)
 
                 ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
                 ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
-        
+         
                 ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
                 
                 ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
