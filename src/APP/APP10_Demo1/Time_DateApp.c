@@ -43,12 +43,34 @@
 #define FirstLine   0
 #define SecondLine  1
 
-#define ON          1
-#define OFF         0
+#define ON                           1
+#define OFF                          0
 
 #define CONSTANT                    0
 #define MODIFIED                    1
 
+#define DATE_TIME_INDEX 6
+
+#define HOURS_INDEX1    6    
+#define HOURS_INDEX2    7
+#define MINUTES_INDEX1  9
+#define MINUTES_INDEX2  10
+#define SECONDS_INDEX1  12
+#define SECONDS_INDEX2  13
+
+#define DAY_INDEX1      6
+#define DAY_INDEX2      7
+#define MONTH_INDEX1    9
+#define MONTH_INDEX2    10
+#define YEAR_INDEX1     12
+#define YEAR_INDEX2     13
+
+#define STOP_WATCH_PAUSE            0
+#define STOP_WATCH_CONTINUE         1
+#define STOP_WATCH_RESET_ON         2
+#define STOP_WATCH_RESET_OFF        3
+#define STOP_WATCH_START            4
+#define STOP_WATCH_STOP             5
 /***********************************************************************************/
 /*										Types									   */
 /***********************************************************************************/
@@ -71,9 +93,6 @@ uint8_t MonthLength=1;
 
 uint8_t DateTimePosCounter=0;
 
-// uint8_t Hour=6;
-// uint8_t Minutes=27;
-// uint8_t Seconds=40;
 
 uint8_t CurrentDisplay=StopWatch;
 
@@ -86,9 +105,11 @@ uint8_t ModeState=CONSTANT;
 
 uint8_t EditUpdate=CONSTANT;
 
+
 /************************************************************************************/
 /*                              Time Variables                                      */
 /************************************************************************************/
+
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
@@ -96,10 +117,15 @@ uint32_t TimeHours=0;
 /************************************************************************************/
 /*                              Stop Watch Variables                                */
 /************************************************************************************/
-uint32_t StopWatchTensSeconds=30;
-uint32_t StopWatchSeconds=30;
-uint32_t StopWatchMinutes=59;
-uint32_t StopWatchHours=0;
+uint8_t StopWatchTensSeconds=0;
+uint8_t StopWatchSeconds=0;
+uint8_t StopWatchMinutes=0;
+uint8_t StopWatchHours=0;
+
+uint8_t StopWatchStartStop=STOP_WATCH_STOP;
+uint8_t StopWatchPauseContinue=STOP_WATCH_CONTINUE;
+uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
+
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
 /*************************************************************************************/
@@ -115,15 +141,16 @@ uint32_t StopWatchHours=0;
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
-    if(PosY==7&&PosX==FirstLine)
+    
+     if(PosY==SECONDS_INDEX2&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=HOURS_INDEX1;
+        PosY=DAY_INDEX1; /* Anas: I think DayIndex1 (the same but for Readabiliy) */
     }
     else if(PosY==YEAR_INDEX2&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=DAY_INDEX1;
+        PosY=HOURS_INDEX1;  /* Anas: I think HoursIndex1 (the same but for Readabiliy) */
     }
     else
     {
@@ -139,7 +166,7 @@ static void LCD_ShiftLeft(void)
         PosX=SecondLine;
         PosY=YEAR_INDEX2;
     }
-    else if(PosY==6&&PosX==SecondLine)
+    else if(PosY==DAY_INDEX1&&PosX==SecondLine)
     {
         PosX=FirstLine;
         PosY=SECONDS_INDEX2;
@@ -166,7 +193,6 @@ static void LCD_DisplayMainMenu(void)
  {
     static uint8_t First_Time=0;
     ErrorStatus_t ReturnError;
-
         if(EditMode==OFF)
         {
             TimeSeconds++;
@@ -185,10 +211,8 @@ static void LCD_DisplayMainMenu(void)
                     }
                 }
             }
-       
+        }
 
-
-        //if((MM_CursorLoc==FirstLine)&&(buffer==OK))
         if(CurrentMode==DateTime)
         {
             /*First Function Entry*/
@@ -209,7 +233,7 @@ static void LCD_DisplayMainMenu(void)
             }
 
             /*Don't Update in Edit Mode*/
-            if((EditMode==OFF)||(EditUpdate==MODIFIED))
+            if((EditMode==OFF)||(EditUpdate==MODIFIED)) /* Is (EditUpdate==MODIFIED) for if In Edit mode and Time/Date Updated ?*/
             {   
 
                 ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
@@ -242,10 +266,18 @@ static void LCD_DisplayMainMenu(void)
 
                 ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
                 
-                ReturnError=LCD_WriteNumAsynch(LCD1,Year/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,Year%10,NULL);
+                uint8_t YearThousandsDigit=Year/1000      ;  /* Thousands place */
+                uint8_t YearHundredsDigit =(Year%1000)/100;  /* Hundreds place  */
+                uint8_t YearTensDigit     =(Year%100)/10  ;  /* Tens place      */
+                uint8_t YearOnesDigit     =Year%10        ;  /* Ones place      */
+           
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearThousandsDigit,NULL); 
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearHundredsDigit,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearTensDigit,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearOnesDigit,NULL);
+                
 
-                if(EditUpdate==MODIFIED)
+                if(EditUpdate==MODIFIED) /* Edit mode and Modification is Done*/
                 {
                     EditUpdate=CONSTANT;
                     /*Set Cursor Back to Sme Position (No Incrementing)*/
@@ -330,8 +362,16 @@ void LCD_DisplayStopwatch()
 }
 static void LCD_IncrementDateTime(void)
 {
-   
-    /*-------------------------- Date ------------------------*/
+    /**************************************/
+    /*      ___________________________   */
+    /*     |                           |  */
+    /*     |       08:27:40            |  */
+    /*     |       HH:MM:SS            |  */
+    /*     |___________________________|  */
+    /*                                    */
+    /**************************************/
+
+     /*-------------------------- Date ------------------------*/
 
     /*-------------------------- Time ------------------------*/
     uint8_t TimeHoursIndex1= (TimeHours/10);
@@ -437,11 +477,11 @@ static void LCD_IncrementDateTime(void)
 
 static void LCD_DecrementDateTime(void)
 {
-    /*-------------------------- Date ------------------------*/
+     /*-------------------------- Date ------------------------*/
 
     /*-------------------------- Time ------------------------*/
-    uint8_t TimeHoursIndex1= (TimeHours/10);
-    uint8_t TimeHoursIndex2= (TimeHours%10);
+    uint8_t TimeHoursIndex1  = (TimeHours/10)  ;
+    uint8_t TimeHoursIndex2  = (TimeHours%10)  ;
     uint8_t TimeMinutesIndex1= (TimeMinutes/10);
     uint8_t TimeMinutesIndex2= (TimeMinutes%10);  
     uint8_t TimeSecondsIndex1= (TimeSeconds/10);
@@ -571,7 +611,6 @@ static void USART_ReceiveCbf(void)
                     else if(MM_CursorLoc==SecondLine)
                     {
                         CurrentMode=StopWatch;
-                        //buffer=OK;
                     }
                 }
                 break;
@@ -632,7 +671,7 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
-            //LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+            LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
                 case UP:
@@ -666,7 +705,7 @@ static void USART_ReceiveCbf(void)
                     if(EditMode==OFF)
                     {
                         EditMode=ON;
-                        LCD_SetCursorPosAsynch(LCD1,FirstLine,DAY_INDEX1,NULL);  
+                        LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
                         LCD_EnableCursorAsynch(LCD1,NULL);
                     }
                     else if(EditMode==ON)
@@ -682,7 +721,7 @@ static void USART_ReceiveCbf(void)
                     ModeState=MODIFIED;
                     /*Disable Editing Mode*/
                     LCD_DisableCursorAsynch(LCD1,NULL);
-                    EditMode=OFF;
+                     EditMode=OFF;
                 }
                 break;
 
@@ -690,7 +729,6 @@ static void USART_ReceiveCbf(void)
         }
         break;
     }
-   // buffer=0;
 }
 
 /* Each 125mSec */
