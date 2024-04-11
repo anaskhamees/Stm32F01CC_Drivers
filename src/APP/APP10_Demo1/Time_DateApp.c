@@ -25,6 +25,7 @@
 /***********************************************************************************/
 /*										Defines									   */
 /***********************************************************************************/
+
 #define OK                          '3'
 #define START_STOP_STOPWATCH        '5'
 #define RESET_STOPWATCH             '6'
@@ -144,16 +145,23 @@ uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
-    
+    /* If the Cursor now,In the most Right of First Line and ShiftRight is Triggered, 
+     * The cursor will move to the most Right in the Second Line.
+     * For Ease and flexibility to move between the FirstLine and SecondLine in EditMode (Time and Date).
+     */
      if(PosY==SECONDS_INDEX2&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=YEAR_INDEX4; /* Anas: I think DayIndex1 (the same but for Readabiliy) */
+        PosY=YEAR_INDEX4; /* Anas Edit this */
     }
+    /* If the Cursor now,In the most Right of SecondLine and ShiftRight is Triggered, 
+     * The cursor will move to the most Right in the First Line.
+     * For Ease and flexibility to move between the FirstLine and SecondLine in EditMode (Time and Date).
+     */
     else if(PosY==YEAR_INDEX4&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=SECONDS_INDEX2;  /* Anas: I think HoursIndex1 (the same but for Readabiliy) */
+        PosY=SECONDS_INDEX2;  /* Anas Edit this */
     }
     else
     {
@@ -164,15 +172,23 @@ static void LCD_ShiftRight(void)
 
 static void LCD_ShiftLeft(void)
 {
+    /* If the Cursor now,In the most Left of First Line and ShiftLeft is Triggered, 
+     * The cursor will move to the most Left in the Second Line.
+     * For Ease and flexibility to move between the FirstLine and SecondLine in EditMode (Time and Date).
+     */
     if(PosY==HOURS_INDEX1&&PosX==FirstLine)
     {
         PosX=SecondLine;
-        PosY=DAY_INDEX1;
+        PosY=DAY_INDEX1; /* Anas Edit This */
     }
+    /* If the Cursor now,In the most Left of Second Line and ShiftLeft is Triggered, 
+     * The cursor will move to the most Left in the First Line.
+     * For Ease and flexibility to move between the FirstLine and SecondLine in EditMode (Time and Date).
+     */
     else if(PosY==DAY_INDEX1&&PosX==SecondLine)
     {
         PosX=FirstLine;
-        PosY=HOURS_INDEX1;
+        PosY=HOURS_INDEX1; /* Anas Edit This */
     }
     else
     {
@@ -180,15 +196,16 @@ static void LCD_ShiftLeft(void)
     }
     LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
 }
+
 static void LCD_DisplayMainMenu(void)
 {
-    /*Display "Date and Time" */
+    /* Display "Date and Time"    */
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
     LCD_WriteStringAsynch(LCD1,"1.Date and Time",15,NULL);
-    /*Display "Stopwatch" */
+    /* Display "Stopwatch"        */
     LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
     LCD_WriteStringAsynch(LCD1,"2.Stopwatch",11,NULL);
-    /*Return Cursor to Beginning*/
+    /* Return Cursor to Beginning */
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
 
@@ -218,13 +235,13 @@ static void LCD_DisplayMainMenu(void)
 
         if(CurrentMode==DateTime)
         {
-            /*First Function Entry*/
+            /* First Function Entry            */
             if(First_Time==0)
             {
                 LCD_ClearScreenAsynch(LCD1,NULL);
                 First_Time++;
             }
-            /*Mode Change: Stopwatch/DateTime*/
+            /* Mode Change: Stopwatch/DateTime */
             else if(ModeState==MODIFIED)
             {
                 LCD_ClearScreenAsynch(LCD1,NULL);
@@ -292,9 +309,11 @@ static void LCD_DisplayMainMenu(void)
  
 void LCD_DisplayStopwatch()
 {
-      ErrorStatus_t ReturnError;
+    ErrorStatus_t ReturnError;
     static uint8_t First_Time=0;
-    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&(StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
+    
+    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&
+        (StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
     {
         StopWatchTensSeconds++;
 
@@ -374,7 +393,10 @@ static void LCD_IncrementDateTime(void)
     /*                                    */
     /**************************************/
 
-    /*-------------------------- Date ------------------------*/
+/*----------------------------------------------------------------*/
+/*-------------------------- Edit in Date ------------------------*/
+/*----------------------------------------------------------------*/
+    
     uint8_t DayIndex1  =(Day/10)       ;
     uint8_t DayIndex2  =(Day%10)       ;
     uint8_t MonthIndex1=(Month/10)     ;
@@ -387,6 +409,7 @@ static void LCD_IncrementDateTime(void)
     /*-------------------- Edit DayIndex1 -------------------*/
     if((PosX== SecondLine)&&(PosY==DAY_INDEX1))
     {
+        /* Ex: If Day is 30 or 31 and digit (3) triggered to Increment to be 4,5..(Not Allowed: Meaningless) */
         if(DayIndex1==3)
         {
             DayIndex1=0;
@@ -395,6 +418,11 @@ static void LCD_IncrementDateTime(void)
         else 
         {
             DayIndex1++;
+            /* CornerCase: If User Edit DayIndex2 Before DayIndex1 
+             * Ex: Day = 31, and user increment DayIndex2 (1) to be 2,3,4....
+             * DayIndex1 Must be Cleared (0) because Day: 32, 33,34 Not Allowed.
+             *                                       Day: 02, 03,04
+             */
             if((DayIndex1==3)&&(DayIndex2>1))
             {
                 DayIndex2=0;
@@ -404,7 +432,10 @@ static void LCD_IncrementDateTime(void)
     /*-------------------- Edit DayIndex2 -------------------*/
     if((PosX== SecondLine)&&(PosY==DAY_INDEX2))
     {
-        if((DayIndex1==3)&&(DayIndex2==1)) /* For 31 days in months*/
+        /**
+         * If the Day is 31, and DayIndex2 triggered to increment (32,33), Meaningless.
+         */
+        if((DayIndex1==3)&&(DayIndex2==1)) 
         {
             DayIndex2=0;
         }
@@ -436,6 +467,10 @@ static void LCD_IncrementDateTime(void)
         {
             MonthIndex2=0;
         }
+        /*
+         * Ex: Months: 10,11,12.. If MonthIndex2 Triggered to Increments to be 13,14...Meaningless.
+         * So, MonthIndex2 must be cleared.
+         */
         else if((MonthIndex2==2) &&(MonthIndex1==1))
         {
             MonthIndex2=0;            
@@ -446,7 +481,10 @@ static void LCD_IncrementDateTime(void)
         }
     }
 
+    /*---------------------------------------------------------------*/
     /*------- Don't Edit in YearIndex1, YearIndex2  Meaningless -----*/
+    /*---------------------------------------------------------------*/
+
     /*------------------- Edit YearIndex3 ---------------------*/
     if((PosX==SecondLine)&&(PosY==YEAR_INDEX3))
     {
@@ -472,15 +510,17 @@ static void LCD_IncrementDateTime(void)
         }
     }
 
-/*============================ Date Updated Values =============================================*/
+/*======================= Date Updated Values =========================*/
     Day  =((DayIndex1*10)+DayIndex2);
     Month=((MonthIndex1*10)+MonthIndex2);
     Year =((YearIndex1*1000)+(YearIndex2*100)+(YearIndex3*10)+(YearIndex4));
-/*===============================================================================================*/
+/*=====================================================================*/
     
-    /*-------------------------- Time -------------------------*/
-    uint8_t TimeHoursIndex1= (TimeHours/10);
-    uint8_t TimeHoursIndex2= (TimeHours%10);
+/*----------------------------------------------------------------*/
+/*-------------------------- Edit in Time ------------------------*/
+/*----------------------------------------------------------------*/
+    uint8_t TimeHoursIndex1  = (TimeHours/10)  ;
+    uint8_t TimeHoursIndex2  = (TimeHours%10)  ;
     uint8_t TimeMinutesIndex1= (TimeMinutes/10);
     uint8_t TimeMinutesIndex2= (TimeMinutes%10);  
     uint8_t TimeSecondsIndex1= (TimeSeconds/10);
@@ -595,6 +635,10 @@ static void LCD_DecrementDateTime(void)
     /*-------------------- Edit DayIndex1 -------------------*/
     if((PosX== SecondLine)&&(PosY==DAY_INDEX1))
     {
+        /**
+         * IF Day is 01, and DayIndex1 (0) triggered to decrement,
+         * The DayIndex1 will Be 3, So the day Will be 31. 
+         */
         if((DayIndex1==0)&&(DayIndex2<2))
         {
             DayIndex1=3;
@@ -607,11 +651,16 @@ static void LCD_DecrementDateTime(void)
     /*-------------------- Edit DayIndex2 -------------------*/
     if((PosX== SecondLine)&&(PosY==DAY_INDEX2))
     {
-        
+        /* Ex: If Day is 10 or 20, and DayIndex2(0) triggered to Decrement, 
+         * DayIndex2 will be 9 ,Day 10 ---> Day 19 and Day 20 -----> 29.
+         */
         if((DayIndex2==0)&&(DayIndex1<3))
         {
             DayIndex2=9;
         }
+        /* Ex: If Day is 30 , and DayIndex2(0) triggered to Decrement, 
+         * DayIndex2 will be 1 ,Day 30 ---> 31.
+         */
         else if((DayIndex2==0)&&(DayIndex1==3))
         {
             DayIndex2=1;
@@ -621,13 +670,21 @@ static void LCD_DecrementDateTime(void)
             DayIndex2--;
         }
     }
-    /*---------------------- Edit MonthIndex1 -----------------*/
+    /*---------------------- Edit MonthIndex1 -------------------*/
+   
     if((PosX==SecondLine)&&(PosY==MONTH_INDEX1))
     {
+        /* Ex: If Month :01 or 02, and MonthIndex1 triggered to decrement
+         * MonthIndex1 will be 1.... 01 ---> 11 / 02 ---> 12.
+         */
         if((MonthIndex1==0)&&(MonthIndex2<3))
         {
             MonthIndex1=1;
         }
+        /* Ex: If Month :03,04,05..... and MonthIndex1 triggered to decrement
+         * MonthIndex1 will be 0 .... 03 ---> 03 / 04 ---> 04 .
+         * Because Month 13, 14, 15 ... Not Allowed.
+         */
         if((MonthIndex1==0)&&(MonthIndex2>=3))
         {
             MonthIndex1=0;
@@ -640,10 +697,18 @@ static void LCD_DecrementDateTime(void)
     /*-------------------- Edit MonthIndex2 ------------------*/
     if((PosX==SecondLine)&&(PosY==MONTH_INDEX2))
     {
-        if((MonthIndex2==0)&&(MonthIndex1==0))
+        /* Ex: If Month is 01 and MonthIndex1 triggered to decrement
+         * Month will be 00 (Not Allowed), if triggered to decrement again.
+         * MonthIndex2 will be 9... 00 -----> 09
+         */
+        if((MonthIndex1==0)&&(MonthIndex2==0))
         {
             MonthIndex2=9;
         }
+        /**
+         * Ex : If Month is 10 and  MonthIndex2 triggered to decrement 
+         * MonthIndex2 will be 2,,,, 10 -----> 12
+         */
         else if((MonthIndex2==0)&&(MonthIndex1==1))
         {
             MonthIndex2=2; /*Month 12*/
@@ -680,11 +745,11 @@ static void LCD_DecrementDateTime(void)
         }
     }
 
-/*============================ Date Updated Values =============================================*/
+/*============================ Date Updated Values ===================================*/
     Day  =((DayIndex1*10)+DayIndex2);
     Month=((MonthIndex1*10)+MonthIndex2);
     Year =((YearIndex1*1000)+(YearIndex2*100)+(YearIndex3*10)+(YearIndex4));
-/*===============================================================================================*/
+/*====================================================================================*/
     /*-------------------------- Time ------------------------*/
     uint8_t TimeHoursIndex1  = (TimeHours/10)  ;
     uint8_t TimeHoursIndex2  = (TimeHours%10)  ;
@@ -877,7 +942,6 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
-            // static uint8_t DateTimeFirstTime=0;
             LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
@@ -891,11 +955,6 @@ static void USART_ReceiveCbf(void)
                 break;
                 case DOWN:
                 {
-                    // if(DateTimeFirstTime==0) /* For, If I want to edit in Date */
-                    // {
-                    //     LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-                    //       DateTimeFirstTime++;
-                    // }
                     if(EditMode==ON)
                     {
                         LCD_DecrementDateTime();
