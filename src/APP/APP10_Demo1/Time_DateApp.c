@@ -5,7 +5,7 @@
  * File Name: Time_DateApp.c
  * Layer	: App
  * Version  : V 0.0
- * Created	:  Apr 8, 2024
+ * Created	: Apr 8, 2024
  * Author1 	: Yasmin Amr
  * Author2  : Anas Khamees
  */
@@ -26,6 +26,7 @@
 /*										Defines									   */
 /***********************************************************************************/
 
+/*============================ Control Switches ============================*/
 #define OK                          '3'
 #define START_STOP_STOPWATCH        '5'
 #define RESET_STOPWATCH             '6'
@@ -36,29 +37,29 @@
 #define LEFT                        '6'
 #define EDIT                        '4'
 #define MODE                        '1'
-
-#define MainMenu    0
-#define StopWatch   1
-#define DateTime    2
-
-#define FirstLine   0
-#define SecondLine  1
-
-#define ON                           1
-#define OFF                          0
-
+/*==================== LCD Screen Current Mode ============================*/
+#define MainMenu                    0
+#define StopWatch                   1
+#define DateTime                    2
+/*==================  Defines Represent LCD Lines (Rows) ==================*/
+#define FirstLine                   0
+#define SecondLine                  1
+/*================= Defines Represent EditMode is ON/OFF ==================*/
+#define ON                          1
+#define OFF                         0
+/*=========================================================================*/
 #define CONSTANT                    0
 #define MODIFIED                    1
 
 #define DATE_TIME_INDEX 6
-
+/*======================== Time Digits on LCD ===========================*/
 #define HOURS_INDEX1    6    
 #define HOURS_INDEX2    7
 #define MINUTES_INDEX1  9
 #define MINUTES_INDEX2  10
 #define SECONDS_INDEX1  12
 #define SECONDS_INDEX2  13
-
+/*======================== Date Digits on LCD ===========================*/
 #define DAY_INDEX1      6
 #define DAY_INDEX2      7
 #define MONTH_INDEX1    9
@@ -67,60 +68,42 @@
 #define YEAR_INDEX2     13
 #define YEAR_INDEX3     14
 #define YEAR_INDEX4     15
-
-
+/*========================= StopWatch Modes =============================*/
 #define STOP_WATCH_PAUSE            0
 #define STOP_WATCH_CONTINUE         1
 #define STOP_WATCH_RESET_ON         2
 #define STOP_WATCH_RESET_OFF        3
 #define STOP_WATCH_START            4
 #define STOP_WATCH_STOP             5
-/***********************************************************************************/
-/*										Types									   */
-/***********************************************************************************/
-
-
-
 /************************************************************************************/
 /*									Variables									    */
 /************************************************************************************/
-uint8_t buffer=0;
-uint8_t CurrentMode= MainMenu;
-uint8_t MM_CursorLoc=FirstLine;
 
+uint8_t buffer=0;                   /* Var to Save Received Data From UART                           */
+uint8_t CurrentMode= MainMenu;      /* Var represent the Current mode to Display on LCD              */
+uint8_t MM_CursorLoc=FirstLine;     /* Var to store the Current location of Cursor in Main Menu Mode */
+/*======================= Variables of Date =========================*/
 uint8_t Day=10;
 uint8_t Month=4;
 uint16_t Year=2024;
-
+/*============================????===================================*/
 uint8_t DayLength=1;
 uint8_t MonthLength=1;
-
 uint8_t DateTimePosCounter=0;
-
-
+/*===================== LCD Operation States =======================*/
 uint8_t CurrentDisplay=StopWatch;
-
 uint8_t EditMode=OFF;
 
 uint8_t PosX=FirstLine;
 uint8_t PosY=DATE_TIME_INDEX;
 
 uint8_t ModeState=CONSTANT;
-
 uint8_t EditUpdate=CONSTANT;
-
-
-/************************************************************************************/
-/*                              Time Variables                                      */
-/************************************************************************************/
-
+/*============================ Time Variables ==============================*/
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
 uint32_t TimeHours=0;
-
-/************************************************************************************/
-/*                              Stop Watch Variables                                */
-/************************************************************************************/
+/*========================= StopWatch Variables ============================*/
 uint8_t StopWatchTensSeconds=0;
 uint8_t StopWatchSeconds=0;
 uint8_t StopWatchMinutes=0;
@@ -393,9 +376,9 @@ static void LCD_IncrementDateTime(void)
     /*                                    */
     /**************************************/
 
-/*----------------------------------------------------------------*/
-/*-------------------------- Edit in Date ------------------------*/
-/*----------------------------------------------------------------*/
+/*------------------------------------------------------------*/
+/*---------------------- Edit in Date ------------------------*/
+/*------------------------------------------------------------*/
     
     uint8_t DayIndex1  =(Day/10)       ;
     uint8_t DayIndex2  =(Day%10)       ;
@@ -448,7 +431,7 @@ static void LCD_IncrementDateTime(void)
             DayIndex2++;
         }
     }
-    /*---------------------- Edit MonthIndex1 -----------------*/
+    /*---------------- Edit MonthIndex1 -----------------*/
     if((PosX==SecondLine)&&(PosY==MONTH_INDEX1))
     {
         if(MonthIndex1==1)
@@ -460,7 +443,7 @@ static void LCD_IncrementDateTime(void)
             MonthIndex1++;
         }
     }
-    /*-------------------- Edit MonthIndex2 ------------------*/
+    /*------------------ Edit MonthIndex2 ------------------*/
     if((PosX==SecondLine)&&(PosY==MONTH_INDEX2))
     {
         if(MonthIndex2==9)
