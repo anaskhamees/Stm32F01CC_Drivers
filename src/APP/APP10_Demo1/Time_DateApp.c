@@ -395,10 +395,17 @@ static void LCD_IncrementDateTime(void)
         /* Ex: If Day is 30 or 31 and digit (3) triggered to Increment to be 4,5..(Not Allowed: Meaningless) */
         if(DayIndex1==3)
         {
-            DayIndex1=0;
+            if(DayIndex2==0)
+            {
+                DayIndex1=1;
+            }
+            else
+            {
+                DayIndex1=0;
+            }
         }
          
-        else 
+        else  
         {
             DayIndex1++;
             /* CornerCase: If User Edit DayIndex2 Before DayIndex1 
@@ -424,9 +431,16 @@ static void LCD_IncrementDateTime(void)
         }
         if(DayIndex2==9)
         {
-            DayIndex2=0;
+            if(DayIndex1==0)
+            {
+            DayIndex2=1;
+            }
+            else
+            {
+                DayIndex2=0;
+            }
         }
-        else
+        else 
         {
             DayIndex2++;
         }
@@ -436,7 +450,14 @@ static void LCD_IncrementDateTime(void)
     {
         if(MonthIndex1==1)
         {
-            MonthIndex1=0;
+            if(MonthIndex2==0)
+            {
+                MonthIndex1=1;
+            }
+            else
+            {
+                MonthIndex1=0;
+            }
         }
         else if(MonthIndex2<=2)  /* Months 10 - 11 - 12  Only */
         {
@@ -448,7 +469,14 @@ static void LCD_IncrementDateTime(void)
     {
         if(MonthIndex2==9)
         {
-            MonthIndex2=0;
+            if(MonthIndex1==0)
+            {
+                MonthIndex2=1;
+            }
+            else
+            {
+                MonthIndex2=0;
+            }
         }
         /*
          * Ex: Months: 10,11,12.. If MonthIndex2 Triggered to Increments to be 13,14...Meaningless.
@@ -626,7 +654,15 @@ static void LCD_DecrementDateTime(void)
         {
             DayIndex1=3;
         }
-        else
+        else if((DayIndex1==0)&&(DayIndex2>1))
+        {
+            DayIndex1=2;
+        }
+        else if((DayIndex1==1)&&(DayIndex2==0))
+        {
+            DayIndex1=3;            
+        }
+        else 
         {
             DayIndex1--;
         }
@@ -648,6 +684,10 @@ static void LCD_DecrementDateTime(void)
         {
             DayIndex2=1;
         }
+        else if((DayIndex1==0)&&(DayIndex2==1))
+        {
+            DayIndex2=9;
+        }
         else
         {
             DayIndex2--;
@@ -668,9 +708,13 @@ static void LCD_DecrementDateTime(void)
          * MonthIndex1 will be 0 .... 03 ---> 03 / 04 ---> 04 .
          * Because Month 13, 14, 15 ... Not Allowed.
          */
-        if((MonthIndex1==0)&&(MonthIndex2>=3))
+        else if((MonthIndex1==0)&&(MonthIndex2>=3))
         {
             MonthIndex1=0;
+        }
+        else if ((MonthIndex1==1)&&(MonthIndex2==0))
+        {
+            MonthIndex1=1;
         }
         else 
         {
@@ -695,6 +739,10 @@ static void LCD_DecrementDateTime(void)
         else if((MonthIndex2==0)&&(MonthIndex1==1))
         {
             MonthIndex2=2; /*Month 12*/
+        }
+        else if((MonthIndex2==1)&&(MonthIndex1==0))
+        {
+            MonthIndex2=9;
         }
         else
         {

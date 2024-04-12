@@ -1,0 +1,702 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="Native" char_bit="8" short_bit="16" int_bit="32" long_bit="64" long_long_bit="64" pointer_bit="64"/>
+  <rawtokens>
+    <file index="0" name="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c"/>
+    <file index="1" name="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h"/>
+    <file index="2" name="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h"/>
+    <tok fileIndex="0" linenr="1" column="1" str="/*x * File Name: SWITCH.cx * Layerx: HALx * Modulex: Switchx * Version  : V 0.0x * Createdx:  x * Authorx: Anas Khameesx */"/>
+    <tok fileIndex="0" linenr="9" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="10" column="1" str="/************************************************Includes************************************************/"/>
+    <tok fileIndex="0" linenr="11" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="13" column="1" str="#"/>
+    <tok fileIndex="0" linenr="13" column="2" str="include"/>
+    <tok fileIndex="0" linenr="13" column="10" str="&quot;switch.h&quot;"/>
+    <tok fileIndex="0" linenr="14" column="1" str="#"/>
+    <tok fileIndex="0" linenr="14" column="2" str="include"/>
+    <tok fileIndex="0" linenr="14" column="10" str="&quot;MCAL/GPIO/GPIO.h&quot;"/>
+    <tok fileIndex="0" linenr="15" column="1" str="#"/>
+    <tok fileIndex="0" linenr="15" column="2" str="include"/>
+    <tok fileIndex="0" linenr="15" column="10" str="&quot;MCAL/GPIO/GPIO_Validation.h&quot;"/>
+    <tok fileIndex="0" linenr="16" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="17" column="1" str="/************************************************Defines*************************************************/"/>
+    <tok fileIndex="0" linenr="18" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="19" column="1" str="#"/>
+    <tok fileIndex="0" linenr="19" column="2" str="define"/>
+    <tok fileIndex="0" linenr="19" column="9" str="MASK_SHIF_SW_CONNECTION"/>
+    <tok fileIndex="0" linenr="19" column="40" str="("/>
+    <tok fileIndex="0" linenr="19" column="41" str="3UL"/>
+    <tok fileIndex="0" linenr="19" column="44" str=")"/>
+    <tok fileIndex="0" linenr="20" column="1" str="#"/>
+    <tok fileIndex="0" linenr="20" column="2" str="define"/>
+    <tok fileIndex="0" linenr="20" column="9" str="MASK_GET_SW_CONNECTION_LSB"/>
+    <tok fileIndex="0" linenr="20" column="40" str="("/>
+    <tok fileIndex="0" linenr="20" column="41" str="1UL"/>
+    <tok fileIndex="0" linenr="20" column="44" str=")"/>
+    <tok fileIndex="0" linenr="23" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="24" column="1" str="/************************************************Variables***********************************************/"/>
+    <tok fileIndex="0" linenr="25" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="27" column="1" str="extern"/>
+    <tok fileIndex="0" linenr="27" column="8" str="SwitchCFG_t"/>
+    <tok fileIndex="0" linenr="27" column="21" str="Switches"/>
+    <tok fileIndex="0" linenr="27" column="29" str="["/>
+    <tok fileIndex="0" linenr="27" column="30" str="_SWITCHES_NUM"/>
+    <tok fileIndex="0" linenr="27" column="43" str="]"/>
+    <tok fileIndex="0" linenr="27" column="44" str=";"/>
+    <tok fileIndex="0" linenr="29" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="30" column="1" str="/*********************************************APIs Implementation****************************************/"/>
+    <tok fileIndex="0" linenr="31" column="1" str="/********************************************************************************************************/"/>
+    <tok fileIndex="0" linenr="33" column="1" str="/**x * @brief Initializes the switches by Provided Configuration.x * x * This function initializes the switches by configuring their GPIO pins according to the settingsx * specified in the SWITCHES array.x * @return ErrorStatus_t Returns SUCCESS if the switches are successfully initialized, otherwise returns an error code.x */"/>
+    <tok fileIndex="0" linenr="40" column="1" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="40" column="15" str="Switch_Init"/>
+    <tok fileIndex="0" linenr="40" column="26" str="("/>
+    <tok fileIndex="0" linenr="40" column="27" str="void"/>
+    <tok fileIndex="0" linenr="40" column="31" str=")"/>
+    <tok fileIndex="0" linenr="41" column="1" str="{"/>
+    <tok fileIndex="0" linenr="42" column="5" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="42" column="21" str="ReturnState"/>
+    <tok fileIndex="0" linenr="42" column="32" str=";"/>
+    <tok fileIndex="0" linenr="44" column="5" str="GPIO_CFG_t"/>
+    <tok fileIndex="0" linenr="44" column="16" str="Switch"/>
+    <tok fileIndex="0" linenr="44" column="22" str=";"/>
+    <tok fileIndex="0" linenr="46" column="5" str="uint8_t"/>
+    <tok fileIndex="0" linenr="46" column="13" str="SW_Num"/>
+    <tok fileIndex="0" linenr="46" column="19" str=";"/>
+    <tok fileIndex="0" linenr="47" column="5" str="for"/>
+    <tok fileIndex="0" linenr="47" column="9" str="("/>
+    <tok fileIndex="0" linenr="47" column="10" str="SW_Num"/>
+    <tok fileIndex="0" linenr="47" column="16" str="="/>
+    <tok fileIndex="0" linenr="47" column="17" str="0"/>
+    <tok fileIndex="0" linenr="47" column="18" str=";"/>
+    <tok fileIndex="0" linenr="47" column="19" str="SW_Num"/>
+    <tok fileIndex="0" linenr="47" column="25" str="&lt;"/>
+    <tok fileIndex="0" linenr="47" column="26" str="_SWITCHES_NUM"/>
+    <tok fileIndex="0" linenr="47" column="39" str=";"/>
+    <tok fileIndex="0" linenr="47" column="40" str="SW_Num"/>
+    <tok fileIndex="0" linenr="47" column="46" str="++"/>
+    <tok fileIndex="0" linenr="47" column="48" str=")"/>
+    <tok fileIndex="0" linenr="48" column="5" str="{"/>
+    <tok fileIndex="0" linenr="49" column="9" str="Switch"/>
+    <tok fileIndex="0" linenr="49" column="15" str="."/>
+    <tok fileIndex="0" linenr="49" column="16" str="GPIO_Port"/>
+    <tok fileIndex="0" linenr="49" column="25" str="="/>
+    <tok fileIndex="0" linenr="49" column="26" str="Switches"/>
+    <tok fileIndex="0" linenr="49" column="34" str="["/>
+    <tok fileIndex="0" linenr="49" column="35" str="SW_Num"/>
+    <tok fileIndex="0" linenr="49" column="41" str="]"/>
+    <tok fileIndex="0" linenr="49" column="42" str="."/>
+    <tok fileIndex="0" linenr="49" column="43" str="SW_Port"/>
+    <tok fileIndex="0" linenr="49" column="50" str=";"/>
+    <tok fileIndex="0" linenr="50" column="9" str="Switch"/>
+    <tok fileIndex="0" linenr="50" column="15" str="."/>
+    <tok fileIndex="0" linenr="50" column="16" str="GPIO_Pin"/>
+    <tok fileIndex="0" linenr="50" column="24" str="="/>
+    <tok fileIndex="0" linenr="50" column="25" str="Switches"/>
+    <tok fileIndex="0" linenr="50" column="33" str="["/>
+    <tok fileIndex="0" linenr="50" column="34" str="SW_Num"/>
+    <tok fileIndex="0" linenr="50" column="40" str="]"/>
+    <tok fileIndex="0" linenr="50" column="41" str="."/>
+    <tok fileIndex="0" linenr="50" column="42" str="SW_Pin"/>
+    <tok fileIndex="0" linenr="50" column="48" str=";"/>
+    <tok fileIndex="0" linenr="51" column="9" str="Switch"/>
+    <tok fileIndex="0" linenr="51" column="15" str="."/>
+    <tok fileIndex="0" linenr="51" column="16" str="GPIO_Mode"/>
+    <tok fileIndex="0" linenr="51" column="25" str="="/>
+    <tok fileIndex="0" linenr="51" column="26" str="Switches"/>
+    <tok fileIndex="0" linenr="51" column="34" str="["/>
+    <tok fileIndex="0" linenr="51" column="35" str="SW_Num"/>
+    <tok fileIndex="0" linenr="51" column="41" str="]"/>
+    <tok fileIndex="0" linenr="51" column="42" str="."/>
+    <tok fileIndex="0" linenr="51" column="43" str="SW_Connection"/>
+    <tok fileIndex="0" linenr="51" column="56" str=";"/>
+    <tok fileIndex="0" linenr="52" column="5" str="}"/>
+    <tok fileIndex="0" linenr="53" column="5" str="Switch"/>
+    <tok fileIndex="0" linenr="53" column="11" str="."/>
+    <tok fileIndex="0" linenr="53" column="12" str="GPIO_Speed"/>
+    <tok fileIndex="0" linenr="53" column="22" str="="/>
+    <tok fileIndex="0" linenr="53" column="23" str="GPIO_HIGH_SPEED"/>
+    <tok fileIndex="0" linenr="53" column="38" str=";"/>
+    <tok fileIndex="0" linenr="54" column="5" str="Switch"/>
+    <tok fileIndex="0" linenr="54" column="11" str="."/>
+    <tok fileIndex="0" linenr="54" column="12" str="GPIO_AF"/>
+    <tok fileIndex="0" linenr="54" column="19" str="="/>
+    <tok fileIndex="0" linenr="54" column="20" str="GPIO_AF_DISABLED"/>
+    <tok fileIndex="0" linenr="54" column="36" str=";"/>
+    <tok fileIndex="0" linenr="55" column="5" str="ReturnState"/>
+    <tok fileIndex="0" linenr="55" column="16" str="="/>
+    <tok fileIndex="0" linenr="55" column="17" str="GPIO_InitPin"/>
+    <tok fileIndex="0" linenr="55" column="29" str="("/>
+    <tok fileIndex="0" linenr="55" column="30" str="&amp;"/>
+    <tok fileIndex="0" linenr="55" column="31" str="Switch"/>
+    <tok fileIndex="0" linenr="55" column="37" str=")"/>
+    <tok fileIndex="0" linenr="55" column="38" str=";"/>
+    <tok fileIndex="0" linenr="56" column="5" str="return"/>
+    <tok fileIndex="0" linenr="56" column="12" str="ReturnState"/>
+    <tok fileIndex="0" linenr="56" column="23" str=";"/>
+    <tok fileIndex="0" linenr="57" column="4" str="}"/>
+    <tok fileIndex="0" linenr="59" column="1" str="/**x * @brief Gets the state of a switch Pressed or Released. x * @param SwitchNum The switch number to get the state of.x * @param SwitchState Pointer to store the state of the switch (1 for pressed, 0 for released).x * @return ErrorStatus_t Returns SUCCESS if the state is successfully retrieved, otherwise returns an error code:x *         - NULL_POINTER if the SwitchState pointer is NULL.x *         - WRONG_PARAMETER if SwitchNum is out of range.x */"/>
+    <tok fileIndex="0" linenr="67" column="4" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="67" column="18" str="Switch_GetState"/>
+    <tok fileIndex="0" linenr="67" column="33" str="("/>
+    <tok fileIndex="0" linenr="67" column="34" str="uint32_t"/>
+    <tok fileIndex="0" linenr="67" column="43" str="SwitchNum"/>
+    <tok fileIndex="0" linenr="67" column="53" str=","/>
+    <tok fileIndex="0" linenr="67" column="54" str="uint32_t"/>
+    <tok fileIndex="0" linenr="67" column="62" str="*"/>
+    <tok fileIndex="0" linenr="67" column="64" str="SwitchState"/>
+    <tok fileIndex="0" linenr="67" column="75" str=")"/>
+    <tok fileIndex="0" linenr="68" column="4" str="{"/>
+    <tok fileIndex="0" linenr="69" column="5" str="ErrorStatus_t"/>
+    <tok fileIndex="0" linenr="69" column="19" str="ReturnError"/>
+    <tok fileIndex="0" linenr="69" column="30" str=";"/>
+    <tok fileIndex="0" linenr="70" column="5" str="if"/>
+    <tok fileIndex="0" linenr="70" column="7" str="("/>
+    <tok fileIndex="0" linenr="70" column="8" str="SwitchState"/>
+    <tok fileIndex="0" linenr="70" column="19" str="=="/>
+    <tok fileIndex="0" linenr="70" column="21" str="NULL"/>
+    <tok fileIndex="0" linenr="70" column="25" str=")"/>
+    <tok fileIndex="0" linenr="71" column="5" str="{"/>
+    <tok fileIndex="0" linenr="72" column="9" str="ReturnError"/>
+    <tok fileIndex="0" linenr="72" column="20" str="="/>
+    <tok fileIndex="0" linenr="72" column="21" str="NULL_POINTER"/>
+    <tok fileIndex="0" linenr="72" column="33" str=";"/>
+    <tok fileIndex="0" linenr="73" column="5" str="}"/>
+    <tok fileIndex="0" linenr="74" column="5" str="else"/>
+    <tok fileIndex="0" linenr="74" column="10" str="if"/>
+    <tok fileIndex="0" linenr="74" column="12" str="("/>
+    <tok fileIndex="0" linenr="74" column="13" str="SwitchNum"/>
+    <tok fileIndex="0" linenr="74" column="22" str="&gt;"/>
+    <tok fileIndex="0" linenr="74" column="23" str="("/>
+    <tok fileIndex="0" linenr="74" column="24" str="uint32_t"/>
+    <tok fileIndex="0" linenr="74" column="32" str=")"/>
+    <tok fileIndex="0" linenr="74" column="33" str="_SWITCHES_NUM"/>
+    <tok fileIndex="0" linenr="74" column="46" str=")"/>
+    <tok fileIndex="0" linenr="75" column="5" str="{"/>
+    <tok fileIndex="0" linenr="76" column="9" str="ReturnError"/>
+    <tok fileIndex="0" linenr="76" column="20" str="="/>
+    <tok fileIndex="0" linenr="76" column="21" str="WRONG_PARAMETER"/>
+    <tok fileIndex="0" linenr="76" column="36" str=";"/>
+    <tok fileIndex="0" linenr="77" column="5" str="}"/>
+    <tok fileIndex="0" linenr="78" column="5" str="else"/>
+    <tok fileIndex="0" linenr="79" column="5" str="{"/>
+    <tok fileIndex="0" linenr="80" column="9" str="ReturnError"/>
+    <tok fileIndex="0" linenr="80" column="20" str="="/>
+    <tok fileIndex="0" linenr="80" column="21" str="GPIO_GetPinValue"/>
+    <tok fileIndex="0" linenr="80" column="37" str="("/>
+    <tok fileIndex="0" linenr="80" column="38" str="Switches"/>
+    <tok fileIndex="0" linenr="80" column="46" str="["/>
+    <tok fileIndex="0" linenr="80" column="47" str="SwitchNum"/>
+    <tok fileIndex="0" linenr="80" column="56" str="]"/>
+    <tok fileIndex="0" linenr="80" column="57" str="."/>
+    <tok fileIndex="0" linenr="80" column="58" str="SW_Port"/>
+    <tok fileIndex="0" linenr="80" column="65" str=","/>
+    <tok fileIndex="0" linenr="80" column="66" str="Switches"/>
+    <tok fileIndex="0" linenr="80" column="74" str="["/>
+    <tok fileIndex="0" linenr="80" column="75" str="SwitchNum"/>
+    <tok fileIndex="0" linenr="80" column="84" str="]"/>
+    <tok fileIndex="0" linenr="80" column="85" str="."/>
+    <tok fileIndex="0" linenr="80" column="86" str="SW_Pin"/>
+    <tok fileIndex="0" linenr="80" column="92" str=","/>
+    <tok fileIndex="0" linenr="80" column="93" str="SwitchState"/>
+    <tok fileIndex="0" linenr="80" column="104" str=")"/>
+    <tok fileIndex="0" linenr="80" column="105" str=";"/>
+    <tok fileIndex="0" linenr="82" column="9" str="/**x         * ((SWITCHES[SwitchNum].SW_Connection)&gt;&gt;MASK_SHIF_SW_CONNECTION) : x         * @brief : I used tha same Mask of GPIO , so I want to shift it by 3 to get the value of connectionx         *  &amp;(MASK_GET_SW_CONNECTION_LSB):x         * @brief : Then I masked the Output of the previous MASK by 0x00000001 to Get the LSB bit to know the Switch State.x         * @brief : (*Switch State) is the result of XORing operation as follow  :x         * x         *   +----------------------+--------------------+--------+x             |   Switch State       | Switch Connection  | Result |x             +----------------------+--------------------+--------+x             | SWITCH_PRESSED  (1)  |    GPIO_IN_PU (1)  |   0    |x             | SWITCH_PRESSED  (1)  |    GPIO_IN_PD (0)  |   1    |x             | SWITCH_RELEASED (0)  |    GPIO_IN_PU (1)  |   1    |x             | SWITCH_RELEASED (0)  |    GPIO_IN_PD (0)  |   0    |x             +----------------------+--------------------+--------+           x         */"/>
+    <tok fileIndex="0" linenr="98" column="9" str="*"/>
+    <tok fileIndex="0" linenr="98" column="10" str="SwitchState"/>
+    <tok fileIndex="0" linenr="98" column="21" str="="/>
+    <tok fileIndex="0" linenr="98" column="22" str="("/>
+    <tok fileIndex="0" linenr="98" column="23" str="*"/>
+    <tok fileIndex="0" linenr="98" column="24" str="SwitchState"/>
+    <tok fileIndex="0" linenr="98" column="35" str=")"/>
+    <tok fileIndex="0" linenr="98" column="36" str="^"/>
+    <tok fileIndex="0" linenr="98" column="37" str="("/>
+    <tok fileIndex="0" linenr="98" column="38" str="("/>
+    <tok fileIndex="0" linenr="98" column="39" str="("/>
+    <tok fileIndex="0" linenr="98" column="40" str="Switches"/>
+    <tok fileIndex="0" linenr="98" column="48" str="["/>
+    <tok fileIndex="0" linenr="98" column="49" str="SwitchNum"/>
+    <tok fileIndex="0" linenr="98" column="58" str="]"/>
+    <tok fileIndex="0" linenr="98" column="59" str="."/>
+    <tok fileIndex="0" linenr="98" column="60" str="SW_Connection"/>
+    <tok fileIndex="0" linenr="98" column="73" str=")"/>
+    <tok fileIndex="0" linenr="98" column="74" str="&gt;&gt;"/>
+    <tok fileIndex="0" linenr="98" column="76" str="MASK_SHIF_SW_CONNECTION"/>
+    <tok fileIndex="0" linenr="98" column="99" str=")"/>
+    <tok fileIndex="0" linenr="98" column="100" str="&amp;"/>
+    <tok fileIndex="0" linenr="98" column="101" str="("/>
+    <tok fileIndex="0" linenr="98" column="102" str="MASK_GET_SW_CONNECTION_LSB"/>
+    <tok fileIndex="0" linenr="98" column="128" str=")"/>
+    <tok fileIndex="0" linenr="98" column="129" str=")"/>
+    <tok fileIndex="0" linenr="98" column="130" str=";"/>
+    <tok fileIndex="0" linenr="99" column="5" str="}"/>
+    <tok fileIndex="0" linenr="100" column="5" str="return"/>
+    <tok fileIndex="0" linenr="100" column="12" str="ReturnError"/>
+    <tok fileIndex="0" linenr="100" column="23" str=";"/>
+    <tok fileIndex="0" linenr="101" column="4" str="}"/>
+  </rawtokens>
+  <suppressions>
+    <suppression errorId="unmatchedSuppression" />
+    <suppression errorId="missingIncludeSystem" />
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c89"/>
+    <cpp version="c++03"/>
+  </standards>
+  <directivelist>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="13" str="#include &quot;switch.h&quot;"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="14" str="#include &quot;MCAL/GPIO/GPIO.h&quot;"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="15" str="#include &quot;MCAL/GPIO/GPIO_Validation.h&quot;"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="19" str="#define MASK_SHIF_SW_CONNECTION (3UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="20" str="#define MASK_GET_SW_CONNECTION_LSB (1UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="1" str="#ifndef HAL_SWITCH_SWITCH_CFG_H_"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="2" str="#define HAL_SWITCH_SWITCH_CFG_H_"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="55" str="#endif"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="1" str="#ifndef HAL_SWITCH_SWITCH_H_"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="2" str="#define HAL_SWITCH_SWITCH_H_"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="7" str="#include &quot;Std_Lib/Std_Libraries.h&quot;"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="8" str="#include &quot;SWITCH_CFG.h&quot;"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="13" str="#define SWITCH_PRESSED (1UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="14" str="#define SWITCH_RELEASED (0UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="16" str="#define SW_PULL_UP (0x00000008UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="17" str="#define SW_PULL_DOWN (0x00000010UL)"/>
+    <directive file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="64" str="#endif"/>
+  </directivelist>
+  <macro-usage>
+    <macro name="MASK_GET_SW_CONNECTION_LSB" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" line="20" column="9" usefile="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" useline="98" usecolumn="102" is-known-value="true"/>
+    <macro name="MASK_SHIF_SW_CONNECTION" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" line="19" column="9" usefile="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" useline="98" usecolumn="76" is-known-value="true"/>
+  </macro-usage>
+  <tokenlist>
+    <token id="0x5b938c6d78e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="30" column="9" str="enum" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6d2450" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="30" column="0" str="SW_NUM_t" scope="0x5b938c6d3a30" type="name" type-scope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6bd3b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="31" column="1" str="{" scope="0x5b938c6d3bc0" link="0x5b938c6dc240" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6dbf80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="32" column="5" str="SWITCH_1" scope="0x5b938c6d3bc0" type="name" values="0x5b938c6d33c0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6bd4e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="32" column="13" str="," scope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6dc150" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="33" column="5" str="_SWITCHES_NUM" scope="0x5b938c6d3bc0" type="name" values="0x5b938c6d5330" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6dc240" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="34" column="1" str="}" scope="0x5b938c6d3bc0" link="0x5b938c6bd3b0"/>
+    <token id="0x5b938c6d2540" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/SWITCH_CFG.h" linenr="34" column="0" str=";" scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6d2630" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="25" column="9" str="struct" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6dc420" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="25" column="0" str="SwitchCFG_t" scope="0x5b938c6d3a30" type="name" type-scope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dc600" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="25" column="16" str="{" scope="0x5b938c6d3d50" link="0x5b938c6dd050" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dc6f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="26" column="5" str="void" scope="0x5b938c6d3d50" type="name" astParent="0x5b938c6dc7e0"/>
+    <token id="0x5b938c6dc7e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="26" column="10" str="*" scope="0x5b938c6d3d50" type="op" isArithmeticalOp="true" astOperand1="0x5b938c6dc6f0" astOperand2="0x5b938c6dc8d0"/>
+    <token id="0x5b938c6dc8d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="26" column="11" str="SW_Port" scope="0x5b938c6d3d50" type="name" varId="1" variable="0x5b938c6d47c0" astParent="0x5b938c6dc7e0" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6dc9c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="26" column="18" str=";" scope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dcab0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="35" column="5" str="uint32_t" scope="0x5b938c6d3d50" type="name"/>
+    <token id="0x5b938c6dcba0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="35" column="14" str="SW_Pin" scope="0x5b938c6d3d50" type="name" varId="2" variable="0x5b938c6e69d0" values="0x5b938c6d9490" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6dcc90" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="35" column="20" str=";" scope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dcd80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="37" column="5" str="uint32_t" scope="0x5b938c6d3d50" type="name"/>
+    <token id="0x5b938c6dce70" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="37" column="14" str="SW_Connection" scope="0x5b938c6d3d50" type="name" varId="3" variable="0x5b938c6d48e0" values="0x5b938c6cae00" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6dcf60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="37" column="27" str=";" scope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dd050" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="41" column="1" str="}" scope="0x5b938c6d3d50" link="0x5b938c6dc600"/>
+    <token id="0x5b938c6dc330" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="41" column="0" str=";" scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6d7670" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="1" str="ErrorStatus_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6dd3c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="15" str="Switch_Init" scope="0x5b938c6d3a30" type="name" function="0x5b938c6db740"/>
+    <token id="0x5b938c6d77b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="26" str="(" scope="0x5b938c6d3a30" link="0x5b938c6dd510"/>
+    <token id="0x5b938c6dd420" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="27" str="void" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6dd510" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="31" str=")" scope="0x5b938c6d3a30" link="0x5b938c6d77b0"/>
+    <token id="0x5b938c6dd600" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="49" column="32" str=";" scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6dd6f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="1" str="ErrorStatus_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6dd7e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="15" str="Switch_GetState" scope="0x5b938c6d3a30" type="name" function="0x5b938c6db690"/>
+    <token id="0x5b938c6dd840" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="30" str="(" scope="0x5b938c6d3a30" link="0x5b938c6ddd80"/>
+    <token id="0x5b938c6dd930" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="31" str="uint32_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6de1c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="40" str="SwitchNum" scope="0x5b938c6d3a30" type="name" varId="4"/>
+    <token id="0x5b938c6de220" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="50" str="," scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6ddab0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="51" str="uint32_t" scope="0x5b938c6d3a30" type="name" astParent="0x5b938c6ddba0"/>
+    <token id="0x5b938c6ddba0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="59" str="*" scope="0x5b938c6d3a30" type="op" isArithmeticalOp="true" astOperand1="0x5b938c6ddab0" astOperand2="0x5b938c6ddc90"/>
+    <token id="0x5b938c6ddc90" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="61" str="SwitchState" scope="0x5b938c6d3a30" type="name" varId="5" astParent="0x5b938c6ddba0"/>
+    <token id="0x5b938c6ddd80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="72" str=")" scope="0x5b938c6d3a30" link="0x5b938c6dd840"/>
+    <token id="0x5b938c6ddde0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" linenr="50" column="73" str=";" scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6ddee0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="1" str="extern" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6ddf40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="8" str="struct" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6d2960" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="0" str="SwitchCFG_t" scope="0x5b938c6d3a30" type="name" type-scope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6de280" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="21" str="Switches" scope="0x5b938c6d3a30" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6d73d0" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6d73d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="29" str="[" scope="0x5b938c6d3a30" link="0x5b938c6de460" astOperand1="0x5b938c6de280" astOperand2="0x5b938c6de370" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6de370" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="30" str="_SWITCHES_NUM" scope="0x5b938c6d3a30" type="name" values="0x5b938c6c7690" astParent="0x5b938c6d73d0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6de460" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="43" str="]" scope="0x5b938c6d3a30" link="0x5b938c6d73d0"/>
+    <token id="0x5b938c6de4c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="27" column="44" str=";" scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6de5b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="40" column="1" str="ErrorStatus_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6de6a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="40" column="15" str="Switch_Init" scope="0x5b938c6d3a30" type="name" function="0x5b938c6db740"/>
+    <token id="0x5b938c6de700" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="40" column="26" str="(" scope="0x5b938c6d3a30" link="0x5b938c6d7160"/>
+    <token id="0x5b938c6de800" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="40" column="27" str="void" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6d7160" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="40" column="31" str=")" scope="0x5b938c6d3a30" link="0x5b938c6de700"/>
+    <token id="0x5b938c6de8f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="41" column="1" str="{" scope="0x5b938c6d3ee0" link="0x5b938c6d45b0"/>
+    <token id="0x5b938c6de9e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="42" column="5" str="ErrorStatus_t" scope="0x5b938c6d3ee0" type="name"/>
+    <token id="0x5b938c6dea40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="42" column="21" str="ReturnState" scope="0x5b938c6d3ee0" type="name" varId="7" variable="0x5b938c6d4200"/>
+    <token id="0x5b938c6deb30" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="42" column="32" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6dec20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="44" column="5" str="GPIO_CFG_t" scope="0x5b938c6d3ee0" type="name"/>
+    <token id="0x5b938c6dec80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="44" column="16" str="Switch" scope="0x5b938c6d3ee0" type="name" varId="8" variable="0x5b938c6d61a0"/>
+    <token id="0x5b938c6ded80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="44" column="22" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6d9b40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="46" column="5" str="uint8_t" scope="0x5b938c6d3ee0" type="name"/>
+    <token id="0x5b938c6dee70" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="46" column="13" str="SW_Num" scope="0x5b938c6d3ee0" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d7c20" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6def60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="46" column="19" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6defc0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="5" str="for" scope="0x5b938c6d3ee0" type="name" astParent="0x5b938c6df0b0"/>
+    <token id="0x5b938c6df0b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="9" str="(" scope="0x5b938c6d3ee0" link="0x5b938c6df880" astOperand1="0x5b938c6defc0" astOperand2="0x5b938c6d9db0"/>
+    <token id="0x5b938c6df1a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="10" str="SW_Num" scope="0x5b938c6d3ee0" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6bcc60" astParent="0x5b938c6df200" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6df200" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="16" str="=" scope="0x5b938c6d3ee0" type="op" isAssignmentOp="true" values="0x5b938c6d55a0" astParent="0x5b938c6d9db0" astOperand1="0x5b938c6df1a0" astOperand2="0x5b938c6df300" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6df300" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="17" str="0" scope="0x5b938c6d3ee0" type="number" isInt="true" values="0x5b938c6d36e0" astParent="0x5b938c6df200" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0x5b938c6d9db0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="18" str=";" scope="0x5b938c6d3ee0" astParent="0x5b938c6df0b0" astOperand1="0x5b938c6df200" astOperand2="0x5b938c6df630"/>
+    <token id="0x5b938c6df3f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="19" str="SW_Num" scope="0x5b938c6d3ee0" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d9970" astParent="0x5b938c6df4e0" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6df4e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="25" str="&lt;" scope="0x5b938c6d3ee0" type="op" isComparisonOp="true" astParent="0x5b938c6df630" astOperand1="0x5b938c6df3f0" astOperand2="0x5b938c6df540" valueType-type="bool" valueType-reference="None"/>
+    <token id="0x5b938c6df540" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="26" str="_SWITCHES_NUM" scope="0x5b938c6d3ee0" type="name" values="0x5b938c6c76f0" astParent="0x5b938c6df4e0" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6df630" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="39" str=";" scope="0x5b938c6d3ee0" astParent="0x5b938c6d9db0" astOperand1="0x5b938c6df4e0" astOperand2="0x5b938c6df780"/>
+    <token id="0x5b938c6df720" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="40" str="SW_Num" scope="0x5b938c6d3ee0" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d7200" astParent="0x5b938c6df780" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6df780" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="46" str="++" scope="0x5b938c6d3ee0" type="op" values="0x5b938c6d4670" astParent="0x5b938c6df630" astOperand1="0x5b938c6df720" valueType-type="int" valueType-sign="signed" valueType-reference="None"/>
+    <token id="0x5b938c6df880" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="47" column="48" str=")" scope="0x5b938c6d3ee0" link="0x5b938c6df0b0"/>
+    <token id="0x5b938c6d9180" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="48" column="5" str="{" scope="0x5b938c6d4070" link="0x5b938c6e1060"/>
+    <token id="0x5b938c6df970" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="9" str="Switch" scope="0x5b938c6d4070" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6dfa60"/>
+    <token id="0x5b938c6dfa60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="15" str="." scope="0x5b938c6d4070" astParent="0x5b938c6dfbb0" astOperand1="0x5b938c6df970" astOperand2="0x5b938c6dfac0"/>
+    <token id="0x5b938c6dfac0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="16" str="GPIO_Port" scope="0x5b938c6d4070" type="name" varId="10" astParent="0x5b938c6dfa60"/>
+    <token id="0x5b938c6dfbb0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="25" str="=" scope="0x5b938c6d4070" type="op" isAssignmentOp="true" astOperand1="0x5b938c6dfa60" astOperand2="0x5b938c6dfef0"/>
+    <token id="0x5b938c6dfca0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="26" str="Switches" scope="0x5b938c6d4070" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6dfd00" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dfd00" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="34" str="[" scope="0x5b938c6d4070" link="0x5b938c6d8f10" astParent="0x5b938c6dfef0" astOperand1="0x5b938c6dfca0" astOperand2="0x5b938c6dfe00" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6dfe00" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="35" str="SW_Num" scope="0x5b938c6d4070" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d9700" astParent="0x5b938c6dfd00" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6d8f10" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="41" str="]" scope="0x5b938c6d4070" link="0x5b938c6dfd00"/>
+    <token id="0x5b938c6dfef0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="42" str="." scope="0x5b938c6d4070" astParent="0x5b938c6dfbb0" astOperand1="0x5b938c6dfd00" astOperand2="0x5b938c6dffe0" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6dffe0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="43" str="SW_Port" scope="0x5b938c6d4070" type="name" varId="18" variable="0x5b938c6d47c0" astParent="0x5b938c6dfef0" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e0040" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="49" column="50" str=";" scope="0x5b938c6d4070"/>
+    <token id="0x5b938c6e0130" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="9" str="Switch" scope="0x5b938c6d4070" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6e0220"/>
+    <token id="0x5b938c6e0220" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="15" str="." scope="0x5b938c6d4070" astParent="0x5b938c6e0380" astOperand1="0x5b938c6e0130" astOperand2="0x5b938c6e0280"/>
+    <token id="0x5b938c6e0280" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="16" str="GPIO_Pin" scope="0x5b938c6d4070" type="name" varId="11" astParent="0x5b938c6e0220"/>
+    <token id="0x5b938c6e0380" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="24" str="=" scope="0x5b938c6d4070" type="op" isAssignmentOp="true" values="0x5b938c6bca00" astOperand1="0x5b938c6e0220" astOperand2="0x5b938c6e06b0"/>
+    <token id="0x5b938c6d98d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="25" str="Switches" scope="0x5b938c6d4070" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6e0470" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e0470" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="33" str="[" scope="0x5b938c6d4070" link="0x5b938c6e05c0" astParent="0x5b938c6e06b0" astOperand1="0x5b938c6d98d0" astOperand2="0x5b938c6e0560" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e0560" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="34" str="SW_Num" scope="0x5b938c6d4070" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d7470" astParent="0x5b938c6e0470" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e05c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="40" str="]" scope="0x5b938c6d4070" link="0x5b938c6e0470"/>
+    <token id="0x5b938c6e06b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="41" str="." scope="0x5b938c6d4070" values="0x5b938c6d9220" astParent="0x5b938c6e0380" astOperand1="0x5b938c6e0470" astOperand2="0x5b938c6e07a0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e07a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="42" str="SW_Pin" scope="0x5b938c6d4070" type="name" varId="19" variable="0x5b938c6e69d0" values="0x5b938c6d78a0" astParent="0x5b938c6e06b0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e0800" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="50" column="48" str=";" scope="0x5b938c6d4070"/>
+    <token id="0x5b938c6e0900" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="9" str="Switch" scope="0x5b938c6d4070" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6d9660"/>
+    <token id="0x5b938c6d9660" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="15" str="." scope="0x5b938c6d4070" astParent="0x5b938c6e0ae0" astOperand1="0x5b938c6e0900" astOperand2="0x5b938c6e09f0"/>
+    <token id="0x5b938c6e09f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="16" str="GPIO_Mode" scope="0x5b938c6d4070" type="name" varId="12" astParent="0x5b938c6d9660"/>
+    <token id="0x5b938c6e0ae0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="25" str="=" scope="0x5b938c6d4070" type="op" isAssignmentOp="true" values="0x5b938c6d76e0" astOperand1="0x5b938c6d9660" astOperand2="0x5b938c6e0e80"/>
+    <token id="0x5b938c6e0b40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="26" str="Switches" scope="0x5b938c6d4070" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6e0c30" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e0c30" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="34" str="[" scope="0x5b938c6d4070" link="0x5b938c6e0d80" astParent="0x5b938c6e0e80" astOperand1="0x5b938c6e0b40" astOperand2="0x5b938c6e0d20" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e0d20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="35" str="SW_Num" scope="0x5b938c6d4070" type="name" varId="9" variable="0x5b938c6d6280" values="0x5b938c6d9be0" astParent="0x5b938c6e0c30" valueType-type="char" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e0d80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="41" str="]" scope="0x5b938c6d4070" link="0x5b938c6e0c30"/>
+    <token id="0x5b938c6e0e80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="42" str="." scope="0x5b938c6d4070" values="0x5b938c6d6f90" astParent="0x5b938c6e0ae0" astOperand1="0x5b938c6e0c30" astOperand2="0x5b938c6d93f0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6d93f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="43" str="SW_Connection" scope="0x5b938c6d4070" type="name" varId="20" variable="0x5b938c6d48e0" values="0x5b938c6e7f80" astParent="0x5b938c6e0e80" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e0f70" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="51" column="56" str=";" scope="0x5b938c6d4070"/>
+    <token id="0x5b938c6e1060" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="52" column="5" str="}" scope="0x5b938c6d4070" link="0x5b938c6d9180"/>
+    <token id="0x5b938c6e10c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="5" str="Switch" scope="0x5b938c6d3ee0" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6e11b0"/>
+    <token id="0x5b938c6e11b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="11" str="." scope="0x5b938c6d3ee0" astParent="0x5b938c6e1300" astOperand1="0x5b938c6e10c0" astOperand2="0x5b938c6e12a0"/>
+    <token id="0x5b938c6e12a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="12" str="GPIO_Speed" scope="0x5b938c6d3ee0" type="name" varId="13" astParent="0x5b938c6e11b0"/>
+    <token id="0x5b938c6e1300" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="22" str="=" scope="0x5b938c6d3ee0" type="op" isAssignmentOp="true" astOperand1="0x5b938c6e11b0" astOperand2="0x5b938c6e1400"/>
+    <token id="0x5b938c6e1400" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="23" str="GPIO_HIGH_SPEED" scope="0x5b938c6d3ee0" type="name" astParent="0x5b938c6e1300"/>
+    <token id="0x5b938c6d5770" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="53" column="38" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6e14f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="5" str="Switch" scope="0x5b938c6d3ee0" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6e15e0"/>
+    <token id="0x5b938c6e15e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="11" str="." scope="0x5b938c6d3ee0" astParent="0x5b938c6e1730" astOperand1="0x5b938c6e14f0" astOperand2="0x5b938c6e1640"/>
+    <token id="0x5b938c6e1640" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="12" str="GPIO_AF" scope="0x5b938c6d3ee0" type="name" varId="14" astParent="0x5b938c6e15e0"/>
+    <token id="0x5b938c6e1730" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="19" str="=" scope="0x5b938c6d3ee0" type="op" isAssignmentOp="true" astOperand1="0x5b938c6e15e0" astOperand2="0x5b938c6e1820"/>
+    <token id="0x5b938c6e1820" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="20" str="GPIO_AF_DISABLED" scope="0x5b938c6d3ee0" type="name" astParent="0x5b938c6e1730"/>
+    <token id="0x5b938c6e1880" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="54" column="36" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6e1980" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="5" str="ReturnState" scope="0x5b938c6d3ee0" type="name" varId="7" variable="0x5b938c6d4200" astParent="0x5b938c6d5500"/>
+    <token id="0x5b938c6d5500" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="16" str="=" scope="0x5b938c6d3ee0" type="op" isAssignmentOp="true" astOperand1="0x5b938c6e1980" astOperand2="0x5b938c6e1b60"/>
+    <token id="0x5b938c6e1a70" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="17" str="GPIO_InitPin" scope="0x5b938c6d3ee0" type="name" astParent="0x5b938c6e1b60"/>
+    <token id="0x5b938c6e1b60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="29" str="(" scope="0x5b938c6d3ee0" link="0x5b938c6e1da0" astParent="0x5b938c6d5500" astOperand1="0x5b938c6e1a70" astOperand2="0x5b938c6e1bc0"/>
+    <token id="0x5b938c6e1bc0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="30" str="&amp;" scope="0x5b938c6d3ee0" type="op" values="0x5b938c6d4820" astParent="0x5b938c6e1b60" astOperand1="0x5b938c6e1cb0"/>
+    <token id="0x5b938c6e1cb0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="31" str="Switch" scope="0x5b938c6d3ee0" type="name" varId="8" variable="0x5b938c6d61a0" astParent="0x5b938c6e1bc0"/>
+    <token id="0x5b938c6e1da0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="37" str=")" scope="0x5b938c6d3ee0" link="0x5b938c6e1b60"/>
+    <token id="0x5b938c6e1e00" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="55" column="38" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6e1f00" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="56" column="5" str="return" scope="0x5b938c6d3ee0" type="name" astOperand1="0x5b938c6e1f60"/>
+    <token id="0x5b938c6e1f60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="56" column="12" str="ReturnState" scope="0x5b938c6d3ee0" type="name" varId="7" variable="0x5b938c6d4200" astParent="0x5b938c6e1f00"/>
+    <token id="0x5b938c6e2060" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="56" column="23" str=";" scope="0x5b938c6d3ee0"/>
+    <token id="0x5b938c6d45b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="57" column="4" str="}" scope="0x5b938c6d3ee0" link="0x5b938c6de8f0"/>
+    <token id="0x5b938c6d4610" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="4" str="ErrorStatus_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6e21e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="18" str="Switch_GetState" scope="0x5b938c6d3a30" type="name" function="0x5b938c6db690"/>
+    <token id="0x5b938c6e22d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="33" str="(" scope="0x5b938c6d3a30" link="0x5b938c6e27f0"/>
+    <token id="0x5b938c6e23d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="34" str="uint32_t" scope="0x5b938c6d3a30" type="name"/>
+    <token id="0x5b938c6e2430" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="43" str="SwitchNum" scope="0x5b938c6d3a30" type="name" varId="15" variable="0x5b938c6d6440" values="0x5b938c6e8050" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e2530" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="53" str="," scope="0x5b938c6d3a30"/>
+    <token id="0x5b938c6e2590" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="54" str="uint32_t" scope="0x5b938c6d3a30" type="name" astParent="0x5b938c6e2690"/>
+    <token id="0x5b938c6e2690" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="62" str="*" scope="0x5b938c6d3a30" type="op" isArithmeticalOp="true" astOperand1="0x5b938c6e2590" astOperand2="0x5b938c6e26f0"/>
+    <token id="0x5b938c6e26f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="64" str="SwitchState" scope="0x5b938c6d3a30" type="name" varId="16" variable="0x5b938c6d6520" astParent="0x5b938c6e2690" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e27f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="67" column="75" str=")" scope="0x5b938c6d3a30" link="0x5b938c6e22d0"/>
+    <token id="0x5b938c6d3940" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="68" column="4" str="{" scope="0x5b938c6d5840" link="0x5b938c6e6960"/>
+    <token id="0x5b938c6d39a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="69" column="5" str="ErrorStatus_t" scope="0x5b938c6d5840" type="name"/>
+    <token id="0x5b938c6e2970" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="69" column="19" str="ReturnError" scope="0x5b938c6d5840" type="name" varId="17" variable="0x5b938c6d6360"/>
+    <token id="0x5b938c6e2a60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="69" column="30" str=";" scope="0x5b938c6d5840"/>
+    <token id="0x5b938c6e2b60" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="5" str="if" scope="0x5b938c6d5840" type="name" astParent="0x5b938c6e2bc0"/>
+    <token id="0x5b938c6e2bc0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="7" str="(" scope="0x5b938c6d5840" link="0x5b938c6e2e80" astOperand1="0x5b938c6e2b60" astOperand2="0x5b938c6e2d20"/>
+    <token id="0x5b938c6e2cc0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="8" str="SwitchState" scope="0x5b938c6d5840" type="name" varId="16" variable="0x5b938c6d6520" astParent="0x5b938c6e2d20" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e2d20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="19" str="==" scope="0x5b938c6d5840" type="op" isComparisonOp="true" astParent="0x5b938c6e2bc0" astOperand1="0x5b938c6e2cc0" astOperand2="0x5b938c6e2e20" valueType-type="bool" valueType-reference="None"/>
+    <token id="0x5b938c6e2e20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="21" str="NULL" scope="0x5b938c6d5840" type="name" values="0x5b938c6d4e70" astParent="0x5b938c6e2d20"/>
+    <token id="0x5b938c6e2e80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="70" column="25" str=")" scope="0x5b938c6d5840" link="0x5b938c6e2bc0"/>
+    <token id="0x5b938c6e2f80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="71" column="5" str="{" scope="0x5b938c6d59d0" link="0x5b938c6e32f0"/>
+    <token id="0x5b938c6d3620" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="72" column="9" str="ReturnError" scope="0x5b938c6d59d0" type="name" varId="17" variable="0x5b938c6d6360" astParent="0x5b938c6d3680"/>
+    <token id="0x5b938c6d3680" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="72" column="20" str="=" scope="0x5b938c6d59d0" type="op" isAssignmentOp="true" astOperand1="0x5b938c6d3620" astOperand2="0x5b938c6e3100"/>
+    <token id="0x5b938c6e3100" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="72" column="21" str="NULL_POINTER" scope="0x5b938c6d59d0" type="name" astParent="0x5b938c6d3680"/>
+    <token id="0x5b938c6e31f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="72" column="33" str=";" scope="0x5b938c6d59d0"/>
+    <token id="0x5b938c6e32f0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="73" column="5" str="}" scope="0x5b938c6d59d0" link="0x5b938c6e2f80"/>
+    <token id="0x5b938c6e3350" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="5" str="else" scope="0x5b938c6d5840" type="name"/>
+    <token id="0x5b938c6e5e90" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="0" str="{" scope="0x5b938c6d5b60" link="0x5b938c6dc510"/>
+    <token id="0x5b938c6e3450" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="10" str="if" scope="0x5b938c6d5b60" type="name" astParent="0x5b938c6e34b0"/>
+    <token id="0x5b938c6e34b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="12" str="(" scope="0x5b938c6d5b60" link="0x5b938c6e3980" astOperand1="0x5b938c6e3450" astOperand2="0x5b938c6e3610"/>
+    <token id="0x5b938c6e35b0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="13" str="SwitchNum" scope="0x5b938c6d5b60" type="name" varId="15" variable="0x5b938c6d6440" values="0x5b938c6e8120" astParent="0x5b938c6e3610" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e3610" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="22" str="&gt;" scope="0x5b938c6d5b60" type="op" isComparisonOp="true" astParent="0x5b938c6e34b0" astOperand1="0x5b938c6e35b0" astOperand2="0x5b938c6e3710" valueType-type="bool" valueType-reference="None"/>
+    <token id="0x5b938c6e3710" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="23" str="(" scope="0x5b938c6d5b60" link="0x5b938c6d2d40" values="0x5b938c6d3a00" astParent="0x5b938c6e3610" astOperand1="0x5b938c6e3890" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6d2ce0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="24" str="uint32_t" scope="0x5b938c6d5b60" type="name"/>
+    <token id="0x5b938c6d2d40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="32" str=")" scope="0x5b938c6d5b60" link="0x5b938c6e3710"/>
+    <token id="0x5b938c6e3890" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="33" str="_SWITCHES_NUM" scope="0x5b938c6d5b60" type="name" values="0x5b938c6bc380" astParent="0x5b938c6e3710" valueType-type="int" valueType-sign="signed" valueType-reference="None" valueType-typeScope="0x5b938c6d3bc0"/>
+    <token id="0x5b938c6e3980" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="74" column="46" str=")" scope="0x5b938c6d5b60" link="0x5b938c6e34b0"/>
+    <token id="0x5b938c6e3a80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="75" column="5" str="{" scope="0x5b938c6d5cf0" link="0x5b938c6e3da0"/>
+    <token id="0x5b938c6e3ae0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="76" column="9" str="ReturnError" scope="0x5b938c6d5cf0" type="name" varId="17" variable="0x5b938c6d6360" astParent="0x5b938c6e3be0"/>
+    <token id="0x5b938c6e3be0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="76" column="20" str="=" scope="0x5b938c6d5cf0" type="op" isAssignmentOp="true" astOperand1="0x5b938c6e3ae0" astOperand2="0x5b938c6e3c40"/>
+    <token id="0x5b938c6e3c40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="76" column="21" str="WRONG_PARAMETER" scope="0x5b938c6d5cf0" type="name" astParent="0x5b938c6e3be0"/>
+    <token id="0x5b938c6e3d40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="76" column="36" str=";" scope="0x5b938c6d5cf0"/>
+    <token id="0x5b938c6e3da0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="77" column="5" str="}" scope="0x5b938c6d5cf0" link="0x5b938c6e3a80"/>
+    <token id="0x5b938c6e3ea0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="78" column="5" str="else" scope="0x5b938c6d5b60" type="name"/>
+    <token id="0x5b938c6e3f00" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="79" column="5" str="{" scope="0x5b938c6d5e80" link="0x5b938c6e66a0"/>
+    <token id="0x5b938c6e4000" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="9" str="ReturnError" scope="0x5b938c6d5e80" type="name" varId="17" variable="0x5b938c6d6360" astParent="0x5b938c6e4060"/>
+    <token id="0x5b938c6e4060" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="20" str="=" scope="0x5b938c6d5e80" type="op" isAssignmentOp="true" astOperand1="0x5b938c6e4000" astOperand2="0x5b938c6e41c0"/>
+    <token id="0x5b938c6e4160" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="21" str="GPIO_GetPinValue" scope="0x5b938c6d5e80" type="name" astParent="0x5b938c6e41c0"/>
+    <token id="0x5b938c6e41c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="37" str="(" scope="0x5b938c6d5e80" link="0x5b938c6e4ce0" astParent="0x5b938c6e4060" astOperand1="0x5b938c6e4160" astOperand2="0x5b938c6e4b80"/>
+    <token id="0x5b938c6e42e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="38" str="Switches" scope="0x5b938c6d5e80" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6d5280" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6d5280" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="46" str="[" scope="0x5b938c6d5e80" link="0x5b938c6e44c0" astParent="0x5b938c6e4520" astOperand1="0x5b938c6e42e0" astOperand2="0x5b938c6e43d0" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e43d0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="47" str="SwitchNum" scope="0x5b938c6d5e80" type="name" varId="15" variable="0x5b938c6d6440" values="0x5b938c6e81f0" astParent="0x5b938c6d5280" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e44c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="56" str="]" scope="0x5b938c6d5e80" link="0x5b938c6d5280"/>
+    <token id="0x5b938c6e4520" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="57" str="." scope="0x5b938c6d5e80" astParent="0x5b938c6e4700" astOperand1="0x5b938c6d5280" astOperand2="0x5b938c6e4610" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e4610" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="58" str="SW_Port" scope="0x5b938c6d5e80" type="name" varId="18" variable="0x5b938c6d47c0" astParent="0x5b938c6e4520" valueType-type="void" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e4700" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="65" str="," scope="0x5b938c6d5e80" astParent="0x5b938c6e4b80" astOperand1="0x5b938c6e4520" astOperand2="0x5b938c6e4a20"/>
+    <token id="0x5b938c6e4760" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="66" str="Switches" scope="0x5b938c6d5e80" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6e4860" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e4860" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="74" str="[" scope="0x5b938c6d5e80" link="0x5b938c6e49c0" astParent="0x5b938c6e4a20" astOperand1="0x5b938c6e4760" astOperand2="0x5b938c6e48c0" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e48c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="75" str="SwitchNum" scope="0x5b938c6d5e80" type="name" varId="15" variable="0x5b938c6d6440" values="0x5b938c6e82c0" astParent="0x5b938c6e4860" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e49c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="84" str="]" scope="0x5b938c6d5e80" link="0x5b938c6e4860"/>
+    <token id="0x5b938c6e4a20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="85" str="." scope="0x5b938c6d5e80" values="0x5b938c6e8390" astParent="0x5b938c6e4700" astOperand1="0x5b938c6e4860" astOperand2="0x5b938c6e4b20" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e4b20" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="86" str="SW_Pin" scope="0x5b938c6d5e80" type="name" varId="19" variable="0x5b938c6e69d0" values="0x5b938c6e8460" astParent="0x5b938c6e4a20" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e4b80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="92" str="," scope="0x5b938c6d5e80" astParent="0x5b938c6e41c0" astOperand1="0x5b938c6e4700" astOperand2="0x5b938c6e4c80"/>
+    <token id="0x5b938c6e4c80" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="93" str="SwitchState" scope="0x5b938c6d5e80" type="name" varId="16" variable="0x5b938c6d6520" values="0x5b938c6e9730" astParent="0x5b938c6e4b80" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e4ce0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="104" str=")" scope="0x5b938c6d5e80" link="0x5b938c6e41c0"/>
+    <token id="0x5b938c6e4de0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="80" column="105" str=";" scope="0x5b938c6d5e80"/>
+    <token id="0x5b938c6d6ee0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="9" str="*" scope="0x5b938c6d5e80" type="op" isArithmeticalOp="true" values="0x5b938c6e8530" astParent="0x5b938c6e4fc0" astOperand1="0x5b938c6e4ed0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e4ed0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="10" str="SwitchState" scope="0x5b938c6d5e80" type="name" varId="16" variable="0x5b938c6d6520" astParent="0x5b938c6d6ee0" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e4fc0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="21" str="=" scope="0x5b938c6d5e80" type="op" isAssignmentOp="true" values="0x5b938c6e8600" astOperand1="0x5b938c6d6ee0" astOperand2="0x5b938c6e5360" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e5020" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="22" str="(" scope="0x5b938c6d5e80" link="0x5b938c6e5260"/>
+    <token id="0x5b938c6e5110" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="23" str="*" scope="0x5b938c6d5e80" type="op" isArithmeticalOp="true" values="0x5b938c6e86d0" astParent="0x5b938c6e5360" astOperand1="0x5b938c6e5200" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e5200" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="24" str="SwitchState" scope="0x5b938c6d5e80" type="name" varId="16" variable="0x5b938c6d6520" astParent="0x5b938c6e5110" valueType-type="int" valueType-sign="unsigned" valueType-pointer="1" valueType-reference="None"/>
+    <token id="0x5b938c6e5260" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="35" str=")" scope="0x5b938c6d5e80" link="0x5b938c6e5020"/>
+    <token id="0x5b938c6e5360" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="36" str="^" scope="0x5b938c6d5e80" type="op" values="0x5b938c6e8820" astParent="0x5b938c6e4fc0" astOperand1="0x5b938c6e5110" astOperand2="0x5b938c6e5fa0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e53c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="37" str="(" scope="0x5b938c6d5e80" link="0x5b938c6e6430"/>
+    <token id="0x5b938c6e54c0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="38" str="(" scope="0x5b938c6d5e80" link="0x5b938c6d3360"/>
+    <token id="0x5b938c6e5520" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="39" str="(" scope="0x5b938c6d5e80" link="0x5b938c6e5a40"/>
+    <token id="0x5b938c6e5620" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="40" str="Switches" scope="0x5b938c6d5e80" type="name" varId="6" variable="0x5b938c6d6010" astParent="0x5b938c6e5680" valueType-type="record" valueType-pointer="1" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e5680" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="48" str="[" scope="0x5b938c6d5e80" link="0x5b938c6e57e0" astParent="0x5b938c6e58e0" astOperand1="0x5b938c6e5620" astOperand2="0x5b938c6e5780" valueType-type="record" valueType-reference="None" valueType-typeScope="0x5b938c6d3d50"/>
+    <token id="0x5b938c6e5780" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="49" str="SwitchNum" scope="0x5b938c6d5e80" type="name" varId="15" variable="0x5b938c6d6440" values="0x5b938c6e8800" astParent="0x5b938c6e5680" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e57e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="58" str="]" scope="0x5b938c6d5e80" link="0x5b938c6e5680"/>
+    <token id="0x5b938c6e58e0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="59" str="." scope="0x5b938c6d5e80" values="0x5b938c6e8880" astParent="0x5b938c6e5aa0" astOperand1="0x5b938c6e5680" astOperand2="0x5b938c6e5940" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e5940" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="60" str="SW_Connection" scope="0x5b938c6d5e80" type="name" varId="20" variable="0x5b938c6d48e0" values="0x5b938c6e88c0" astParent="0x5b938c6e58e0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e5a40" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="73" str=")" scope="0x5b938c6d5e80" link="0x5b938c6e5520"/>
+    <token id="0x5b938c6e5aa0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="74" str="&gt;&gt;" scope="0x5b938c6d5e80" type="op" isArithmeticalOp="true" values="0x5b938c6e8840" astParent="0x5b938c6e5fa0" astOperand1="0x5b938c6e58e0" astOperand2="0x5b938c6e5ba0" valueType-type="int" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e5ba0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="76" str="3UL" scope="0x5b938c6d5e80" type="number" isInt="true" isExpandedMacro="true" values="0x5b938c6d5810" astParent="0x5b938c6e5aa0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6d3360" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="99" str=")" scope="0x5b938c6d5e80" link="0x5b938c6e54c0"/>
+    <token id="0x5b938c6e5fa0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="100" str="&amp;" scope="0x5b938c6d5e80" type="op" values="0x5b938c6d8fb0" astParent="0x5b938c6e5360" astOperand1="0x5b938c6e5aa0" astOperand2="0x5b938c6e6000" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e6000" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="102" str="1UL" scope="0x5b938c6d5e80" type="number" isInt="true" isExpandedMacro="true" values="0x5b938c6d2da0" astParent="0x5b938c6e5fa0" valueType-type="long" valueType-sign="unsigned" valueType-reference="None"/>
+    <token id="0x5b938c6e6430" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="129" str=")" scope="0x5b938c6d5e80" link="0x5b938c6e53c0"/>
+    <token id="0x5b938c6e65a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="98" column="130" str=";" scope="0x5b938c6d5e80"/>
+    <token id="0x5b938c6e66a0" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="99" column="5" str="}" scope="0x5b938c6d5e80" link="0x5b938c6e3f00"/>
+    <token id="0x5b938c6dc510" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="99" column="0" str="}" scope="0x5b938c6d5b60" link="0x5b938c6e5e90"/>
+    <token id="0x5b938c6e6700" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="100" column="5" str="return" scope="0x5b938c6d5840" type="name" astOperand1="0x5b938c6e6800"/>
+    <token id="0x5b938c6e6800" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="100" column="12" str="ReturnError" scope="0x5b938c6d5840" type="name" varId="17" variable="0x5b938c6d6360" astParent="0x5b938c6e6700"/>
+    <token id="0x5b938c6e6860" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="100" column="23" str=";" scope="0x5b938c6d5840"/>
+    <token id="0x5b938c6e6960" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.c" linenr="101" column="4" str="}" scope="0x5b938c6d5840" link="0x5b938c6d3940"/>
+  </tokenlist>
+  <scopes>
+    <scope id="0x5b938c6d3a30" type="Global">
+      <functionList>
+        <function id="0x5b938c6db740" token="0x5b938c6de6a0" tokenDef="0x5b938c6dd3c0" name="Switch_Init" type="Function"/>
+        <function id="0x5b938c6db690" token="0x5b938c6e21e0" tokenDef="0x5b938c6dd7e0" name="Switch_GetState" type="Function">
+          <arg nr="1" variable="0x5b938c6d6440"/>
+          <arg nr="2" variable="0x5b938c6d6520"/>
+        </function>
+      </functionList>
+      <varlist>
+        <var id="0x5b938c6d6010"/>
+      </varlist>
+    </scope>
+    <scope id="0x5b938c6d3bc0" type="Enum" className="SW_NUM_t" bodyStart="0x5b938c6bd3b0" bodyEnd="0x5b938c6dc240" nestedIn="0x5b938c6d3a30"/>
+    <scope id="0x5b938c6d3d50" type="Struct" className="SwitchCFG_t" bodyStart="0x5b938c6dc600" bodyEnd="0x5b938c6dd050" nestedIn="0x5b938c6d3a30">
+      <varlist>
+        <var id="0x5b938c6d47c0"/>
+        <var id="0x5b938c6e69d0"/>
+        <var id="0x5b938c6d48e0"/>
+      </varlist>
+    </scope>
+    <scope id="0x5b938c6d3ee0" type="Function" className="Switch_Init" bodyStart="0x5b938c6de8f0" bodyEnd="0x5b938c6d45b0" nestedIn="0x5b938c6d3a30" function="0x5b938c6db740">
+      <varlist>
+        <var id="0x5b938c6d4200"/>
+        <var id="0x5b938c6d61a0"/>
+        <var id="0x5b938c6d6280"/>
+      </varlist>
+    </scope>
+    <scope id="0x5b938c6d4070" type="For" bodyStart="0x5b938c6d9180" bodyEnd="0x5b938c6e1060" nestedIn="0x5b938c6d3ee0"/>
+    <scope id="0x5b938c6d5840" type="Function" className="Switch_GetState" bodyStart="0x5b938c6d3940" bodyEnd="0x5b938c6e6960" nestedIn="0x5b938c6d3a30" function="0x5b938c6db690">
+      <varlist>
+        <var id="0x5b938c6d6360"/>
+      </varlist>
+    </scope>
+    <scope id="0x5b938c6d59d0" type="If" bodyStart="0x5b938c6e2f80" bodyEnd="0x5b938c6e32f0" nestedIn="0x5b938c6d5840"/>
+    <scope id="0x5b938c6d5b60" type="Else" bodyStart="0x5b938c6e5e90" bodyEnd="0x5b938c6dc510" nestedIn="0x5b938c6d5840"/>
+    <scope id="0x5b938c6d5cf0" type="If" bodyStart="0x5b938c6e3a80" bodyEnd="0x5b938c6e3da0" nestedIn="0x5b938c6d5b60"/>
+    <scope id="0x5b938c6d5e80" type="Else" bodyStart="0x5b938c6e3f00" bodyEnd="0x5b938c6e66a0" nestedIn="0x5b938c6d5b60"/>
+  </scopes>
+  <variables>
+    <var id="0x5b938c6d4200" nameToken="0x5b938c6dea40" typeStartToken="0x5b938c6de9e0" typeEndToken="0x5b938c6de9e0" access="Local" scope="0x5b938c6d3ee0" constness="0" isArray="false" isClass="true" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d47c0" nameToken="0x5b938c6dc8d0" typeStartToken="0x5b938c6dc6f0" typeEndToken="0x5b938c6dc7e0" access="Public" scope="0x5b938c6d3d50" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="true" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d48e0" nameToken="0x5b938c6dce70" typeStartToken="0x5b938c6dcd80" typeEndToken="0x5b938c6dcd80" access="Public" scope="0x5b938c6d3d50" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d6010" nameToken="0x5b938c6de280" typeStartToken="0x5b938c6d2960" typeEndToken="0x5b938c6d2960" access="Global" scope="0x5b938c6d3a30" constness="0" isArray="true" isClass="true" isConst="false" isExtern="true" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d61a0" nameToken="0x5b938c6dec80" typeStartToken="0x5b938c6dec20" typeEndToken="0x5b938c6dec20" access="Local" scope="0x5b938c6d3ee0" constness="0" isArray="false" isClass="true" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d6280" nameToken="0x5b938c6dee70" typeStartToken="0x5b938c6d9b40" typeEndToken="0x5b938c6d9b40" access="Local" scope="0x5b938c6d3ee0" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d6360" nameToken="0x5b938c6e2970" typeStartToken="0x5b938c6d39a0" typeEndToken="0x5b938c6d39a0" access="Local" scope="0x5b938c6d5840" constness="0" isArray="false" isClass="true" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d6440" nameToken="0x5b938c6e2430" typeStartToken="0x5b938c6e23d0" typeEndToken="0x5b938c6e23d0" access="Argument" scope="0x5b938c6d5840" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6d6520" nameToken="0x5b938c6e26f0" typeStartToken="0x5b938c6e2590" typeEndToken="0x5b938c6e2690" access="Argument" scope="0x5b938c6d5840" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="true" isReference="false" isStatic="false" isVolatile="false"/>
+    <var id="0x5b938c6e69d0" nameToken="0x5b938c6dcba0" typeStartToken="0x5b938c6dcab0" typeEndToken="0x5b938c6dcab0" access="Public" scope="0x5b938c6d3d50" constness="0" isArray="false" isClass="false" isConst="false" isExtern="false" isPointer="false" isReference="false" isStatic="false" isVolatile="false"/>
+  </variables>
+  <valueflow>
+    <values id="0x5b938c6d33c0">
+      <value intvalue="0" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d5330">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d9490">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6cae00">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6c7690">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d7c20">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6bcc60">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d55a0">
+      <value intvalue="0" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d36e0">
+      <value intvalue="0" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d9970">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6c76f0">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d7200">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d4670">
+      <value intvalue="-1" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d9700">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+      <value intvalue="0" bound="Upper" possible="true" path="0"/>
+      <value intvalue="1" bound="Lower" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6bca00">
+      <value intvalue="-1" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d7470">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+      <value intvalue="0" bound="Upper" possible="true" path="0"/>
+      <value intvalue="1" bound="Lower" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d9220">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d78a0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d76e0">
+      <value intvalue="-1" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d9be0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+      <value intvalue="0" bound="Upper" possible="true" path="0"/>
+      <value intvalue="1" bound="Lower" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d6f90">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e7f80">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d4820">
+      <value lifetime="0x5b938c6e1cb0" lifetime-scope="Local" lifetime-kind="Address" bound="Point" possible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8050">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d4e70">
+      <value intvalue="0" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8120">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d3a00">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6bc380">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e81f0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+      <value intvalue="2" bound="Lower" condition-line="74" impossible="true" path="0"/>
+      <value intvalue="1" bound="Upper" condition-line="74" possible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e82c0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8390">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8460">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e9730">
+      <value intvalue="0" bound="Point" condition-line="70" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8530">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8600">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e86d0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8820">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8800">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8880">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e88c0">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6e8840">
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d5810">
+      <value intvalue="3" bound="Point" known="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d8fb0">
+      <value intvalue="0" bound="Point" possible="true" path="0"/>
+      <value intvalue="1" bound="Point" possible="true" path="0"/>
+      <value intvalue="18446744073709551615" bound="Upper" impossible="true" path="0"/>
+    </values>
+    <values id="0x5b938c6d2da0">
+      <value intvalue="1" bound="Point" known="true" path="0"/>
+    </values>
+  </valueflow>
+  <typedef-info>
+    <info name="SwitchCFG_t" file="/home/anas/Stm32F401CC_Drivers/Stm32F401CC_Drivers/src/HAL/SWITCH/switch.h" line="41" column="3" used="1"/>
+  </typedef-info>
+</dump>
+</dumps>
