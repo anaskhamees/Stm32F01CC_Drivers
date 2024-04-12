@@ -395,10 +395,15 @@ static void LCD_IncrementDateTime(void)
         /* Ex: If Day is 30 or 31 and digit (3) triggered to Increment to be 4,5..(Not Allowed: Meaningless) */
         if(DayIndex1==3)
         {
+           /* CornerCase: If I Edit Index2 First before editing Index1 (ex:DayIndex1=3,,DayIndex2=0) 
+            * and DayIndex1 triggered to increment.. DayIndex1 will be (1).
+            * beacause There is no day called 00,,, (30 ---> 10)
+            */
             if(DayIndex2==0)
             {
                 DayIndex1=1;
             }
+            /* Ex: If Month is 31 ----will be----> 01 */
             else
             {
                 DayIndex1=0;
@@ -411,7 +416,7 @@ static void LCD_IncrementDateTime(void)
             /* CornerCase: If User Edit DayIndex2 Before DayIndex1 
              * Ex: Day = 31, and user increment DayIndex2 (1) to be 2,3,4....
              * DayIndex1 Must be Cleared (0) because Day: 32, 33,34 Not Allowed.
-             *                                       Day: 02, 03,04
+             * But Day will be ------------------->  Day: 02, 03,04 .
              */
             if((DayIndex1==3)&&(DayIndex2>1))
             {
@@ -431,10 +436,15 @@ static void LCD_IncrementDateTime(void)
         }
         if(DayIndex2==9)
         {
+           /* CornerCase: If I Edit Index1 First before editing Index2 (ex:DayIndex1=0,,DayIndex2=9) 
+            * and DayIndex2 triggered to increment.. DayIndex2 will be (1) NOT (0).
+            * beacause There is no day called 00,,, (09 ---> 01)
+            */
             if(DayIndex1==0)
             {
             DayIndex2=1;
             }
+            /* Ex: Day is 29 -----Will be------> 20 */
             else
             {
                 DayIndex2=0;
@@ -450,10 +460,15 @@ static void LCD_IncrementDateTime(void)
     {
         if(MonthIndex1==1)
         {
+           /* CornerCase: If I Edit Index2 First before editing Index1 (ex:MonthIndex1=1,,MonthIndex2=0) 
+            * and DayIndex1 triggered to increment.. MonthIndex1 will remain (1) Not (9 or 0).
+            * beacause There is no Month called 00 or 90 ,,, (10 ---> 10).
+            */
             if(MonthIndex2==0)
             {
                 MonthIndex1=1;
             }
+            /* Ex: Month is 12 ----will be----> 02 */
             else
             {
                 MonthIndex1=0;
@@ -469,18 +484,16 @@ static void LCD_IncrementDateTime(void)
     {
         if(MonthIndex2==9)
         {
-            if(MonthIndex1==0)
-            {
-                MonthIndex2=1;
-            }
-            else
-            {
-                MonthIndex2=0;
-            }
+           /* CornerCase: If I Edit Index1 First before editing Index2 (ex:MonthIndex1=0,,MonthIndex2=9) 
+            * and MonthIndex2 triggered to increment.. MonthIndex2 will be (1) NOT (0).
+            * beacause There is no Month called 00,,, (09 ---> 01)
+            */
+         MonthIndex2=1;
+
         }
-        /*
+        /* CornerCase:
          * Ex: Months: 10,11,12.. If MonthIndex2 Triggered to Increments to be 13,14...Meaningless.
-         * So, MonthIndex2 must be cleared.
+         * So, MonthIndex2 must be cleared (0).
          */
         else if((MonthIndex2==2) &&(MonthIndex1==1))
         {
@@ -654,10 +667,18 @@ static void LCD_DecrementDateTime(void)
         {
             DayIndex1=3;
         }
+        /* CornerCase: If I Edit Index2 First before editing Index1 (ex:DayIndex1=0 ,,, DayIndex2=5) 
+         * and DayIndex1 triggered to decrement.. DayIndex1 will be (2) NOT (3).
+         * beacause There is no day called 35,,, (05 ---> 25)
+         */
         else if((DayIndex1==0)&&(DayIndex2>1))
         {
             DayIndex1=2;
         }
+        /* CornerCase: If I Edit Index2 First (ex: DayIndex1=1 ,, DayIndex2=0) 
+         * and DayIndex1 triggered to decrement.. DayIndex1 will be (3) NOT (9).
+         * beacause There is no day called 90,,, (10 -----will be-----> 30).
+         */
         else if((DayIndex1==1)&&(DayIndex2==0))
         {
             DayIndex1=3;            
@@ -684,6 +705,10 @@ static void LCD_DecrementDateTime(void)
         {
             DayIndex2=1;
         }
+        /* CornerCase: If I Edit Index1 First (ex:DayIndex1=0,,DayIndex2=1) 
+         * and DayIndex2 triggered to decrement.. DayIndex2 will be (9).
+         * beacause There is no day called 00,,, (01 ---> 09)
+         */
         else if((DayIndex1==0)&&(DayIndex2==1))
         {
             DayIndex2=9;
@@ -712,6 +737,10 @@ static void LCD_DecrementDateTime(void)
         {
             MonthIndex1=0;
         }
+        /* CornerCase: If I Edit Index2 First before editing Index1 (ex: MonthIndex1=1 ,, MonthIndex2=0) 
+         * and MonthIndex1 triggered to decrement.. MonthIndex1 will be (1) NOT (0 or 9).
+         * beacause There is no Month called 00 or 90,,, (10 ---> 10)
+         */
         else if ((MonthIndex1==1)&&(MonthIndex2==0))
         {
             MonthIndex1=1;
@@ -740,6 +769,10 @@ static void LCD_DecrementDateTime(void)
         {
             MonthIndex2=2; /*Month 12*/
         }
+        /* CornerCase: If I Edit Index1 First before editing Index2 (ex:MonthIndex1=0,,MonthIndex2=1) 
+         * and MonthIndex2 triggered to decrement.. MonthIndex2 will be (9) NOT (0).
+         * beacause There is no Month called 00,,, (01 ---> 09)
+         */
         else if((MonthIndex2==1)&&(MonthIndex1==0))
         {
             MonthIndex2=9;
