@@ -26,9 +26,8 @@
 */
 typedef enum{
 
-
+RED_LED,
 GREEN_LED,
 YELLOW_LED,
-RED_LED,
 _Led_Number
 }Leds_Number_t;
