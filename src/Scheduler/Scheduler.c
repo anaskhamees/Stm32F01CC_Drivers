@@ -44,12 +44,13 @@ volatile static uint32_t SchedulerTicks;
  */
 static void Scheduler(void)
 {
-    for (uint32_t priorityIdx = 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
+    volatile uint32_t priorityIdx=0;
+    for ( priorityIdx= 0; priorityIdx < _MAX_RUNNABLE; priorityIdx++)
     {
         if ((RunInfo[priorityIdx].runnable.CallBack) && (RunInfo[priorityIdx].RemainTime == 0))
         {
             /* Execute runnable task */
-            RunInfo[priorityIdx].runnable.CallBack();
+             RunInfo[priorityIdx].runnable.CallBack();
              RunInfo[priorityIdx].RemainTime = RunInfo[priorityIdx].runnable.PeriodicityMS;
         }
 

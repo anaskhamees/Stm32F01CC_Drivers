@@ -13,12 +13,13 @@
 /**********************************************************************************/
 /*										Includes				     			  */
 /**********************************************************************************/
+#include "HAL/PeripheralCLK_Control/CLK_Control.h"
 #include "MCAL/UART/USART.h"
 #include "MCAL/GPIO/GPIO.h"
 #include "MCAL/NVIC/NVIC.h"
 #include "MCAL/NVIC/STM32F401xx.h"
 #include "MCAL/UART/USART.h"
-#include "HAL/PeripheralCLK_Control/CLK_Control.h"
+#include "HAL/Switch_Scheduler/SwitchSched.h"
 #include "HAL/LCD_Scheduler/LCD.h"
 #include "Scheduler/Scheduler.h"
 
@@ -28,20 +29,27 @@
 
 /*============================ Control Switches ============================*/
 
-#define OK                          '1' 
-#define MODE                        '1'
+#define OK                                '1' 
+#define MODE                              '1'
+#define OK_MODE_SWITCH                    '1'
 
-#define UP                          '2'
-#define EDIT                        '3'
+#define UP                                '2'
+#define EDIT                              '3'
 
-#define RIGHT                       '4'
-#define START_STOP_STOPWATCH        '4' 
+#define RIGHT                             '4'
+#define START_STOP_STOPWATCH              '4' 
+#define RIGHT_START_STOP_STOPWATCH_SWITCH '4' 
 
-#define LEFT                        '5'
-#define RESET_STOPWATCH             '5'
 
-#define PAUSE_CONTINUE_STOPWATCH    '6'
-#define DOWN                        '6'
+#define LEFT                              '5'
+#define RESET_STOPWATCH                   '5'
+#define LEFT_RESET_STOPWATCH_SWITCH      '5'
+
+#define PAUSE_CONTINUE_STOPWATCH          '6'
+#define DOWN                              '6'
+#define DOWN_PAUSE_CONTINUE_STOPWATCH_SWITCH        '6'
+
+/*=================== HardWare Switches =================*/
 
 /*==================== LCD Screen Current Mode ============================*/
 #define MainMenu                    0
@@ -764,7 +772,7 @@ static void LCD_DecrementDateTime(void)
     EditUpdate=MODIFIED; /*Update Global Variable that a Variable has been Decremented*/
 }
  
-static void USART_ReceiveCbf(void)
+ void USART_ReceiveCbf(void)
 {
     switch(CurrentMode)
     {
@@ -1123,5 +1131,54 @@ void APP_Init(void)
     LCD_DisplayMainMenu();
 }
 
+/* Each 150 mSec */
+void AppButtons_Runnable(void)
+{
+    ErrorStatus_t ReturnState;
+    uint32_t SwitchState[6]={SWITCH_RELEASED,SWITCH_RELEASED,SWITCH_RELEASED,SWITCH_RELEASED,SWITCH_RELEASED,SWITCH_RELEASED};
+     
+     ReturnState=HSwitch_GetState(MODE_OK_SWITCH,&(SwitchState[MODE_OK_SWITCH]));
+     if(SwitchState[MODE_OK_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=OK_MODE_SWITCH;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+        }
+
+    ReturnState=HSwitch_GetState(UP_SWITCH,&(SwitchState[UP_SWITCH]));
+     if(SwitchState[UP_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=UP;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+        }
+
+    ReturnState=HSwitch_GetState(EDIT_SWITCH,&(SwitchState[EDIT_SWITCH]));
+     if(SwitchState[EDIT_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=EDIT;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+        }
+
+    ReturnState=HSwitch_GetState(RIGHT_START_STOP_SWITCH,&(SwitchState[RIGHT_START_STOP_SWITCH]));
+     if(SwitchState[RIGHT_START_STOP_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=RIGHT_START_STOP_STOPWATCH_SWITCH;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+        }
+
+    ReturnState=HSwitch_GetState(LEFT_RESET_SWITCH,&(SwitchState[LEFT_RESET_SWITCH]));
+     if(SwitchState[LEFT_RESET_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=LEFT_RESET_STOPWATCH_SWITCH;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+
+        }
+
+     ReturnState=HSwitch_GetState(DOWN_PAUSE_CONTINUE_SWITCH,&(SwitchState[DOWN_PAUSE_CONTINUE_SWITCH]));
+     if(SwitchState[DOWN_PAUSE_CONTINUE_SWITCH]==SWITCH_PRESSED)
+        {
+            buffer=DOWN_PAUSE_CONTINUE_STOPWATCH_SWITCH;
+            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+        }  
+}
 #endif
 #endif

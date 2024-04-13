@@ -11,13 +11,15 @@
 /********************************************************************************************************/
 typedef enum
 {
+    LCD_TASK_RUN,
     HSwitchRunnable,
-    AppSwitchRun,
-    /*LCD_TASK_RUN,
     STOP_WATCH,
-    DATE_TIME,
     DISPLAY_APP,
-    LCD_APP_RUN,*/
+    AppButtonsRun,
+    DATE_TIME,
+   
+   
+   /* LCD_APP_RUN,*/
     
     /*TRAFFIC_LIGHT,
     Runnable_1,

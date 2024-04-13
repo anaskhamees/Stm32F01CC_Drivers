@@ -11,42 +11,42 @@
 
 const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
 {
-  [HSwitchRunnable]={
-   .PeriodicityMS=5,
-   .FirstDelayMS=0,
-   .CallBack=HSwitch_Runnable
- },
- [AppSwitchRun]={
-   .PeriodicityMS=150,
-   .FirstDelayMS=0,
-   .CallBack=AppSWitch_Runnable
- }
-  /*[LCD_TASK_RUN]={
+  [LCD_TASK_RUN]={
     .FirstDelayMS=0,
     .PeriodicityMS=2,
     .CallBack=LCD_Task
   },
-  [STOP_WATCH]={
+
+  [HSwitchRunnable]={
+   .PeriodicityMS=5,
+   .FirstDelayMS=10,
+   .CallBack=HSwitch_Runnable
+ },
+ [STOP_WATCH]={
     .FirstDelayMS=0,
     .PeriodicityMS=100,
     .CallBack=LCD_DisplayStopwatch
   },
+
+[DISPLAY_APP]={
+    .FirstDelayMS=0,
+    .PeriodicityMS=125,
+    .CallBack=Display_App
+  },
+
+ [AppButtonsRun]={
+   .PeriodicityMS=150,
+   .FirstDelayMS=150,
+   .CallBack=AppButtons_Runnable
+ },
+
   [DATE_TIME]={
     .FirstDelayMS=0,
     .PeriodicityMS=1000,
     .CallBack=LCD_DisplayDateTime 
     },
-  [DISPLAY_APP]={
-    .FirstDelayMS=0,
-    .PeriodicityMS=125,
-    .CallBack=Display_App
-  },
-  /*[LCD_TASK_RUN]={
-    .FirstDelayMS=0,
-    .PeriodicityMS=2,
-    .CallBack=LCD_Task
-  },
-  [LCD_APP_RUN]={
+  
+  /*[LCD_APP_RUN]={
     .FirstDelayMS=0,
     .PeriodicityMS=1000,
     .CallBack=LCD_App

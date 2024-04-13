@@ -2,12 +2,13 @@
 #ifdef APP
 #if (APP==APP10_DEMO1)
 
+#include "HAL/PeripheralCLK_Control/CLK_Control.h"
 #include "MCAL/UART/USART.h"
 #include "MCAL/GPIO/GPIO.h"
 #include "MCAL/NVIC/NVIC.h"
 #include "MCAL/NVIC/STM32F401xx.h"
 #include "MCAL/UART/USART.h"
-#include "HAL/PeripheralCLK_Control/CLK_Control.h"
+#include "HAL/Switch_Scheduler/SwitchSched.h"
 #include "HAL/LCD_Scheduler/LCD.h"
 #include "Scheduler/Scheduler.h"
 
@@ -48,11 +49,14 @@ int main(int argc, char* argv[])
     ErrorStatus_t ReturnError;
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOA);
     ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOB);
+    ReturnError=HAL_PeripheralEnableCLK(HAL_GPIOC);
     ReturnError=HAL_PeripheralEnableCLK(HAL_USART2);
     ReturnError=GPIO_InitPin(&UART_TX_PIN);
     ReturnError=GPIO_InitPin(&UART_RX_PIN);
     ReturnError=NVIC_EnableIRQ(NVIC_USART2_INTERRUPT);
     ReturnError=USART_Init(&UART2_CFG);
+
+    ReturnError=HSwitch_Init();
 
     LCD_Init(LCD1);
     APP_Init();

@@ -23,13 +23,13 @@ HSwitchCFG_t HSwitches[_HSWITCHES_NUM]=
     [UP_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN3,
+        .SW_Pin=GPIO_PIN8,
         .SW_Connection=GPIO_IN_PU
     },
     [EDIT_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN4,
+        .SW_Pin=GPIO_PIN9,
         .SW_Connection=GPIO_IN_PU
     },
     [RIGHT_START_STOP_SWITCH]=
