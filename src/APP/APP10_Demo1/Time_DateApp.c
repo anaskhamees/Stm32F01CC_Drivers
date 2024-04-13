@@ -615,7 +615,7 @@ static void LCD_DecrementDateTime(void)
         }
     }
 
-    /*------- Don't Edit in YearIndex1, YearIndex2  Meaningless -----*/
+    /*------- Don't Edit in YearIndex1, YearIndex2 ------> Meaningless -----*/
     /*------------------- Edit YearIndex3 ---------------------*/
     if((PosX==SecondLine)&&(PosY==YEAR_INDEX3))
     {

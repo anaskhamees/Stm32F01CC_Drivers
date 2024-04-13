@@ -44,15 +44,19 @@ ErrorStatus_t Switch_Init(void)
     GPIO_CFG_t Switch;
   
     uint8_t SW_Num;
+
+    Switch.GPIO_Speed=GPIO_HIGH_SPEED;
+    Switch.GPIO_AF=GPIO_AF_DISABLED;
+    
     for (SW_Num=0;SW_Num<_SWITCHES_NUM;SW_Num++)
     {
         Switch.GPIO_Port=Switches[SW_Num].SW_Port;
         Switch.GPIO_Pin=Switches[SW_Num].SW_Pin;
         Switch.GPIO_Mode=Switches[SW_Num].SW_Connection;
+
+        ReturnState=GPIO_InitPin(&Switch);
     }
-    Switch.GPIO_Speed=GPIO_HIGH_SPEED;
-    Switch.GPIO_AF=GPIO_AF_DISABLED;
-    ReturnState=GPIO_InitPin(&Switch);
+   
     return ReturnState;
    }
 

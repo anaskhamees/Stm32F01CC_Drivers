@@ -18,7 +18,13 @@
 */
 typedef enum
 {
-    HSWITCH_1,
+    MODE_OK_SWITCH,
+    UP_SWITCH,
+    EDIT_SWITCH,
+    RIGHT_START_STOP_SWITCH,
+    LEFT_RESET_SWITCH,
+    DOWN_PAUSE_CONTINUE_SWITCH,
+    //HSWITCH_1,
     _HSWITCHES_NUM /*Don't change the position of this Enumerator*/
 }HSwitch_NUM_t;
 
