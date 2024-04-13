@@ -78,27 +78,22 @@
 /************************************************************************************/
 /*									Variables									    */
 /************************************************************************************/
-
-uint8_t buffer=0;                   /* Var to Save Received Data From UART                           */
-uint8_t CurrentMode= MainMenu;      /* Var represent the Current mode to Display on LCD              */
-uint8_t MM_CursorLoc=FirstLine;     /* Var to store the Current location of Cursor in Main Menu Mode */
+uint8_t buffer=0;                        /* Var to Save Received Data From UART                           */
+uint8_t CurrentMode= MainMenu;           /* Var represent the Current mode to Display on LCD              */
+uint8_t MainMenuCursorLoc=FirstLine;     /* Var to store the Current location of Cursor in Main Menu Mode */
 /*======================= Variables of Date =========================*/
 uint8_t Day=10;
 uint8_t Month=4;
 uint16_t Year=2024;
-/*============================????===================================*/
-uint8_t DayLength=1;
-uint8_t MonthLength=1;
-uint8_t DateTimePosCounter=0;
 /*===================== LCD Operation States =======================*/
-uint8_t CurrentDisplay=StopWatch;
-uint8_t EditMode=OFF;
+uint8_t EditMode=OFF;                   /*Variable to Keep Track if Editing is On/Off to Enable/Disable Cursor*/
 
-uint8_t PosX=FirstLine;
-uint8_t PosY=DATE_TIME_INDEX;
+uint8_t PosX=FirstLine;                 /*Variable to Keep Track of LCD Cursor Column Position During Editing*/
+uint8_t PosY=DATE_TIME_INDEX;           /*Variable to Keep Track of LCD Cursor Row Position During Editing*/
 
-uint8_t ModeState=CONSTANT;
-uint8_t EditUpdate=CONSTANT;
+uint8_t ModeState=CONSTANT;             /*Variable to Keep Track if a Mode is Changed to Date&Time or Stopwatch*/
+uint8_t EditUpdate=CONSTANT;            /*Variable to Keep Track if an Increment/Decrement in Date or Time has Happened*/
+
 /*============================ Time Variables ==============================*/
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
@@ -124,7 +119,7 @@ uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
  static void USART_ReceiveCbf(void);
 
 /************************************************************************************/
-/*                            APIs Implementation								    */
+/*                            Static APIs Implementation						    */
 /************************************************************************************/
 static void LCD_ShiftRight(void)
 {
@@ -192,189 +187,8 @@ static void LCD_DisplayMainMenu(void)
     LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
 }
 
- void LCD_DisplayDateTime(void)
- {
-    static uint8_t First_Time=0;
-    ErrorStatus_t ReturnError;
-        if(EditMode==OFF)
-        {
-            TimeSeconds++;
-            if (TimeSeconds > 59) 
-            {
-                TimeSeconds = 0;
-
-                TimeMinutes++;
-                if (TimeMinutes > 59) 
-                {
-                    TimeMinutes = 0;
-                    TimeHours++;
-                    if (TimeHours > 23) 
-                    {
-                        TimeHours = 0;
-                    }
-                }
-            }
-        }
-
-        if(CurrentMode==DateTime)
-        {
-            /* First Function Entry            */
-            if(First_Time==0)
-            {
-                LCD_ClearScreenAsynch(LCD1,NULL);
-                First_Time++;
-            }
-            /* Mode Change: Stopwatch/DateTime */
-            else if(ModeState==MODIFIED)
-            {
-                LCD_ClearScreenAsynch(LCD1,NULL);
-                ModeState=CONSTANT; 
-            }
-            else
-            {
-                //Do Nothing
-            }
-
-            /*Don't Update in Edit Mode*/
-            if((EditMode==OFF)||(EditUpdate==MODIFIED)) /* Is (EditUpdate==MODIFIED) for if In Edit mode and Time/Date Updated ?*/
-            {   
-
-                ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
-                ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
-                //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
-
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours%10,NULL); 
-        
-                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-                
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes%10,NULL);
-
-                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-                
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds%10,NULL);
-
-                ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-                ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
-
-                ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
-         
-                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-                
-                ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
-
-                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
-                
-                uint8_t YearThousandsDigit=Year/1000      ;  /* Thousands place */
-                uint8_t YearHundredsDigit =(Year%1000)/100;  /* Hundreds place  */
-                uint8_t YearTensDigit     =(Year%100)/10  ;  /* Tens place      */
-                uint8_t YearOnesDigit     =Year%10        ;  /* Ones place      */
-           
-                ReturnError=LCD_WriteNumAsynch(LCD1,YearThousandsDigit,NULL); 
-                ReturnError=LCD_WriteNumAsynch(LCD1,YearHundredsDigit,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,YearTensDigit,NULL);
-                ReturnError=LCD_WriteNumAsynch(LCD1,YearOnesDigit,NULL);
-                
-
-                if(EditUpdate==MODIFIED) /* Edit mode and Modification is Done*/
-                {
-                    EditUpdate=CONSTANT;
-                    /*Set Cursor Back to Sme Position (No Incrementing)*/
-                    LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
-                }
-            }
-        }
- }
- 
-void LCD_DisplayStopwatch()
-{
-    ErrorStatus_t ReturnError;
-    static uint8_t First_Time=0;
-    
-    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&
-        (StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
-    {
-        StopWatchTensSeconds++;
-
-       if(StopWatchTensSeconds>9) 
-       {
-            StopWatchTensSeconds=0;
-            StopWatchSeconds++;
-            if (StopWatchSeconds > 59) 
-            {
-                StopWatchSeconds = 0;
-                StopWatchMinutes++;
-                if (StopWatchMinutes > 59) 
-                {
-                    StopWatchMinutes = 0;
-                    StopWatchHours++;
-                    if (StopWatchHours > 23) 
-                    {
-                        StopWatchHours = 0;
-                    }
-                }
-            }
-       }
-    }
-    else if (StopWatchReset==STOP_WATCH_RESET_ON)
-    {
-        StopWatchTensSeconds=0;
-        StopWatchSeconds=0;
-        StopWatchMinutes=0;
-        StopWatchHours=0;
-        StopWatchReset=STOP_WATCH_RESET_OFF;
-    }
-        
-        if(CurrentMode==StopWatch)
-        {
-            if(First_Time==0)
-            {
-                LCD_ClearScreenAsynch(LCD1,NULL);
-                First_Time++;
-            } 
-            else if(ModeState==MODIFIED)
-            {
-                LCD_ClearScreenAsynch(LCD1,NULL);
-                ModeState=CONSTANT;             
-            }     
-
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,3,NULL);
-            ReturnError=LCD_WriteStringAsynch(LCD1,"Stop Watch",10,NULL);
-            ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
-
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours%10,NULL); 
-    
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes%10,NULL);
-
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-            
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds%10,NULL);
-
-            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
-
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds/10,NULL);
-            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds%10,NULL);
-        }
-}
 static void LCD_IncrementDateTime(void)
 {
-    /**************************************/
-    /*      ___________________________   */
-    /*     |                           |  */
-    /*     |       08:27:40            |  */
-    /*     |       HH:MM:SS            |  */
-    /*     |___________________________|  */
-    /*                                    */
-    /**************************************/
 
 /*------------------------------------------------------------*/
 /*---------------------- Edit in Date ------------------------*/
@@ -550,14 +364,21 @@ static void LCD_IncrementDateTime(void)
     uint8_t TimeSecondsIndex1= (TimeSeconds/10);
     uint8_t TimeSecondsIndex2= (TimeSeconds%10);  
 
-    /*Cursor Hour Index1*/
+    /*------------------- Edit Hours Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==HOURS_INDEX1)
     {
-        /*Condition to Not Exceed Hours=23*/
+        /* Corner Case:
+         * Time cant get past 23:59:59, So Hours can't be greater than 23
+         * Incrementing "TimeHoursIndex1" to '2' while "TimeHoursIndex2" is greater than 3 is not allowed 
+         * The Implementation of this function is to increment till the last digit then circulate.
+         * Ex: 0,1,2,0,1,2,0,1,.....
+         * The line below is to assign "TimeHoursIndex1" to '0', as it is the next valid value in the sequence.
+         */
         if((TimeHoursIndex1==1)&&(TimeHoursIndex2>3))
         {
-            //Do Nothing
+            TimeHoursIndex1=0;
         }
+        /*Max Clock Value is 23:59:59, so we Circulate "TimeHoursIndex1" to the next valid value*/
         else if(TimeHoursIndex1==2)
         {
             TimeHoursIndex1=0;
@@ -568,9 +389,10 @@ static void LCD_IncrementDateTime(void)
         }
     }
 
-    /*Cursor Hour Index2*/
+    /*------------------- Edit Hours Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==HOURS_INDEX2)
     {
+        /*Max Clock Value is 23:59:59, so we Circulate "TimeHoursIndex2" to the next valid value*/
         if(TimeHoursIndex1==2&&TimeHoursIndex2==3)
         {
             TimeHoursIndex2=0;
@@ -588,7 +410,8 @@ static void LCD_IncrementDateTime(void)
         }
 
     }
-    /*Cursor Minute Index1*/
+
+    /*------------------- Edit Minutes Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==MINUTES_INDEX1)
     {
         if(TimeMinutesIndex1==5)
@@ -600,7 +423,8 @@ static void LCD_IncrementDateTime(void)
             TimeMinutesIndex1++;
         }
     }
-    /*Cursor Minute Index2*/
+
+    /*------------------- Edit Minutes Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==MINUTES_INDEX2)
     {
         if(TimeMinutesIndex2==9)
@@ -613,7 +437,7 @@ static void LCD_IncrementDateTime(void)
         }
     }
 
-    /*Cursor Seconds Index1*/
+    /*------------------- Edit Seconds Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==SECONDS_INDEX1)
     {
         if(TimeSecondsIndex1==5)
@@ -625,7 +449,7 @@ static void LCD_IncrementDateTime(void)
             TimeSecondsIndex1++;
         }
     }
-    /*Cursor Seconds Index2*/
+    /*------------------- Edit Seconds Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==SECONDS_INDEX2)
     {
         if(TimeSecondsIndex2==9)
@@ -638,10 +462,12 @@ static void LCD_IncrementDateTime(void)
         }
     }
 
+/*============================ Time Updated Values ===================================*/
     TimeHours= (TimeHoursIndex1*10)+TimeHoursIndex2;
     TimeMinutes= (TimeMinutesIndex1*10)+TimeMinutesIndex2;
     TimeSeconds= (TimeSecondsIndex1*10)+TimeSecondsIndex2;
-    EditUpdate=MODIFIED;
+/*====================================================================================*/
+    EditUpdate=MODIFIED; /*Update Global Variable that a Variable has been Incremented*/
 }
 
 static void LCD_DecrementDateTime(void)
@@ -814,6 +640,7 @@ static void LCD_DecrementDateTime(void)
     Month=((MonthIndex1*10)+MonthIndex2);
     Year =((YearIndex1*1000)+(YearIndex2*100)+(YearIndex3*10)+(YearIndex4));
 /*====================================================================================*/
+
     /*-------------------------- Time ------------------------*/
     uint8_t TimeHoursIndex1  = (TimeHours/10)  ;
     uint8_t TimeHoursIndex2  = (TimeHours%10)  ;
@@ -821,14 +648,23 @@ static void LCD_DecrementDateTime(void)
     uint8_t TimeMinutesIndex2= (TimeMinutes%10);  
     uint8_t TimeSecondsIndex1= (TimeSeconds/10);
     uint8_t TimeSecondsIndex2= (TimeSeconds%10);  
-    /*Cursor Hour Index1*/
+
+    /*------------------- Edit Hours Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==HOURS_INDEX1)
     {
-        /*Condition to Not Exceed Hours=23*/
+        /* Corner Case:
+         * Time cant get past 23:59:59, So Hours can't be greater than 23
+         * If "TimeHoursIndex1" = '0', Decrementing is would circulate the variable to '2' 
+         * "TimeHoursIndex1" being '2' while "TimeHoursIndex2" is greater than 3 is not allowed
+         * The Implementation of this function is to decrement till the last digit then circulate.
+         * Ex: 2,1,0,2,1,0,2,1,.....
+         * The line below is to assign "TimeHoursIndex1" to '1', as it is the next valid value in the sequence.
+         */
         if((TimeHoursIndex1==0)&&(TimeHoursIndex2>3))
         {
-            //Do Nothing
+            TimeHoursIndex1=1;    
         }
+        /*Max Clock Value is 23:59:59, so we Circulate "TimeHoursIndex1" to the next valid value*/
         else if(TimeHoursIndex1==0)
         {
             TimeHoursIndex1=2;
@@ -839,9 +675,11 @@ static void LCD_DecrementDateTime(void)
         }
         
     }
-    /*Cursor Hour Index2*/
+
+    /*------------------- Edit Hours Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==HOURS_INDEX2)
     {
+        /*Max Clock Value is 23:59:59, so we Circulate "TimeHoursIndex2" to the next valid value*/
         if(TimeHoursIndex1==2&&TimeHoursIndex2==0)
         {
             TimeHoursIndex2=3;
@@ -859,7 +697,8 @@ static void LCD_DecrementDateTime(void)
         }
 
     }
-    /*Cursor Minute Index1*/
+
+    /*------------------- Edit Minutes Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==MINUTES_INDEX1)
     {
         if(TimeMinutesIndex1==0)
@@ -871,7 +710,8 @@ static void LCD_DecrementDateTime(void)
             TimeMinutesIndex1--;
         }
     }
-    /*Cursor Minute Index2*/
+
+    /*------------------- Edit Minutes Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==MINUTES_INDEX2)
     {
         if(TimeMinutesIndex2==0)
@@ -884,7 +724,7 @@ static void LCD_DecrementDateTime(void)
         }
     }
 
-    /*Cursor Seconds Index1*/
+    /*------------------- Edit Seconds Index 1 ---------------------*/
     if(PosX==FirstLine&&PosY==SECONDS_INDEX1)
     {
         if(TimeSecondsIndex1==0)
@@ -896,7 +736,8 @@ static void LCD_DecrementDateTime(void)
             TimeSecondsIndex1--;
         }
     }
-    /*Cursor Seconds Index2*/
+
+    /*------------------- Edit Seconds Index 2 ---------------------*/
     if(PosX==FirstLine&&PosY==SECONDS_INDEX2)
     {
         if(TimeSecondsIndex2==0)
@@ -909,13 +750,14 @@ static void LCD_DecrementDateTime(void)
         }
     }
 
+/*============================ Time Updated Values ===================================*/
     TimeHours= (TimeHoursIndex1*10)+TimeHoursIndex2;
     TimeMinutes= (TimeMinutesIndex1*10)+TimeMinutesIndex2;
     TimeSeconds= (TimeSecondsIndex1*10)+TimeSecondsIndex2;
-    EditUpdate=MODIFIED;
+/*====================================================================================*/
+    EditUpdate=MODIFIED; /*Update Global Variable that a Variable has been Decremented*/
 }
  
-
 static void USART_ReceiveCbf(void)
 {
     switch(CurrentMode)
@@ -926,24 +768,27 @@ static void USART_ReceiveCbf(void)
             {
                 case UP:
                 {
-                   LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);  
-                   MM_CursorLoc=FirstLine;
+                   LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
+                   /*Cursor Pointing to Date&Time*/  
+                   MainMenuCursorLoc=FirstLine;
                 }
                 break;
                 case DOWN:
                 {
                    LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
-                   MM_CursorLoc=SecondLine;
+                    /*Cursor Pointing to Stopwatch*/  
+                   MainMenuCursorLoc=SecondLine;
                 }
                 break;
                 case OK:
                 {
+                    /*Disable Cursor to only View What's Selected*/
                     LCD_DisableCursorAsynch(LCD1,NULL);
-                    if(MM_CursorLoc==FirstLine)
+                    if(MainMenuCursorLoc==FirstLine)
                     {
                         CurrentMode=DateTime;
                     }
-                    else if(MM_CursorLoc==SecondLine)
+                    else if(MainMenuCursorLoc==SecondLine)
                     {
                         CurrentMode=StopWatch;
                     }
@@ -1006,6 +851,7 @@ static void USART_ReceiveCbf(void)
         break;
         case DateTime:
         {
+            /*Initial Cursor State is Last Place it was At while Editing*/
             LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
             switch(buffer)
             {
@@ -1054,9 +900,9 @@ static void USART_ReceiveCbf(void)
                 {
                     CurrentMode=StopWatch;
                     ModeState=MODIFIED;
-                    /*Disable Editing Mode*/
+                    /*Disable Editing Mode and Cursor (No Use in Stopwatch) */
                     LCD_DisableCursorAsynch(LCD1,NULL);
-                     EditMode=OFF;
+                    EditMode=OFF;
                 }
                 break;
 
@@ -1066,15 +912,210 @@ static void USART_ReceiveCbf(void)
     }
 }
 
-/* Each 125mSec */
+/***********************************************************************************/
+/*								Application Runnables	   						   */
+/***********************************************************************************/
+
+/* Each 1000mS */
+void LCD_DisplayDateTime(void)
+ {
+    static uint8_t First_Time=0;
+    ErrorStatus_t ReturnError;
+        if(EditMode==OFF)
+        {
+            TimeSeconds++;
+            if (TimeSeconds > 59) 
+            {
+                TimeSeconds = 0;
+
+                TimeMinutes++;
+                if (TimeMinutes > 59) 
+                {
+                    TimeMinutes = 0;
+                    TimeHours++;
+                    if (TimeHours > 23) 
+                    {
+                        TimeHours = 0;
+                    }
+                }
+            }
+        }
+
+        if(CurrentMode==DateTime)
+        {
+            /* First Function Entry            */
+            if(First_Time==0)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                First_Time++;
+            }
+            /* Clear LCD Screen if Mode is Changed to Stopwatch/DateTime */
+            else if(ModeState==MODIFIED)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                ModeState=CONSTANT; 
+            }
+            else
+            {
+                //Do Nothing
+            }
+
+            /* Updating Time&Date Values on the LCD will happen if
+             * 1) "EditMode==OFF" : User isn't editing in Time/Date
+             * 2) "EditUpdate==Modified" : User Requested an Increment/Decrement in one of the Time/Date Digits
+             */
+            if((EditMode==OFF)||(EditUpdate==MODIFIED)) 
+            {   
+
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Time: ",6,NULL);
+                //ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
+
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeHours%10,NULL); 
+        
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeMinutes%10,NULL);
+
+                ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,TimeSeconds%10,NULL);
+
+                ReturnError=LCD_SetCursorPosAsynch(LCD1,SecondLine,0,NULL);
+                ReturnError=LCD_WriteStringAsynch(LCD1,"Date: ",6,NULL);
+
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Day%10,NULL); 
+         
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month/10,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,Month%10,NULL);
+
+                ReturnError=LCD_WriteStringAsynch(LCD1,"/",1,NULL);
+                
+                uint8_t YearThousandsDigit=Year/1000      ;  /* Thousands place */
+                uint8_t YearHundredsDigit =(Year%1000)/100;  /* Hundreds place  */
+                uint8_t YearTensDigit     =(Year%100)/10  ;  /* Tens place      */
+                uint8_t YearOnesDigit     =Year%10        ;  /* Ones place      */
+           
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearThousandsDigit,NULL); 
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearHundredsDigit,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearTensDigit,NULL);
+                ReturnError=LCD_WriteNumAsynch(LCD1,YearOnesDigit,NULL);
+                
+
+                if(EditUpdate==MODIFIED) /* Edit mode and Modification is Done*/
+                {
+                    EditUpdate=CONSTANT;
+
+                    /* Printing Date and Time Above Moved the Cursor from the Digit it was At while User was Editing
+                     * This Sets Cursor Back to its Place
+                     */
+                    LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+                }
+            }
+        }
+ }
+ 
+/* Each 100mS */
+void LCD_DisplayStopwatch()
+{
+    ErrorStatus_t ReturnError;
+    static uint8_t First_Time=0;
+    
+    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&
+        (StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
+    {
+        StopWatchTensSeconds++;
+
+       if(StopWatchTensSeconds>9) 
+       {
+            StopWatchTensSeconds=0;
+            StopWatchSeconds++;
+            if (StopWatchSeconds > 59) 
+            {
+                StopWatchSeconds = 0;
+                StopWatchMinutes++;
+                if (StopWatchMinutes > 59) 
+                {
+                    StopWatchMinutes = 0;
+                    StopWatchHours++;
+                    if (StopWatchHours > 23) 
+                    {
+                        StopWatchHours = 0;
+                    }
+                }
+            }
+       }
+    }
+    else if (StopWatchReset==STOP_WATCH_RESET_ON)
+    {
+        StopWatchTensSeconds=0;
+        StopWatchSeconds=0;
+        StopWatchMinutes=0;
+        StopWatchHours=0;
+        StopWatchReset=STOP_WATCH_RESET_OFF;
+    }
+        
+        if(CurrentMode==StopWatch)
+        {
+            if(First_Time==0)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                First_Time++;
+            } 
+            else if(ModeState==MODIFIED)
+            {
+                LCD_ClearScreenAsynch(LCD1,NULL);
+                ModeState=CONSTANT;             
+            }     
+
+            ReturnError=LCD_SetCursorPosAsynch(LCD1,FirstLine,3,NULL);
+            ReturnError=LCD_WriteStringAsynch(LCD1,"Stop Watch",10,NULL);
+            ReturnError=LCD_SetCursorPosAsynch(LCD1,1,2,NULL);
+
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchHours%10,NULL); 
+    
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+            
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchMinutes%10,NULL);
+
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+            
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchSeconds%10,NULL);
+
+            ReturnError=LCD_WriteStringAsynch(LCD1,":",1,NULL);
+
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds/10,NULL);
+            ReturnError=LCD_WriteNumAsynch(LCD1,StopWatchTensSeconds%10,NULL);
+        }
+}
+
+/* Each 125mS */
 void Display_App(void)
 {
+    /*Prepare to Receive UART Byte Every 125mS*/
     USART_ReceiveBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
 }
 
+/***********************************************************************************/
+/*								User API's Implementations						   */
+/***********************************************************************************/
+
+/**
+  * @brief  Application Entry Point: Initialized LCD Screen with Main Menu 
+  */
 void APP_Init(void)
 {
     LCD_DisplayMainMenu();
 }
+
 #endif
 #endif
