@@ -27,7 +27,6 @@
 /***********************************************************************************/
 
 /*============================ Control Switches ============================*/
-/* Anas change the switchs order and values to optimize Switchs number*/
 
 #define OK                          '1' 
 #define MODE                        '1'
@@ -58,23 +57,23 @@
 #define CONSTANT                    0
 #define MODIFIED                    1
 
-#define DATE_TIME_INDEX 6
+#define DATE_TIME_INDEX             6
 /*======================== Time Digits on LCD ===========================*/
-#define HOURS_INDEX1    6    
-#define HOURS_INDEX2    7
-#define MINUTES_INDEX1  9
-#define MINUTES_INDEX2  10
-#define SECONDS_INDEX1  12
-#define SECONDS_INDEX2  13
+#define HOURS_INDEX1                6    
+#define HOURS_INDEX2                7
+#define MINUTES_INDEX1              9
+#define MINUTES_INDEX2              10
+#define SECONDS_INDEX1              12
+#define SECONDS_INDEX2              13
 /*======================== Date Digits on LCD ===========================*/
-#define DAY_INDEX1      6
-#define DAY_INDEX2      7
-#define MONTH_INDEX1    9
-#define MONTH_INDEX2    10
-#define YEAR_INDEX1     12
-#define YEAR_INDEX2     13
-#define YEAR_INDEX3     14
-#define YEAR_INDEX4     15
+#define DAY_INDEX1                  6
+#define DAY_INDEX2                  7
+#define MONTH_INDEX1                9
+#define MONTH_INDEX2                10
+#define YEAR_INDEX1                 12
+#define YEAR_INDEX2                 13
+#define YEAR_INDEX3                 14
+#define YEAR_INDEX4                 15
 /*========================= StopWatch Modes =============================*/
 #define STOP_WATCH_PAUSE            0
 #define STOP_WATCH_CONTINUE         1
@@ -93,27 +92,27 @@ uint8_t Day=10;
 uint8_t Month=4;
 uint16_t Year=2024;
 /*===================== LCD Operation States =======================*/
-uint8_t EditMode=OFF;                   /*Variable to Keep Track if Editing is On/Off to Enable/Disable Cursor*/
+uint8_t EditMode=OFF;                   /* Variable to Keep Track if Editing is On/Off to Enable/Disable Cursor          */
 
-uint8_t PosX=FirstLine;                 /*Variable to Keep Track of LCD Cursor Column Position During Editing*/
-uint8_t PosY=DATE_TIME_INDEX;           /*Variable to Keep Track of LCD Cursor Row Position During Editing*/
+uint8_t PosX=FirstLine;                 /* Variable to Keep Track of LCD Cursor Column Position During Editing           */
+uint8_t PosY=DATE_TIME_INDEX-1;         /* Variable to Keep Track of LCD Cursor Row Position During Editing              */
 
-uint8_t ModeState=CONSTANT;             /*Variable to Keep Track if a Mode is Changed to Date&Time or Stopwatch*/
-uint8_t EditUpdate=CONSTANT;            /*Variable to Keep Track if an Increment/Decrement in Date or Time has Happened*/
+uint8_t ModeState=CONSTANT;             /* Variable to Keep Track if a Mode is Changed to Date&Time or Stopwatch         */
+uint8_t EditUpdate=CONSTANT;            /* Variable to Keep Track if an Increment/Decrement in Date or Time has Happened */
 
 /*============================ Time Variables ==============================*/
 uint32_t TimeSeconds=30;
 uint32_t TimeMinutes=59;
-uint32_t TimeHours=0;
+uint32_t TimeHours  =0;
 /*========================= StopWatch Variables ============================*/
 uint8_t StopWatchTensSeconds=0;
-uint8_t StopWatchSeconds=0;
-uint8_t StopWatchMinutes=0;
-uint8_t StopWatchHours=0;
+uint8_t StopWatchSeconds    =0;
+uint8_t StopWatchMinutes    =0;
+uint8_t StopWatchHours      =0;
 
-uint8_t StopWatchStartStop=STOP_WATCH_STOP;
+uint8_t StopWatchStartStop    =STOP_WATCH_STOP;
 uint8_t StopWatchPauseContinue=STOP_WATCH_CONTINUE;
-uint8_t StopWatchReset=STOP_WATCH_RESET_OFF;
+uint8_t StopWatchReset        =STOP_WATCH_RESET_OFF;
 
 /*************************************************************************************/
 /*							Static Functions Prototype								 */
