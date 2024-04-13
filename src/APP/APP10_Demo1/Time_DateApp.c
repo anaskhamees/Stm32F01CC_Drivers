@@ -27,16 +27,23 @@
 /***********************************************************************************/
 
 /*============================ Control Switches ============================*/
-#define OK                          '3'
-#define START_STOP_STOPWATCH        '5'
-#define RESET_STOPWATCH             '6'
-#define PAUSE_CONTINUE_STOPWATCH    '7'
-#define UP                          '2'
-#define DOWN                        '7'
-#define RIGHT                       '8'
-#define LEFT                        '6'
-#define EDIT                        '4'
+/* Anas change the switchs order and values to optimize Switchs number*/
+
+#define OK                          '1' 
 #define MODE                        '1'
+
+#define UP                          '2'
+#define EDIT                        '3'
+
+#define RIGHT                       '4'
+#define START_STOP_STOPWATCH        '4' 
+
+#define LEFT                        '5'
+#define RESET_STOPWATCH             '5'
+
+#define PAUSE_CONTINUE_STOPWATCH    '6'
+#define DOWN                        '6'
+
 /*==================== LCD Screen Current Mode ============================*/
 #define MainMenu                    0
 #define StopWatch                   1
@@ -95,7 +102,10 @@ uint8_t CurrentDisplay=StopWatch;
 uint8_t EditMode=OFF;
 
 uint8_t PosX=FirstLine;
-uint8_t PosY=DATE_TIME_INDEX;
+uint8_t PosY=DATE_TIME_INDEX-1; /* Anas Edit This, should be (DATE_TIME_INDEX-1)
+                               * because (PosY++;) execute first then 
+                               * LCD_SetCursorPosAsynch(LCD1,PosX,PosY,NULL);
+                               */
 
 uint8_t ModeState=CONSTANT;
 uint8_t EditUpdate=CONSTANT;
