@@ -4,7 +4,7 @@
  
  /* @ Modified by: Your name
  * @ Modified time: 2024-04-15 00:55:51
- * @ Modified time: 2024-04-15 01:01:46
+ * @ Modified time: 2024-04-15 01:31:06
  * Layer	: App
  * Version  : V 0.0
  * Created	: Apr 8, 2024
@@ -1122,18 +1122,6 @@ void Display_App(void)
     IPC_USART_ReceiveBufferAsynchZeroCopy(USART_CH2,&RXBuffer,1,USART_ReceiveCbf);
 }
 
-/***********************************************************************************/
-/*								User API's Implementations						   */
-/***********************************************************************************/
-
-/**
-  * @brief  Application Entry Point: Initialized LCD Screen with Main Menu 
-  */
-void APP_Init(void)
-{
-    LCD_DisplayMainMenu();
-}
-
 /* Each 150 mSec */
 void AppButtons_Runnable(void)
 {
@@ -1183,5 +1171,18 @@ void AppButtons_Runnable(void)
             IPC_USART_SendBufferAsynchZeroCopy(USART_CH2,&TXBuffer,1,USART_ReceiveCbf);
         }  
 }
+
+/***********************************************************************************/
+/*								User API's Implementations						   */
+/***********************************************************************************/
+
+/**
+  * @brief  Application Entry Point: Initialized LCD Screen with Main Menu 
+  */
+void APP_Init(void)
+{
+    LCD_DisplayMainMenu();
+}
+
 #endif
 #endif
