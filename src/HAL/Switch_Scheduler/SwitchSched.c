@@ -93,13 +93,13 @@ ErrorStatus_t HSwitch_Init(void)
  */
    void HSwitch_Runnable(void)
    {
-        uint8_t CurrentState=0;
-        static uint8_t PrevoiusState[_HSWITCHES_NUM]={0};
-        static uint8_t Counts[_HSWITCHES_NUM]={0};
-        ErrorStatus_t ReturnError;
-        for(uint8_t SwitchNum=0;SwitchNum<_HSWITCHES_NUM;SwitchNum++)
-        {
-            ReturnError=GPIO_GetPinValue(HSwitches[SwitchNum].SW_Port,HSwitches[SwitchNum].SW_Pin,&CurrentState);
+         uint32_t CurrentState=0;
+         static uint32_t PrevoiusState[_HSWITCHES_NUM]={0};
+         static uint32_t Counts[_HSWITCHES_NUM]={0};
+         ErrorStatus_t ReturnError;
+         for(uint8_t SwitchNum=0;SwitchNum<_HSWITCHES_NUM;SwitchNum++)
+         {
+             ReturnError=GPIO_GetPinValue(HSwitches[SwitchNum].SW_Port,HSwitches[SwitchNum].SW_Pin,&CurrentState);
             if(CurrentState==PrevoiusState[SwitchNum])
             {
                 Counts[SwitchNum]++;
@@ -113,7 +113,7 @@ ErrorStatus_t HSwitch_Init(void)
                 HSwitchState[SwitchNum]=CurrentState;
             }
             PrevoiusState[SwitchNum]=CurrentState;
-        }
+         }
 
    }
 
