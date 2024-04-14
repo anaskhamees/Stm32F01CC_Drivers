@@ -16,7 +16,6 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .PeriodicityMS=2,
     .CallBack=LCD_Task
   },
-
   [HSwitchRunnable]={
    .PeriodicityMS=5,
    .FirstDelayMS=100,
@@ -27,7 +26,6 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .PeriodicityMS=100,
     .CallBack=LCD_DisplayStopwatch
   },
-
 [DISPLAY_APP]={
     .FirstDelayMS=100,
     .PeriodicityMS=125,
@@ -39,7 +37,6 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
    .FirstDelayMS=150,
    .CallBack=AppButtons_Runnable
  },
-
   [DATE_TIME]={
     .FirstDelayMS=100,
     .PeriodicityMS=1000,
