@@ -1,7 +1,19 @@
-#ifndef MCAL_NVIC_STM32F401XX_H_
-#define MCAL_NVIC_STM32F401XX_H_
+/*
+* File:    STM32F401xx.h
+* Author:  Yasmin Amr
+* Created: 4/3/2024
+* Brief:   Interrupt Names
+* Target:  STM32F401cc
+*/
 
-/*====================================== Interrupt Requests in STM32F401CC [Vector table] ===========================================*/
+#include "Std_Lib/Std_Libraries.h"
+
+/*Priority Bits in STM32F401cc*/
+#define PRIORITY_BITS                   4
+
+/**************************************************************************/
+/*						IRQ Table - STM32F401cc						 	  */
+/**************************************************************************/
 #define NVIC_WINDOW_WATCHDOG_TIMER		0
 #define	NIVC_EXTERNAL_LINE16			1
 #define	NIVC_EXTERNAL_LINE21			2
@@ -58,16 +70,4 @@
 #define NVIC_I2C3_ER_INTERRUPT          73
 #define NVIC_FPU_INTERRUPT              81
 #define NVIC_SPI4_INTERRUPT             84
-
-#define MAX_IRQ_VALUE                   84  /* For validation only*/
-
-/*=========================== Number of Implemented Bits of Priority Register IPR  in Stm32F401CC ===================================*/
-#define IMPLEMENTED_IPR_BITS            4
-
-
-
-
-
-
-#endif // MCAL_NVIC_STM32F401XX_H_
-
+#define IRQn_MAX                        85

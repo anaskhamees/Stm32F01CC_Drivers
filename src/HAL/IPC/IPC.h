@@ -5,6 +5,7 @@
 /**********************************************************************************/
 /*										Includes				     			  */
 /**********************************************************************************/
+#include "MCAL/USART_Driver/USART.h"
 #include "Std_Lib/Std_Libraries.h"
 /***********************************************************************************/
 /*										Defines								       */
@@ -19,9 +20,9 @@
 /********************************************************************************/
 /*                 USART Peripherals in the STM32F401xx                         */                                                                                
 /********************************************************************************/
-#define USART1      (0UL)
-#define USART2      (1UL)
-#define USART6      (2UL)
+// #define USART1      (0UL)
+// #define USART2      (1UL)
+// #define USART6      (2UL)
 /*******************************************************************************/
 /*					  USART Peripheral Over Sample Masks                       */
 /*******************************************************************************/
@@ -108,8 +109,8 @@ typedef struct
 /***********************************************************************************/
 
 void IPC_USART_Init(IPC_USART_CFG_t* IPC_USART_Config);
-void IPC_USART_SendBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint32_t BufferLength,CallBack_t cbFun);
-void IPC_USART_ReceiveBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint32_t BufferLength,CallBack_t cbFun);
+void IPC_USART_SendBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint16_t BufferLength,CallBack_t cbFun);
+void IPC_USART_ReceiveBufferAsynchZeroCopy(uint8_t USART_ID,uint8_t* Buffer,uint16_t BufferLength,CallBack_t cbFun);
 void IPC_USART_SendByte(uint8_t USART_ID,uint8_t Byte);
 void IPC_USART_ReceiveByte(uint8_t USART_ID,uint8_t* Byte);
 

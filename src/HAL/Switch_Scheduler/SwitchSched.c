@@ -116,4 +116,3 @@ ErrorStatus_t HSwitch_Init(void)
          }
 
    }
-

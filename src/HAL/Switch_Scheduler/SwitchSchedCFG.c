@@ -4,7 +4,6 @@
 #include "MCAL/GPIO/GPIO.h"
 #include "SwitchSched.h"
 
-
 /********************************************************************************************************/
 /************************************************Variables***************************************************/
 /********************************************************************************************************/
@@ -41,13 +40,13 @@ HSwitchCFG_t HSwitches[_HSWITCHES_NUM]=
     [LEFT_RESET_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN6,
+        .SW_Pin=GPIO_PIN0,
         .SW_Connection=GPIO_IN_PU
     },
     [DOWN_PAUSE_CONTINUE_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN7,
+        .SW_Pin=GPIO_PIN1,
         .SW_Connection=GPIO_IN_PU
     }
 

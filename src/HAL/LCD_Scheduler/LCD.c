@@ -11,9 +11,9 @@
 /*                                               Includes                                               */
 /********************************************************************************************************/
 #include "MCAL/GPIO/GPIO.h"
-#include "LCD.h"
-#include "LCD_CFG.h"
-#include "Scheduler/Scheduler.h"
+#include "HAL/LCD_Scheduler/LCD.h"
+#include "HAL/LCD_Scheduler/LCD_CFG.h"
+#include "SERVICES/SCHED/SCHED.h"
 /********************************************************************************************************/
 /*                                  LCD Commands MACROs                                                 */
 /********************************************************************************************************/
@@ -30,6 +30,7 @@
 /** 
  *@brief: Entry Mode Set command, Sets cursor move direction(incremental or decremental) and enable the shift of entire display but cursor is fixed.
  */
+
 #define LCD_ENTRY_MODE_DEC_SHIFT_OFF		 0x04
 #define LCD_ENTRY_MODE_INC_SHIFT_OFF		 0x06  /*Normal Mode*/
 #define LCD_ENTRY_MODE_DEC_SHIFT_ON			 0x05
