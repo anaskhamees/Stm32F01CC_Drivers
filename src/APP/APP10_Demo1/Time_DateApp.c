@@ -763,7 +763,6 @@ static void LCD_DecrementDateTime(void)
             TimeSecondsIndex2--;
         }
     }
-
 /*============================ Time Updated Values ===================================*/
     TimeHours= (TimeHoursIndex1*10)+TimeHoursIndex2;
     TimeMinutes= (TimeMinutesIndex1*10)+TimeMinutesIndex2;
