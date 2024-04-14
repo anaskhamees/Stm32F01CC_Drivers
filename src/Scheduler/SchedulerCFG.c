@@ -41,8 +41,9 @@ const UserRunnable_t UserRunnables[_MAX_RUNNABLE]=
     .FirstDelayMS=100,
     .PeriodicityMS=1000,
     .CallBack=LCD_DisplayDateTime 
-    },
+    }
   
+  /**********************************************/
   /*[LCD_APP_RUN]={
     .FirstDelayMS=0,
     .PeriodicityMS=1000,

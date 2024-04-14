@@ -12,14 +12,9 @@
 #define APP9_UART_TEST              9
 #define APP10_DEMO1                 10
 #define APP11_DEMO1_STOPWATCH_TEST  11
-#define APP      APP10_DEMO1
 
-
-
-
-
-
-
-
+/************************************************/
+    #define APP      APP10_DEMO1
+/************************************************/
 
 #endif // APP_APP_H_

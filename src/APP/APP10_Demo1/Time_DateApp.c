@@ -18,7 +18,7 @@
 #include "MCAL/GPIO/GPIO.h"
 #include "MCAL/NVIC/NVIC.h"
 #include "MCAL/NVIC/STM32F401xx.h"
-#include "MCAL/UART/USART.h"
+#include "HAL/IPC/IPC.h"
 #include "HAL/Switch_Scheduler/SwitchSched.h"
 #include "HAL/LCD_Scheduler/LCD.h"
 #include "Scheduler/Scheduler.h"
@@ -1115,7 +1115,7 @@ void LCD_DisplayStopwatch()
 void Display_App(void)
 {
     /*Prepare to Receive UART Byte Every 125mS*/
-    USART_ReceiveBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+    IPC_USART_ReceiveBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
 }
 
 /***********************************************************************************/
@@ -1140,35 +1140,35 @@ void AppButtons_Runnable(void)
      if(SwitchState[MODE_OK_SWITCH]==SWITCH_PRESSED)
         {
             buffer=OK_MODE_SWITCH;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
         }
 
     ReturnState=HSwitch_GetState(UP_SWITCH,&(SwitchState[UP_SWITCH]));
      if(SwitchState[UP_SWITCH]==SWITCH_PRESSED)
         {
             buffer=UP;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
         }
 
     ReturnState=HSwitch_GetState(EDIT_SWITCH,&(SwitchState[EDIT_SWITCH]));
      if(SwitchState[EDIT_SWITCH]==SWITCH_PRESSED)
         {
             buffer=EDIT;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
         }
 
     ReturnState=HSwitch_GetState(RIGHT_START_STOP_SWITCH,&(SwitchState[RIGHT_START_STOP_SWITCH]));
      if(SwitchState[RIGHT_START_STOP_SWITCH]==SWITCH_PRESSED)
         {
             buffer=RIGHT_START_STOP_STOPWATCH_SWITCH;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
         }
 
     ReturnState=HSwitch_GetState(LEFT_RESET_SWITCH,&(SwitchState[LEFT_RESET_SWITCH]));
      if(SwitchState[LEFT_RESET_SWITCH]==SWITCH_PRESSED)
         {
             buffer=LEFT_RESET_STOPWATCH_SWITCH;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
 
         }
 
@@ -1176,7 +1176,7 @@ void AppButtons_Runnable(void)
      if(SwitchState[DOWN_PAUSE_CONTINUE_SWITCH]==SWITCH_PRESSED)
         {
             buffer=DOWN_PAUSE_CONTINUE_STOPWATCH_SWITCH;
-            ReturnState=USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
+            IPC_USART_SendBufferAsynchZeroCopy(USART2,&buffer,1,USART_ReceiveCbf);
         }  
 }
 #endif

@@ -15,7 +15,8 @@
 #include "MCAL/GPIO/GPIO.h"
 #include "MCAL/NVIC/NVIC.h"
 #include "MCAL/NVIC/STM32F401xx.h"
-#include "MCAL/UART/USART.h"
+//#include "MCAL/UART/USART.h"
+#include "HAL/IPC/IPC.h"
 #include "HAL/LED/LED.h"
 /******************************************************************************************/
 /*                                        Defines                                         */
@@ -65,16 +66,28 @@ GPIO_CFG_t UART_RX_PIN=
 //     .USART_ID=USART1
 // };
 
-USART_CFG_t UART2_CFG=
+// USART_CFG_t UART2_CFG=
+// {
+//     .BaudRate=9600,
+//     .BitSampleMethod=USART_SAMPLE_BIT3,
+//     .DataBits=USART_DATA_BITS_8,
+//     .OverSample=USART_OVERSAMPLING_16,
+//     .Parity=USART_PARITY_NONE,
+//     .StopBits=UART_STOP_BITS_ONE,
+//     .USART_ID=USART2
+// };
+
+IPC_USART_CFG_t IPC_UART2_CFG =
 {
-    .BaudRate=9600,
-    .BitSampleMethod=USART_SAMPLE_BIT3,
-    .DataBits=USART_DATA_BITS_8,
-    .OverSample=USART_OVERSAMPLING_16,
-    .Parity=USART_PARITY_NONE,
-    .StopBits=UART_STOP_BITS_ONE,
-    .USART_ID=USART2
+    .IPC_USART_BaudRate        = 9600,
+    .IPC_USART_BitSampleMethod = USART_SAMPLE_BIT3,
+    .IPC_USART_DataBits        = USART_DATA_BITS_8,
+    .IPC_USART_ID              = USART2,
+    .IPC_USART_OverSample      = USART_OVERSAMPLING_16,
+    .IPC_USART_Parity          = USART_PARITY_NONE,
+    .IPC_USART_StopBits        = UART_STOP_BITS_ONE
 };
+
 uint8_t Buffer[5]={'A','B','C','D','E'};
 uint8_t ReciverBuffer[3]={0};
 
@@ -91,7 +104,7 @@ void TurnLedON(void)
   if((ReciverBuffer[0]=='A')&&(ReciverBuffer[1]=='B')&&(ReciverBuffer[2]=='C'))
     {
         ErrorStatus_t RetError=LED_SetState(RED_LED,LED_ON);
-        ReturnError=USART_SendBufferAsynchZeroCopy(USART2,ReciverBuffer,3,NULL);
+        IPC_USART_SendBufferAsynchZeroCopy(USART2,ReciverBuffer,3,NULL);
     }  
 }
 
@@ -106,12 +119,15 @@ int main(int argc, char* argv[])
     ReturnError=GPIO_InitPin(&UART_RX_PIN);
     ReturnError=NVIC_EnableIRQ(NVIC_USART2_INTERRUPT);
     ReturnError=LED_Init();
-    ReturnError=USART_Init(&UART2_CFG);
-    ReturnError=USART_ReceiveBufferAsynchZeroCopy(USART2,ReciverBuffer,3,TurnLedON);
+    // ReturnError=USART_Init(&UART2_CFG);
+    // ReturnError=USART_ReceiveBufferAsynchZeroCopy(USART2,ReciverBuffer,3,TurnLedON);
     //ReturnError=USART_SendBufferAsynchZeroCopy(USART1,Buffer,5,TurnLedON);
     // ReturnError=USART_SendByte(USART1,'A');
     // ReturnError=USART_SendByte(USART1,'B');
     // ReturnError=USART_SendByte(USART1,'C');
+       
+       IPC_USART_Init(&IPC_UART2_CFG);
+       IPC_USART_ReceiveBufferAsynchZeroCopy(USART2,ReciverBuffer,3,TurnLedON);
 
     while (1)
     {
