@@ -4,7 +4,7 @@
  
  /* @ Modified by: Your name
  * @ Modified time: 2024-04-15 00:55:51
- * @ Modified time: 2024-04-15 16:42:54
+ * @ Modified time: 2024-04-15 16:56:48
  * Layer	: App
  * Version  : V 0.0
  * Created	: Apr 8, 2024
@@ -39,7 +39,7 @@
 #define EDIT                              '3'
 
 #define RIGHT                             '4'
-//#define START_STOP_STOPWATCH              '4' 
+#define START_STOP_STOPWATCH              '4' 
 #define RIGHT_START_STOP_STOPWATCH_SWITCH '4' 
 
 
@@ -47,7 +47,7 @@
 #define RESET_STOPWATCH                   '5'
 #define LEFT_RESET_STOPWATCH_SWITCH       '5'
 
-#define PAUSE_CONTINUE_STOPWATCH          '6'
+//#define PAUSE_CONTINUE_STOPWATCH          '6'
 #define DOWN                              '6'
 #define DOWN_PAUSE_CONTINUE_STOPWATCH_SWITCH        '6'
 
@@ -121,8 +121,7 @@ uint8_t StopWatchSeconds    =0;
 uint8_t StopWatchMinutes    =0;
 uint8_t StopWatchHours      =0;
 
-//uint8_t StopWatchStartStop    =STOP_WATCH_STOP;
-uint8_t StopWatchPauseContinue=STOP_WATCH_PAUSE;
+uint8_t StopWatchStartStop=STOP_WATCH_STOP;
 uint8_t StopWatchReset        =STOP_WATCH_RESET_OFF;
 
 /*************************************************************************************/
@@ -827,15 +826,15 @@ static void LCD_DecrementDateTime(void)
                     StopWatchReset=STOP_WATCH_RESET_ON;
                 }
                 break;
-                case PAUSE_CONTINUE_STOPWATCH:
+                case START_STOP_STOPWATCH:
                 {
-                    if(StopWatchPauseContinue==STOP_WATCH_CONTINUE)
+                    if(StopWatchStartStop==STOP_WATCH_START)
                     {
-                        StopWatchPauseContinue=STOP_WATCH_PAUSE;
+                        StopWatchStartStop=STOP_WATCH_STOP;
                     }
-                    else if(StopWatchPauseContinue==STOP_WATCH_PAUSE)
+                    else if(StopWatchStartStop==STOP_WATCH_STOP)
                     {
-                        StopWatchPauseContinue=STOP_WATCH_CONTINUE;
+                        StopWatchStartStop=STOP_WATCH_START;
                     }
                 }
                 break;
@@ -1026,7 +1025,7 @@ void LCD_DisplayStopwatch()
     ErrorStatus_t ReturnError;
     static uint8_t First_Time=0;
     
-    if((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&(StopWatchReset==STOP_WATCH_RESET_OFF))
+    if((StopWatchStartStop==STOP_WATCH_START)&&(StopWatchReset==STOP_WATCH_RESET_OFF))
     {
         StopWatchTensSeconds++;
 
@@ -1057,7 +1056,7 @@ void LCD_DisplayStopwatch()
         StopWatchMinutes=0;
         StopWatchHours=0;
         StopWatchReset=STOP_WATCH_RESET_OFF;
-        StopWatchPauseContinue=STOP_WATCH_PAUSE;
+        StopWatchStartStop=STOP_WATCH_STOP;
     }
         
         if(CurrentMode==StopWatch)
