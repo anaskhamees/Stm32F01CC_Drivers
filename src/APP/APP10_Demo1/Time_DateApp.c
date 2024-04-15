@@ -4,7 +4,7 @@
  
  /* @ Modified by: Your name
  * @ Modified time: 2024-04-15 00:55:51
- * @ Modified time: 2024-04-15 01:31:06
+ * @ Modified time: 2024-04-15 16:42:54
  * Layer	: App
  * Version  : V 0.0
  * Created	: Apr 8, 2024
@@ -39,7 +39,7 @@
 #define EDIT                              '3'
 
 #define RIGHT                             '4'
-#define START_STOP_STOPWATCH              '4' 
+//#define START_STOP_STOPWATCH              '4' 
 #define RIGHT_START_STOP_STOPWATCH_SWITCH '4' 
 
 
@@ -121,8 +121,8 @@ uint8_t StopWatchSeconds    =0;
 uint8_t StopWatchMinutes    =0;
 uint8_t StopWatchHours      =0;
 
-uint8_t StopWatchStartStop    =STOP_WATCH_STOP;
-uint8_t StopWatchPauseContinue=STOP_WATCH_CONTINUE;
+//uint8_t StopWatchStartStop    =STOP_WATCH_STOP;
+uint8_t StopWatchPauseContinue=STOP_WATCH_PAUSE;
 uint8_t StopWatchReset        =STOP_WATCH_RESET_OFF;
 
 /*************************************************************************************/
@@ -822,18 +822,6 @@ static void LCD_DecrementDateTime(void)
         {
              switch(TXBuffer)
             {
-                case START_STOP_STOPWATCH:
-                {
-                    if(StopWatchStartStop==STOP_WATCH_STOP)
-                    {
-                        StopWatchStartStop=STOP_WATCH_START;
-                    }
-                    else if(StopWatchStartStop==STOP_WATCH_START)
-                    {
-                        StopWatchStartStop=STOP_WATCH_STOP;
-                    }         
-                }
-                break;
                 case RESET_STOPWATCH:
                 {
                     StopWatchReset=STOP_WATCH_RESET_ON;
@@ -849,11 +837,6 @@ static void LCD_DecrementDateTime(void)
                     {
                         StopWatchPauseContinue=STOP_WATCH_CONTINUE;
                     }
-                }
-                break;
-                case EDIT:
-                {
-                    /* No Edits in StopWatch */
                 }
                 break;
                 case MODE:
@@ -1043,8 +1026,7 @@ void LCD_DisplayStopwatch()
     ErrorStatus_t ReturnError;
     static uint8_t First_Time=0;
     
-    if(((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&
-        (StopWatchStartStop==STOP_WATCH_START))&&(StopWatchReset==STOP_WATCH_RESET_OFF))
+    if((StopWatchPauseContinue==STOP_WATCH_CONTINUE)&&(StopWatchReset==STOP_WATCH_RESET_OFF))
     {
         StopWatchTensSeconds++;
 
@@ -1075,7 +1057,7 @@ void LCD_DisplayStopwatch()
         StopWatchMinutes=0;
         StopWatchHours=0;
         StopWatchReset=STOP_WATCH_RESET_OFF;
-        StopWatchStartStop=STOP_WATCH_STOP;
+        StopWatchPauseContinue=STOP_WATCH_PAUSE;
     }
         
         if(CurrentMode==StopWatch)
@@ -1119,7 +1101,19 @@ void LCD_DisplayStopwatch()
 void Display_App(void)
 {
     /*Prepare to Receive UART Byte Every 125mS*/
-    IPC_USART_ReceiveBufferAsynchZeroCopy(USART_CH2,&RXBuffer,1,USART_ReceiveCbf);
+    //IPC_USART_ReceiveBufferAsynchZeroCopy(USART_CH2,&RXBuffer,1,USART_ReceiveCbf);
+}
+
+/***********************************************************************************/
+/*								User API's Implementations						   */
+/***********************************************************************************/
+
+/**
+  * @brief  Application Entry Point: Initialized LCD Screen with Main Menu 
+  */
+void APP_Init(void)
+{
+    LCD_DisplayMainMenu();
 }
 
 /* Each 150 mSec */
@@ -1171,18 +1165,5 @@ void AppButtons_Runnable(void)
             IPC_USART_SendBufferAsynchZeroCopy(USART_CH2,&TXBuffer,1,USART_ReceiveCbf);
         }  
 }
-
-/***********************************************************************************/
-/*								User API's Implementations						   */
-/***********************************************************************************/
-
-/**
-  * @brief  Application Entry Point: Initialized LCD Screen with Main Menu 
-  */
-void APP_Init(void)
-{
-    LCD_DisplayMainMenu();
-}
-
 #endif
 #endif
