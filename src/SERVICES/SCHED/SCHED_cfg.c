@@ -37,13 +37,13 @@
 const Runnables_t System_Runnables[_MAX_RUNNABLE]=
 {
   [LCD_TASK_RUN]={
-    .FirstDelayMs=0,
+    .FirstDelayMs=3,
     .PeriodicityMs=2,
     .CallBackFn=LCD_Task
   },
   [HSwitchRunnable]={
    .PeriodicityMs=5,
-   .FirstDelayMs=100,
+   .FirstDelayMs=6,
    .CallBackFn=HSwitch_Runnable
  },
  [STOP_WATCH]={
@@ -52,18 +52,18 @@ const Runnables_t System_Runnables[_MAX_RUNNABLE]=
     .CallBackFn=LCD_DisplayStopwatch
   },
 [DISPLAY_APP]={
-    .FirstDelayMs=100,
+    .FirstDelayMs=131,
     .PeriodicityMs=125,
     .CallBackFn=Display_App
   },
 
  [AppButtonsRun]={
-   .PeriodicityMs=200,
-   .FirstDelayMs=150,
+   .PeriodicityMs=150,
+   .FirstDelayMs=152,
    .CallBackFn=AppButtons_Runnable
  },
   [DATE_TIME]={
-    .FirstDelayMs=100,
+    .FirstDelayMs=1004,
     .PeriodicityMs=1000,
     .CallBackFn=LCD_DisplayDateTime 
     }
