@@ -40,13 +40,13 @@ HSwitchCFG_t HSwitches[_HSWITCHES_NUM]=
     [LEFT_RESET_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN0,
+        .SW_Pin=GPIO_PIN10,
         .SW_Connection=GPIO_IN_PU
     },
     [DOWN_PAUSE_CONTINUE_SWITCH]=
     {
         .SW_Port=GPIO_PORTB,
-        .SW_Pin=GPIO_PIN1,
+        .SW_Pin=GPIO_PIN12,
         .SW_Connection=GPIO_IN_PU
     }
 
